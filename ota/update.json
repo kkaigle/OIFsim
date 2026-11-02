@@ -1,16 +1,15 @@
 {
- "game": 64,
- "file": "game-64.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-64.html",
- "sha256": "fb1ec8dcd3e0065b7f977f5ff0e004cf9b56e824ef3c59d2efa9bdb0f16713c5",
- "size": 966850,
+ "game": 65,
+ "file": "game-65.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-65.html",
+ "sha256": "3e4b3a58cb54eecebf999dfb601068e344ab8561d3fa52e82b6b291ce2a5551c",
+ "size": 967240,
  "notes": [
-  "Tactical map",
-  "New tactical map style: a military operations map with relief tints, contour lines, spot heights, a real MGRS grid (100 km, 10 km and 1 km as you zoom) and a scale bar",
-  "Switch between satellite and tactical with the ▦ button under Status, or in Settings",
-  "Grid references on the drone HUD are now true MGRS coordinates"
+  "Tactical map by default",
+  "The tactical map is now the default view, and the drone camera overlay is off by default (turn it back on in Settings › Drone camera overlay)",
+  "Removed the generated farmland and terrain texture from the satellite map when zoomed in"
  ],
- "published": "2026-11-02T23:32:11.244Z",
+ "published": "2026-11-02T23:35:56.357Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
