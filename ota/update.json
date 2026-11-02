@@ -1,16 +1,16 @@
 {
- "game": 63,
- "file": "game-63.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-63.html",
- "sha256": "4ec543e3dceb314891e55d219fbadba022282d0b16e9d8c84113b407cb4b7970",
- "size": 954543,
+ "game": 64,
+ "file": "game-64.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-64.html",
+ "sha256": "fb1ec8dcd3e0065b7f977f5ff0e004cf9b56e824ef3c59d2efa9bdb0f16713c5",
+ "size": 966850,
  "notes": [
-  "Pipelines you can see",
-  "Pipelines now stand out across the country: bright orange with a dark casing, and moving dashes while oil flows",
-  "Added pumping stations and storage tank farms along the lines; knocking one out throttles that line or drains fuel reserves",
-  "The map key (Key button) explains every oil symbol"
+  "Tactical map",
+  "New tactical map style: a military operations map with relief tints, contour lines, spot heights, a real MGRS grid (100 km, 10 km and 1 km as you zoom) and a scale bar",
+  "Switch between satellite and tactical with the ▦ button under Status, or in Settings",
+  "Grid references on the drone HUD are now true MGRS coordinates"
  ],
- "published": "2026-11-02T22:59:43.437Z",
+ "published": "2026-11-02T23:32:11.244Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
