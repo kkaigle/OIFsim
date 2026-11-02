@@ -9,6 +9,10 @@ Get the latest build from [Releases](https://github.com/kkaigle/OIFsim/releases/
 - **Mac (Apple silicon):** `Iraq-Theater-Command-mac-arm64.zip`. Unzip it, move the app to Applications, then right-click it and choose Open the first time, because the app is not notarized.
 - **Windows (64-bit):** `Iraq-Theater-Command-windows-x64.zip`. Unzip it and run `Iraq Theater Command.exe`.
 
+## iPad, iPhone and browsers
+
+Play at **https://kkaigle.github.io/OIFsim/**. On an iPad, open it in Safari, tap Share, then **Add to Home Screen**. It then opens full screen like an app, works offline, saves campaigns on the device, and picks up new versions automatically when online.
+
 ## Updates
 
 Version 1.61.0 and later check [`ota/update.json`](ota/update.json) in this repository. When a newer game version is pushed, the app downloads it in the background (about 1 MB), checks its SHA-256, and offers to restart into it. Campaigns are saved and backed up first. If an update fails to start, the app rolls back to the previous version.
