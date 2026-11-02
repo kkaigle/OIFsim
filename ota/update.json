@@ -1,15 +1,16 @@
 {
- "game": 65,
- "file": "game-65.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-65.html",
- "sha256": "3e4b3a58cb54eecebf999dfb601068e344ab8561d3fa52e82b6b291ce2a5551c",
- "size": 967240,
+ "game": 66,
+ "file": "game-66.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-66.html",
+ "sha256": "b458aba369818fb595833fabbbe249cd8b73552df94636ad9a4078f7d09e1397",
+ "size": 970668,
  "notes": [
-  "Tactical map by default",
-  "The tactical map is now the default view, and the drone camera overlay is off by default (turn it back on in Settings › Drone camera overlay)",
-  "Removed the generated farmland and terrain texture from the satellite map when zoomed in"
+  "The deck of cards",
+  "The most-wanted deck now uses the real names, from Saddam Hussein (A♠) to Aziz Salih al-Numan (K♦)",
+  "Leaders can slip away before strikes land or raids hit; drones overhead and signals intelligence improve your odds",
+  "Some leaders hide beside hospitals, mosques, schools or utilities; bombing them there wrecks the site, kills civilians and enrages the city, so consider a capture raid"
  ],
- "published": "2026-11-02T23:35:56.357Z",
+ "published": "2026-11-02T23:58:19.066Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {

@@ -217,6 +217,7 @@ table.bda td{background:none!important;padding:4px 6px;border-bottom:1px solid c
 .v3btn{position:absolute;right:max(10px,env(safe-area-inset-right,0px));bottom:70px;z-index:5;background:rgba(12,16,10,.92);border:1px solid var(--friendly);color:var(--friendly);font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;padding:8px 12px;box-shadow:0 4px 14px rgba(0,0,0,.5)}
 .op3{font-family:var(--f-mono);font-size:9.5px;padding:1px 6px;border:1px solid var(--line);color:var(--friendly);margin-left:6px}
 .lg-oil{display:inline-flex;align-items:center;gap:5px}.lg-oil i svg{display:block}
+.mapbtn{position:absolute;top:46px;right:max(10px,env(safe-area-inset-right,0px));z-index:4;background:rgba(18,23,16,.94);border:1px solid var(--line);border-radius:0;padding:6px 10px;font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--sand)}.mapbtn.on{color:#8fd8f0;border-color:rgba(143,216,240,.6)}
 .tgo{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
 .dfx{position:absolute;inset:0;pointer-events:none;z-index:2;background:repeating-linear-gradient(0deg,rgba(0,0,0,.10) 0 1px,transparent 1px 3px)}.dfx::after{content:"";position:absolute;inset:0;background-image:var(--noise);opacity:.55;animation:dfxn .25s steps(3) infinite}.dfx.nv{background:repeating-linear-gradient(0deg,rgba(0,40,0,.14) 0 1px,transparent 1px 3px)}
 @keyframes dfxn{0%{background-position:0 0}33%{background-position:37px 19px}66%{background-position:-23px 41px}100%{background-position:11px -29px}}
@@ -444,6 +445,7 @@ h3{font-size:12px;margin:10px 0 4px;padding-bottom:3px}
     <div class="thrkey" id="thrKey" hidden><b>Threat</b><span><i style="background:#e23c2d"></i>High</span><span><i style="background:#ea962d"></i>Elevated</span><span><i style="background:#50be6e"></i>Low</span></div>
     <div class="legend" id="legend" hidden><span><i>▲</i> Mountains ×0.45</span><span><i>≈</i> Marsh ×0.35</span><span><i>∴</i> Desert ×0.85</span><span><i>═</i> MSR ×1.35 · IEDs</span><span><i>┄</i> Minor road ×0.85 · ambushes</span><span class="lg-oil"><i><svg width="22" height="8" viewBox="0 0 22 8"><line x1="1" y1="4" x2="21" y2="4" stroke="#080604" stroke-width="7" stroke-linecap="round"/><line x1="1" y1="4" x2="21" y2="4" stroke="#ff9b2f" stroke-width="3.6" stroke-linecap="round"/><line x1="4" y1="4" x2="7" y2="4" stroke="#fff1c8" stroke-width="1.6"/><line x1="14" y1="4" x2="17" y2="4" stroke="#fff1c8" stroke-width="1.6"/></svg></i> Oil pipeline · moving dashes = oil flowing</span><span class="lg-oil"><i><svg width="22" height="8" viewBox="0 0 22 8"><line x1="1" y1="4" x2="21" y2="4" stroke="#ff5a3c" stroke-width="4" stroke-linecap="round"/></svg></i> Pipeline cut by sabotage</span><span class="lg-oil"><i style="color:#e3b54a">⏃</i> Oil field</span><span class="lg-oil"><i style="color:#e3b54a">▣</i> Refinery</span><span class="lg-oil"><i style="color:#e3b54a">◎◎</i> Storage depot / tank farm</span><span class="lg-oil"><i style="color:#e3b54a">◈</i> Pumping station</span><span class="lg-oil"><i style="color:#e3b54a">⊖</i> Export terminal</span><span class="lg-oil"><i style="color:#ff9a3c">🔥</i> Burning: output cut</span></div>
     <button class="sbtn" id="sbBtn">☰ Status</button>
+    <button class="mapbtn" id="mapBtn" aria-label="Switch map style">▦ Tactical</button>
     <div class="v3d" id="v3d" hidden><div id="v3c"></div><div class="v3-top"><div class="v3-t"><div class="eyebrow">3D tactical view</div><div id="v3T" class="v3-n"></div><div id="v3S" class="v3s"></div></div><button class="x" id="v3X" aria-label="Close 3D view">✕</button></div><div id="v3U" class="v3u"></div><div id="v3ret" class="v3ret" hidden><i></i></div><canvas id="v3o" class="v3o"></canvas></div>
     <div id="droneFx" class="dfx" hidden></div><canvas id="tgo" class="tgo"></canvas>
     <button class="v3btn" id="v3Btn" hidden>◭ 3D VIEW</button>
@@ -604,9 +606,11 @@ const ROUTE_DEFS=[
 ].map(r=>({...r,P:r.pts.map(a=>P(...a)),E:P(...r.entry)}));
 const routeDef=id=>{if(typeof rsync==='function')rsync();return ROUTE_DEFS.find(r=>r.id===id)};
 const LEADER_DEFS=[
- ['ace_s','A♠','The President',1],['ace_c','A♣','Younger son, Republican Guard overseer',0],['ace_h','A♥','Elder son, Fedayeen commander',0],
- ['ace_d','A♦','Presidential secretary',0],['k_s','K♠','RCC vice-chairman',0],['k_c','K♣','Southern sector commander',0],
- ['k_h','K♥','Intelligence chief',0],['k_d','K♦','Defense minister',0]];
+ ['ace_s','A♠','President of Iraq',1,'Saddam Hussein'],['ace_c','A♣','Younger son, Republican Guard overseer',0,'Qusay Hussein'],['ace_h','A♥','Elder son, Fedayeen Saddam commander',0,'Uday Hussein'],
+ ['ace_d','A♦','Presidential secretary',0,'Abid Hamid Mahmud al-Tikriti'],['k_s','K♠','Presidential adviser, southern sector commander',0,'Ali Hassan al-Majid'],['k_c','K♣','Revolutionary Command Council vice-chairman',0,'Izzat Ibrahim al-Douri'],
+ ['k_h','K♥','Special Security Organization director',0,'Hani Abd al-Latif Tilfah'],['k_d','K♦','Ba’ath Party regional command chairman',0,'Aziz Salih al-Numan']];
+const LDEF=Object.fromEntries(LEADER_DEFS.map(d=>[d[0],d]));
+const lnm=L=>L.name||(LDEF[L.id]||[])[4]||L.role,lfull=L=>`${L.card} ${lnm(L)}`;
 const SH_T={scud:{n:'Scud launch site',tag:'SCUD'},cmd:{n:'Regime command bunker',tag:'C2'},cache:{n:'Weapons cache',tag:'CACHE'},safe:{n:'Insurgent safehouse',tag:'SAFE'},ff:{n:'Foreign fighter waystation',tag:'FF'},efp:{n:'EFP workshop',tag:'EFP'},hq:{n:'Leadership hideout',tag:'HVT'}};
 
 /* ================= units ================= */
@@ -699,7 +703,7 @@ function newGame(dk){
    {id:'gulf',n:'Fifth Fleet, Persian Gulf',city:null,x:gp.x,y:gp.y,level:2,slots:6,building:0,naval:1},
    {id:'udeid',n:'Al Udeid / Diego Garcia',city:null,x:up.x,y:up.y,level:2,slots:4,building:0,offmap:1}],
   units:[],repQ:[],acQ:[],bdes:[],tech:{},techPend:[],vote:null,assaults:{},sh:[],tm:75,spent:{},recov:[],rtd:0,delivered:0,lastSpeed:16,stormUntil:0,heatUntil:0,fobNames:0,
-  leaders:LEADER_DEFS.map(([id,card,role,pres])=>({id,card,role,pres,status:'free',abroad:null})),
+  leaders:LEADER_DEFS.map(([id,card,role,pres,name])=>({id,card,role,pres,name,status:'free',abroad:null})),
   countries:Object.fromEntries(Object.entries(COUNTRY).map(([k,c])=>[k,{h:c.h,cd:0,cov:0}])),
   routes:ROUTE_DEFS.map(r=>({id:r.id,flow:0})),
   gov:{fallen:0,fallenDay:null,formed:0,cap:null,next:0},
@@ -837,10 +841,10 @@ function tacWeight(t){let w=(S.ai.learned[t.id]||1)*Math.pow(1-ctrOf(t),1.4)*(t.
  const f=S.red.focus;if(f&&f.id===t.id&&f.until>S.day)w*=2.5;return Math.max(.01,w)}
 
 /* ================= log / toasts ================= */
-const SET_DEF={map:'satellite',droneCam:'ir',q3d:'low',tDur:9,tMax:3,tFilter:'all',pauseCrit:false,slowContact:2,postTags:true,droneHUD:true,fx:'full',advMin:2,startSpeed:4,roadLbl:true};
-let SET={...SET_DEF};try{const v=JSON.parse(localStorage.getItem('itc-set')||'null');if(v&&typeof v==='object')SET={...SET_DEF,...v}}catch(e){}
+const SET_DEF={_sv:65,map:'tactical',droneCam:'ir',q3d:'low',tDur:9,tMax:3,tFilter:'all',pauseCrit:false,slowContact:2,postTags:true,droneHUD:false,fx:'full',advMin:2,startSpeed:4,roadLbl:true};
+let SET={...SET_DEF};try{const v=JSON.parse(localStorage.getItem('itc-set')||'null');if(v&&typeof v==='object'){SET={...SET_DEF,...v};if((SET._sv||0)<65){SET._sv=65;SET.map='tactical';SET.droneHUD=false;try{localStorage.setItem('itc-set',JSON.stringify(SET))}catch(e){}}}}catch(e){}
 function saveSet(){try{localStorage.setItem('itc-set',JSON.stringify(SET))}catch(e){}}
-const ADVISORY=new Set(['Oil restart','Oil flowing','Sabotage foiled','Fuel shortage','Update ready','Updating','Up to date','Update check failed','Saved','Save failed','Paused','ROE changed','Enemy adapting','Regime expands','Regime digging in','Sandstorm','Regional','Enemy reinforcing','Partner connected','Rotations ordered','Rotation ordered','Deployment','Brigade deploying','Offensive launched','Campaign ended','Engineer operations','Civil affairs']);
+const ADVISORY=new Set(['Target escaped','Oil restart','Oil flowing','Sabotage foiled','Fuel shortage','Update ready','Updating','Up to date','Update check failed','Saved','Save failed','Paused','ROE changed','Enemy adapting','Regime expands','Regime digging in','Sandstorm','Regional','Enemy reinforcing','Partner connected','Rotations ordered','Rotation ordered','Deployment','Brigade deploying','Offensive launched','Campaign ended','Engineer operations','Civil affairs']);
 const CRIT=new Set(['Troops in contact','Base overrun','Base captured','Missile from Iran','Iran retaliates','Insider attack','Forced withdrawal']);
 function subjOf(txt){if(!S||!txt)return null;let best=null;const hit=(n,k,id,pri)=>{if(n&&n.length>2&&txt.includes(n)&&(!best||pri>best.pri||(pri===best.pri&&n.length>best.len)))best={k,id,pri,len:n.length}};
  for(const u of S.units)hit(u.name,'unit',u.id,4);for(const e of (S.ebases||[]))hit(e.n,'eb',e.eid,3.5);for(const b of S.bases)hit(b.n,'base',b.id,3);for(const c of S.cities)hit(c.n,'city',c.id,2);
@@ -1284,15 +1288,21 @@ function counterattack(d,b){const c=cityById(d.city),def=baseDef(b)*(baseOp(b)?1
 
 /* ================= leaders & strongholds ================= */
 function scatterLeaders(){for(const L of freeLeaders()){const s=S.sh.find(x=>x.leader===L.id);
-  if(!isArc()&&Math.random()<.18*S.countries.syria.h/100){L.abroad='syria';if(s)S.sh=S.sh.filter(x=>x!==s);log(`Intel: ${L.card} (${L.role}) has slipped across the border into Syria.`,'adapt');continue}
+  if(!isArc()&&Math.random()<.18*S.countries.syria.h/100){L.abroad='syria';if(s)S.sh=S.sh.filter(x=>x!==s);log(`Intel: ${lfull(L)} (${L.role}) has slipped across the border into Syria.`,'adapt');continue}
   moveLeader(L,pick(HIDEOUTS),.08)}
  log('The regime leadership has scattered into hiding. Build intel coverage to find them.','adapt',true,'Leaders on the run')}
 function moveLeader(L,cid,prog){let s=S.sh.find(x=>x.leader===L.id);const c=cityById(cid);
  if(!s){s={id:'s'+S.nid++,type:'hq',leader:L.id,str:10,max:10,found:0};S.sh.push(s)}
- s.city=cid;s.x=c.x+rnd(-22,22);s.y=c.y+rnd(-22,22);s.prog=prog;s.alerted=0}
+ s.city=cid;s.prog=prog;s.alerted=0;s.poi=null;
+ // human shields: some hide right beside a hospital, mosque, school or utility
+ const sites=cityNet(c).sites.filter(st=>infHp(c,st.id)>0);if(sites.length&&Math.random()<(L.pres?.5:.4)){const st=pick(sites),a=Math.random()*6.28;s.x=st.x+Math.cos(a)*.12;s.y=st.y+Math.sin(a)*.12;s.poi={id:st.id,k:st.k,n:SITE[st.k].n,d:st.d}}
+ else{s.x=c.x+rnd(-22,22);s.y=c.y+rnd(-22,22)}}
+function poiTxt(s){if(!s||!s.poi)return '';return `beside the ${s.poi.n.toLowerCase()} in ${s.poi.d==='Old City'?'the Old City':'Hay '+s.poi.d}`}
+// chance the target is gone before the bombs land: tip-offs, tunnels, decoy convoys
+function leaderEscapeP(L,s){return clamp(.22+(L.pres?.12:0)+(s.poi?.08:0)-(isr()?.07:0)-.04*Math.min(3,N('pred'))-(has('sigint')?.04:0)-(s.prog-.5)*.2,.08,.45)}
 function leaderDown(L,how){L.status=how;S.sh=S.sh.filter(x=>x.leader!==L.id);
  mor(L.pres?12:3);con(L.pres?10:2);S.cities.forEach(c=>c.cells=clamp(c.cells-(L.pres?8:2),0,100));
- log(`${L.card} ${L.role} ${how==='captured'?'captured':'killed'}.${L.pres?' The President is in US custody. The insurgency loses its figurehead.':''}`,'good',true,L.pres?'Ace of Spades':'Most wanted');}
+ log(`${lfull(L)} ${how==='captured'?'captured':'killed'}.${L.pres?' The President is in US custody. The insurgency loses its figurehead.':''}`,'good',true,L.pres?'Ace of Spades':'Most wanted');}
 function destroySh(s,how){bdaE(s.type==='hq'?'Leadership hideouts':(SH_T[s.type]||{n:'Strongholds'}).n.replace(/^./,m=>m.toUpperCase())+(/s$/.test((SH_T[s.type]||{n:''}).n)?'':'s'),1);bdaI().ek+=rnd(6,18);S.sh=S.sh.filter(x=>x!==s);const c=cityById(s.city);
  const fx={scud:'No more missiles from this site.',cmd:'Regime command and control is breaking down.',cache:'Weapons stockpile seized.',safe:'Cell network in the area is gutted.',ff:'Foreign fighter pipeline disrupted.',efp:'Shaped-charge production halted.'}[s.type]||'';
  if(['safe','ff','efp','cache'].includes(s.type))c.cells=clamp(c.cells-(s.type==='safe'?18:10),0,100);
@@ -1303,15 +1313,15 @@ function intelGain(s){let g=.004;for(const b of opBases()){if(b.naval||b.offmap)
  if(S.phase==='ins'&&s.type!=='hq')g*=1+cityById(s.city).cells/200;return g}
 function intelDay(){for(const s of S.sh.slice()){if(s.found&&s.type!=='hq')continue;s.prog=Math.min(1,s.prog+intelGain(s));const c=cityById(s.city);
   if(s.type!=='hq'&&s.prog>=1&&!s.found){s.found=1;log(`Intel pinpoints a ${SH_T[s.type].n.toLowerCase()} near ${c.n}. Strike or raid it.`,'good',true,'Stronghold located')}
-  if(s.type==='hq'){const L=leaderById(s.leader);if(s.prog>=.5&&!s.alerted){s.alerted=1;log(`Intel: ${L.card} ${L.role} is likely hiding near ${c.n} (${pct(s.prog)} confidence).`,'good',true,'Target located')}
-   if(S.gov.fallen&&s.prog>.45&&Math.random()<.035){const was=s.prog;moveLeader(L,pick(HIDEOUTS.filter(x=>x!==s.city)),.12);if(was>=.5)log(`${L.card} got spooked and moved. The trail near ${c.n} has gone cold.`,'adapt',true,'Target moved')}}}}
+  if(s.type==='hq'){const L=leaderById(s.leader);if(s.prog>=.5&&!s.alerted){s.alerted=1;log(`Intel: ${lfull(L)} (${L.role}) is likely hiding near ${c.n} (${pct(s.prog)} confidence).${s.poi?` Sources say he is sheltering ${poiTxt(s)}. An air strike would wreck it and turn the city against us; a capture raid is the cleaner option.`:''}`,'good',true,'Target located')}
+   if(S.gov.fallen&&s.prog>.45&&Math.random()<.035){const was=s.prog;moveLeader(L,pick(HIDEOUTS.filter(x=>x!==s.city)),.12);if(was>=.5)log(`${lnm(L)} (${L.card}) got spooked and moved. The trail near ${c.n} has gone cold.`,'adapt',true,'Target moved')}}}}
 function spawnStrongholds(){if(S.sh.length>34)return;
  for(const c of S.cities){if(c.cells>35&&!S.sh.some(s=>s.type==='safe'&&s.city===c.id)&&Math.random()<.025){const s={id:'s'+S.nid++,type:'safe',city:c.id,x:c.x+rnd(-20,20),y:c.y+rnd(-20,20),str:25+c.cells*.3,prog:0,found:0};s.max=s.str;S.sh.push(s)}}
  for(const r of S.routes){const R=routeDef(r.id);if(r.flow<.3)continue;const ty=R.c==='syria'?'ff':R.c==='iran'?'efp':null;if(!ty)continue;
   if(Math.random()<.015&&S.sh.filter(s=>s.type===ty).length<4){const c=cityById(pick(R.cities));S.sh.push({id:'s'+S.nid++,type:ty,route:r.id,city:c.id,x:c.x+rnd(-24,24),y:c.y+rnd(-24,24),str:30,max:30,prog:0,found:0})}}}
 function shEffects(){for(const s of S.sh){const c=cityById(s.city);const v={safe:.35,ff:.25,cache:.15,efp:.15,hq:.2}[s.type]||0;c.cells=clamp(c.cells+v,0,100)}}
 function resolveTarget(k){const [kind,id]=String(k).split(':');if(kind==='div'){const c=cityById(id),d=c&&divAt(c);return d?{kind,div:d,city:c,x:c.x,y:c.y,n:d.n}:null}
- const s=shById(id);if(!s)return null;const L=s.leader&&leaderById(s.leader);return {kind:'sh',sh:s,city:cityById(s.city),x:s.x,y:s.y,n:L?`${L.card} hideout`:SH_T[s.type].n}}
+ const s=shById(id);if(!s)return null;const L=s.leader&&leaderById(s.leader);return {kind:'sh',sh:s,city:cityById(s.city),x:s.x,y:s.y,n:L?`${lnm(L)} hideout`:SH_T[s.type].n}}
 function strikeAssets(tg){return S.units.filter(u=>UT[u.type].strike&&u.state==='garrison'&&u.p>0&&acFmc(u)>0&&(!stormy()||u.type==='ddg')).filter(u=>{const b=baseById(u.baseId);return b&&b.building<=0&&!b.restricted&&dist(b,tg)<=UT[u.type].strike.range&&(isRear(b)||b.fuel>0)})}
 function doStrike(uid,tk){const u=unitById(uid),tg=resolveTarget(tk);if(!u||!tg||!UT[u.type].strike)return;const st=UT[u.type].strike;
  if((u.rdy||0)>S.day||S.budget<st.cost)return;spend('strikes',st.cost);u.rdy=S.day+st.cd;u.exp=Math.min(1,u.exp+.01);
@@ -1327,15 +1337,19 @@ function strikeImpact(u,tg,st,tk){if(!S)return;const t2=resolveTarget(tk);if(!t2
  if(tg.kind==='div'&&AC[u.type]&&Math.random()<.04)acLose(u,1,'to anti-aircraft fire');
  if(tg.kind==='div'){const d=tg.div,floor=d.max*.12,before=d.str;d.str=Math.max(Math.min(d.str,floor),d.str-dmg/(d.def*c2Bonus()));
   log(`${st.n} by ${u.name} on ${d.n} at ${c.n}: strength ${Math.round(before)} → ${Math.round(d.str)}.${d.str<=floor+.5?' Ground forces are needed to finish them.':''}`,'good',false)}
- else{const s=tg.sh;if(s.type==='hq'){const L=leaderById(s.leader);const p=s.prog*.35*(st.dmg>30?1.2:1);
-   if(Math.random()<p)leaderDown(L,'killed');else{log(`${st.n} on the suspected ${L.card} hideout near ${c.n} missed the target.`,'bad',true,'Strike missed');s.prog*=.5;if(Math.random()<.5&&S.gov.fallen)moveLeader(L,pick(HIDEOUTS),.1)}}
+ else{const s=tg.sh;if(s.type==='hq'){const L=leaderById(s.leader);
+   if(s.poi){const ps=cityNet(c).sites.find(x=>x.id===s.poi.id);if(ps){cityHit(c,ps,.5,1.4,`${st.n} on the ${lnm(L)} hideout`);civCas(c,ri(10,34),`${st.n} on the hideout ${poiTxt(s)}`,'Air & missile strikes');c.griev=(c.griev||0)+12;c.instab=clamp(c.instab+10,0,100);c.cells=clamp(c.cells+8,0,100);mor(-2.5);con(-1.5);
+     log(`The strike flattened the ${s.poi.n.toLowerCase()} in ${c.n}. Arabic satellite channels are running the footage on a loop; mourners and gunmen fill the streets.`,'bad',true,'Infrastructure destroyed')}}
+   const ep=leaderEscapeP(L,s),p=s.prog*.55*(st.dmg>30?1.2:1);
+   if(Math.random()<ep){L.escapes=(L.escapes||0)+1;log(`${st.n} hit the compound near ${c.n}, but ${lnm(L)} (${L.card}) slipped away minutes before impact. A tip-off, a tunnel or a decoy convoy; nobody knows yet.`,'bad',true,'Target escaped');moveLeader(L,pick(HIDEOUTS.filter(x=>x!==s.city)),.1)}
+   else if(Math.random()<p)leaderDown(L,'killed');else{log(`${st.n} on the suspected hideout of ${lnm(L)} (${L.card}) near ${c.n} missed the target.`,'bad',true,'Strike missed');s.prog*=.5;if(Math.random()<.5&&S.gov.fallen)moveLeader(L,pick(HIDEOUTS),.1)}}
   else{s.str-=dmg;if(s.str<=0)destroySh(s,st.n.toLowerCase());else log(`${st.n} damaged the ${SH_T[s.type].n.toLowerCase()} near ${c.n} (${Math.round(s.str/s.max*100)}% left).`,'good')}}}
-function raidOdds(s){if(s.type==='hq')return clamp(s.prog*(.75+.08*Math.min(3,N('sf'))+(isr()?.08:0)+(has('nvg')?.05:0)+(has('biom')?.05:0)),0,.95);return clamp(.65+.07*N('sf')+(isr()?.08:0),0,.95)}
+function raidOdds(s){if(s.type==='hq')return clamp(-(s.poi?.04:0)+s.prog*(.75+.08*Math.min(3,N('sf'))+(isr()?.08:0)+(has('nvg')?.05:0)+(has('biom')?.05:0)),0,.95);return clamp(.65+.07*N('sf')+(isr()?.08:0),0,.95)}
 function canRaid(s){const c=cityById(s.city);return N('sf')>=.5||groundNear(c,260)}
 function doRaid(id){const s=shById(id);if(!s||!canRaid(s)||(s.type!=='hq'&&!s.found)||(s.type==='hq'&&s.prog<.5)||S.budget<10)return;spend('operations',10);const c=cityById(s.city);
  const ok=Math.random()<raidOdds(s);
  if(Math.random()<.2){const g=S.units.filter(u=>u.state==='garrison'&&UT[u.type].ground);if(g.length)applyCas(pick(g),rnd(1,6))}
- if(s.type==='hq'){const L=leaderById(s.leader);if(ok)leaderDown(L,'captured');else{log(`Raid near ${c.n} came up empty. ${L.card} escaped and moved.`,'bad',true,'Raid failed');moveLeader(L,pick(HIDEOUTS.filter(x=>x!==s.city)),.12)}}
+ if(s.type==='hq'){const L=leaderById(s.leader);if(ok)leaderDown(L,'captured');else{L.escapes=(L.escapes||0)+1;log(`Raid near ${c.n} came up empty. ${lnm(L)} slipped out through a back route minutes before the assault force arrived.${s.poi?` Crowds around the ${s.poi.n.toLowerCase()} helped hide the escape.`:''}`,'bad',true,'Target escaped');moveLeader(L,pick(HIDEOUTS.filter(x=>x!==s.city)),.12)}}
  else if(ok)destroySh(s,'raid');else{s.prog=.6;s.found=0;log(`Raid on the ${SH_T[s.type].n.toLowerCase()} near ${c.n} found it abandoned. They moved on.`,'bad',true,'Raid failed')}}
 
 /* ================= neighbors ================= */
@@ -2287,19 +2301,19 @@ function flushLbls(W,H){LBL.sort((a,b)=>b.pri-a.pri);const placed=BLK.slice();ct
 function badge(x,y,t,fill,col){ctx.font=`700 8.5px ${FM}`;const w=Math.max(12,ctx.measureText(t).width+6);ctx.fillStyle=fill;rr(ctx,x-w/2,y-6,w,12,2);ctx.fill();ctx.fillStyle=col;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(t,x,y+.5)}
 function diamond(x,y,s,fill,stroke){ctx.beginPath();ctx.moveTo(x,y-s);ctx.lineTo(x+s,y);ctx.lineTo(x,y+s);ctx.lineTo(x-s,y);ctx.closePath();ctx.fillStyle=fill;ctx.fill();if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=1.4;ctx.stroke()}}
 function draw(){if(!S)return;const W=cv.width/dpr,H=cv.height/dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
- ctx.fillStyle='#262a24';ctx.fillRect(0,0,W,H);
+ ctx.fillStyle=isMil()?'#121712':'#262a24';ctx.fillRect(0,0,W,H);
  ctx.strokeStyle='rgba(205,183,139,.06)';ctx.lineWidth=1;const step=100*view.s;
  for(let gx=view.x%step;gx<W;gx+=step){ctx.beginPath();ctx.moveTo(gx,0);ctx.lineTo(gx,H);ctx.stroke()}
  for(let gy=view.y%step;gy<H;gy+=step){ctx.beginPath();ctx.moveTo(0,gy);ctx.lineTo(W,gy);ctx.stroke()}
- const SAT=satOn()&&drawSat();if(SAT)drawDetailTiles(W,H);
- if(!SAT){path(GULF,1);ctx.fillStyle='#1c2a31';ctx.fill()}
- path(KUWAIT,1);if(!SAT){ctx.fillStyle='#3a3a30';ctx.fill()}ctx.strokeStyle='rgba(205,183,139,.35)';ctx.setLineDash([4,3]);ctx.stroke();ctx.setLineDash([]);
- if(!SAT){path(BORDER,1);ctx.fillStyle='#4b4535';ctx.fill()}
- if(!SAT)for(const z of TERRAIN){path(z.poly,1);ctx.fillStyle=TFILL[z.k];ctx.globalAlpha=.85;ctx.fill();ctx.globalAlpha=1;const pt=PAT[z.k];if(pt&&pt.setTransform&&window.DOMMatrix)pt.setTransform(new DOMMatrix([Math.min(view.s,2),0,0,Math.min(view.s,2),view.x,view.y]));ctx.fillStyle=pt;ctx.globalAlpha=.55;ctx.fill();ctx.globalAlpha=1;
+ const SAT=satOn()&&drawSat();const MIL=!SAT&&isMil()&&drawMilBase(W,H),FLAT=!SAT&&!MIL;
+ if(FLAT){path(GULF,1);ctx.fillStyle='#1c2a31';ctx.fill()}
+ path(KUWAIT,1);if(FLAT){ctx.fillStyle='#3a3a30';ctx.fill()}ctx.strokeStyle='rgba(205,183,139,.35)';ctx.setLineDash([4,3]);ctx.stroke();ctx.setLineDash([]);
+ if(FLAT){path(BORDER,1);ctx.fillStyle='#4b4535';ctx.fill()}
+ if(FLAT)for(const z of TERRAIN){path(z.poly,1);ctx.fillStyle=TFILL[z.k];ctx.globalAlpha=.85;ctx.fill();ctx.globalAlpha=1;const pt=PAT[z.k];if(pt&&pt.setTransform&&window.DOMMatrix)pt.setTransform(new DOMMatrix([Math.min(view.s,2),0,0,Math.min(view.s,2),view.x,view.y]));ctx.fillStyle=pt;ctx.globalAlpha=.55;ctx.fill();ctx.globalAlpha=1;
   if(z.k==='mtn'){ctx.strokeStyle='rgba(30,22,14,.35)';ctx.lineWidth=1;ctx.stroke()}}
- path(BORDER,1);ctx.strokeStyle=SAT?'rgba(255,236,190,.8)':'rgba(205,183,139,.7)';ctx.lineWidth=SAT?1.8:1.5;ctx.stroke();
- ctx.strokeStyle=SAT?'rgba(90,150,190,.75)':'#4f86a8';ctx.lineWidth=clamp((SAT?1.6:2.6)*view.s,1.2,4+.35*view.s);ctx.lineJoin='round';for(const r of RIVERS){path(r);ctx.stroke()}
- if(!SAT)for(const l of LAKES){path(l.poly,1);ctx.fillStyle='#2b4654';ctx.fill();ctx.strokeStyle='#4f86a8';ctx.lineWidth=1;ctx.stroke()}
+ path(BORDER,1);if(MIL){ctx.strokeStyle='rgba(10,10,8,.8)';ctx.lineWidth=4;ctx.stroke();ctx.strokeStyle='rgba(235,120,200,.85)';ctx.lineWidth=1.8;ctx.setLineDash([14,4,3,4]);ctx.stroke();ctx.setLineDash([])}else{ctx.strokeStyle=SAT?'rgba(255,236,190,.8)':'rgba(205,183,139,.7)';ctx.lineWidth=SAT?1.8:1.5;ctx.stroke()}
+ ctx.strokeStyle=SAT?'rgba(90,150,190,.75)':MIL?'#4fb8de':'#4f86a8';ctx.lineWidth=clamp((SAT?1.6:2.6)*view.s,1.2,4+.35*view.s);ctx.lineJoin='round';for(const r of RIVERS){path(r);ctx.stroke()}
+ if(!SAT)for(const l of LAKES){path(l.poly,1);ctx.fillStyle=MIL?'#10303c':'#2b4654';ctx.fill();ctx.strokeStyle=MIL?'#4fb8de':'#4f86a8';ctx.lineWidth=1;ctx.stroke()}
  for(const hw of HIGHWAYS){if(hw.k!=='minor')continue;path(hw.P);ctx.strokeStyle='rgba(222,200,150,.45)';ctx.lineWidth=clamp(1.1*view.s,.8,2+.06*view.s);ctx.setLineDash([4,3]);ctx.stroke()}ctx.setLineDash([]);
  for(const hw of HIGHWAYS){if(hw.k!=='msr')continue;path(hw.P);ctx.strokeStyle='rgba(20,22,18,.55)';ctx.lineWidth=clamp(3.6*view.s,2.6,5+.15*view.s);ctx.stroke();ctx.strokeStyle='rgba(236,208,148,.85)';ctx.lineWidth=clamp(2*view.s,1.4,3+.1*view.s);ctx.stroke()}
  if(view.s>1.1){for(const hw of HIGHWAYS){if(hw.k==='minor'&&view.s<1.6)continue;if(view.s>2.6)for(let j=1;j<hw.P.length;j++){const a=hw.P[j-1],b=hw.P[j];for(const f of view.s>8?[.25,.75]:[.5]){const [lx,ly]=w2s({x:a.x+(b.x-a.x)*f,y:a.y+(b.y-a.y)*f});if(lx<0||ly<0||lx>W||ly>H)continue;roadShield(hw,lx,ly)}}const i=Math.max(0,Math.floor((hw.P.length-2)/2)),a=hw.P[i],b=hw.P[i+1]||a;const [x,y]=w2s({x:(a.x+b.x)/2,y:(a.y+b.y)/2});if(view.s<=2.6)addLbl(hw.n.toUpperCase(),x,y-8,{size:9,col:hw.k==='msr'?'rgba(222,200,150,.85)':'rgba(190,175,140,.7)',pri:hw.k==='msr'?2:1,al:'center',w:500})}
@@ -2311,7 +2325,7 @@ function draw(){if(!S)return;const W=cv.width/dpr,H=cv.height/dpr;ctx.setTransfo
   if(h>30){ctx.font=`500 9px ${FM}`;ctx.fillText(`HOSTILITY ${Math.round(h)}`,x,y+12)}}
  {const [kx,ky]=w2s(P(47.15,29.0));ctx.fillStyle='rgba(205,183,139,.45)';ctx.font=`600 11px ${FD}`;ctx.fillText('KUWAIT',kx,ky)}
  drawThreat();
- {ctx.save();ctx.strokeStyle='rgba(168,212,94,.07)';ctx.lineWidth=1;ctx.fillStyle='rgba(168,212,94,.32)';ctx.font=`8.5px ${FM}`;
+ if(MIL)drawMGRS(W,H);else{ctx.save();ctx.strokeStyle='rgba(168,212,94,.07)';ctx.lineWidth=1;ctx.fillStyle='rgba(168,212,94,.32)';ctx.font=`8.5px ${FM}`;
   const step=view.s>6?.25:view.s>2?.5:1;for(let lo=38;lo<=49.001;lo+=step){const [x1,y1]=w2s(P(lo,38)),[x2,y2]=w2s(P(lo,28.5));if(x1<-2||x1>W+2)continue;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();ctx.textAlign='left';ctx.textBaseline='bottom';ctx.fillText(`${lo.toFixed(step<1?2:0)}°E`,x1+3,H-8)}
   for(let la=28.5;la<=38.001;la+=step){const [x1,y1]=w2s(P(38,la)),[x2,y2]=w2s(P(49.5,la));if(y1<-2||y1>H+2)continue;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();ctx.textAlign='right';ctx.textBaseline='bottom';ctx.fillText(`${la.toFixed(step<1?2:0)}°N`,W-12,y1-2)}ctx.restore()}
  // routes
@@ -2378,7 +2392,7 @@ function draw(){if(!S)return;const W=cv.width/dpr,H=cv.height/dpr;ctx.setTransfo
   if(drone&&UT[u.type].ground){pips(u,x,y,ang);y-=20}
   drawSym(u.type,x,y,drone?20:26,drone?14:18,u.p<UT[u.type].p*.5?.6:1,ang);addBlk(x,y,30,22);
   if((view.s>1.05&&SET.postTags)||u.state==='pinned'){const P=postureOf(u);addLbl((u.state==='patrolling'||(u.state==='moving'&&u.mission==='patrol')?(PTYPE[u.ptype]||PTYPE.presence).n:P.lbl).toUpperCase(),x,y+(drone&&UT[u.type].ground?37:17),{size:8.5,col:P.col.startsWith('var')?{'var(--hostile)':'#ff8a70','var(--warn)':'#eaa53a','var(--sand)':'#c9b27c','var(--muted)':'#9aa38c','var(--good)':'#3fbf8a'}[P.col]||'#e9e3d4':P.col,pri:u.state==='pinned'?7:3,al:'center',w:700})}}
- drawDFX(W,H,performance.now());drawFX(performance.now());droneHUD(W,H);droneCamApply(view.s>6);drawDroneTargets(W,H);{const vb=$('#v3Btn');if(vb){const sh=view.s>4.5&&!V3.open;if(vb.hidden===sh)vb.hidden=!sh}}
+ drawDFX(W,H,performance.now());drawFX(performance.now());droneHUD(W,H);droneCamApply(view.s>6&&!isMil());drawDroneTargets(W,H);if(MIL)drawScaleBar(W,H);{const vb=$('#v3Btn');if(vb){const sh=view.s>4.5&&!V3.open;if(vb.hidden===sh)vb.hidden=!sh}}
  if(S.stormUntil>S.day){ctx.fillStyle='rgba(205,160,90,.13)';ctx.fillRect(0,0,W,H)}
  const now=performance.now();flashes=flashes.filter(f=>now-f.t<1400);for(const f of flashes){const k=(now-f.t)/1400;const [x,y]=w2s(f);ctx.beginPath();ctx.arc(x,y,6+k*30,0,7);ctx.strokeStyle=f.col;ctx.globalAlpha=1-k;ctx.lineWidth=2.5;ctx.stroke();ctx.globalAlpha=1}}
 
@@ -2562,7 +2576,7 @@ function renderSheet(keep){if(!sheet||!S)return;const body=$('#sheetBody'),st=bo
 function fireMissions(tk,label){const tg=resolveTarget(tk);if(!tg||NET.myRole==='red')return '';const a=strikeAssets(tg);const ready=a.filter(u=>(u.rdy||0)<=S.day);
  return btn('strikepick',tk,`Strike ${label||tg.n}`,a.length?`${ready.length} of ${a.length} strike assets ready in range`:'No air or naval strike assets in range. Deploy Navy or Air Force units.','', '',!ready.length)}
 function shRows(c){const list=S.sh.filter(s=>s.city===c.id&&(NET.myRole==='red'||(s.type==='hq'?s.prog>=.4:s.prog>=.5)));if(!list.length)return '';
- return `<h3>Strongholds</h3><div class="list">${list.map(s=>{const L=s.leader&&leaderById(s.leader);return `<button class="item" data-act="sh" data-a="${s.id}"><span class="mid"><span class="nm">${L?`${L.card} ${esc(L.role)}`:SH_T[s.type].n}</span><span class="sb">${s.type==='hq'?`Confidence ${pct(s.prog)}`:s.found?'Located':'Suspected · '+pct(s.prog)}</span></span><span class="rt">›</span></button>`}).join('')}</div>`}
+ return `<h3>Strongholds</h3><div class="list">${list.map(s=>{const L=s.leader&&leaderById(s.leader);return `<button class="item" data-act="sh" data-a="${s.id}"><span class="mid"><span class="nm">${L?`${L.card} ${esc(lnm(L))}`:SH_T[s.type].n}</span><span class="sb">${s.type==='hq'?`Confidence ${pct(s.prog)}`:s.found?'Located':'Suspected · '+pct(s.prog)}</span></span><span class="rt">›</span></button>`}).join('')}</div>`}
 function bdaSheet(){const B=bdaI();let h=head(`D+${S.day} · cumulative`,'Battle damage');const fN=n=>Math.round(n).toLocaleString();
  const vx=Object.values(B.vx).reduce((a,b)=>a+b,0),vd=Object.values(B.vd).reduce((a,b)=>a+b,0),rep=S.units.reduce((a,u)=>a+(u.vr||[]).length,0),wait=S.units.reduce((a,u)=>a+(u.vx||0),0);
  const easset=Object.entries(B.ea).filter(([k,v])=>v>=.5),eTot=easset.reduce((a,[k,v])=>a+Math.round(v),0);
@@ -2627,7 +2641,7 @@ function settingsSheet(){let h=head('Command preferences','Settings');
   +row('Pause on critical alerts','Troops in contact, bases overrun, missile attacks, insider attacks.',seg('pauseCrit',[[true,'On'],[false,'Off']]))
   +row('Slow down on troops in contact','Drops the clock to this speed when a unit gets pinned (if pause is off).',seg('slowContact',[[0,'Off'],[1,'1×'],[2,'2×'],[4,'4×']]));
  h+=`<h3>Timing</h3>`+row('Game speed','1× ≈ 2½ minutes per day.',seg('_speed',SPEEDS.map(v=>[v,v+'×'])))+row('Speed when you first unpause','Games always load paused. Press play (or +) to start the clock at this speed in a new campaign; continued campaigns resume at their last speed.',seg('startSpeed',[[1,'1×'],[2,'2×'],[4,'4×'],[8,'8×'],[16,'16×']]))+row('Advisor refresh','How often the top three recommendations are replaced.',seg('advMin',[[1,'1 min'],[2,'2 min'],[5,'5 min'],[10,'10 min']]));
- h+=`<h3>Map</h3>`+row('Unit status tags','Colored posture tags under field units when zoomed in.',seg('postTags',[[true,'On'],[false,'Off']]))+row('Road name markers','',seg('roadLbl',[[true,'On'],[false,'Off']]))+row('Drone camera overlay','Crosshair, vignette and readout at high zoom.',seg('droneHUD',[[true,'On'],[false,'Off']]))+row('Combat effects','Gunfire, impacts and smoke.',seg('fx',[['full','Full'],['reduced','Reduced'],['off','Off']]))+row('Map imagery','Satellite uses NASA Blue Marble imagery with NOAA ETOPO1 terrain shading (public domain).',seg('map',[['satellite','Satellite'],['tactical','Tactical']]))+row('Drone camera filter','Look of the map and 3D drone view when zoomed in close.',seg('droneCam',[['ir','IR white-hot'],['bh','IR black-hot'],['nv','Night vision'],['eo','Daylight'],['off','Off']]))+row('3D view quality','High draws more buildings and smoother edges; Low is easier on phones and batteries.',seg('q3d',[['low','Low'],['high','High']]));
+ h+=`<h3>Map</h3>`+row('Unit status tags','Colored posture tags under field units when zoomed in.',seg('postTags',[[true,'On'],[false,'Off']]))+row('Road name markers','',seg('roadLbl',[[true,'On'],[false,'Off']]))+row('Drone camera overlay','Crosshair, vignette and readout at high zoom.',seg('droneHUD',[[true,'On'],[false,'Off']]))+row('Combat effects','Gunfire, impacts and smoke.',seg('fx',[['full','Full'],['reduced','Reduced'],['off','Off']]))+row('Map style','Satellite: NASA Blue Marble imagery with terrain detail. Tactical: a military operations map with relief tints, contour lines, spot heights, a real MGRS grid and a scale bar. The ▦ button on the map switches quickly.',seg('map',[['satellite','Satellite'],['tactical','Tactical']]))+row('Drone camera filter','Look of the map and 3D drone view when zoomed in close.',seg('droneCam',[['ir','IR white-hot'],['bh','IR black-hot'],['nv','Night vision'],['eo','Daylight'],['off','Off']]))+row('3D view quality','High draws more buildings and smoother edges; Low is easier on phones and batteries.',seg('q3d',[['low','Low'],['high','High']]));
  h+=`<div class="acts"><button class="btn" data-act="setreset"><span class="t">Reset to defaults</span></button><button class="btn" data-act="verhist"><span class="t">What's new · version history</span><span class="s">You are on v${GAME_VER}</span></button></div><p class="note">Settings are saved on this device. Your campaign autosaves in this browser once per game day.</p>`;return h}
 const ROE=[null,
  {n:'Restrictive',k:'Hold fire / escalate on order',col:'var(--good)',d:'Troops return fire only. Nobody comes to help a unit in contact until you send reinforcements or air support yourself.',fx:['Civilian casualties rare','Patrols win more goodwill (instability falls faster)','Scrutiny fades over time','No combat bonus']},
@@ -3005,6 +3019,73 @@ function satRGB(p){if(!SATPX)return null;const {lon,lat}=w2ll(p),x=clamp(Math.fl
 function drawSat(){if(!SATIMG||!SATIMG.complete||!SATIMG.naturalWidth)return false;const a=w2s(P(GEO.lo0,GEO.la1)),b=w2s(P(GEO.lo1,GEO.la0));ctx.save();ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.drawImage(SATIMG,a[0],a[1],b[0]-a[0],b[1]-a[1]);
  ctx.fillStyle='rgba(18,20,14,.18)';ctx.fillRect(a[0],a[1],b[0]-a[0],b[1]-a[1]);ctx.restore();return true}
 const satOn=()=>SET.map!=='tactical';
+// ===================== TACTICAL (MILITARY) MAP =====================
+// Real UTM / MGRS on WGS84, hypsometric relief from the elevation grid, contour lines, MGRS grid, scale bar.
+function ll2utm(lat,lon,zone){const a=6378137,f=1/298.257223563,k0=.9996,e2=f*(2-f),ep2=e2/(1-e2),lon0=((zone-1)*6-180+3)*Math.PI/180,ph=lat*Math.PI/180,la=lon*Math.PI/180;
+ const sp=Math.sin(ph),N=a/Math.sqrt(1-e2*sp*sp),T=Math.tan(ph)**2,C=ep2*Math.cos(ph)**2,A=Math.cos(ph)*(la-lon0);
+ const M=a*((1-e2/4-3*e2*e2/64-5*e2**3/256)*ph-(3*e2/8+3*e2*e2/32+45*e2**3/1024)*Math.sin(2*ph)+(15*e2*e2/256+45*e2**3/1024)*Math.sin(4*ph)-(35*e2**3/3072)*Math.sin(6*ph));
+ return {E:k0*N*(A+(1-T+C)*A**3/6+(5-18*T+T*T+72*C-58*ep2)*A**5/120)+500000,N:k0*(M+N*Math.tan(ph)*(A*A/2+(5-T+9*C+4*C*C)*A**4/24+(61-58*T+T*T+600*C-330*ep2)*A**6/720))}}
+function utm2ll(E,Nn,zone){const a=6378137,f=1/298.257223563,k0=.9996,e2=f*(2-f),ep2=e2/(1-e2),e1=(1-Math.sqrt(1-e2))/(1+Math.sqrt(1-e2)),lon0=((zone-1)*6-180+3)*Math.PI/180;
+ const x=E-500000,mu=Nn/k0/(a*(1-e2/4-3*e2*e2/64-5*e2**3/256));
+ const p1=mu+(3*e1/2-27*e1**3/32)*Math.sin(2*mu)+(21*e1*e1/16-55*e1**4/32)*Math.sin(4*mu)+(151*e1**3/96)*Math.sin(6*mu)+(1097*e1**4/512)*Math.sin(8*mu);
+ const s1=Math.sin(p1),N1=a/Math.sqrt(1-e2*s1*s1),T1=Math.tan(p1)**2,C1=ep2*Math.cos(p1)**2,R1=a*(1-e2)/Math.pow(1-e2*s1*s1,1.5),D=x/(N1*k0);
+ const lat=p1-(N1*Math.tan(p1)/R1)*(D*D/2-(5+3*T1+10*C1-4*C1*C1-9*ep2)*D**4/24+(61+90*T1+298*C1+45*T1*T1-252*ep2-3*C1*C1)*D**6/720);
+ const lon=lon0+(D-(1+2*T1+C1)*D**3/6+(5-2*C1+28*T1-3*C1*C1+8*ep2+24*T1*T1)*D**5/120)/Math.cos(p1);return {lat:lat*180/Math.PI,lon:lon*180/Math.PI}}
+const utmZone=lon=>Math.floor((lon+180)/6)+1;
+function sq100(E,Nn,z){const col=['STUVWXYZ','ABCDEFGH','JKLMNPQR'][z%3][Math.floor(E/1e5)-1]||'?',row='ABCDEFGHJKLMNPQRSTUV'[(Math.floor(Nn/1e5)+(z%2?0:5))%20];return col+row}
+const bandOf=lat=>'CDEFGHJKLMNPQRSTUVWX'[Math.floor((lat+80)/8)];
+const isMil=()=>!satOn();
+let MILIMG=null,MILCT=null;
+function milBuild(){if(MILIMG||typeof document==='undefined')return;if(!ELEV)geoInit();const K=4,cw=GEO.cols*K,ch=GEO.rows*K,c=document.createElement('canvas');c.width=cw;c.height=ch;const x=c.getContext('2d');if(!x||!x.createImageData)return;
+ const img=x.createImageData(cw,ch),d=img.data,Eg=(i,j)=>ELEV[clamp(j,0,GEO.rows-1)*GEO.cols+clamp(i,0,GEO.cols-1)],U=new Float32Array(cw*ch);
+ for(let j=0;j<ch;j++){const fy=(j+.5)/K-.5,y0=Math.floor(fy),ty=fy-y0;for(let i=0;i<cw;i++){const fx=(i+.5)/K-.5,x0=Math.floor(fx),tx=fx-x0;U[j*cw+i]=(Eg(x0,y0)*(1-tx)+Eg(x0+1,y0)*tx)*(1-ty)+(Eg(x0,y0+1)*(1-tx)+Eg(x0+1,y0+1)*tx)*ty}}
+ const RAMP=[[-9999,[14,36,46]],[-3,[14,36,46]],[0,[30,38,30]],[150,[34,42,31]],[400,[42,46,33]],[800,[52,51,37]],[1300,[63,57,41]],[2000,[74,64,47]],[3000,[88,80,64]]];
+ const col=e=>{for(let k=1;k<RAMP.length;k++)if(e<=RAMP[k][0]){const [e0,c0]=RAMP[k-1],[e1,c1]=RAMP[k],t=clamp((e-e0)/((e1-e0)||1),0,1);return [c0[0]+(c1[0]-c0[0])*t,c0[1]+(c1[1]-c0[1])*t,c0[2]+(c1[2]-c0[2])*t]}return RAMP[RAMP.length-1][1]};
+ for(let j=0;j<ch;j++)for(let i=0;i<cw;i++){const k=j*cw+i,e=U[k],l=U[j*cw+Math.max(0,i-1)],r=U[j*cw+Math.min(cw-1,i+1)],u=U[Math.max(0,j-1)*cw+i],dn=U[Math.min(ch-1,j+1)*cw+i];
+  let [R,G,B]=col(e);const water=e<-3;let sh=water?1:clamp(1+((l-r)+(u-dn))/3700*5,.55,1.45);const lon=GEO.lo0+(i+.5)/(K*GEO.ppd),lat=GEO.la1-(j+.5)/(K*GEO.ppd);
+  if(!water&&!inPoly(P(lon,lat),BORDER))sh*=.72;d[k*4]=clamp(R*sh,0,255);d[k*4+1]=clamp(G*sh,0,255);d[k*4+2]=clamp(B*sh,0,255);d[k*4+3]=255}
+ x.putImageData(img,0,0);MILIMG=c;
+ // contours: smoothed 2x grid, marching squares, one Path2D per level in world coordinates
+ if(typeof Path2D==='undefined')return;const K2=2,w2=GEO.cols*K2,h2=GEO.rows*K2,V=new Float32Array(w2*h2);
+ for(let j=0;j<h2;j++)for(let i=0;i<w2;i++){let s=0,n=0;for(let dj=-1;dj<=1;dj++)for(let di=-1;di<=1;di++){const ii=clamp((i+di)*2+1,0,cw-1),jj=clamp((j+dj)*2+1,0,ch-1);s+=U[jj*cw+ii];n++}V[j*w2+i]=s/n}
+ const wp=(fi,fj)=>P(GEO.lo0+(fi+.5)/(K2*GEO.ppd),GEO.la1-(fj+.5)/(K2*GEO.ppd)),levels=[];for(let v=50;v<=3600;v+=v<300?50:100)levels.push(v);MILCT=[];
+ for(const lv of levels){const p=new Path2D();let n=0;for(let j=0;j<h2-1;j++)for(let i=0;i<w2-1;i++){const a=V[j*w2+i],b=V[j*w2+i+1],c2=V[(j+1)*w2+i+1],e=V[(j+1)*w2+i];const m=(a>lv?1:0)|(b>lv?2:0)|(c2>lv?4:0)|(e>lv?8:0);if(m===0||m===15)continue;
+   const T=()=>wp(i+(lv-a)/(b-a),j),Rr=()=>wp(i+1,j+(lv-b)/(c2-b)),Bt=()=>wp(i+(lv-e)/(c2-e),j+1),L=()=>wp(i,j+(lv-a)/(e-a)),seg=(p1,p2)=>{p.moveTo(p1.x,p1.y);p.lineTo(p2.x,p2.y);n++};
+   switch(m){case 1:case 14:seg(L(),T());break;case 2:case 13:seg(T(),Rr());break;case 3:case 12:seg(L(),Rr());break;case 4:case 11:seg(Rr(),Bt());break;case 6:case 9:seg(T(),Bt());break;case 7:case 8:seg(L(),Bt());break;case 5:seg(L(),T());seg(Rr(),Bt());break;case 10:seg(T(),Rr());seg(L(),Bt());break}}
+  if(n)MILCT.push({lv,p,idx:lv%500===0})}milPeaks()}
+let MARSHPAT=null;function marshPat(){if(MARSHPAT||typeof document==='undefined')return MARSHPAT;const c=document.createElement('canvas');c.width=c.height=26;const x=c.getContext('2d');if(!x||!x.createPattern)return null;x.strokeStyle='rgba(95,180,215,.55)';x.lineWidth=1;
+ for(const [ox,oy] of [[5,8],[18,20]]){x.beginPath();x.moveTo(ox-4,oy);x.lineTo(ox+4,oy);x.moveTo(ox,oy);x.lineTo(ox,oy-4);x.moveTo(ox-2.5,oy);x.lineTo(ox-3.5,oy-3);x.moveTo(ox+2.5,oy);x.lineTo(ox+3.5,oy-3);x.stroke()}MARSHPAT=ctx.createPattern(c,'repeat');return MARSHPAT}
+function drawMilBase(W,H){milBuild();if(!MILIMG)return false;const a=w2s(P(GEO.lo0,GEO.la1)),b=w2s(P(GEO.lo1,GEO.la0));ctx.save();ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.drawImage(MILIMG,a[0],a[1],b[0]-a[0],b[1]-a[1]);ctx.restore();
+ // marsh symbols
+ const mp=marshPat();if(mp)for(const z of TERRAIN){if(z.k!=='marsh')continue;path(z.poly,1);ctx.fillStyle=mp;ctx.fill()}
+ // contours
+ if(MILCT){const s=view.s,show=s<1.4?(c=>c.idx):s<4?(c=>c.lv%250===0||c.idx):s<8?(c=>c.lv>=300||c.lv%100===0):(()=>true);ctx.save();ctx.setTransform(dpr*s,0,0,dpr*s,dpr*view.x,dpr*view.y);
+  for(const c of MILCT){if(!show(c))continue;ctx.strokeStyle=c.idx?'rgba(214,168,104,.62)':'rgba(190,146,90,.34)';ctx.lineWidth=(c.idx?1.25:.7)/s;ctx.stroke(c.p)}ctx.restore();
+  if(s>2.2){ctx.save();ctx.font=`600 9px ${FM}`;ctx.fillStyle='rgba(222,180,118,.8)';ctx.textAlign='center';ctx.textBaseline='middle';for(const pk of MIL_PEAKS){const [x,y]=w2s(pk.p);if(x<0||y<0||x>W||y>H)continue;ctx.beginPath();ctx.moveTo(x,y-3);ctx.lineTo(x+3,y+2);ctx.lineTo(x-3,y+2);ctx.closePath();ctx.fill();ctx.fillText(pk.e,x,y+9)}ctx.restore()}}
+ return true}
+// spot heights: local maxima of the elevation grid
+const MIL_PEAKS=[];function milPeaks(){if(MIL_PEAKS.length||!ELEV)return;for(let j=2;j<GEO.rows-2;j+=1)for(let i=2;i<GEO.cols-2;i+=1){const e=ELEV[j*GEO.cols+i];if(e<450)continue;let top=true;for(let dj=-2;dj<=2&&top;dj++)for(let di=-2;di<=2;di++)if((di||dj)&&ELEV[(j+dj)*GEO.cols+i+di]>=e){top=false;break}
+ if(top)MIL_PEAKS.push({p:P(GEO.lo0+(i+.5)/GEO.ppd,GEO.la1-(j+.5)/GEO.ppd),e:Math.round(e)})}}
+let SQL=[];function drawMGRS(W,H){SQL=[];const s2w=(x,y)=>({x:(x-view.x)/view.s,y:(y-view.y)/view.s}),c0=w2ll(s2w(0,0)),c1=w2ll(s2w(W,H)),lo0=Math.max(34,c0.lon),lo1=Math.min(54,c1.lon),la1=Math.min(40,c0.lat),la0=Math.max(25,c1.lat);if(lo1<=lo0||la1<=la0)return;
+ const s=view.s,levels=[[1e5,'rgba(150,215,235,.55)',1.3,true]];if(s>=1.3)levels.push([1e4,'rgba(150,215,235,.22)',.9,s>=3]);if(s>=11)levels.push([1e3,'rgba(150,215,235,.13)',.7,s>=22]);
+ ctx.save();ctx.font=`600 9px ${FM}`;ctx.textBaseline='bottom';
+ for(let z=utmZone(lo0);z<=utmZone(lo1-1e-9);z++){const zl0=Math.max(lo0,(z-1)*6-180),zl1=Math.min(lo1,z*6-180);if(zl1<=zl0)continue;
+  const cs=[[la0,zl0],[la0,zl1],[la1,zl0],[la1,zl1],[(la0+la1)/2,zl0],[(la0+la1)/2,zl1]].map(([la,lo])=>ll2utm(la,lo,z)),mE=Math.min(...cs.map(c=>c.E)),xE=Math.max(...cs.map(c=>c.E)),mN=Math.min(...cs.map(c=>c.N)),xN=Math.max(...cs.map(c=>c.N));
+  const scr=(E,N)=>{const q=utm2ll(E,N,z);if(q.lon<zl0-1e-6||q.lon>zl1+1e-6)return null;return w2s(P(q.lon,q.lat))};
+  for(const [sp,col,lw,lbl] of levels){if((xE-mE)/sp>160||(xN-mN)/sp>160)continue;ctx.strokeStyle=col;ctx.lineWidth=lw;
+   for(let E=Math.ceil(mE/sp)*sp;E<=xE;E+=sp){if(sp<1e5&&E%(sp*10)===0)continue;ctx.beginPath();let on=false,lp=null;for(let k=0;k<=16;k++){const N=mN+(xN-mN)*k/16,q=scr(E,N);if(!q){on=false;continue}on?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1]);on=true;if(q[1]<=H)lp=lp||null;if(q[1]>H-40&&q[1]<H+40)lp=q}ctx.stroke();
+    if(lbl&&lp&&lp[0]>70&&lp[0]<W-30){ctx.fillStyle=col.replace(/[\d.]+\)$/,'.9)');ctx.textAlign='left';ctx.fillText(sp>=1e5?`${Math.round(E/1e3)}`:sp>=1e4?`${Math.round(E/1e4)%10}0`:String(Math.round(E/1e3)%100).padStart(2,'0'),Math.min(W-30,lp[0]+2),H-22)}}
+   for(let N=Math.ceil(mN/sp)*sp;N<=xN;N+=sp){if(sp<1e5&&N%(sp*10)===0)continue;ctx.beginPath();let on=false,lp=null;for(let k=0;k<=16;k++){const E=mE+(xE-mE)*k/16,q=scr(E,N);if(!q){on=false;continue}on?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1]);on=true;if(q[0]>W-90&&q[0]<W+60)lp=q}ctx.stroke();
+    if(lbl&&lp&&lp[1]>60&&lp[1]<H-30){ctx.fillStyle=col.replace(/[\d.]+\)$/,'.9)');ctx.textAlign='right';ctx.fillText(sp>=1e5?`${Math.round(N/1e3)}`:sp>=1e4?`${Math.round(N/1e4)%10}0`:String(Math.round(N/1e3)%100).padStart(2,'0'),W-12,lp[1]-2)}}}
+  // 100 km square IDs
+  ctx.textAlign='center';ctx.textBaseline='middle';ctx.font=`700 ${s>3?15:10}px ${FM}`;ctx.fillStyle=`rgba(150,215,235,${s>1.2?.3:.2})`;
+  if(s>.75)for(let E=Math.floor(mE/1e5)*1e5;E<xE;E+=1e5)for(let N=Math.floor(mN/1e5)*1e5;N<xN;N+=1e5){const q=scr(E+5e4,N+5e4);if(!q||q[0]<70||q[1]<20||q[0]>W-20||q[1]>H-20)continue;if(SQL.some(o=>Math.abs(o[0]-q[0])<80&&Math.abs(o[1]-q[1])<20))continue;SQL.push(q);const ll=utm2ll(E+5e4,N+5e4,z);ctx.fillText(`${z}${bandOf(ll.lat)} ${sq100(E+5e4,N+5e4,z)}`,q[0],q[1])}}
+ // zone boundaries
+ ctx.strokeStyle='rgba(150,215,235,.5)';ctx.lineWidth=1.4;ctx.setLineDash([12,4,2,4]);for(const lo of [42,48]){const [x1,y1]=w2s(P(lo,40)),[x2,y2]=w2s(P(lo,25));ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke()}ctx.setLineDash([]);ctx.restore()}
+function drawScaleBar(W,H){const kmPx=.9/view.s,want=W*.18*kmPx,nice=[.5,1,2,5,10,20,25,50,100,200,250,500].find(v=>v>=want*.6)||500,px=nice/kmPx,x0=72,y0=H-46;ctx.save();ctx.fillStyle='rgba(10,13,10,.72)';ctx.fillRect(x0-6,y0-16,px+52,26);
+ for(let k=0;k<4;k++){ctx.fillStyle=k%2?'rgba(230,226,210,.9)':'rgba(30,34,28,.95)';ctx.fillRect(x0+px*k/4,y0,px/4,5)}ctx.strokeStyle='rgba(230,226,210,.9)';ctx.lineWidth=1;ctx.strokeRect(x0,y0,px,5);
+ ctx.font=`600 9px ${FM}`;ctx.fillStyle='rgba(230,226,210,.9)';ctx.textAlign='center';ctx.textBaseline='bottom';ctx.fillText('0',x0,y0-2);ctx.fillText(`${nice} KM`,x0+px,y0-2);ctx.textAlign='left';ctx.fillText(view.s>=11?'GRID 1 KM':view.s>=1.3?'GRID 10 KM':'GRID 100 KM',x0+px+10,y0+7);ctx.restore()}
+
 // ===================== DRONE CAMERA FILTERS =====================
 const DCAM={ir:'grayscale(1) contrast(1.55) brightness(1.08)',bh:'grayscale(1) invert(1) contrast(1.5) brightness(.95)',nv:'grayscale(1) sepia(1) hue-rotate(48deg) saturate(2.6) contrast(1.35) brightness(.9)',eo:'saturate(.55) contrast(1.18) brightness(1.02)'};
 let DCAM_ON='';
@@ -3270,11 +3351,11 @@ function citySheet(c){const d=divAt(c),b=baseAt(c),kn=known(c),A=S.assaults[c.id
   if(!g)h+=`<p class="note">Cordon and search needs ground troops garrisoned at a base within range.</p>`}
  return h+`</div>`}
 function shSheet(s){const c=cityById(s.city),L=s.leader&&leaderById(s.leader),red=NET.myRole==='red';
- let h=head(`${SH_T[s.type].n} · near ${c.n}`,L?`${L.card} ${esc(L.role)}`:SH_T[s.type].n);h+=tbHTML('sh:'+s.id);
+ let h=head(`${SH_T[s.type].n} · near ${c.n}`,L?`${L.card} ${esc(lnm(L))}`:SH_T[s.type].n);h+=tbHTML('sh:'+s.id);
  const conf=s.type==='hq'?s.prog:s.prog;
  h+=`<div class="kv"><span class="k">Intel confidence</span><span class="v">${pct(conf)}${bar(conf*100,conf>=.5?'var(--good)':'var(--unknown)')}</span>${s.type!=='hq'?`<span class="k">Strength</span><span class="v">${s.found||red?Math.round(s.str):'?'}</span>`:''}</div>`;
  const fx={scud:'Launches ballistic missiles at your bases.',cmd:'Coordinates regime divisions: +8% defense for every division while it stands.',cache:'Arms nearby cells.',safe:'Grows the cell network in this city every day.',ff:'Receives foreign fighters from Syria and boosts the ratline.',efp:'Builds armor-piercing charges with Iranian parts. Raises EFP attacks.',hq:L&&L.pres?'Capturing the President is required to win.':'Each regime leader still free makes the insurgency more aggressive.'}[s.type];
- h+=`<p class="note">${fx}</p>`;if(red)return h;
+ h+=`<p class="note">${fx}</p>`;if(L&&s.poi&&(red||s.prog>=.5))h+=`<div class="card enemy" style="margin-top:6px"><b style="color:var(--hostile)">⚠ Human shield</b><div class="note" style="margin:2px 0 0">${esc(lnm(L))} is hiding ${poiTxt(s)}. An air or missile strike will very likely destroy it, kill civilians and push ${c.n} toward revolt. A capture raid avoids that.</div></div>`;if(L)h+=`<p class="note">Escape risk if struck: about ${pct(leaderEscapeP(L,s))}. Drones overhead and signals intelligence lower it.</p>`;if(red)return h;
  h+=`<div class="acts">`;
  if(s.type==='hq'){h+=btn('raid',s.id,'Capture raid',s.prog<.5?'Needs at least 50% confidence. Keep gathering intel.':canRaid(s)?`Success odds ${pct(raidOdds(s))}. A failed raid spooks the target.`:'Needs SOF in theater or ground troops at a base within range.',fm(10),'primary',s.prog<.5||!canRaid(s)||S.budget<10);
   h+=fireMissions('sh:'+s.id,'the hideout')}
@@ -3523,7 +3604,7 @@ function intelSheet(){S.unseen=0;updHud();const red=NET.myRole==='red';let h=hea
  if(intelTab==='wanted'){h+=`<p class="note" style="margin-top:0">The deck of most-wanted regime leaders. Capturing the President is required to win.</p><div class="list" style="margin-top:8px">`;
   for(const L of S.leaders){const s=S.sh.find(x=>x.leader===L.id);const r=L.card.includes('♥')||L.card.includes('♦');
    const st=L.status!=='free'?`<span class="chip g">${L.status}</span>`:L.abroad?'<span class="chip h">In Syria</span>':s&&(red||s.prog>=.4)?`<span class="chip ${s.prog>=.5?'g':'u'}">${cityById(s.city).n} ${pct(s.prog)}</span>`:'<span class="chip n">Unknown</span>';
-   h+=`<button class="item" ${s&&(red||s.prog>=.4)?`data-act="sh" data-a="${s.id}"`:''}><span class="card-face ${r?'r':''} ${L.status!=='free'?'down':''}">${L.card}</span><span class="mid"><span class="nm">${esc(L.role)}</span><span class="sb">${L.pres?'Ace of Spades · priority one':'Regime leadership'}</span></span>${st}</button>`}
+   h+=`<button class="item" ${s&&(red||s.prog>=.4)?`data-act="sh" data-a="${s.id}"`:''}><span class="card-face ${r?'r':''} ${L.status!=='free'?'down':''}">${L.card}</span><span class="mid"><span class="nm">${esc(lnm(L))}</span><span class="sb">${esc(L.role)}${L.pres?' · priority one':''}${L.escapes?` · escaped ${L.escapes}×`:''}</span></span>${st}</button>`}
   h+=`</div>`;if(S.leaders.some(l=>l.abroad&&l.status==='free')&&!red)h+=`<p class="note">Leaders in Syria can only be recovered through an extradition demand on the Region tab.</p>`}
  if(intelTab==='region'){h+=`<div class="list">`;for(const [k,C] of Object.entries(COUNTRY)){const c=S.countries[k],fl=cflow(k);
    h+=`<button class="item" data-act="country" data-a="${k}"><span class="mid"><span class="nm">${C.n}</span><span class="sb">Hostility ${Math.round(c.h)} · supply flow ${Math.round(fl*100)}%</span>${bar(c.h,c.h>50?'var(--hostile)':'var(--sand)')}</span><span class="rt">›</span></button>`}
@@ -3745,9 +3826,7 @@ function patrolSheet(u){const b=baseById(u.baseId);let h=head(`${esc(u.name)} ·
  for(const o of secs){const rt=recType(o,u);h+=`<div class="item stack"><div style="display:flex;gap:8px;align-items:center;width:100%"><span class="mid"><span class="nm">${esc(o.n)}</span><span class="sb">${o.sub} · ${Math.max(.3,travelDays(b,o,u.type)).toFixed(1)}d out</span></span>${thrChip(o.threat)}</div><div class="sb wrap">${forceAdv(o.threat)}${o.threat>=.55&&!UT[u.type].veh?'. <b style="color:var(--warn)">This is a foot unit</b>':''}.</div>
   <div style="display:flex;gap:5px;flex-wrap:wrap">${Object.entries(PTYPE).filter(([k,T])=>T.kinds.includes(o.kind)).map(([k,T])=>`<button class="btn sm${k===rt?' primary':''}" data-act="patrol" data-a="${u.id}" data-b="${b.id}|${o.id}|${k}|${patrolRepeat?1:0}" ${k==='cordon'&&!strong?'disabled':''}><span class="t">${T.ic} ${T.n}</span></button>`).join('')}</div></div>`}
  return h+`</div>`}
-function mgrs(p){const lon=p.x/102.5+38.6,lat=37.6-p.y/122;const z=Math.floor((lon+180)/6)+1,band=lat>=32?'S':'R';
- const L1='KLMNPQRSTUV'[Math.floor((((lon%6)+6)%6)/.6)%11],L2='ABCDEFGHJK'[Math.floor((lat%1)*10)%10];
- const e=String(Math.floor((lon*1e4)%1e5)).padStart(5,'0'),n=String(Math.floor((lat*1e4)%1e5)).padStart(5,'0');return `${z}${band} ${L1}${L2} ${e} ${n}`}
+function mgrs(p){const {lon,lat}=w2ll(p),z=utmZone(lon),u=ll2utm(lat,lon,z);return `${z}${bandOf(lat)} ${sq100(u.E,u.N,z)} ${String(Math.floor(u.E%1e5)).padStart(5,'0')} ${String(Math.floor(u.N%1e5)).padStart(5,'0')}`}
 function siteCheck(p){if(!inPoly(p,BORDER))return 'Outside Iraq.';if(LAKES.some(l=>inPoly(p,l.poly)))return 'Open water.';if(nearestCityD(p)<35)return 'Too close to a city. Build in the city instead.';
  if(S.bases.some(b=>!b.naval&&!b.offmap&&dist(b,p)<35))return 'Too close to another base.';if(aliveDivs().some(d=>dist(cityById(d.city),p)<50))return 'Inside an enemy formation\'s defensive zone.';
  if(!opBases().some(b=>!b.naval&&!b.offmap&&dist(b,p)<=260))return 'Out of supply range of your land bases.';return ''}
@@ -3792,7 +3871,7 @@ function siteSheet(){const p=siteSel;if(!p)return '';const _tl=threatLbl(p);cons
 function redCityActs(c,d){let h=`<div class="acts">`;
  if(S.phase==='ins')h+=btn('rcells',c.id,'Push fighters into this city','Cells +15',`20 RF`,'red',S.red.funds<20);
  if(d&&S.phase==='conv'){const b=nearestBase(c,260,true);h+=btn('rattack',c.id,`${d.n}: counterattack`,b?`Hit ${b.n}`:'No US base within reach',`10 RF`,'red',!b||S.red.funds<10||d.str<30)}
- const here=freeLeaders().filter(L=>!L.abroad&&S.gov.fallen);if(here.length)h+=`<h3>Move a leader here</h3>`+here.map(L=>btn('rhide',L.id,`${L.card} ${esc(L.role)}`,'Resets US intel on them to 10%','10 RF','',S.red.funds<10,c.id)).join('');
+ const here=freeLeaders().filter(L=>!L.abroad&&S.gov.fallen);if(here.length)h+=`<h3>Move a leader here</h3>`+here.map(L=>btn('rhide',L.id,`${L.card} ${esc(lnm(L))}`,'Resets US intel on them to 10%','10 RF','',S.red.funds<10,c.id)).join('');
  return h+`</div>`}
 function redSheet(){let h=head(`Red Cell · ${Math.round(S.red.funds)} RF available`,S.phase==='conv'?'Regime command':'Insurgent command');
  h+=`<p class="note" style="margin-top:-4px">You earn Red Funds (RF) every day, more when Syrian and Iranian supply routes flow. The AI still picks each attack; you shape what it favors.</p>`;
@@ -3829,7 +3908,7 @@ function localAct(act,a,b){switch(act){
  case 'echtog':echOpen.has(a)?echOpen.delete(a):echOpen.add(a);renderSheet(true);break;
  case 'echmap':{if(ECH&&ECH.key===a){ECH=null;echBar();renderSheet(true);break}const E=echFind(a);if(!E)break;ECH={key:a};echBar();echFit(E.us);renderSheet(true);break}
  case 'echsel':{const E=echFind(a);if(!E)break;for(const u of E.us)if(canMove(u))moveSel.add(u.id);forcesView='move';confirmOp=null;renderSheet(true);break}
- case 'echrally':openSheet('rally',a);break;case 'rtview':{const c=cityById(a),rt=c&&cityNet(c).routes[+b];if(rt){const q=routePt(rt,.5);setSz('mini');const r=cv.getBoundingClientRect(),s1=10;view.s=s1;view.x=r.width/2-q.x*s1;view.y=r.height*.42-q.y*s1}break}case 'setv':{let v=b;if(v==='true')v=true;else if(v==='false')v=false;else if(!isNaN(+v)&&!['tFilter','fx','q3d','map','droneCam'].includes(a))v=+v;if(a==='_speed'){setSpeed(+b);renderSheet(true);break}SET[a]=v;saveSet();if(a==='advMin')ADV_MS=SET.advMin*60000;renderSheet(true);break}
+ case 'echrally':openSheet('rally',a);break;case 'rtview':{const c=cityById(a),rt=c&&cityNet(c).routes[+b];if(rt){const q=routePt(rt,.5);setSz('mini');const r=cv.getBoundingClientRect(),s1=10;view.s=s1;view.x=r.width/2-q.x*s1;view.y=r.height*.42-q.y*s1}break}case 'setv':{let v=b;if(v==='true')v=true;else if(v==='false')v=false;else if(!isNaN(+v)&&!['tFilter','fx','q3d','map','droneCam'].includes(a))v=+v;if(a==='_speed'){setSpeed(+b);renderSheet(true);break}SET[a]=v;saveSet();if(a==='map')mapBtnSync();if(a==='advMin')ADV_MS=SET.advMin*60000;renderSheet(true);break}
  case 'setreset':SET={...SET_DEF};saveSet();ADV_MS=SET.advMin*60000;renderSheet(true);break;
  case 'qmx':closeQM();break;case 'wmd':sel={kind:'wmd',id:a};openSheet('wmd',a);break;case 'v3':{const i=a.indexOf(':');open3D(a.slice(0,i),a.slice(i+1));break}
  case 'selbde':{const B=(S.bdes||[]).find(x=>x.id===a);if(!B||!sheet)break;let C=[],set=planSel;if(b==='plan'&&sheet.kind==='plan')C=planCands(cityById(sheet.id));else if(b==='eb'&&sheet.kind==='eb'){const e=ebById(sheet.id);C=e?ebCands(e):[]}else if(b==='tb'&&TB){C=tbCands(TB.op,tbTarget(TB.k));set=TBSEL}
@@ -4145,7 +4224,7 @@ function nextModal(){const m=mq.shift();if(!m){mOpen=false;$('#modal').hidden=tr
  $('#modalBody').querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{m.opts[+b.dataset.i].f();if(S){updHud();if(sheet)renderSheet(true);netSync(true)}nextModal()})}
 
 /* ================= title & multiplayer menu ================= */
-function migrate(s){s.xroutes??=[];{const d=(s.bases||[]).find(b=>b.kuwait);if(d&&d.slots<28)d.slots=28}s.kbrIdx??=1;s.lobbyH??={};s.acQ??=[];s.bdes??=[];s.ebases??=[];s.esc??={};s.agg??={};for(const b of s.bases)if(!b.fsvc)b.fsvc=b.locals?'locals':'organic';{const BS=['eng','cb','mp','med','mi','ca','log','cram','patb'];for(const B of s.bdes)B.units=B.units.filter(id=>{const u=s.units.find(x=>x.id===id);if(u&&BS.includes(u.type)){u.bde=null;return false}return true});for(const u of s.units)if(BS.includes(u.type)){u.repeat=false;u.ptgt=null;u.bpat=null}}for(const u of s.units){if(u.dep==null)u.dep=Math.max(0,s.day-ri(0,90))}for(const b of s.bases)if(!(b.kuwait||b.naval||b.offmap))b.fuel??=40;
+function migrate(s){for(const L of (s.leaders||[])){const d=LDEF[L.id];if(d){L.name=d[4];L.role=d[2]}}s.xroutes??=[];{const d=(s.bases||[]).find(b=>b.kuwait);if(d&&d.slots<28)d.slots=28}s.kbrIdx??=1;s.lobbyH??={};s.acQ??=[];s.bdes??=[];s.ebases??=[];s.esc??={};s.agg??={};for(const b of s.bases)if(!b.fsvc)b.fsvc=b.locals?'locals':'organic';{const BS=['eng','cb','mp','med','mi','ca','log','cram','patb'];for(const B of s.bdes)B.units=B.units.filter(id=>{const u=s.units.find(x=>x.id===id);if(u&&BS.includes(u.type)){u.bde=null;return false}return true});for(const u of s.units)if(BS.includes(u.type)){u.repeat=false;u.ptgt=null;u.bpat=null}}for(const u of s.units){if(u.dep==null)u.dep=Math.max(0,s.day-ri(0,90))}for(const b of s.bases)if(!(b.kuwait||b.naval||b.offmap))b.fuel??=40;
 for(const b of s.bases)if(!(b.kuwait||b.naval||b.offmap)&&!b.fac){b.fac=defaultFac();if(b.level===2)b.fac.mwr={l:1,d:0}}
 for(const b of s.bases){if(b.kuwait||b.naval||b.offmap||b.level!==2||b.strip!=null)continue;b.heli=1;b.strip=1;for(const u of s.units)if(u.baseId===b.id)b.strip=Math.max(b.strip,AIR_REQ[u.type]||(UT[u.type].home==='air'?2:1))}
 s.repQ??=[];for(const u of s.units)u.coh??=100;
@@ -4156,8 +4235,11 @@ s.tm??=75;s.spent??={};s.recov??=[];s.rtd??=0;s.delivered??=0;s.lastSpeed??=1;s.
  if(!s.spv){s.spv=2;const m=v=>SPEEDS.reduce((a,x)=>Math.abs(Math.log(x/(v*16||16)))<Math.abs(Math.log(a/(v*16||16)))?x:a,16);if(s.speed>0)s.speed=m(s.speed);s.lastSpeed=m(s.lastSpeed||1)}if(s.spv<3){s.spv=3;if(s.speed>4)s.speed=4;if((s.lastSpeed||0)>4)s.lastSpeed=4}if(s.speed>0&&!SPEEDS.includes(s.speed))s.speed=4;return s}
 function startSolo(g,sv,name){if(g==='continue'){S=migrate(sv);if(!S._name){S._name=uniqName(`${(DIFFS[S.diff]||{n:'Regular'}).n} campaign`)}}else{newGame(g);if(DIFFS[g].arcade)arcadeInit();S._slot=newSlotId();S._name=uniqName(name||`${DIFFS[g].n} campaign`);save()}if(S.speed>0)S.lastSpeed=S.speed;else if(!S.lastSpeed)S.lastSpeed=SET.startSpeed||4;if(g!=='continue')S.lastSpeed=SET.startSpeed||4;S.speed=0;$('#title').hidden=true;resize();fitView();updSpeed();setRoleUI();updHud();
  if(g!=='continue')showModal({eyebrow:'D-Day · 20 MAR 2003',title:'Topple the regime, find its leaders',body:'<p>Your ground forces stage at Camp Doha in Kuwait. Bring combat engineers or Navy Seabees: they build every new base. The Fifth Fleet in the Gulf hosts carriers and Tomahawk ships; Al Udeid hosts heavy bombers. One leadership target in Baghdad is already partly located: a cruise missile might end this early.</p><p>Troops travel the road network. MSRs are fast but heavily mined; minor roads are slower and ambush-prone. Units hit on the road stop and fight until you reinforce them or they fall back. Watch the terrain and the highways: columns move fastest on MSR Tampa and the main roads, slowest in mountains, marshes and at river crossings away from city bridges. Every new FOB needs combat engineers or Seabees to build it, so deploy engineers early, and every base needs food and ammunition hauled in. Open the Status panel at top right for force health, supply and the cost of the war.</p>',opts:[{t:'Open Camp Doha',cls:'primary',f:()=>{sel={kind:'base',id:'b0'};openSheet('base','b0')}},{t:'Look at the map first',f:()=>{}}]})}
-const GAME_VER=63;
+const GAME_VER=66;
 const CHANGES=[
+ [66,'The deck of cards',['The most-wanted deck now uses the real names, from Saddam Hussein (A♠) to Aziz Salih al-Numan (K♦)','Leaders can slip away before strikes land or raids hit; drones overhead and signals intelligence improve your odds','Some leaders hide beside hospitals, mosques, schools or utilities; bombing them there wrecks the site, kills civilians and enrages the city, so consider a capture raid']],
+ [65,'Tactical map by default',['The tactical map is now the default view, and the drone camera overlay is off by default (turn it back on in Settings › Drone camera overlay)','Removed the generated farmland and terrain texture from the satellite map when zoomed in']],
+ [64,'Tactical map',['New tactical map style: a military operations map with relief tints, contour lines, spot heights, a real MGRS grid (100 km, 10 km and 1 km as you zoom) and a scale bar','Switch between satellite and tactical with the ▦ button under Status, or in Settings','Grid references on the drone HUD are now true MGRS coordinates']],
  [63,'Pipelines you can see',['Pipelines now stand out across the country: bright orange with a dark casing, and moving dashes while oil flows','Added pumping stations and storage tank farms along the lines; knocking one out throttles that line or drains fuel reserves','The map key (Key button) explains every oil symbol']],
  [62,'Oil, pipelines & an adaptive Iran',['Oil fields, refineries and pipelines now matter: exports fund Iraq and offset our costs; fuel shortages feed anger','Once the Iraqi army is gone from a region, insurgents sometimes bomb pipelines and hit oil fields (not often, but it hurts)','Secure them with pipeline patrols from nearby bases or an Iraqi Oil Protection Force; rush repairs with KBR crews','New Oil button on the left rail; tap an oil alert to repair or guard it','When an army falls in a city, violent insurgents flood in a few days later','Sever an Iranian route and Tehran plans a new one, bending around our strongholds; find it before it flows']],
  [61,'Automatic updates',['The desktop app checks for new versions on its own and downloads them in the background','Restart to update from the main menu banner, Settings or Campaign › Check for updates','Your campaign is saved and backed up before every update','If an update ever fails to start, the app goes back to the previous version']],
@@ -4270,6 +4352,8 @@ function updTile(){if(!UPDD())return '';const u=UPD,n=(u.notes||[]).slice(0,3).m
 function updBanner(){if(!UPDD())return '';if(UPD.st==='ready')return `<div class="updb"><span>Update <b>v${UPD.v}</b> is ready${(UPD.notes||[])[0]?' · '+esc(UPD.notes[0]):''}</span><button class="btn sm" data-go="updgo"><span class="t">Restart &amp; update</span></button></div>`;
  if(UPD.st==='shell')return `<div class="updb"><span>New desktop app <b>${esc(UPD.shell||'')}</b> available</span><button class="btn sm" data-go="updshell"><span class="t">Download</span></button></div>`;return ''}
 if(window.itcDesktop&&window.itcDesktop.ready){try{window.itcDesktop.ready(GAME_VER);window.itcDesktop.onUpdate(st=>{const was=UPD.st;UPD=st;if(st.st==='ready'&&was!=='ready'){toast(`Version ${st.v} downloaded. Restart from Settings or the main menu to update.`,'good','Update ready');updRefresh()}else if(st.st==='shell'&&was!=='shell')updRefresh()});window.itcDesktop.updateStatus().then(st=>{if(st&&st.st!=='idle'){UPD=st;updRefresh()}})}catch(e){}}
+function mapBtnSync(){const mb=$('#mapBtn');if(!mb||!mb.classList)return;const m=isMil();mb.textContent=m?'◩ Satellite':'▦ Tactical';mb.classList.toggle('on',m)}
+{const mb=$('#mapBtn');mapBtnSync();if(mb)mb.onclick=()=>{SET.map=isMil()?'satellite':'tactical';saveSet();mapBtnSync();try{draw()}catch(e){}}}
 try{geoInit();document.documentElement.style.setProperty('--noise','url('+noiseURL()+')')}catch(e){}resize();showTitle();requestAnimationFrame(frame);netLobby();
 if(document.fonts)document.fonts.ready.then(draw);
 </script>
