@@ -11,14 +11,16 @@ Get the latest build from [Releases](https://github.com/kkaigle/OIFsim/releases/
 
 ## Updates
 
-Version 1.61.0 and later check this repository's latest release for `update.json`. When a newer game version is published, the app downloads it in the background (about 1 MB), checks its SHA-256, and offers to restart into it. Campaigns are saved and backed up first. If an update fails to start, the app rolls back to the previous version.
+Version 1.61.0 and later check [`ota/update.json`](ota/update.json) in this repository. When a newer game version is pushed, the app downloads it in the background (about 1 MB), checks its SHA-256, and offers to restart into it. Campaigns are saved and backed up first. If an update fails to start, the app rolls back to the previous version.
 
-## Publishing a release
+## Publishing an update
 
-From the desktop project, run `node release.js`. It writes `release/update.json` and `release/game-<ver>.html`. Then create a release with those files attached:
+From the desktop project:
 
 ```
-gh release create v<ver> release/* -R kkaigle/OIFsim --title "v<ver>" --notes "..."
+ITC_OTA_REPO_DIR=/path/to/OIFsim node release.js
 ```
 
-Attach the Mac and Windows zips as well whenever the desktop app version in `package.json` changes.
+That writes `ota/update.json` and `ota/game-<ver>.html` into this repo. Commit and push to `main`, and every installed copy picks it up within a few hours (or right away from Campaign › Check for updates).
+
+When the desktop app version in `package.json` changes, also create a GitHub release with the new Mac and Windows zips attached. Installed apps then show a "New desktop app" download button.
