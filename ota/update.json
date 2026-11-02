@@ -1,17 +1,19 @@
 {
- "game": 61,
- "file": "game-61.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-61.html",
- "sha256": "a8ba5d3f80c36b7d26f5d634493b1fb4fa2a4c28d3bcda50b02d165210f0d0c5",
- "size": 927435,
+ "game": 62,
+ "file": "game-62.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-62.html",
+ "sha256": "1e0937241a50f7014fb89aff10548e1da3624e92eb84f5221612264e7f171e8b",
+ "size": 951137,
  "notes": [
-  "Automatic updates",
-  "The desktop app checks for new versions on its own and downloads them in the background",
-  "Restart to update from the main menu banner, Settings or Campaign › Check for updates",
-  "Your campaign is saved and backed up before every update",
-  "If an update ever fails to start, the app goes back to the previous version"
+  "Oil, pipelines & an adaptive Iran",
+  "Oil fields, refineries and pipelines now matter: exports fund Iraq and offset our costs; fuel shortages feed anger",
+  "Once the Iraqi army is gone from a region, insurgents sometimes bomb pipelines and hit oil fields (not often, but it hurts)",
+  "Secure them with pipeline patrols from nearby bases or an Iraqi Oil Protection Force; rush repairs with KBR crews",
+  "New Oil button on the left rail; tap an oil alert to repair or guard it",
+  "When an army falls in a city, violent insurgents flood in a few days later",
+  "Sever an Iranian route and Tehran plans a new one, bending around our strongholds; find it before it flows"
  ],
- "published": "2026-11-02T22:23:46.503Z",
+ "published": "2026-11-02T22:40:59.100Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
