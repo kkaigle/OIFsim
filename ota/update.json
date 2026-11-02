@@ -1,19 +1,16 @@
 {
- "game": 62,
- "file": "game-62.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-62.html",
- "sha256": "1e0937241a50f7014fb89aff10548e1da3624e92eb84f5221612264e7f171e8b",
- "size": 951137,
+ "game": 63,
+ "file": "game-63.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-63.html",
+ "sha256": "4ec543e3dceb314891e55d219fbadba022282d0b16e9d8c84113b407cb4b7970",
+ "size": 954543,
  "notes": [
-  "Oil, pipelines & an adaptive Iran",
-  "Oil fields, refineries and pipelines now matter: exports fund Iraq and offset our costs; fuel shortages feed anger",
-  "Once the Iraqi army is gone from a region, insurgents sometimes bomb pipelines and hit oil fields (not often, but it hurts)",
-  "Secure them with pipeline patrols from nearby bases or an Iraqi Oil Protection Force; rush repairs with KBR crews",
-  "New Oil button on the left rail; tap an oil alert to repair or guard it",
-  "When an army falls in a city, violent insurgents flood in a few days later",
-  "Sever an Iranian route and Tehran plans a new one, bending around our strongholds; find it before it flows"
+  "Pipelines you can see",
+  "Pipelines now stand out across the country: bright orange with a dark casing, and moving dashes while oil flows",
+  "Added pumping stations and storage tank farms along the lines; knocking one out throttles that line or drains fuel reserves",
+  "The map key (Key button) explains every oil symbol"
  ],
- "published": "2026-11-02T22:40:59.100Z",
+ "published": "2026-11-02T22:59:43.437Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
