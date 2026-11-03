@@ -397,6 +397,7 @@ h3{font-size:12px;margin:10px 0 4px;padding-bottom:3px}
 .wbar b{position:absolute;top:-3px;width:4px;height:10px;margin-left:-2px}
 .cauc .sb b{color:var(--text);font-weight:600}
 .adv{display:grid;gap:6px}
+.advd{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px}.advc{border:1px solid var(--line);border-top:3px solid var(--friendly);background:var(--panel2);padding:8px 10px;min-width:0;display:flex;flex-direction:column}.advc.lost{border-top-color:var(--hostile)}.advc.vac{opacity:.6;border-top-color:var(--muted)}.advc-h{display:flex;gap:8px;align-items:center}.advc-ic{font-size:18px;color:var(--sand);width:22px;text-align:center}.advc-d{font-family:var(--f-display);font-size:15px;letter-spacing:.06em;text-transform:uppercase}.advc-r{font-size:11px;color:var(--muted)}.advc-recs{display:grid;gap:6px;flex:1}.advr{border-left:2px solid var(--line);padding:4px 0 4px 8px}.advr.done{opacity:.55}.advr .btn{margin-top:4px}
 .adv-c{display:flex;gap:10px;border:1px solid var(--line);border-left:3px solid var(--friendly);background:var(--panel2);padding:8px 10px}
 .adv-c.done{opacity:.55;border-left-color:var(--good)}
 .adv-n{font-family:var(--f-stencil);font-size:22px;color:var(--friendly);line-height:1;width:16px;flex:none}
@@ -606,9 +607,11 @@ const ROUTE_DEFS=[
 ].map(r=>({...r,P:r.pts.map(a=>P(...a)),E:P(...r.entry)}));
 const routeDef=id=>{if(typeof rsync==='function')rsync();return ROUTE_DEFS.find(r=>r.id===id)};
 const LEADER_DEFS=[
- ['ace_s','A♠','The President',1],['ace_c','A♣','Younger son, Republican Guard overseer',0],['ace_h','A♥','Elder son, Fedayeen commander',0],
- ['ace_d','A♦','Presidential secretary',0],['k_s','K♠','RCC vice-chairman',0],['k_c','K♣','Southern sector commander',0],
- ['k_h','K♥','Intelligence chief',0],['k_d','K♦','Defense minister',0]];
+ ['ace_s','A♠','President of Iraq',1,'Saddam Hussein'],['ace_c','A♣','Younger son, Republican Guard overseer',0,'Qusay Hussein'],['ace_h','A♥','Elder son, Fedayeen Saddam commander',0,'Uday Hussein'],
+ ['ace_d','A♦','Presidential secretary',0,'Abid Hamid Mahmud al-Tikriti'],['k_s','K♠','Presidential adviser, southern sector commander',0,'Ali Hassan al-Majid'],['k_c','K♣','Revolutionary Command Council vice-chairman',0,'Izzat Ibrahim al-Douri'],
+ ['k_h','K♥','Special Security Organization director',0,'Hani Abd al-Latif Tilfah'],['k_d','K♦','Ba’ath Party regional command chairman',0,'Aziz Salih al-Numan']];
+const LDEF=Object.fromEntries(LEADER_DEFS.map(d=>[d[0],d]));
+const lnm=L=>L.name||(LDEF[L.id]||[])[4]||L.role,lfull=L=>`${L.card} ${lnm(L)}`;
 const SH_T={scud:{n:'Scud launch site',tag:'SCUD'},cmd:{n:'Regime command bunker',tag:'C2'},cache:{n:'Weapons cache',tag:'CACHE'},safe:{n:'Insurgent safehouse',tag:'SAFE'},ff:{n:'Foreign fighter waystation',tag:'FF'},efp:{n:'EFP workshop',tag:'EFP'},hq:{n:'Leadership hideout',tag:'HVT'}};
 
 /* ================= units ================= */
@@ -701,7 +704,7 @@ function newGame(dk){
    {id:'gulf',n:'Fifth Fleet, Persian Gulf',city:null,x:gp.x,y:gp.y,level:2,slots:6,building:0,naval:1},
    {id:'udeid',n:'Al Udeid / Diego Garcia',city:null,x:up.x,y:up.y,level:2,slots:4,building:0,offmap:1}],
   units:[],repQ:[],acQ:[],bdes:[],tech:{},techPend:[],vote:null,assaults:{},sh:[],tm:75,spent:{},recov:[],rtd:0,delivered:0,lastSpeed:16,stormUntil:0,heatUntil:0,fobNames:0,
-  leaders:LEADER_DEFS.map(([id,card,role,pres])=>({id,card,role,pres,status:'free',abroad:null})),
+  leaders:LEADER_DEFS.map(([id,card,role,pres,name])=>({id,card,role,pres,name,status:'free',abroad:null})),
   countries:Object.fromEntries(Object.entries(COUNTRY).map(([k,c])=>[k,{h:c.h,cd:0,cov:0}])),
   routes:ROUTE_DEFS.map(r=>({id:r.id,flow:0})),
   gov:{fallen:0,fallenDay:null,formed:0,cap:null,next:0},
@@ -839,10 +842,10 @@ function tacWeight(t){let w=(S.ai.learned[t.id]||1)*Math.pow(1-ctrOf(t),1.4)*(t.
  const f=S.red.focus;if(f&&f.id===t.id&&f.until>S.day)w*=2.5;return Math.max(.01,w)}
 
 /* ================= log / toasts ================= */
-const SET_DEF={map:'satellite',droneCam:'ir',q3d:'low',tDur:9,tMax:3,tFilter:'all',pauseCrit:false,slowContact:2,postTags:true,droneHUD:true,fx:'full',advMin:2,startSpeed:4,roadLbl:true};
-let SET={...SET_DEF};try{const v=JSON.parse(localStorage.getItem('itc-set')||'null');if(v&&typeof v==='object')SET={...SET_DEF,...v}}catch(e){}
+const SET_DEF={_sv:65,map:'tactical',droneCam:'ir',q3d:'low',tDur:9,tMax:3,tFilter:'all',pauseCrit:false,slowContact:2,postTags:true,droneHUD:false,fx:'full',advMin:2,startSpeed:4,roadLbl:true};
+let SET={...SET_DEF};try{const v=JSON.parse(localStorage.getItem('itc-set')||'null');if(v&&typeof v==='object'){SET={...SET_DEF,...v};if((SET._sv||0)<65){SET._sv=65;SET.map='tactical';SET.droneHUD=false;try{localStorage.setItem('itc-set',JSON.stringify(SET))}catch(e){}}}}catch(e){}
 function saveSet(){try{localStorage.setItem('itc-set',JSON.stringify(SET))}catch(e){}}
-const ADVISORY=new Set(['Oil restart','Oil flowing','Sabotage foiled','Fuel shortage','Update ready','Updating','Up to date','Update check failed','Saved','Save failed','Paused','ROE changed','Enemy adapting','Regime expands','Regime digging in','Sandstorm','Regional','Enemy reinforcing','Partner connected','Rotations ordered','Rotation ordered','Deployment','Brigade deploying','Offensive launched','Campaign ended','Engineer operations','Civil affairs']);
+const ADVISORY=new Set(['New advisor','Advisor relieved','Advisor','Target escaped','Oil restart','Oil flowing','Sabotage foiled','Fuel shortage','Update ready','Updating','Up to date','Update check failed','Saved','Save failed','Paused','ROE changed','Enemy adapting','Regime expands','Regime digging in','Sandstorm','Regional','Enemy reinforcing','Partner connected','Rotations ordered','Rotation ordered','Deployment','Brigade deploying','Offensive launched','Campaign ended','Engineer operations','Civil affairs']);
 const CRIT=new Set(['Troops in contact','Base overrun','Base captured','Missile from Iran','Iran retaliates','Insider attack','Forced withdrawal']);
 function subjOf(txt){if(!S||!txt)return null;let best=null;const hit=(n,k,id,pri)=>{if(n&&n.length>2&&txt.includes(n)&&(!best||pri>best.pri||(pri===best.pri&&n.length>best.len)))best={k,id,pri,len:n.length}};
  for(const u of S.units)hit(u.name,'unit',u.id,4);for(const e of (S.ebases||[]))hit(e.n,'eb',e.eid,3.5);for(const b of S.bases)hit(b.n,'base',b.id,3);for(const c of S.cities)hit(c.n,'city',c.id,2);
@@ -1286,15 +1289,21 @@ function counterattack(d,b){const c=cityById(d.city),def=baseDef(b)*(baseOp(b)?1
 
 /* ================= leaders & strongholds ================= */
 function scatterLeaders(){for(const L of freeLeaders()){const s=S.sh.find(x=>x.leader===L.id);
-  if(!isArc()&&Math.random()<.18*S.countries.syria.h/100){L.abroad='syria';if(s)S.sh=S.sh.filter(x=>x!==s);log(`Intel: ${L.card} (${L.role}) has slipped across the border into Syria.`,'adapt');continue}
+  if(!isArc()&&Math.random()<.18*S.countries.syria.h/100){L.abroad='syria';if(s)S.sh=S.sh.filter(x=>x!==s);log(`Intel: ${lfull(L)} (${L.role}) has slipped across the border into Syria.`,'adapt');continue}
   moveLeader(L,pick(HIDEOUTS),.08)}
  log('The regime leadership has scattered into hiding. Build intel coverage to find them.','adapt',true,'Leaders on the run')}
 function moveLeader(L,cid,prog){let s=S.sh.find(x=>x.leader===L.id);const c=cityById(cid);
  if(!s){s={id:'s'+S.nid++,type:'hq',leader:L.id,str:10,max:10,found:0};S.sh.push(s)}
- s.city=cid;s.x=c.x+rnd(-22,22);s.y=c.y+rnd(-22,22);s.prog=prog;s.alerted=0}
+ s.city=cid;s.prog=prog;s.alerted=0;s.poi=null;
+ // human shields: some hide right beside a hospital, mosque, school or utility
+ const sites=cityNet(c).sites.filter(st=>infHp(c,st.id)>0);if(sites.length&&Math.random()<(L.pres?.5:.4)){const st=pick(sites),a=Math.random()*6.28;s.x=st.x+Math.cos(a)*.12;s.y=st.y+Math.sin(a)*.12;s.poi={id:st.id,k:st.k,n:SITE[st.k].n,d:st.d}}
+ else{s.x=c.x+rnd(-22,22);s.y=c.y+rnd(-22,22)}}
+function poiTxt(s){if(!s||!s.poi)return '';return `beside the ${s.poi.n.toLowerCase()} in ${s.poi.d==='Old City'?'the Old City':'Hay '+s.poi.d}`}
+// chance the target is gone before the bombs land: tip-offs, tunnels, decoy convoys
+function leaderEscapeP(L,s){return clamp(.22+(L.pres?.12:0)+(s.poi?.08:0)-(isr()?.07:0)-.04*Math.min(3,N('pred'))-(has('sigint')?.04:0)-(s.prog-.5)*.2,.08,.45)}
 function leaderDown(L,how){L.status=how;S.sh=S.sh.filter(x=>x.leader!==L.id);
  mor(L.pres?12:3);con(L.pres?10:2);S.cities.forEach(c=>c.cells=clamp(c.cells-(L.pres?8:2),0,100));
- log(`${L.card} ${L.role} ${how==='captured'?'captured':'killed'}.${L.pres?' The President is in US custody. The insurgency loses its figurehead.':''}`,'good',true,L.pres?'Ace of Spades':'Most wanted');}
+ log(`${lfull(L)} ${how==='captured'?'captured':'killed'}.${L.pres?' The President is in US custody. The insurgency loses its figurehead.':''}`,'good',true,L.pres?'Ace of Spades':'Most wanted');}
 function destroySh(s,how){bdaE(s.type==='hq'?'Leadership hideouts':(SH_T[s.type]||{n:'Strongholds'}).n.replace(/^./,m=>m.toUpperCase())+(/s$/.test((SH_T[s.type]||{n:''}).n)?'':'s'),1);bdaI().ek+=rnd(6,18);S.sh=S.sh.filter(x=>x!==s);const c=cityById(s.city);
  const fx={scud:'No more missiles from this site.',cmd:'Regime command and control is breaking down.',cache:'Weapons stockpile seized.',safe:'Cell network in the area is gutted.',ff:'Foreign fighter pipeline disrupted.',efp:'Shaped-charge production halted.'}[s.type]||'';
  if(['safe','ff','efp','cache'].includes(s.type))c.cells=clamp(c.cells-(s.type==='safe'?18:10),0,100);
@@ -1305,15 +1314,15 @@ function intelGain(s){let g=.004;for(const b of opBases()){if(b.naval||b.offmap)
  if(S.phase==='ins'&&s.type!=='hq')g*=1+cityById(s.city).cells/200;return g}
 function intelDay(){for(const s of S.sh.slice()){if(s.found&&s.type!=='hq')continue;s.prog=Math.min(1,s.prog+intelGain(s));const c=cityById(s.city);
   if(s.type!=='hq'&&s.prog>=1&&!s.found){s.found=1;log(`Intel pinpoints a ${SH_T[s.type].n.toLowerCase()} near ${c.n}. Strike or raid it.`,'good',true,'Stronghold located')}
-  if(s.type==='hq'){const L=leaderById(s.leader);if(s.prog>=.5&&!s.alerted){s.alerted=1;log(`Intel: ${L.card} ${L.role} is likely hiding near ${c.n} (${pct(s.prog)} confidence).`,'good',true,'Target located')}
-   if(S.gov.fallen&&s.prog>.45&&Math.random()<.035){const was=s.prog;moveLeader(L,pick(HIDEOUTS.filter(x=>x!==s.city)),.12);if(was>=.5)log(`${L.card} got spooked and moved. The trail near ${c.n} has gone cold.`,'adapt',true,'Target moved')}}}}
+  if(s.type==='hq'){const L=leaderById(s.leader);if(s.prog>=.5&&!s.alerted){s.alerted=1;log(`Intel: ${lfull(L)} (${L.role}) is likely hiding near ${c.n} (${pct(s.prog)} confidence).${s.poi?` Sources say he is sheltering ${poiTxt(s)}. An air strike would wreck it and turn the city against us; a capture raid is the cleaner option.`:''}`,'good',true,'Target located')}
+   if(S.gov.fallen&&s.prog>.45&&Math.random()<.035){const was=s.prog;moveLeader(L,pick(HIDEOUTS.filter(x=>x!==s.city)),.12);if(was>=.5)log(`${lnm(L)} (${L.card}) got spooked and moved. The trail near ${c.n} has gone cold.`,'adapt',true,'Target moved')}}}}
 function spawnStrongholds(){if(S.sh.length>34)return;
  for(const c of S.cities){if(c.cells>35&&!S.sh.some(s=>s.type==='safe'&&s.city===c.id)&&Math.random()<.025){const s={id:'s'+S.nid++,type:'safe',city:c.id,x:c.x+rnd(-20,20),y:c.y+rnd(-20,20),str:25+c.cells*.3,prog:0,found:0};s.max=s.str;S.sh.push(s)}}
  for(const r of S.routes){const R=routeDef(r.id);if(r.flow<.3)continue;const ty=R.c==='syria'?'ff':R.c==='iran'?'efp':null;if(!ty)continue;
   if(Math.random()<.015&&S.sh.filter(s=>s.type===ty).length<4){const c=cityById(pick(R.cities));S.sh.push({id:'s'+S.nid++,type:ty,route:r.id,city:c.id,x:c.x+rnd(-24,24),y:c.y+rnd(-24,24),str:30,max:30,prog:0,found:0})}}}
 function shEffects(){for(const s of S.sh){const c=cityById(s.city);const v={safe:.35,ff:.25,cache:.15,efp:.15,hq:.2}[s.type]||0;c.cells=clamp(c.cells+v,0,100)}}
 function resolveTarget(k){const [kind,id]=String(k).split(':');if(kind==='div'){const c=cityById(id),d=c&&divAt(c);return d?{kind,div:d,city:c,x:c.x,y:c.y,n:d.n}:null}
- const s=shById(id);if(!s)return null;const L=s.leader&&leaderById(s.leader);return {kind:'sh',sh:s,city:cityById(s.city),x:s.x,y:s.y,n:L?`${L.card} hideout`:SH_T[s.type].n}}
+ const s=shById(id);if(!s)return null;const L=s.leader&&leaderById(s.leader);return {kind:'sh',sh:s,city:cityById(s.city),x:s.x,y:s.y,n:L?`${lnm(L)} hideout`:SH_T[s.type].n}}
 function strikeAssets(tg){return S.units.filter(u=>UT[u.type].strike&&u.state==='garrison'&&u.p>0&&acFmc(u)>0&&(!stormy()||u.type==='ddg')).filter(u=>{const b=baseById(u.baseId);return b&&b.building<=0&&!b.restricted&&dist(b,tg)<=UT[u.type].strike.range&&(isRear(b)||b.fuel>0)})}
 function doStrike(uid,tk){const u=unitById(uid),tg=resolveTarget(tk);if(!u||!tg||!UT[u.type].strike)return;const st=UT[u.type].strike;
  if((u.rdy||0)>S.day||S.budget<st.cost)return;spend('strikes',st.cost);u.rdy=S.day+st.cd;u.exp=Math.min(1,u.exp+.01);
@@ -1329,15 +1338,19 @@ function strikeImpact(u,tg,st,tk){if(!S)return;const t2=resolveTarget(tk);if(!t2
  if(tg.kind==='div'&&AC[u.type]&&Math.random()<.04)acLose(u,1,'to anti-aircraft fire');
  if(tg.kind==='div'){const d=tg.div,floor=d.max*.12,before=d.str;d.str=Math.max(Math.min(d.str,floor),d.str-dmg/(d.def*c2Bonus()));
   log(`${st.n} by ${u.name} on ${d.n} at ${c.n}: strength ${Math.round(before)} → ${Math.round(d.str)}.${d.str<=floor+.5?' Ground forces are needed to finish them.':''}`,'good',false)}
- else{const s=tg.sh;if(s.type==='hq'){const L=leaderById(s.leader);const p=s.prog*.35*(st.dmg>30?1.2:1);
-   if(Math.random()<p)leaderDown(L,'killed');else{log(`${st.n} on the suspected ${L.card} hideout near ${c.n} missed the target.`,'bad',true,'Strike missed');s.prog*=.5;if(Math.random()<.5&&S.gov.fallen)moveLeader(L,pick(HIDEOUTS),.1)}}
+ else{const s=tg.sh;if(s.type==='hq'){const L=leaderById(s.leader);
+   if(s.poi){const ps=cityNet(c).sites.find(x=>x.id===s.poi.id);if(ps){cityHit(c,ps,.5,1.4,`${st.n} on the ${lnm(L)} hideout`);civCas(c,ri(10,34),`${st.n} on the hideout ${poiTxt(s)}`,'Air & missile strikes');if(!isArc()){c.griev=(c.griev||0)+12;c.instab=clamp(c.instab+10,0,100);c.cells=clamp(c.cells+8,0,100);mor(-2.5);con(-1.5)}
+     log(`The strike flattened the ${s.poi.n.toLowerCase()} in ${c.n}. Arabic satellite channels are running the footage on a loop; mourners and gunmen fill the streets.`,'bad',true,'Infrastructure destroyed')}}
+   const ep=leaderEscapeP(L,s),p=s.prog*.55*(st.dmg>30?1.2:1);
+   if(Math.random()<ep){L.escapes=(L.escapes||0)+1;log(`${st.n} hit the compound near ${c.n}, but ${lnm(L)} (${L.card}) slipped away minutes before impact. A tip-off, a tunnel or a decoy convoy; nobody knows yet.`,'bad',true,'Target escaped');moveLeader(L,pick(HIDEOUTS.filter(x=>x!==s.city)),.1)}
+   else if(Math.random()<p)leaderDown(L,'killed');else{log(`${st.n} on the suspected hideout of ${lnm(L)} (${L.card}) near ${c.n} missed the target.`,'bad',true,'Strike missed');s.prog*=.5;if(Math.random()<.5&&S.gov.fallen)moveLeader(L,pick(HIDEOUTS),.1)}}
   else{s.str-=dmg;if(s.str<=0)destroySh(s,st.n.toLowerCase());else log(`${st.n} damaged the ${SH_T[s.type].n.toLowerCase()} near ${c.n} (${Math.round(s.str/s.max*100)}% left).`,'good')}}}
-function raidOdds(s){if(s.type==='hq')return clamp(s.prog*(.75+.08*Math.min(3,N('sf'))+(isr()?.08:0)+(has('nvg')?.05:0)+(has('biom')?.05:0)),0,.95);return clamp(.65+.07*N('sf')+(isr()?.08:0),0,.95)}
+function raidOdds(s){if(s.type==='hq')return clamp(-(s.poi?.04:0)+s.prog*(.75+.08*Math.min(3,N('sf'))+(isr()?.08:0)+(has('nvg')?.05:0)+(has('biom')?.05:0)),0,.95);return clamp(.65+.07*N('sf')+(isr()?.08:0),0,.95)}
 function canRaid(s){const c=cityById(s.city);return N('sf')>=.5||groundNear(c,260)}
 function doRaid(id){const s=shById(id);if(!s||!canRaid(s)||(s.type!=='hq'&&!s.found)||(s.type==='hq'&&s.prog<.5)||S.budget<10)return;spend('operations',10);const c=cityById(s.city);
  const ok=Math.random()<raidOdds(s);
  if(Math.random()<.2){const g=S.units.filter(u=>u.state==='garrison'&&UT[u.type].ground);if(g.length)applyCas(pick(g),rnd(1,6))}
- if(s.type==='hq'){const L=leaderById(s.leader);if(ok)leaderDown(L,'captured');else{log(`Raid near ${c.n} came up empty. ${L.card} escaped and moved.`,'bad',true,'Raid failed');moveLeader(L,pick(HIDEOUTS.filter(x=>x!==s.city)),.12)}}
+ if(s.type==='hq'){const L=leaderById(s.leader);if(ok)leaderDown(L,'captured');else{L.escapes=(L.escapes||0)+1;log(`Raid near ${c.n} came up empty. ${lnm(L)} slipped out through a back route minutes before the assault force arrived.${s.poi?` Crowds around the ${s.poi.n.toLowerCase()} helped hide the escape.`:''}`,'bad',true,'Target escaped');moveLeader(L,pick(HIDEOUTS.filter(x=>x!==s.city)),.12)}}
  else if(ok)destroySh(s,'raid');else{s.prog=.6;s.found=0;log(`Raid on the ${SH_T[s.type].n.toLowerCase()} near ${c.n} found it abandoned. They moved on.`,'bad',true,'Raid failed')}}
 
 /* ================= neighbors ================= */
@@ -1481,7 +1494,7 @@ function jobDay(){for(const u of S.units){if(u.state!=='working'||!u.job)continu
   returnHome(u)}}
 let ADV_MS=SET.advMin*60000;let ADV={t:0,recs:[],done:{},seen:0};
 const ADVR={s3:['S-3','Operations'],s4:['S-4','Logistics'],s2:['S-2','Intelligence'],csm:['CSM','Command Sergeant Major'],eng:['ENG','Brigade Engineer'],surg:['SURG','Command Surgeon'],ada:['ADA','Air Defense'],polad:['POLAD','Political Advisor']};
-function advGen(){const C=[],iq=S.bases.filter(b=>!isRear(b)&&b.building<=0),add=(o)=>{if(o)C.push(o)};
+function advAll(){const C=[],iq=S.bases.filter(b=>!isRear(b)&&b.building<=0),add=(o)=>{if(o)C.push(o)};
  for(const u of S.units.filter(u=>u.state==='pinned'))add({who:'s3',sc:100,t:`Get ${u.name} out of contact`,why:`Pinned near ${nearestCity(u).n} with ~${Math.max(0,Math.round(u.enemy))} enemy. Send reinforcements or air support.`,act:'unit',a:u.id,lbl:'Open'});
  for(const b of iq){const d=daysOf(b);if(d<5&&slotsUsed(b)+supUsed(b)){const inb=S.units.some(x=>x.mission==='supply'&&x.dest===b.id);if(!inb)add({who:'s4',sc:90-d*8,t:`Resupply ${b.n}`,why:`${Math.max(0,Math.floor(d))} days of supplies left and nothing inbound.${b.auto?'':' Automatic runs are off.'}`,act:b.auto?'base':'auto',a:b.id,b:b.auto?'':'convoy',lbl:b.auto?'Open base':'Turn on auto convoys'})}}
  for(const b of iq){const v=svcOf(b).filter(x=>x.sev===2&&x.k!=='S');if(v.length)add({who:'s4',sc:80,t:`${b.n} is failing`,why:v.map(x=>x.why).join('; ')+'.',act:'base',a:b.id,lbl:'Open base'})}
@@ -1501,13 +1514,80 @@ function advGen(){const C=[],iq=S.bases.filter(b=>!isRear(b)&&b.building<=0),add
  if(escOf('iran')>=2&&N('patb')<.5)add({who:'ada',sc:70,t:'Deploy Patriot batteries',why:`Iran is at escalation ${escOf('iran')}/5 and can fire ballistic missiles at our bases. Nothing is covering them.`,act:'base',a:'b0',lbl:'Open Camp Doha'});
  if(S.budget<monthlyBase()*.6){const best=CAUC.map(C=>({C,p:caucOdds(C).p})).filter(o=>!(((S.lobbyH||{})[o.C.id]||{}).cd>S.day)).sort((a,b)=>b.p-a.p)[0];if(best)add({who:'polad',sc:60,t:`Lobby the ${best.C.n}`,why:`Funds are running low. They are the likeliest to say yes right now (${Math.round(best.p*100)}%).`,act:'lobopen',a:'',lbl:'Lobby Congress'})}
  {const hb=S.bases.filter(b=>!isRear(b)&&!b.stg&&(b.lastIF??-99)>S.day-14&&!cbOn(b).length).sort((a,b)=>(b.lastIF||0)-(a.lastIF||0))[0];if(hb){const C=CBT.find(c=>!c.req(hb))||CBT[1];add({who:'s3',sc:46,t:`${C.n} at ${hb.n}`,why:'Shelled in the last two weeks. A short campaign from inside the wire pushes the launch teams back without sending patrols out.',act:'cbstart',a:hb.id,b:C.k,lbl:`Start · ${fm(C.cost)}`})}}
- const pick3=[],used=new Set();for(const r of C.sort((a,b)=>b.sc-a.sc)){if(pick3.length>=3)break;const key=r.who+(r.who==='s3'&&pick3.filter(x=>x.who==='s3').length<2?pick3.length:'');if(used.has(key))continue;used.add(key);pick3.push(r)}
+ return C}
+function advGen(){const C=advAll(),pick3=[],used=new Set();for(const r of C.sort((a,b)=>b.sc-a.sc)){if(pick3.length>=3)break;const key=r.who+(r.who==='s3'&&pick3.filter(x=>x.who==='s3').length<2?pick3.length:'');if(used.has(key))continue;used.add(key);pick3.push(r)}
  return pick3}
 function advRefresh(force){const now=Date.now();if(force||!ADV.t||now-ADV.t>=ADV_MS){ADV={t:now,recs:advGen().map((r,i)=>({...r,id:now+'-'+i})),done:{},seen:0}}}
-function advSheet(){advRefresh();const left=Math.max(0,ADV_MS-(Date.now()-ADV.t)),mm=Math.floor(left/60000),ss=String(Math.floor(left/1000)%60).padStart(2,'0');
- let h=head(`Staff brief · next update in ${mm}:${ss}`,'Advisor recommendations');
- if(!ADV.recs.length)return h+`<p class="note">The staff has nothing pressing. Check back at the next brief.</p>`;
- return h+`<div class="adv">${ADV.recs.map((r,i)=>{const [cd,role]=ADVR[r.who],dn=ADV.done[r.id];return `<div class="adv-c${dn?' done':''}"><div class="adv-n">${i+1}</div><div class="adv-m"><div class="adv-w"><b>${cd}</b> ${role}</div><div class="adv-t">${esc(r.t)}</div><div class="adv-y">${esc(r.why)}</div>${dn?'<span class="chip g">Actioned</span>':`<button class="btn sm${i===0?' primary':''}" data-act="advdo" data-a="${i}"><span class="t">${esc(r.lbl)}</span></button>`}</div></div>`}).join('')}</div><p class="note">Advice refreshes every two minutes of play. Actioned items stay checked until then.</p>`}
+// ===================== ADVISOR DESKS =====================
+const DESKS={
+ dip:{n:'Diplomatic',ic:'☰',role:'Political Advisor (POLAD)',who:['polad'],names:['Ambassador Helen Marsh','Ambassador Dale Whitcomb','Dr. Nadia Farouk','Ambassador Grant Ellison','Dr. Miriam Castell','Ambassador Thomas Reyes']},
+ strat:{n:'Strategic',ic:'◆',role:'Chief of Plans (J-5)',who:['s3','s4','csm','eng','surg','ada'],names:['COL Marcus Hale','COL Diane Okafor','BG Robert Lindqvist','COL James Treadwell','COL Sarah Whitfield','BG Alan Moreau']},
+ intel:{n:'Intel',ic:'◎',role:'Intelligence Officer (J-2)',who:['s2'],names:['COL Victor Ames','LTC Rachel Dunmore','COL Peter Vasko','LTC Omar Haddad','COL Linda Pruitt','LTC Kevin Strand']},
+ bf:{n:'Battlefield',ic:'⚑',role:'Ground Component Commander',who:[],names:['MG Thomas Kerrigan','MG Ellen Brooks','LTG David Mercer','MG Raymond Cole','MG Frank Ortega','LTG Susan Hartley']}};
+function advI(){if(!S.advs){S.advs={};for(const k in DESKS)S.advs[k]=advNew(k,true)}return S.advs}
+function advNew(k,first){const D=DESKS[k],used=new Set(Object.values(S.advs||{}).map(a=>a&&a.n)),n=D.names.filter(x=>!used.has(x)&&!((S.advFired||[]).includes(x)));
+ // first staff is a coin flip; replacements are picked for their judgment
+ const al=first?(Math.random()<.35?rnd(.2,.45):rnd(.55,.9)):rnd(.6,.95);return {n:pick(n.length?n:D.names),al,trust:first?rnd(60,72):rnd(66,76),hired:S.day,vac:0,ask:-9,recs:[],warned:0,good:0,bad:0}}
+const advTrustLbl=t=>t>=70?['Trusted','g']:t>=50?['Steady','u']:t>=35?['Doubts growing','w']:['Faith lost','h'];
+function deskRecs(k){const A=advI()[k],all=advAll(),D=DESKS[k],L=all.filter(r=>D.who.includes(r.who));
+ if(k==='dip'){for(const [ck,C] of Object.entries(S.countries)){if(C.h>=55&&C.cd<=S.day)L.push({who:'polad',sc:30+C.h/3,t:`Lean on ${COUNTRY[ck].n}`,why:`Hostility ${Math.round(C.h)}. Quiet pressure through allies usually lowers it, at the cost of some goodwill in Congress.`,act:'dipl',a:ck,lbl:'Apply pressure'})}
+  if((S.roeH||0)>18&&roeL()>1)L.push({who:'polad',sc:52,t:'Tighten the rules of engagement',why:`Civilian casualty reporting is hurting us at home and with the Iraqi government (heat ${Math.round(S.roeH)}).`,act:'qmroe',a:'',lbl:'Open ROE'});
+  if(S.congress<55)L.push({who:'polad',sc:44,t:'Brief Congress',why:`Congressional support is ${Math.round(S.congress)}. A push on the committees now buys room later.`,act:'lobopen',a:'',lbl:'Lobby Congress'})}
+ if(k==='intel'){const c=S.cities.filter(c=>!known(c)&&(S.phase==='ins'||c.cleared)).sort((a,b)=>b.pop-a.pop)[0];if(c)L.push({who:'s2',sc:34,t:`Build the picture in ${c.n}`,why:'We have no reliable read on cell strength there. Patrols, MI teams or drones would fix that.',act:'city',a:c.id,lbl:'Open city'});
+  const w=((S.wmd||{}).L||[]).filter(x=>x.status==='open').sort((a,b)=>b.cred-a.cred)[0];if(w)L.push({who:'s2',sc:30+w.cred*30,t:`Weigh the lead: ${w.claim}`,why:`${Math.round(w.cred*100)}% confidence. Remember that raids on bad leads cost us with the locals.`,act:'wmd',a:w.id,lbl:'Open lead'});
+  const sh=S.sh.filter(s=>s.type==='hq'&&s.prog>=.35&&s.prog<.5)[0];if(sh)L.push({who:'s2',sc:40,t:`Close in on ${lnm(leaderById(sh.leader))}`,why:`${Math.round(sh.prog*100)}% confidence near ${cityById(sh.city).n}. More ISR over the area gets us to a raid.`,act:'sh',a:sh.id,lbl:'Open target'})}
+ if(k==='bf'){const P=bfPlan();if(P)L.push({who:'bf',sc:90,t:P.t,why:P.why,act:'bfacc',a:'',lbl:`Approve · ${fm(P.cost)}`,bf:1});else L.push({who:'bf',sc:1,t:'No forward positions needed right now',why:S.phase==='conv'?'Our bases already sit within reach of the remaining formations, or there is no safe ground to build on yet.':'Our footprint already covers the worst areas. Ask again as the fight moves.',act:'',a:'',lbl:'',none:1})}
+ L.sort((a,b)=>b.sc-a.sc);const out=L.slice(0,3);
+ // a misaligned advisor pushes his own priorities, and they sound convincing
+ if(A.al<.5&&k!=='bf'&&Math.random()<(1-A.al)*.75){const b=badRec(k);if(b)out.unshift(b)}
+ if(k==='bf'&&A.al<.5&&out[0]&&out[0].bf&&Math.random()<(1-A.al)*.6)out[0].bad=1;
+ return out.slice(0,3)}
+function badRec(k){if(k==='dip'){const ck=Object.keys(S.countries).sort((a,b)=>S.countries[b].h-S.countries[a].h)[0];return {who:'polad',sc:99,t:`Issue a public ultimatum to ${COUNTRY[ck].n}`,why:`Tehran and Damascus only respect strength. Saying it on camera will make them back off.`,act:'advbad',a:'dip:'+ck,lbl:'Issue the ultimatum',bad:1}}
+ if(k==='intel'){const c=S.cities.slice().sort((a,b)=>b.pop-a.pop)[ri(0,4)];return {who:'s2',sc:99,t:`Raid a "confirmed" safehouse in ${c.n}`,why:'A walk-in source swears it is a bomb-making cell. We should hit it tonight before they move.',act:'advbad',a:'intel:'+c.id,lbl:'Launch the raid · $10M',bad:1}}
+ const c=S.cities.slice().sort((a,b)=>b.instab-a.instab)[0];return {who:'s3',sc:99,t:`Mount a show of force through ${c.n}`,why:'Armored columns down the main streets will remind them who is in charge. Morale effect will be decisive.',act:'advbad',a:'strat:'+c.id,lbl:'Order it · $60M',bad:1}}
+function advBad(a){const [k,id]=String(a).split(':'),A=advI()[k];if(!A)return;A.bad++;
+ if(k==='dip'){const C=S.countries[id];if(C){C.h=clamp(C.h+rnd(12,20),0,100);S.agg=S.agg||{};S.agg[id]=S.day+20;con(-2.5);mor(-1)}log(`The ultimatum to ${COUNTRY[id].n} backfired. Their hostility jumps, proxies are told to hit our bases, and allies call it reckless. ${A.n}'s judgment is in question.`,'bad',true,'Bad advice')}
+ else if(k==='intel'){const c=cityById(id);if(S.budget>=10)spend('operations',10);if(c){c.instab=clamp(c.instab+5,0,100);c.cells=clamp(c.cells+3,0,100);civCas(c,ri(1,4),'The raid on a family home','Raids')}log(`The "safehouse" in ${c?c.n:'the city'} was a family home. The source had a feud with the owner. Neighbors watched soldiers zip-tie the men of the house. ${A.n} vouched for the source.`,'bad',true,'Bad advice')}
+ else{const c=cityById(id);if(S.budget>=60)spend('operations',60);if(c){c.instab=clamp(c.instab+7,0,100);c.cells=clamp(c.cells+4,0,100);c.griev=(c.griev||0)+3}mor(-.8);log(`The show of force through ${c?c.n:'the city'} cracked pavement, flattened cars and drew stones and an RPG. It looked like an occupation on every channel. ${A.n} pushed hard for it.`,'bad',true,'Bad advice')}
+ advTrust(k,-rnd(16,24))}
+function advTrust(k,d){const A=advI()[k];const t0=A.trust;A.trust=clamp(A.trust+d,0,100);if(t0>=35&&A.trust<35&&!A.warned){A.warned=1;log(`Faith in ${A.n} (${DESKS[k].n} desk) has collapsed. The staff is working around them. Consider relieving them and bringing in a replacement.`,'bad',true,'Faith lost')}}
+function advDay(){if(!S.advs||isArc())return;for(const k in S.advs){const A=S.advs[k];if(A.vac){if(S.day>=A.vac){const N2=advNew(k,false);S.advs[k]=N2;log(`${N2.n} has arrived to take the ${DESKS[k].n} desk (${DESKS[k].role}). Early word from the staff is good.`,'good',true,'New advisor')}continue}
+  if(A.al<.5&&Math.random()<.035*(1-A.al)*2){const msg={dip:`${A.n} told a reporter the war is "unwinnable without Iran's help." The White House wants to know who is running policy.`,strat:`${A.n}'s plan for the next phase ignored fuel and ammunition. The logisticians caught it, barely.`,intel:`A threat warning from ${A.n}'s shop sent two companies chasing a convoy that never existed.`,bf:`${A.n} briefed the press on troop movements before the units had moved.`}[k];log(msg,'adapt',false,'Advisor');advTrust(k,-rnd(7,13));if(k==='dip')con(-.8);if(k==='bf')mor(-.4)}
+  else if(A.al>=.5&&Math.random()<.02)advTrust(k,rnd(1,3))}}
+function advFire(k){const A=advI()[k];if(!A||A.vac)return;S.advFired=S.advFired||[];S.advFired.push(A.n);const d=Math.round(rnd(4,8));S.advs[k]={...A,vac:S.day+d,recs:[]};mor(A.trust<35?.4:-.3);log(`${A.n} has been relieved of the ${DESKS[k].n} desk. A replacement is on the way, ${d} days out. Until then that desk has no advice.`,'info',true,'Advisor relieved')}
+function advAsk(k){const A=advI()[k];if(!A||A.vac)return;A.ask=S.day;A.recs=deskRecs(k).map((r,i)=>({...r,id:S.day+'-'+k+'-'+i+'-'+Math.random().toString(36).slice(2,6)}));A.done={}}
+function advDo2(k,i){const A=advI()[k],r=A&&A.recs[+i];if(!r||(A.done||{})[r.id]||r.none)return;A.done=A.done||{};A.done[r.id]=1;
+ if(r.act==='advbad'){advBad(r.a);return}
+ if(r.act==='bfacc'){bfAccept(r.bad);return}
+ A.good++;advTrust(k,rnd(2,4));onAct(r.act,r.a||'',r.b||'')}
+// ---- battlefield advisor: two forward FOBs on the line of advance, manned on arrival ----
+function bfTargets(){if(S.phase==='conv'){const ops=S.bases.filter(b=>!b.naval&&!b.offmap&&baseOp(b));return aliveDivs().map(d=>({c:cityById(d.city),d,w:Math.min(...ops.map(b=>dist(b,cityById(d.city))))})).filter(o=>o.c&&o.w>90).sort((a,b)=>a.w-b.w).slice(0,3).map(o=>({c:o.c,lab:o.d.n}))}
+ return S.cities.filter(c=>c.cells>28&&!S.bases.some(b=>!isRear(b)&&dist(b,c)<120)).sort((a,b)=>b.cells-a.cells).slice(0,3).map(c=>({c,lab:`${Math.round(c.cells)} insurgent cells`}))}
+function bfSite(c,avoid){let best=null,bs=1e9;const anchor=nearestBase(c,600,false)||S.bases[0];
+ for(let r=60;r<=120;r+=15)for(let a=0;a<24;a++){const an=a/24*Math.PI*2,p={x:c.x+Math.cos(an)*r,y:c.y+Math.sin(an)*r};if(siteCheck(p))continue;if(avoid.some(q=>dist(q,p)<70))continue;
+  const z=terrainAt(p),rd=roadAt(p,14);let sc=dist(p,anchor)*.6+r*.4+(z&&z.k!=='desert'?60:0)+(rd?-25:0)+threatAt(p)*40;if(sc<bs){bs=sc;best=p}}return best}
+function bfForce(p){const urb=nearestCity(p)&&nearestCity(p).pop>.6,mar=S.units.filter(u=>u.type==='mar').length>S.units.filter(u=>u.type==='inf').length;
+ return S.phase==='conv'?[mar?'mar':'mech',urb?(mar?'mar':'inf'):(mar?'lar':'arm'),'log']:[mar?'mar':'inf',mar?'lar':'mech','log']}
+const gridS=p=>{const q=mgrs(p).split(' ');return `${q[1]} ${q[2].slice(0,3)} ${q[3].slice(0,3)}`};
+function bfPlan(){const T=bfTargets();if(!T.length)return null;const sites=[],tg=[];for(const t of T){const p=bfSite(t.c,sites);if(p){sites.push(p);tg.push(t)}if(sites.length>=2)break}if(sites.length<2&&T[0]){const p=bfSite(T[0].c,sites);if(p){sites.push(p);tg.push(T[0])}}if(sites.length<2)return null;
+ const forces=sites.map(bfForce),cost=sites.reduce((a,p)=>a+siteCost(p).cost,0)+forces.flat().reduce((a,t)=>a+UT[t].cost*(S.surgeUntil>S.day?.5:1),0);
+ const nm=tg.map(t=>t.c.n);return {sites,forces,cost,tg:tg.map(t=>t.c.id),t:`Push two FOBs forward toward ${nm[0]}${nm[1]&&nm[1]!==nm[0]?` and ${nm[1]}`:''}`,why:`Grids ${gridS(sites[0])} and ${gridS(sites[1])}, facing ${tg.map(t=>t.lab).join(' · ')}. Each FOB comes with ${forces[0].map(t=>UT[t].n.replace(/ \(.*\)/,'')).join(', ')} to man it and start massing troops. Built by attached contractors in about 4 days.`}}
+function bfAccept(bad){const P=bfPlan();if(!P||S.budget<P.cost){log('The battlefield plan could not be funded or the ground has changed. Ask again.','bad',true,'Plan unavailable');return}
+ const A=advI().bf;spend('construction',P.sites.reduce((a,p)=>a+siteCost(p).cost,0));const made=[];
+ P.sites.forEach((p,i)=>{const n=FOB_NAMES.find(f=>!S.bases.some(b=>b.n===f))||('FOB '+S.nid);const z=terrainAt(p);const nb={id:'b'+S.nid++,n,city:null,x:p.x,y:p.y,level:1,slots:6,food:60,ammo:60,fuel:40,fac:defaultFac(),high:z&&z.k==='mtn'?1:0,building:4,builder:'legacy',bf:1};S.bases.push(nb);newBaseHit(nb);made.push(nb);
+  for(const t of P.forces[i]){if(!hasRoom(nb,t)||sofaBlock(nb,t))continue;const cst=UT[t].cost*(S.surgeUntil>S.day?.5:1);if(S.budget<cst)break;spend('deployment',cst);S.units.push({id:'u'+S.nid++,type:t,name:unitName(t),p:UT[t].p,baseId:nb.id,state:'transit',arrive:S.day+5,x:nb.x,y:nb.y,exp:0,mission:null,target:null,rdy:0})}});
+ log(`${A.n}'s plan approved: ${made.map(b=>`${b.n} (grid ${mgrs(b)})`).join(' and ')} are going up on the line of advance. Units to man them arrive in 5 days.`,'good',true,'Forward FOBs');
+ if(bad){for(const b of made.slice(0,1)){b.lastIF=S.day;const c=nearestCity(b);if(c){c.cells=clamp(c.cells+6,0,100)}}log(`${made[0].n} sits under an enemy observation post that ${A.n}'s staff missed. Expect mortar fire before the walls are up.`,'bad',true,'Bad advice');advTrust('bf',-rnd(12,18));A.bad++}else{A.good++;advTrust('bf',rnd(3,5))}}
+function advSheet(){const AD=advI();let h=head('Command staff','Advisors');
+ h+=`<div class="advd">${Object.entries(DESKS).map(([k,D])=>{const A=AD[k];if(A.vac)return `<div class="advc vac"><div class="advc-h"><span class="advc-ic">${D.ic}</span><div><div class="advc-d">${D.n}</div><div class="advc-r">${D.role}</div></div></div><p class="note">Desk vacant. Replacement arrives in ${Math.max(0,A.vac-S.day)} day${A.vac-S.day===1?'':'s'}.</p></div>`;
+  const [tl,tc]=advTrustLbl(A.trust),fresh=A.ask===S.day;
+  return `<div class="advc ${A.trust<35?'lost':''}"><div class="advc-h"><span class="advc-ic">${D.ic}</span><div class="mid"><div class="advc-d">${D.n}</div><div class="advc-r">${esc(A.n)} · ${D.role}</div></div></div>
+  <div class="kv" style="margin:4px 0"><span class="k">Confidence</span><span class="v"><span class="chip ${tc}">${tl}</span>${bar(A.trust,A.trust>=70?'var(--good)':A.trust>=50?'var(--warn)':'var(--hostile)')}</span><span class="k">Record</span><span class="v">${A.good} sound · ${A.bad} bad · ${S.day-A.hired}d on staff</span></div>
+  <div class="advc-recs">${A.recs.length?A.recs.map((r,i)=>{const dn=(A.done||{})[r.id];return `<div class="advr${dn?' done':''}"><div class="adv-t">${esc(r.t)}</div><div class="adv-y">${esc(r.why)}</div>${r.none?'':dn?'<span class="chip g">Actioned</span>':`<button class="btn sm${i===0?' primary':''}" data-act="advdo2" data-a="${k}" data-b="${i}"${r.act==='bfacc'&&S.budget<(bfPlan()||{cost:0}).cost?' disabled':''}><span class="t">${esc(r.lbl)}</span></button>`}</div>`}).join(''):`<p class="note" style="margin:4px 0">No brief requested yet.</p>`}</div>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><button class="btn sm${A.recs.length?'':' primary'}" data-act="advask" data-a="${k}" ${fresh?'disabled':''}><span class="t">${fresh?'Briefed today':'Get recommendations'}</span></button><button class="btn sm${A.trust<35?' danger':''}" data-act="advfire" data-a="${k}"><span class="t">Relieve ${esc(A.n.split(' ').slice(-1)[0])}</span></button></div></div>`}).join('')}</div>
+ <p class="note">Each desk briefs once a day. Advisors are not always right: some push their own priorities, and their advice sounds just as convincing. Watch their record and confidence, and relieve anyone you no longer trust. Replacements take a few days and tend to be sharper.</p>`;
+ return h}
+
 function reorgItems(){const L=[];
  for(const B of (S.bdes||[])){const al=bdeAlive(B);const loc=new Map();for(const u of al){loc.set(u.baseId,(loc.get(u.baseId)||0)+1)}if(loc.size>1){const [hb]=[...loc.entries()].sort((a,b)=>b[1]-a[1])[0];const b=baseById(hb);L.push({g:'Split brigades',t:`${B.n.replace(/ \(.*\)/,'')}`,s:`${al.length} units at ${loc.size} bases · most at ${b?b.n:'?'}`,btn:['bdecons',B.id,hb,`Consolidate at ${b?b.n:'?'}`]})}}
  const byKey=new Map();for(const u of S.units){if(u.state!=='garrison'||AC[u.type]||UT[u.type].offshore||u.p>=UT[u.type].p*.6)continue;const k=u.baseId+'|'+u.type;if(!byKey.has(k))byKey.set(k,[]);byKey.get(k).push(u)}
@@ -1808,7 +1888,7 @@ function politicsDay(){S.kiaDays.push(S.dayKia);if(S.kiaDays.length>30)S.kiaDays
  if(S.gov.formed){if(S.gov.surgeCap&&S.day>=S.gov.surgeCap){S.gov.cap=Math.max(3600,S.gov.cap-(S.gov.surgeAmt||3000));S.gov.surgeCap=0;S.gov.surgeAmt=0}
   if(S.day>=S.gov.next){S.gov.next=S.day+90;if(natInstab()<35){S.gov.cap=Math.max(3600,Math.round(S.gov.cap*.88/120)*120);log(`Under the SOFA, the troop cap drops to ${S.gov.cap.toLocaleString()} as Iraqi forces take more control.`,'info',true,'SOFA drawdown')}}
   const tr=troopsIraq();if(tr>S.gov.cap){bumpAll(.12);con(-.08);if(S.day%7===0)log(`You are over the SOFA cap (${tr.toLocaleString()} of ${S.gov.cap.toLocaleString()}). Baghdad is protesting. Send units home or move them to Kuwait.`,'bad',true,'SOFA violation')}}}
-function dailyTick(){rsync();runImpacts(true);vehDay();try{wmdDay()}catch(e){}ETrack();S.day++;grievDay();if(isArc())arcadeDay();surgeDay();oilDay();iranPlanDay();backfillDay();roeDay();opsDay();spend('upkeep',upkeep());
+function dailyTick(){rsync();runImpacts(true);vehDay();try{wmdDay()}catch(e){}ETrack();S.day++;grievDay();if(isArc())arcadeDay();surgeDay();advDay();oilDay();iranPlanDay();backfillDay();roeDay();opsDay();spend('upkeep',upkeep());
  for(const u of S.units)if(u.state==='transit'&&S.day>=u.arrive){const b=baseById(u.baseId);if(!b){u.p=0;continue}u.state='garrison';u.x=b.x;u.y=b.y;u.dep=S.day;acInit(u);if(u.reliefOf){const o=unitById(u.reliefOf);if(u.bde){const B=(S.bdes||[]).find(x=>x.id===u.bde);if(B){const i=B.units.indexOf(u.reliefOf);if(i>=0)B.units[i]=u.id;else if(!B.units.includes(u.id))B.units.push(u.id)}}u.reliefOf=null;if(o){if(['garrison','patrolling','building'].includes(o.state)){S.units=S.units.filter(x=>x!==o);log(`${u.name} has relieved ${o.name} at ${b.n}. The outgoing unit is heading home.`,'good');mor(.4);S.tm=clamp(S.tm+.5,0,100)}else{o.rotateOut=true;log(`${u.name} has arrived at ${b.n}; ${o.name} will head home once it is back from its mission.`,'info')}}}else log(`${u.name} has arrived at ${b.n}.`,'info')}
  S.units=S.units.filter(u=>u.p>0&&!(u.goHome&&u.state==='garrison'));
  buildDay();
@@ -2293,7 +2373,7 @@ function draw(){if(!S)return;const W=cv.width/dpr,H=cv.height/dpr;ctx.setTransfo
  ctx.strokeStyle='rgba(205,183,139,.06)';ctx.lineWidth=1;const step=100*view.s;
  for(let gx=view.x%step;gx<W;gx+=step){ctx.beginPath();ctx.moveTo(gx,0);ctx.lineTo(gx,H);ctx.stroke()}
  for(let gy=view.y%step;gy<H;gy+=step){ctx.beginPath();ctx.moveTo(0,gy);ctx.lineTo(W,gy);ctx.stroke()}
- const SAT=satOn()&&drawSat();if(SAT)drawDetailTiles(W,H);const MIL=!SAT&&isMil()&&drawMilBase(W,H),FLAT=!SAT&&!MIL;
+ const SAT=satOn()&&drawSat();const MIL=!SAT&&isMil()&&drawMilBase(W,H),FLAT=!SAT&&!MIL;
  if(FLAT){path(GULF,1);ctx.fillStyle='#1c2a31';ctx.fill()}
  path(KUWAIT,1);if(FLAT){ctx.fillStyle='#3a3a30';ctx.fill()}ctx.strokeStyle='rgba(205,183,139,.35)';ctx.setLineDash([4,3]);ctx.stroke();ctx.setLineDash([]);
  if(FLAT){path(BORDER,1);ctx.fillStyle='#4b4535';ctx.fill()}
@@ -2564,7 +2644,7 @@ function renderSheet(keep){if(!sheet||!S)return;const body=$('#sheetBody'),st=bo
 function fireMissions(tk,label){const tg=resolveTarget(tk);if(!tg||NET.myRole==='red')return '';const a=strikeAssets(tg);const ready=a.filter(u=>(u.rdy||0)<=S.day);
  return btn('strikepick',tk,`Strike ${label||tg.n}`,a.length?`${ready.length} of ${a.length} strike assets ready in range`:'No air or naval strike assets in range. Deploy Navy or Air Force units.','', '',!ready.length)}
 function shRows(c){const list=S.sh.filter(s=>s.city===c.id&&(NET.myRole==='red'||(s.type==='hq'?s.prog>=.4:s.prog>=.5)));if(!list.length)return '';
- return `<h3>Strongholds</h3><div class="list">${list.map(s=>{const L=s.leader&&leaderById(s.leader);return `<button class="item" data-act="sh" data-a="${s.id}"><span class="mid"><span class="nm">${L?`${L.card} ${esc(L.role)}`:SH_T[s.type].n}</span><span class="sb">${s.type==='hq'?`Confidence ${pct(s.prog)}`:s.found?'Located':'Suspected · '+pct(s.prog)}</span></span><span class="rt">›</span></button>`}).join('')}</div>`}
+ return `<h3>Strongholds</h3><div class="list">${list.map(s=>{const L=s.leader&&leaderById(s.leader);return `<button class="item" data-act="sh" data-a="${s.id}"><span class="mid"><span class="nm">${L?`${L.card} ${esc(lnm(L))}`:SH_T[s.type].n}</span><span class="sb">${s.type==='hq'?`Confidence ${pct(s.prog)}`:s.found?'Located':'Suspected · '+pct(s.prog)}</span></span><span class="rt">›</span></button>`}).join('')}</div>`}
 function bdaSheet(){const B=bdaI();let h=head(`D+${S.day} · cumulative`,'Battle damage');const fN=n=>Math.round(n).toLocaleString();
  const vx=Object.values(B.vx).reduce((a,b)=>a+b,0),vd=Object.values(B.vd).reduce((a,b)=>a+b,0),rep=S.units.reduce((a,u)=>a+(u.vr||[]).length,0),wait=S.units.reduce((a,u)=>a+(u.vx||0),0);
  const easset=Object.entries(B.ea).filter(([k,v])=>v>=.5),eTot=easset.reduce((a,[k,v])=>a+Math.round(v),0);
@@ -3339,11 +3419,11 @@ function citySheet(c){const d=divAt(c),b=baseAt(c),kn=known(c),A=S.assaults[c.id
   if(!g)h+=`<p class="note">Cordon and search needs ground troops garrisoned at a base within range.</p>`}
  return h+`</div>`}
 function shSheet(s){const c=cityById(s.city),L=s.leader&&leaderById(s.leader),red=NET.myRole==='red';
- let h=head(`${SH_T[s.type].n} · near ${c.n}`,L?`${L.card} ${esc(L.role)}`:SH_T[s.type].n);h+=tbHTML('sh:'+s.id);
+ let h=head(`${SH_T[s.type].n} · near ${c.n}`,L?`${L.card} ${esc(lnm(L))}`:SH_T[s.type].n);h+=tbHTML('sh:'+s.id);
  const conf=s.type==='hq'?s.prog:s.prog;
  h+=`<div class="kv"><span class="k">Intel confidence</span><span class="v">${pct(conf)}${bar(conf*100,conf>=.5?'var(--good)':'var(--unknown)')}</span>${s.type!=='hq'?`<span class="k">Strength</span><span class="v">${s.found||red?Math.round(s.str):'?'}</span>`:''}</div>`;
  const fx={scud:'Launches ballistic missiles at your bases.',cmd:'Coordinates regime divisions: +8% defense for every division while it stands.',cache:'Arms nearby cells.',safe:'Grows the cell network in this city every day.',ff:'Receives foreign fighters from Syria and boosts the ratline.',efp:'Builds armor-piercing charges with Iranian parts. Raises EFP attacks.',hq:L&&L.pres?'Capturing the President is required to win.':'Each regime leader still free makes the insurgency more aggressive.'}[s.type];
- h+=`<p class="note">${fx}</p>`;if(red)return h;
+ h+=`<p class="note">${fx}</p>`;if(L&&s.poi&&(red||s.prog>=.5))h+=`<div class="card enemy" style="margin-top:6px"><b style="color:var(--hostile)">⚠ Human shield</b><div class="note" style="margin:2px 0 0">${esc(lnm(L))} is hiding ${poiTxt(s)}. An air or missile strike will very likely destroy it, kill civilians and push ${c.n} toward revolt. A capture raid avoids that.</div></div>`;if(L)h+=`<p class="note">Escape risk if struck: about ${pct(leaderEscapeP(L,s))}. Drones overhead and signals intelligence lower it.</p>`;if(red)return h;
  h+=`<div class="acts">`;
  if(s.type==='hq'){h+=btn('raid',s.id,'Capture raid',s.prog<.5?'Needs at least 50% confidence. Keep gathering intel.':canRaid(s)?`Success odds ${pct(raidOdds(s))}. A failed raid spooks the target.`:'Needs SOF in theater or ground troops at a base within range.',fm(10),'primary',s.prog<.5||!canRaid(s)||S.budget<10);
   h+=fireMissions('sh:'+s.id,'the hideout')}
@@ -3592,7 +3672,7 @@ function intelSheet(){S.unseen=0;updHud();const red=NET.myRole==='red';let h=hea
  if(intelTab==='wanted'){h+=`<p class="note" style="margin-top:0">The deck of most-wanted regime leaders. Capturing the President is required to win.</p><div class="list" style="margin-top:8px">`;
   for(const L of S.leaders){const s=S.sh.find(x=>x.leader===L.id);const r=L.card.includes('♥')||L.card.includes('♦');
    const st=L.status!=='free'?`<span class="chip g">${L.status}</span>`:L.abroad?'<span class="chip h">In Syria</span>':s&&(red||s.prog>=.4)?`<span class="chip ${s.prog>=.5?'g':'u'}">${cityById(s.city).n} ${pct(s.prog)}</span>`:'<span class="chip n">Unknown</span>';
-   h+=`<button class="item" ${s&&(red||s.prog>=.4)?`data-act="sh" data-a="${s.id}"`:''}><span class="card-face ${r?'r':''} ${L.status!=='free'?'down':''}">${L.card}</span><span class="mid"><span class="nm">${esc(L.role)}</span><span class="sb">${L.pres?'Ace of Spades · priority one':'Regime leadership'}</span></span>${st}</button>`}
+   h+=`<button class="item" ${s&&(red||s.prog>=.4)?`data-act="sh" data-a="${s.id}"`:''}><span class="card-face ${r?'r':''} ${L.status!=='free'?'down':''}">${L.card}</span><span class="mid"><span class="nm">${esc(lnm(L))}</span><span class="sb">${esc(L.role)}${L.pres?' · priority one':''}${L.escapes?` · escaped ${L.escapes}×`:''}</span></span>${st}</button>`}
   h+=`</div>`;if(S.leaders.some(l=>l.abroad&&l.status==='free')&&!red)h+=`<p class="note">Leaders in Syria can only be recovered through an extradition demand on the Region tab.</p>`}
  if(intelTab==='region'){h+=`<div class="list">`;for(const [k,C] of Object.entries(COUNTRY)){const c=S.countries[k],fl=cflow(k);
    h+=`<button class="item" data-act="country" data-a="${k}"><span class="mid"><span class="nm">${C.n}</span><span class="sb">Hostility ${Math.round(c.h)} · supply flow ${Math.round(fl*100)}%</span>${bar(c.h,c.h>50?'var(--hostile)':'var(--sand)')}</span><span class="rt">›</span></button>`}
@@ -3859,7 +3939,7 @@ function siteSheet(){const p=siteSel;if(!p)return '';const _tl=threatLbl(p);cons
 function redCityActs(c,d){let h=`<div class="acts">`;
  if(S.phase==='ins')h+=btn('rcells',c.id,'Push fighters into this city','Cells +15',`20 RF`,'red',S.red.funds<20);
  if(d&&S.phase==='conv'){const b=nearestBase(c,260,true);h+=btn('rattack',c.id,`${d.n}: counterattack`,b?`Hit ${b.n}`:'No US base within reach',`10 RF`,'red',!b||S.red.funds<10||d.str<30)}
- const here=freeLeaders().filter(L=>!L.abroad&&S.gov.fallen);if(here.length)h+=`<h3>Move a leader here</h3>`+here.map(L=>btn('rhide',L.id,`${L.card} ${esc(L.role)}`,'Resets US intel on them to 10%','10 RF','',S.red.funds<10,c.id)).join('');
+ const here=freeLeaders().filter(L=>!L.abroad&&S.gov.fallen);if(here.length)h+=`<h3>Move a leader here</h3>`+here.map(L=>btn('rhide',L.id,`${L.card} ${esc(lnm(L))}`,'Resets US intel on them to 10%','10 RF','',S.red.funds<10,c.id)).join('');
  return h+`</div>`}
 function redSheet(){let h=head(`Red Cell · ${Math.round(S.red.funds)} RF available`,S.phase==='conv'?'Regime command':'Insurgent command');
  h+=`<p class="note" style="margin-top:-4px">You earn Red Funds (RF) every day, more when Syrian and Iranian supply routes flow. The AI still picks each attack; you shape what it favors.</p>`;
@@ -3911,6 +3991,7 @@ function localAct(act,a,b){switch(act){
  case 'bakrest':{const [f,id]=String(a).split('|');restoreBak(f,id);break}case 'savegame':{if(NET.role==='guest')break;const ok=save();if(ok&&window.itcDesktop)window.itcDesktop.backupNow('save').catch(()=>{});toast(ok?`Campaign saved · D+${S.day}.`:'Could not save: browser storage is unavailable.',ok?'good':'bad',ok?'Saved':'Save failed');renderSheet(true);break}case 'savequit':{if(NET.role!=='guest')save();closeQM&&closeQM();OPSP=false;const op=$('#opsP');if(op)op.classList.remove('open');showTitle();break}case 'verhist':openSheet('ver',null);break;case 'rtshow':{const R=routeDef(a);if(!R)break;RTHLpin={id:a,until:performance.now()+8000};let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;for(const q of R.P){x0=Math.min(x0,q.x);y0=Math.min(y0,q.y);x1=Math.max(x1,q.x);y1=Math.max(y1,q.y)}const r=cv.getBoundingClientRect(),top=110,bot=r.height*.46,H=bot-top,s1=clamp(Math.min((r.width-90)/Math.max(30,x1-x0),(H-40)/Math.max(30,y1-y0)),.4,4);view.s=s1;view.x=r.width/2-(x0+x1)/2*s1;view.y=top+H/2-(y0+y1)/2*s1;break}case 'dtabgo':{const B=baseById(a);if(!B)break;deployCart={};deployTab='bde';deployRole='all';openSheet('deploy',a);break}case 'tbop':TB={op:a,k:b};TBSEL=new Set();openSheet('tbf',null);break;case 'tbsel':TBSEL.has(a)?TBSEL.delete(a):TBSEL.add(a);renderSheet(true);break;case 'qmroe':openSheet('roe',null);break;case 'qmlog':{const l=S.log.find(x=>String(x.id)===String(a));if(l){closeSheet();openQM(l.sj||subjOf(l.txt),l.ti,l.txt,l.kind)}break}case 'qmmap':{const o=QM&&qmObj(QM.sj);if(o)focusOn(o);break}
  case 'qmtab':openSheet('base',a);baseTab=b;renderSheet();break;case 'qmtab2':openSheet('tech',null);break;
  case 'jump':{const el=document.getElementById(a),bd=$('#sheetBody');if(el&&bd){if(SHSZ==='mini')setSz('mid');const hd=bd.querySelector('.sh-head'),hh=hd?hd.getBoundingClientRect().height:60;bd.scrollTop+=el.getBoundingClientRect().top-bd.getBoundingClientRect().top-hh-4}break}case 'sectog':SECOFF.has(a)?SECOFF.delete(a):SECOFF.add(a);renderSheet(true);break;case 'umap':{const u=unitById(a);if(u){const P=['garrison','transit'].includes(u.state)?baseById(u.baseId):dpos(u);if(P){focusOn(P);FOCUS={id:u.id,until:performance.now()+3200}}}break}case 'lobtog':lobOpen=lobOpen===a?null:a;renderSheet(true);break;case 'lobopen':openSheet('lobby',null);break;case 'suptog':{const k=a+b;supOpen.has(k)?supOpen.delete(k):supOpen.add(k);renderSheet(true);break}case 'eb':planSel=new Set();sel={kind:'eb',id:a};openSheet('eb',a);break;case 'btab':baseTab=a;renderSheet();$('#sheetBody').scrollTop=0;break;
+ case 'advdo2':advDo2(a,b);if(!remote&&sheet&&sheet.kind==='adv')renderSheet(true);break;case 'advask':advAsk(a);if(!remote)renderSheet(true);break;case 'advfire':advFire(a);if(!remote)renderSheet(true);break;
  case 'advdo':{const r=ADV.recs[+a];if(!r||ADV.done[r.id])break;ADV.done[r.id]=1;const loc=LOCAL_ACTS.has(r.act);onAct(r.act,r.a||'',r.b||'');if(!loc&&sheet&&sheet.kind==='adv')renderSheet(true);break}case 'rtog':rallyTogether=a==='1';renderSheet(true);break;
  case 'svc':openSheet('svc',null);break;
  case 'svcfix':{const B=baseById(a);if(!B)break;deployCart={[b]:1};deployTab='units';const r=DROLES.find(d=>d[2]&&d[2].includes(b));deployRole=r?r[0]:'all';openSheet('deploy',a);break}
@@ -4212,7 +4293,7 @@ function nextModal(){const m=mq.shift();if(!m){mOpen=false;$('#modal').hidden=tr
  $('#modalBody').querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{m.opts[+b.dataset.i].f();if(S){updHud();if(sheet)renderSheet(true);netSync(true)}nextModal()})}
 
 /* ================= title & multiplayer menu ================= */
-function migrate(s){s.xroutes??=[];{const d=(s.bases||[]).find(b=>b.kuwait);if(d&&d.slots<28)d.slots=28}s.kbrIdx??=1;s.lobbyH??={};s.acQ??=[];s.bdes??=[];s.ebases??=[];s.esc??={};s.agg??={};for(const b of s.bases)if(!b.fsvc)b.fsvc=b.locals?'locals':'organic';{const BS=['eng','cb','mp','med','mi','ca','log','cram','patb'];for(const B of s.bdes)B.units=B.units.filter(id=>{const u=s.units.find(x=>x.id===id);if(u&&BS.includes(u.type)){u.bde=null;return false}return true});for(const u of s.units)if(BS.includes(u.type)){u.repeat=false;u.ptgt=null;u.bpat=null}}for(const u of s.units){if(u.dep==null)u.dep=Math.max(0,s.day-ri(0,90))}for(const b of s.bases)if(!(b.kuwait||b.naval||b.offmap))b.fuel??=40;
+function migrate(s){for(const L of (s.leaders||[])){const d=LDEF[L.id];if(d){L.name=d[4];L.role=d[2]}}s.xroutes??=[];{const d=(s.bases||[]).find(b=>b.kuwait);if(d&&d.slots<28)d.slots=28}s.kbrIdx??=1;s.lobbyH??={};s.acQ??=[];s.bdes??=[];s.ebases??=[];s.esc??={};s.agg??={};for(const b of s.bases)if(!b.fsvc)b.fsvc=b.locals?'locals':'organic';{const BS=['eng','cb','mp','med','mi','ca','log','cram','patb'];for(const B of s.bdes)B.units=B.units.filter(id=>{const u=s.units.find(x=>x.id===id);if(u&&BS.includes(u.type)){u.bde=null;return false}return true});for(const u of s.units)if(BS.includes(u.type)){u.repeat=false;u.ptgt=null;u.bpat=null}}for(const u of s.units){if(u.dep==null)u.dep=Math.max(0,s.day-ri(0,90))}for(const b of s.bases)if(!(b.kuwait||b.naval||b.offmap))b.fuel??=40;
 for(const b of s.bases)if(!(b.kuwait||b.naval||b.offmap)&&!b.fac){b.fac=defaultFac();if(b.level===2)b.fac.mwr={l:1,d:0}}
 for(const b of s.bases){if(b.kuwait||b.naval||b.offmap||b.level!==2||b.strip!=null)continue;b.heli=1;b.strip=1;for(const u of s.units)if(u.baseId===b.id)b.strip=Math.max(b.strip,AIR_REQ[u.type]||(UT[u.type].home==='air'?2:1))}
 s.repQ??=[];for(const u of s.units)u.coh??=100;
@@ -4223,8 +4304,11 @@ s.tm??=75;s.spent??={};s.recov??=[];s.rtd??=0;s.delivered??=0;s.lastSpeed??=1;s.
  if(!s.spv){s.spv=2;const m=v=>SPEEDS.reduce((a,x)=>Math.abs(Math.log(x/(v*16||16)))<Math.abs(Math.log(a/(v*16||16)))?x:a,16);if(s.speed>0)s.speed=m(s.speed);s.lastSpeed=m(s.lastSpeed||1)}if(s.spv<3){s.spv=3;if(s.speed>4)s.speed=4;if((s.lastSpeed||0)>4)s.lastSpeed=4}if(s.speed>0&&!SPEEDS.includes(s.speed))s.speed=4;return s}
 function startSolo(g,sv,name){if(g==='continue'){S=migrate(sv);if(!S._name){S._name=uniqName(`${(DIFFS[S.diff]||{n:'Regular'}).n} campaign`)}}else{newGame(g);if(DIFFS[g].arcade)arcadeInit();S._slot=newSlotId();S._name=uniqName(name||`${DIFFS[g].n} campaign`);save()}if(S.speed>0)S.lastSpeed=S.speed;else if(!S.lastSpeed)S.lastSpeed=SET.startSpeed||4;if(g!=='continue')S.lastSpeed=SET.startSpeed||4;S.speed=0;$('#title').hidden=true;resize();fitView();updSpeed();setRoleUI();updHud();
  if(g!=='continue')showModal({eyebrow:'D-Day · 20 MAR 2003',title:'Topple the regime, find its leaders',body:'<p>Your ground forces stage at Camp Doha in Kuwait. Bring combat engineers or Navy Seabees: they build every new base. The Fifth Fleet in the Gulf hosts carriers and Tomahawk ships; Al Udeid hosts heavy bombers. One leadership target in Baghdad is already partly located: a cruise missile might end this early.</p><p>Troops travel the road network. MSRs are fast but heavily mined; minor roads are slower and ambush-prone. Units hit on the road stop and fight until you reinforce them or they fall back. Watch the terrain and the highways: columns move fastest on MSR Tampa and the main roads, slowest in mountains, marshes and at river crossings away from city bridges. Every new FOB needs combat engineers or Seabees to build it, so deploy engineers early, and every base needs food and ammunition hauled in. Open the Status panel at top right for force health, supply and the cost of the war.</p>',opts:[{t:'Open Camp Doha',cls:'primary',f:()=>{sel={kind:'base',id:'b0'};openSheet('base','b0')}},{t:'Look at the map first',f:()=>{}}]})}
-const GAME_VER=64;
+const GAME_VER=67;
 const CHANGES=[
+ [67,'Advisor desks',['Advisors now sit at four desks: Diplomatic, Strategic, Intel and Battlefield. Ask each one for recommendations once a day','Not every advisor is aligned with your priorities. Bad advice sounds convincing; their record and your confidence in them show who to trust','Relieve an advisor you have lost faith in; a sharper replacement arrives in a few days','The Battlefield advisor proposes two forward FOBs on the line of advance and calls in the units to man them']],
+ [66,'The deck of cards',['The most-wanted deck now uses the real names, from Saddam Hussein (A♠) to Aziz Salih al-Numan (K♦)','Leaders can slip away before strikes land or raids hit; drones overhead and signals intelligence improve your odds','Some leaders hide beside hospitals, mosques, schools or utilities; bombing them there wrecks the site, kills civilians and enrages the city, so consider a capture raid']],
+ [65,'Tactical map by default',['The tactical map is now the default view, and the drone camera overlay is off by default (turn it back on in Settings › Drone camera overlay)','Removed the generated farmland and terrain texture from the satellite map when zoomed in']],
  [64,'Tactical map',['New tactical map style: a military operations map with relief tints, contour lines, spot heights, a real MGRS grid (100 km, 10 km and 1 km as you zoom) and a scale bar','Switch between satellite and tactical with the ▦ button under Status, or in Settings','Grid references on the drone HUD are now true MGRS coordinates']],
  [63,'Pipelines you can see',['Pipelines now stand out across the country: bright orange with a dark casing, and moving dashes while oil flows','Added pumping stations and storage tank farms along the lines; knocking one out throttles that line or drains fuel reserves','The map key (Key button) explains every oil symbol']],
  [62,'Oil, pipelines & an adaptive Iran',['Oil fields, refineries and pipelines now matter: exports fund Iraq and offset our costs; fuel shortages feed anger','Once the Iraqi army is gone from a region, insurgents sometimes bomb pipelines and hit oil fields (not often, but it hurts)','Secure them with pipeline patrols from nearby bases or an Iraqi Oil Protection Force; rush repairs with KBR crews','New Oil button on the left rail; tap an oil alert to repair or guard it','When an army falls in a city, violent insurgents flood in a few days later','Sever an Iranian route and Tehran plans a new one, bending around our strongholds; find it before it flows']],

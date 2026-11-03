@@ -1,16 +1,17 @@
 {
- "game": 66,
- "file": "game-66.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-66.html",
- "sha256": "b458aba369818fb595833fabbbe249cd8b73552df94636ad9a4078f7d09e1397",
- "size": 970668,
+ "game": 67,
+ "file": "game-67.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-67.html",
+ "sha256": "8262ff0f011172ac895ff5fd5e33ae476a387ba833515bf996594829e9874f08",
+ "size": 985735,
  "notes": [
-  "The deck of cards",
-  "The most-wanted deck now uses the real names, from Saddam Hussein (A♠) to Aziz Salih al-Numan (K♦)",
-  "Leaders can slip away before strikes land or raids hit; drones overhead and signals intelligence improve your odds",
-  "Some leaders hide beside hospitals, mosques, schools or utilities; bombing them there wrecks the site, kills civilians and enrages the city, so consider a capture raid"
+  "Advisor desks",
+  "Advisors now sit at four desks: Diplomatic, Strategic, Intel and Battlefield. Ask each one for recommendations once a day",
+  "Not every advisor is aligned with your priorities. Bad advice sounds convincing; their record and your confidence in them show who to trust",
+  "Relieve an advisor you have lost faith in; a sharper replacement arrives in a few days",
+  "The Battlefield advisor proposes two forward FOBs on the line of advance and calls in the units to man them"
  ],
- "published": "2026-11-02T23:58:19.066Z",
+ "published": "2026-11-03T00:11:22.418Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
