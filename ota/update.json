@@ -1,15 +1,16 @@
 {
- "game": 106,
+ "game": 108,
  "semver": "1.0.0",
- "file": "game-106.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-106.html",
- "sha256": "4c963a4b37fed06c36ef66b3632e290384d13b6e592b662387037667dd615f7b",
- "size": 1811583,
+ "file": "game-108.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-108.html",
+ "sha256": "a59a7ef48fe026f1d2dc68b095c7335e58d5dfb836ea904123ee75db077319c8",
+ "size": 1829804,
  "notes": [
-  "One AO logistics page",
-  "Logistics on any base inside an AO now opens the AO logistics page directly: supplies, resupply, cadence, hub, base stocks and support elements only, with no units or base details"
+  "Tooltips",
+  "Hover any command button, menu icon, top-bar figure or action (press and hold on touch) for a short explanation, with the cost of actions that spend money and why a greyed-out button is unavailable",
+  "Tooltips are on by default and can be turned off under Settings › Help"
  ],
- "published": "2026-11-03T18:33:29.466Z",
+ "published": "2026-11-03T18:41:13.376Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
