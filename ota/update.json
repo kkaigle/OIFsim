@@ -1,16 +1,16 @@
 {
- "game": 93,
- "file": "game-93.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-93.html",
- "sha256": "82c7ee2845661ab2bac66b9fc89dc0207b3d1d4e6dd19d3d622716b5b603dfb6",
- "size": 1768478,
+ "game": 94,
+ "file": "game-94.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-94.html",
+ "sha256": "c36b76f32d046f4c386819cac00b8e0725a5b577cff5e70bc13c8b9c487f2252",
+ "size": 1774360,
  "notes": [
-  "Holding the FOBs",
-  "Automatic AOs now site FOBs in moderate-risk ground rather than the red zones, and every FOB keeps at least one company home instead of sending everyone on patrol",
-  "Threatened FOBs (heavy local danger, recent attacks, or a Republican Guard division within about 150 km) get a second company moved in from a quieter FOB in the same AO",
-  "Under any ROE, an AO counter-attacks to take back a base the enemy captures inside it. Aggressive ROE accepts worse odds and brings artillery and air; weapons free reaches beyond the AO line. Under aggressive and weapons-free ROE, AOs also push into insurgent-held towns on their own: more ground taken back, more civilian risk"
+  "Services by base size",
+  "Every base screen now has a Services package for its size: FOBs run engineers; camps add sustainment, MPs and a medical company; major bases add intelligence, civil affairs and C-RAM. Implement them all in one tap",
+  "Services the base is too small for are greyed out with the size they need; expand the base (with engineers, or contractors if none are there) to unlock them",
+  "Repair all damage in one tap, and the Services rail lists every base with these actions side by side"
  ],
- "published": "2026-11-03T16:16:11.936Z",
+ "published": "2026-11-03T16:26:06.071Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
