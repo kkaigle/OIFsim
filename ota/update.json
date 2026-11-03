@@ -1,15 +1,16 @@
 {
- "game": 112,
+ "game": 113,
  "semver": "1.0.0",
- "file": "game-112.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-112.html",
- "sha256": "67ce401e228f0215b2b8b97df9473be854ad75808bff159b3c4b8ac24c0fbbad",
- "size": 1848613,
+ "file": "game-113.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-113.html",
+ "sha256": "733e06df02ce04da79912c707e244622ef1ed55eef5406f52a1092bc6d26b93a",
+ "size": 1861733,
  "notes": [
-  "Simpler reorg",
-  "Reorg is now one card per AO with three fixes: realign brigades (companies elsewhere move back into the AO), refill the ranks, and rotate units at the end of their tour. Each shows its cost, and Do all three handles the lot. Units outside AOs get their own card"
+  "Staged offensives",
+  "Tooltips have a third setting, Detailed: on top of what a control does and costs, it explains how it shapes the campaign, what it helps and what it can cost you",
+  "Offensives now stage first: the strike force (4 companies for a limited, 8 for a major) consolidates at the FOB nearest the target, supply runs top it up to 7 days of stock, and the attack begins once everyone is staged and supplied. The Offensive tab shows a simple checklist: consolidating, resupply, attack. If staging drags past 10 days, it goes in with what is ready"
  ],
- "published": "2026-11-03T18:55:00.008Z",
+ "published": "2026-11-03T19:01:42.183Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
