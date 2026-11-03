@@ -1,15 +1,15 @@
 {
- "game": 124,
+ "game": 125,
  "semver": "1.0.0",
- "file": "game-124.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-124.html",
- "sha256": "df15bc411441118b0d000ad1d7a9093c05207abb1d81d1367e6e8ef433da5cd4",
- "size": 3143092,
+ "file": "game-125.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-125.html",
+ "sha256": "6e98a0baf7bc53bcf1a4ece6fe7e1e433a8d54b4d4673ccac556a399f0bcbaba",
+ "size": 3144476,
  "notes": [
-  "Firefights in the cities",
-  "Patrols in towns where insurgents are embedded now draw fire: sniping, RPG teams and complex attacks that can pin a company down until reinforcements, air support or a quick reaction force arrive. The more cells in the town, the more often it happens; cordon and clearance patrols draw more fire than presence patrols, and well-secured routes, armour and restraint draw less"
+  "FOBs on the MSRs",
+  "Automatic FOBs are now sited on the road: points along the AO's MSRs first, then its other highways, with the old rules only as a fallback. FOBs, support areas and staging areas always keep at least about 20 km between them, so they never overlap"
  ],
- "published": "2026-11-03T20:43:13.676Z",
+ "published": "2026-11-03T20:46:44.418Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
