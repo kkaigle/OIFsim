@@ -1,16 +1,17 @@
 {
- "game": 100,
- "file": "game-100.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-100.html",
- "sha256": "071f536f5a8257abd2018ec069f306843bb672a88ce55c21db8e5730133fff0a",
- "size": 1796667,
+ "game": 101,
+ "semver": "1.0.0",
+ "file": "game-101.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-101.html",
+ "sha256": "542cdd42618b60896dabb10ba2ae00d6ce20263b5ac035f4f9e91e1b9a2926be",
+ "size": 1797294,
  "notes": [
-  "Lobbying Congress",
-  "Caucuses are far more willing to back war money: the hawks and the Armed Services Committee nearly always do (defense money lines their districts and donors), the establishment and Blue Dogs often do",
-  "But a caucus backing a deal is only half of it: the bill still has to clear the whole Congress, so even a hawk-backed supplemental can die on the floor. Each pitch shows both odds",
-  "Deals are worth about 60% more money"
+  "Version 1.0.0",
+  "Versions are now numbered 1.0.0 and up",
+  "Foot troops patrol within about 40 km of their FOB, vehicle companies within about 80 km",
+  "Automatic AOs wait until companies have actually arrived inside the AO before building forward FOBs or a fires base: no more FOBs going up while the brigade is still on the road"
  ],
- "published": "2026-11-03T18:00:05.493Z",
+ "published": "2026-11-03T18:14:12.522Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
