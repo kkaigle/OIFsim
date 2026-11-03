@@ -1,15 +1,19 @@
 {
- "game": 69,
- "file": "game-69.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-69.html",
- "sha256": "522724c845da1e55bc7eb269de4d0ccfdab4daf0b4d85cf5dc57246604d31629",
- "size": 988792,
+ "game": 70,
+ "file": "game-70.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-70.html",
+ "sha256": "8e4f3eef0f900fe59431eb3c434ebffea74986fe84bc81ca73a0171e4018ff61",
+ "size": 1005068,
  "notes": [
-  "Testimony and stopgap funding",
-  "Send your diplomatic advisor to testify before Congress on what a funding lapse would mean; it usually wins a stopgap appropriation (about 1.2× a month of base funding)",
-  "Odds rise when funds are low and confidence in your advisor is high; once every 30 days"
+  "Echelons & areas of operations",
+  "Every combat brigade (HBCT, IBCT, Marine RCT) gets its own area of operations; add a brigade and the country is redrawn into one more sector",
+  "Maneuver companies only patrol, assault and raid inside their brigade's AO; artillery can still fire across boundaries when called for support",
+  "Units finishing a mission report to a base inside their AO instead of driving back across the country",
+  "Each brigade sets its headquarters at a base in its AO, which gets a tactical assembly area (+6 unit slots) so the brigade fits",
+  "Cohesion bonus now counts the whole AO: bases anywhere in the sector keep the +15%",
+  "New Order of battle screen: brigade cards with AO, strength, cohesion and where every company is, plus division & theater troops by role"
  ],
- "published": "2026-11-03T00:19:47.805Z",
+ "published": "2026-11-03T01:16:45.898Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
