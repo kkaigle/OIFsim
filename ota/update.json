@@ -1,17 +1,16 @@
 {
- "game": 71,
- "file": "game-71.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-71.html",
- "sha256": "7dd38334c299e6a0ddfcee5a19069b79872db19657a492c956ed450cbd8024d4",
- "size": 1011665,
+ "game": 72,
+ "file": "game-72.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-72.html",
+ "sha256": "ba7ca873891383d136fe0dd450d0fe4a0681823bb9d9c8870a1f7035800228de",
+ "size": 1014741,
  "notes": [
-  "Brigade sectors",
-  "Brigades are now assigned to sectors you choose, instead of the country being split evenly. Assign one from Forces › Order of battle, or tap the map and pick Brigade sector",
-  "A sector's size follows what the brigade can hold: personnel fill, morale, working vehicles, companies left and the local threat. Strong brigades in quiet areas cover a lot and can overlap; worn-down ones shrink",
-  "When the bases in a sector can't house the brigade, a brigade support area is set up at the center",
-  "New map overlays (buttons under Status): brigade sectors, and aviation coverage rings for helicopters, MEDEVAC, close air support and drones"
+  "Sectors auto-assigned",
+  "New combat brigades are given a sector automatically, as deep toward the front as they can be supported, and move in when they arrive",
+  "Send a brigade into another brigade's sector to reinforce it: the shared sector grows, but each extra brigade adds less (about 30% of its own reach, then less)",
+  "The aviation coverage overlay is now on by default and shows every helicopter, close air support and drone unit's range from its base"
  ],
- "published": "2026-11-03T01:43:25.688Z",
+ "published": "2026-11-03T01:49:07.930Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
