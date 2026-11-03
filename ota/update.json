@@ -1,15 +1,17 @@
 {
- "game": 83,
- "file": "game-83.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-83.html",
- "sha256": "6643309872dcba972ee03cfe8b8ebc14253c30d8e36a3bd29eba2c9447280a28",
- "size": 1095158,
+ "game": 84,
+ "file": "game-84.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-84.html",
+ "sha256": "6bd374ac14815086b23fd6b6181cd8ae7b99ea578f423523353b6938549f9b0e",
+ "size": 1119443,
  "notes": [
-  "Update alerts",
-  "When a new version is out while the game is open, an alert appears at the top centre of the window, separate from in-game notifications. On desktop: Restart & update (your campaign is saved first). On iPad and the web version: Reload. Later hides it until the next version",
-  "The desktop app now checks for updates every 30 minutes while you play"
+  "Wider region & Washington",
+  "The map now covers the whole region: Iran to the Strait of Hormuz, Syria, Turkey, Jordan, Saudi Arabia, the Gulf states, Israel, Lebanon and Sinai, with capitals and major cities",
+  "Washington decision points: where are the WMD (make the hunt the priority, shape the narrative, or tell the truth), \"Mission accomplished\", Saudi basing, election-year drawdowns, hot pursuit into Syria and cross-border strikes on the IRGC",
+  "Escalation can turn into regional war. With hostility and escalation high, the President can authorize a limited air war on Iran or Syria: missiles on your bases, border raids and militia surges every day. Strike boxes over their military sites wear them down until they accept a ceasefire",
+  "New ⚑ DC rail: authorizations, war status, cross-border targets and a record of Washington's decisions"
  ],
- "published": "2026-11-03T13:38:58.928Z",
+ "published": "2026-11-03T14:02:49.708Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
