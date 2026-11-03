@@ -1,16 +1,17 @@
 {
- "game": 72,
- "file": "game-72.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-72.html",
- "sha256": "ba7ca873891383d136fe0dd450d0fe4a0681823bb9d9c8870a1f7035800228de",
- "size": 1014741,
+ "game": 73,
+ "file": "game-73.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-73.html",
+ "sha256": "68634b9fdc43bf42832b9768f4b99cce390ca185a5a72536b193dfe56d5909d8",
+ "size": 1028168,
  "notes": [
-  "Sectors auto-assigned",
-  "New combat brigades are given a sector automatically, as deep toward the front as they can be supported, and move in when they arrive",
-  "Send a brigade into another brigade's sector to reinforce it: the shared sector grows, but each extra brigade adds less (about 30% of its own reach, then less)",
-  "The aviation coverage overlay is now on by default and shows every helicopter, close air support and drone unit's range from its base"
+  "Sector command",
+  "New default force management: place sectors, then assign brigades and companies to them. A sector grows as the force inside it grows, with diminishing returns",
+  "Automatic sectors push forward FOBs as close to the enemy as supply allows, put their guns in a rear FOB firing daily missions, rebase their own units and patrol every day",
+  "Morale sets conduct: worn-down units go heavy-handed, wrecking infrastructure, killing civilians and growing the insurgency faster; measured units shrink it",
+  "Prefer the old way? Settings › Force management › Classic"
  ],
- "published": "2026-11-03T01:49:07.930Z",
+ "published": "2026-11-03T02:02:30.654Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
