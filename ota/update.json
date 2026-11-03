@@ -1,17 +1,15 @@
 {
- "game": 120,
+ "game": 121,
  "semver": "1.0.0",
- "file": "game-120.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-120.html",
- "sha256": "5069f6004d6c3e37b0d72069de9c45138a9d3716c0b9b0f47cd2f450d99c3489",
- "size": 3136669,
+ "file": "game-121.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-121.html",
+ "sha256": "ad677603846f52eee9a42c7474823f072dead0cb8963a08689b914d116e6a4e2",
+ "size": 3138026,
  "notes": [
-  "AO command menu",
-  "Cities are tracked as coalition held (our forces are in them), uncontested (nobody holds them) or enemy held. Held cities add to progress and help at monthly hearings; pull out and a city goes uncontested; if the enemy moves back in it counts against you. Rings on the map show each city's status",
-  "AOs now have their own button in the Manage group: your battle command. Every AO is a card with its status, how many companies are in control, its offensive, patrols and supply, any problems flagged in red, and one tap into each part. Brigades waiting for an AO can be assigned from the same screen",
-  "Each AO screen has an All AOs button to get back, and a red badge on AOs counts AOs that need attention. Forces now keeps the order of battle and units"
+  "Staging on the MSRs",
+  "Support and staging areas the game sets up for an AO now go on a main supply route inside the AO (an MSR first, then another highway), so convoys and incoming companies reach them by road. Staging areas you place yourself still go exactly where you put them"
  ],
- "published": "2026-11-03T20:21:56.690Z",
+ "published": "2026-11-03T20:30:30.556Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
