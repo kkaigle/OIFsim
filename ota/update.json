@@ -1,14 +1,16 @@
 {
- "game": 91,
- "file": "game-91.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-91.html",
- "sha256": "c9868399242f959df92c20ef4e039fdab8c623807d86aa10d28a8efe9c839cf8",
- "size": 1759905,
+ "game": 92,
+ "file": "game-92.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-92.html",
+ "sha256": "b5d044e83b2506ffb67f10958f8d6c9db9ab831f3b4f18e4684108806d2d3a4f",
+ "size": 1763839,
  "notes": [
-  "Formation counts",
-  "When you zoom out and units in the field stack up into one icon, a ×N badge shows how many companies are in that formation. Units in contact always stay visible on their own"
+  "AO status",
+  "Every AO shows where its forces stand: Deploying, Moving in, Assuming control or Occupied. Each brigade shows how many companies are deploying, staging in Kuwait, moving north, assuming control or in control",
+  "The AO screen lists every company with its status and where it is or is heading",
+  "No more stragglers: companies of an AO brigade still sitting in Kuwait or at another base outside the AO get moved in every day until they are inside. Staging in Kuwait is not their home base"
  ],
- "published": "2026-11-03T16:02:45.402Z",
+ "published": "2026-11-03T16:08:19.042Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
