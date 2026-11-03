@@ -2,8 +2,8 @@
  "game": 67,
  "file": "game-67.html",
  "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-67.html",
- "sha256": "8262ff0f011172ac895ff5fd5e33ae476a387ba833515bf996594829e9874f08",
- "size": 985735,
+ "sha256": "08c78744b721555dd4dd999102d26e2386712a7a12fac01b9730fe7398a86ea2",
+ "size": 985732,
  "notes": [
   "Advisor desks",
   "Advisors now sit at four desks: Diplomatic, Strategic, Intel and Battlefield. Ask each one for recommendations once a day",
@@ -11,7 +11,7 @@
   "Relieve an advisor you have lost faith in; a sharper replacement arrives in a few days",
   "The Battlefield advisor proposes two forward FOBs on the line of advance and calls in the units to man them"
  ],
- "published": "2026-11-03T00:11:22.418Z",
+ "published": "2026-11-03T00:16:12.237Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
