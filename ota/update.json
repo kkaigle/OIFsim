@@ -1,15 +1,16 @@
 {
- "game": 125,
+ "game": 126,
  "semver": "1.0.0",
- "file": "game-125.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-125.html",
- "sha256": "6e98a0baf7bc53bcf1a4ece6fe7e1e433a8d54b4d4673ccac556a399f0bcbaba",
- "size": 3144476,
+ "file": "game-126.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-126.html",
+ "sha256": "04e860575418174f26f9d1d7e39f1df76973d13cc0cbdc7ae52c200182ebaa9f",
+ "size": 3241101,
  "notes": [
-  "FOBs on the MSRs",
-  "Automatic FOBs are now sited on the road: points along the AO's MSRs first, then its other highways, with the old rules only as a fallback. FOBs, support areas and staging areas always keep at least about 20 km between them, so they never overlap"
+  "Multiplayer everywhere",
+  "Play with a partner now works on the website, the desktop app and iPad, not just on claude.ai. The host starts a co-op or versus game and gets a 4-letter code; the partner taps Play with a partner and enters it. Devices connect directly (peer to peer), so there is no account and no server to set up",
+  "On claude.ai the artifact keeps using its built-in rooms, with the list of open games"
  ],
- "published": "2026-11-03T20:46:44.418Z",
+ "published": "2026-11-03T22:18:12.149Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
