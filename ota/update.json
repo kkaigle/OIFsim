@@ -1,15 +1,18 @@
 {
- "game": 116,
+ "game": 117,
  "semver": "1.0.0",
- "file": "game-116.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-116.html",
- "sha256": "e3d33f1475f70f901a75f357ed85332e5da012c14911ee7b91f338b259f7d347",
- "size": 1873873,
+ "file": "game-117.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-117.html",
+ "sha256": "fdfb6b3d3b78aacc884c6fa0821aac01488f6f19d4c2418a05f4f7989418e997",
+ "size": 3113293,
  "notes": [
-  "Tooltips within tooltips",
-  "In Detailed tooltip mode, key terms inside a tooltip are underlined: move onto the tooltip and hover one (or tap it on touch) to open its own explanation beside it. Those open further terms too, so tooltips stack as deep as you want to read. Move off them all to close"
+  "Real map from OpenStreetMap",
+  "Cities now sit at their real positions and show their real street networks, city footprints and named arterials from OpenStreetMap",
+  "The Tigris, Euphrates, Diyala, the Zab rivers, the Shatt al-Arab and others follow their true courses; lakes and reservoirs (Tharthar, Razazah, Habbaniyah, Qadisiyah, Mosul Dam, Dukan, Hamrin and more) and the Mesopotamian marshes take their real shapes",
+  "MSRs and highways follow the real roads between cities where OpenStreetMap has them",
+  "Map data © OpenStreetMap contributors (ODbL)"
  ],
- "published": "2026-11-03T19:30:57.267Z",
+ "published": "2026-11-03T19:55:47.688Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
