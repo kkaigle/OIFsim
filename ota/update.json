@@ -1,16 +1,16 @@
 {
- "game": 86,
- "file": "game-86.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-86.html",
- "sha256": "33f80f078554c45aba4618872a543e4304da9ee6b1527063baa2924263f43dbb",
- "size": 1743156,
+ "game": 87,
+ "file": "game-87.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-87.html",
+ "sha256": "a25117322b1799fb64d46ddd74adf3e3b63de3e11306aa4ce04984685ff0cf21",
+ "size": 1746024,
  "notes": [
-  "Fire missions & softening",
-  "Shock and awe now waits for your order: plan strike boxes and assign assets, then press Begin shock and awe on the ✸ Fires rail. Launch the ground war whenever you are ready (day 30 at the latest, or push it back)",
-  "Every strike box can hold, keep up sustained fire, or fire a single salvo on demand, before or after G-Day. The daily cost of sustained fire is shown per box",
-  "Softening now matters: assaulting intact, dug-in Republican Guard positions costs about twice the casualties, and badly hit units fall back. Fully softened positions cut losses to about 0.6×. Assault planning shows the expected loss multiplier"
+  "Through Kuwait · aerial refueling",
+  "Every ground and air unit bound for an AO in Iraq now lands at Camp Doha first and then moves north into its sector. Brigades too",
+  "New Aerial Refueling Squadron (KC-135 / KC-10): fighters, A-10s and gunships at the same air base reach about 650 km farther (800 with two squadrons). It needs a land air base with a paved runway, not a carrier, and is what lets jets at Al Udeid reach Iraq",
+  "More room at the big air bases: Al Udeid 16 slots, Diego Garcia 8, Camp Doha 60, and host-nation bases 12 to 16, expandable to 28. Prince Sultan, Muwaffaq Salti and Incirlik now sit at their real locations"
  ],
- "published": "2026-11-03T14:21:12.023Z",
+ "published": "2026-11-03T14:31:31.333Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
