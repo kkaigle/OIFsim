@@ -1,16 +1,17 @@
 {
- "game": 114,
+ "game": 115,
  "semver": "1.0.0",
- "file": "game-114.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-114.html",
- "sha256": "79c8d88d71309544428b69ce8794bf1a3b1687293ea9dcbdfe6d1980bb21b11e",
- "size": 1863173,
+ "file": "game-115.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-115.html",
+ "sha256": "08ee6ef4da81a87b00ce5571ed9c521ca39dae5e61a45db66cf6d5fd0f9d443c",
+ "size": 1864250,
  "notes": [
-  "AO moves fixed",
-  "Brigades sent to a new AO no longer get stuck: when the usual site rules find no spot for a support area (for example near an enemy division), the AO now picks the safest spot inside its line, toward the friendly side, instead of leaving companies waiting at their old bases",
-  "An empty support area can no longer be overrun before its companies arrive and send them all back home"
+  "Stage in Kuwait first",
+  "At the start there are no AOs: brigades you deploy stage at Camp Doha until you set up AOs and assign them. Auto on the deploy screen only appears once an AO exists, and only ever reinforces a standing AO",
+  "Brigades without an AO are no longer given one automatically",
+  "If anything goes wrong while drawing the map, the map now recovers on the next frame instead of staying with missing cities and bases, and the error is logged"
  ],
- "published": "2026-11-03T19:09:11.743Z",
+ "published": "2026-11-03T19:22:31.765Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
