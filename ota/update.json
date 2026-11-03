@@ -1,19 +1,17 @@
 {
- "game": 70,
- "file": "game-70.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-70.html",
- "sha256": "8e4f3eef0f900fe59431eb3c434ebffea74986fe84bc81ca73a0171e4018ff61",
- "size": 1005068,
+ "game": 71,
+ "file": "game-71.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-71.html",
+ "sha256": "7dd38334c299e6a0ddfcee5a19069b79872db19657a492c956ed450cbd8024d4",
+ "size": 1011665,
  "notes": [
-  "Echelons & areas of operations",
-  "Every combat brigade (HBCT, IBCT, Marine RCT) gets its own area of operations; add a brigade and the country is redrawn into one more sector",
-  "Maneuver companies only patrol, assault and raid inside their brigade's AO; artillery can still fire across boundaries when called for support",
-  "Units finishing a mission report to a base inside their AO instead of driving back across the country",
-  "Each brigade sets its headquarters at a base in its AO, which gets a tactical assembly area (+6 unit slots) so the brigade fits",
-  "Cohesion bonus now counts the whole AO: bases anywhere in the sector keep the +15%",
-  "New Order of battle screen: brigade cards with AO, strength, cohesion and where every company is, plus division & theater troops by role"
+  "Brigade sectors",
+  "Brigades are now assigned to sectors you choose, instead of the country being split evenly. Assign one from Forces › Order of battle, or tap the map and pick Brigade sector",
+  "A sector's size follows what the brigade can hold: personnel fill, morale, working vehicles, companies left and the local threat. Strong brigades in quiet areas cover a lot and can overlap; worn-down ones shrink",
+  "When the bases in a sector can't house the brigade, a brigade support area is set up at the center",
+  "New map overlays (buttons under Status): brigade sectors, and aviation coverage rings for helicopters, MEDEVAC, close air support and drones"
  ],
- "published": "2026-11-03T01:16:45.898Z",
+ "published": "2026-11-03T01:43:25.688Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
