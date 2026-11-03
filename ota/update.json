@@ -1,17 +1,16 @@
 {
- "game": 73,
- "file": "game-73.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-73.html",
- "sha256": "68634b9fdc43bf42832b9768f4b99cce390ca185a5a72536b193dfe56d5909d8",
- "size": 1028168,
+ "game": 74,
+ "file": "game-74.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-74.html",
+ "sha256": "16441b6e06fb19109c7347b1bf5898fb7de9eeff89f6790ccca216979735d4cd",
+ "size": 1032939,
  "notes": [
-  "Sector command",
-  "New default force management: place sectors, then assign brigades and companies to them. A sector grows as the force inside it grows, with diminishing returns",
-  "Automatic sectors push forward FOBs as close to the enemy as supply allows, put their guns in a rear FOB firing daily missions, rebase their own units and patrol every day",
-  "Morale sets conduct: worn-down units go heavy-handed, wrecking infrastructure, killing civilians and growing the insurgency faster; measured units shrink it",
-  "Prefer the old way? Settings › Force management › Classic"
+  "Areas of operations tab",
+  "New Forces › Areas of operations tab: place AOs, assign or release brigades with one tap, see each AO's FOBs and how many companies sit at each",
+  "Only brigades take an AO; they spread across two to four FOBs per AO depending on its size, balanced automatically",
+  "Kuwait is a rear area: no ground attacks, IEDs, ambushes or patrols there, only the occasional rocket or mortar round"
  ],
- "published": "2026-11-03T02:02:30.654Z",
+ "published": "2026-11-03T02:12:01.815Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
