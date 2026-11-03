@@ -1,15 +1,16 @@
 {
- "game": 98,
- "file": "game-98.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-98.html",
- "sha256": "9a8df23f6f831b53357940ef21f7d44020d8a9a282c7ae2c2528c076bb313602",
- "size": 1789233,
+ "game": 100,
+ "file": "game-100.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-100.html",
+ "sha256": "071f536f5a8257abd2018ec069f306843bb672a88ce55c21db8e5730133fff0a",
+ "size": 1796667,
  "notes": [
-  "Looser AO links",
-  "New AOs no longer need to touch a held AO: they can sit up to about one AO beyond your held AOs, or about 300 km in from Kuwait. Units still land in Kuwait and drive north through the AOs behind them",
-  "Moving or releasing a brigade is never blocked any more: you get a warning if it leaves AOs further north without support to the south. AOs only pull back on their own if they end up far beyond that reach"
+  "Lobbying Congress",
+  "Caucuses are far more willing to back war money: the hawks and the Armed Services Committee nearly always do (defense money lines their districts and donors), the establishment and Blue Dogs often do",
+  "But a caucus backing a deal is only half of it: the bill still has to clear the whole Congress, so even a hawk-backed supplemental can die on the floor. Each pitch shows both odds",
+  "Deals are worth about 60% more money"
  ],
- "published": "2026-11-03T17:56:38.086Z",
+ "published": "2026-11-03T18:00:05.493Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
