@@ -1,15 +1,16 @@
 {
- "game": 127,
+ "game": 128,
  "semver": "1.0.0",
- "file": "game-127.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-127.html",
- "sha256": "bcc8eaec2eee05d738787ba91697057b4b7bd66411639ca084a16fbe12050f7e",
- "size": 3241686,
+ "file": "game-128.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-128.html",
+ "sha256": "8acd0e458e322be590c599f2f617264e6b3ae744c62a5515e8b673dd04b5839d",
+ "size": 3248824,
  "notes": [
-  "Multiplayer button fix",
-  "Play with a partner always responds now: if the live connection is slow to start it waits a few seconds at most, then opens the menu or explains why multiplayer is not available in that view"
+  "Multiplayer setup",
+  "Play with a partner now opens a setup panel on the main menu: pick co-op or versus, a difficulty and a name (or host your saved campaign), then Host game. The code shows in large type with a Copy button. Joining is on the same panel",
+  "New Multiplayer section in Settings: host the campaign you are playing right now (co-op or versus), see and copy the code and whether your partner is connected, end the session, or leave a game you joined. Hosted campaigns now save like any other"
  ],
- "published": "2026-11-03T22:25:15.582Z",
+ "published": "2026-11-03T22:44:06.359Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
