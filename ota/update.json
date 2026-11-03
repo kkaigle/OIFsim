@@ -1,14 +1,15 @@
 {
- "game": 68,
- "file": "game-68.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-68.html",
- "sha256": "9f906c126bfd5c3d0bd9bba504c95999e24354127e41ba13f0b77c935f7920c4",
- "size": 985868,
+ "game": 69,
+ "file": "game-69.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-69.html",
+ "sha256": "522724c845da1e55bc7eb269de4d0ccfdab4daf0b4d85cf5dc57246604d31629",
+ "size": 988792,
  "notes": [
-  "Advisor fix",
-  "Fixed the advisor desk buttons (Get recommendations, the action buttons and Relieve) doing nothing when tapped"
+  "Testimony and stopgap funding",
+  "Send your diplomatic advisor to testify before Congress on what a funding lapse would mean; it usually wins a stopgap appropriation (about 1.2× a month of base funding)",
+  "Odds rise when funds are low and confidence in your advisor is high; once every 30 days"
  ],
- "published": "2026-11-03T00:16:23.480Z",
+ "published": "2026-11-03T00:19:47.805Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
