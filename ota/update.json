@@ -1,17 +1,16 @@
 {
- "game": 118,
+ "game": 119,
  "semver": "1.0.0",
- "file": "game-118.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-118.html",
- "sha256": "f923695b230202500cadc35f6d1d3fc80a4e0eb11f09c4748f51e3d7372319c7",
- "size": 3120765,
+ "file": "game-119.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-119.html",
+ "sha256": "61128215e44ba9af66fcf3009ece16f7f54bd286a3c1df7bb09f7c14135518b4",
+ "size": 3125116,
  "notes": [
-  "Deploy to AOs & patrol focus",
-  "During major combat Congress funds the war it authorised: the daily running cost of the force is covered in full (plus a small margin) every day, so burn never outruns appropriations early on. The monthly O&M lump, the allotment cut and get-well plans start once major combat ends",
-  "Deploy to an AO is back on the AO screen and on every AO card. Every ground unit, whether sent to an AO or straight to a base in Iraq, lands at Camp Doha first and then drives north to where it was assigned",
-  "New Patrols tab on each AO: Balanced (patrol where the threat is), Focus cities (set how many companies patrol each city every day) or Dispersed presence (rotate through every town, road and approach in range)"
+  "Congress sets conditions first",
+  "When public or congressional support slips, Congress no longer pulls the plug: it first sets conditions for 30 days (a cap on US killed, a cap on civilian casualties, and ROE no higher than a set level). Meet them and support recovers",
+  "Miss them and Congress restricts funding, then issues a final ultimatum. Only if that is missed too does it vote to end the war. Progress shows on the Washington screen and the SITREP"
  ],
- "published": "2026-11-03T20:15:43.926Z",
+ "published": "2026-11-03T20:18:04.848Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
