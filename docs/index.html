@@ -668,6 +668,9 @@ const UT={
  arm:{b:'army',n:'Armor Company (M1A1)',p:116,cost:110,upk:2.8,atk:14,def:15,pat:.5,ground:1,veh:1,urban:.8,g:'arm',d:'Fourteen Abrams. Wrecks divisions in the open, clumsy in cities.'},
  art:{b:'army',n:'Field Artillery Battery (Paladin)',p:120,cost:95,upk:2.4,atk:12,def:6,pat:.1,sup:220,g:'art',d:'Fires from its base on assaults in range. Counter-battery vs mortars.'},
  avn:{b:'army',n:'Attack Aviation Troop (AH-64)',p:120,cost:160,upk:4.2,atk:16,def:6,pat:.4,air:1,range:340,g:'avn',d:'Apache gunships. Fast, lethal, the best answer to convoy ambushes.'},
+ dust:{b:'army',n:'MEDEVAC Company (HH-60 Dustoff)',p:120,cost:110,upk:3,atk:0,def:5,pat:0,air:1,range:380,g:'lift',d:'Dedicated air ambulances. Fly wounded out within about 380 km, more runs a day than Black Hawks. Needs a helicopter pad.'},
+ ch47:{b:'army',n:'Heavy Lift Company (CH-47 Chinook)',p:120,cost:140,upk:3.6,atk:1,def:5,pat:0,air:1,range:400,g:'lift',d:'Tandem-rotor heavy lift: 60 t helicopter resupply runs to FOBs without an airstrip. Needs a helicopter pad.'},
+ aqrf:{b:'army',n:'Aviation QRF Troop (OH-58D Kiowa)',p:120,cost:95,upk:2.6,atk:9,def:5,pat:.3,air:1,range:160,g:'avn',d:'Light scout-attack helicopters on strip alert. When an aerostat over a base spots a mortar team, rocket crew or car bomb, they launch and hit it before it fires; they also break troops in contact nearby. Needs a helicopter pad.'},
  lift:{b:'army',n:'Assault Aviation (UH-60)',p:120,cost:120,upk:3.4,atk:3,def:5,pat:.3,air:1,range:340,g:'lift',d:'Black Hawks for air assault, MEDEVAC and 15 t helicopter resupply runs. Lowers KIA theater-wide.'},
  eng:{b:'army',n:'Combat Engineer Company',p:120,cost:60,upk:1.5,atk:4,def:8,pat:.5,ground:1,g:'EN',d:'Builds and fortifies bases, clears routes on patrol, rebuilds city infrastructure, bridges rivers. Needed for every new FOB.'},
  tnk:{b:'usaf',n:'Aerial Refueling Squadron (KC-135 / KC-10)',p:120,cost:150,upk:3.8,atk:0,def:5,pat:0,home:'air',g:'KC',d:'Flying gas stations. Strike fighters, A-10s and gunships at the same air base reach about 650 km farther (two squadrons: 800). Needs a land air base with a paved runway; cannot go on a carrier. Highly recommended at Al Udeid and the host-nation bases outside Iraq.'},
@@ -703,7 +706,7 @@ const UT={
 const UT_ORDER=Object.keys(UT);
 const ALIAS={art:{art:1,mart:1},arm:{arm:1,mtk:1},mech:{mech:1,lar:.7},avn:{avn:1,hmla:.9,a10:.7,ac130:.8},sf:{sf:1,seal:1,tf:1.2,rgr:.5,recon:.5},eng:{eng:1,cb:.6},mi:{mi:1,recon:.3,tf:.4,p3:.3},lift:{lift:1,hmla:.3}};
 function unitName(t){const L='ABCD'[ri(0,3)],b=ri(1,4),r=pick([1,2,3,4,5,7,8,9,12,15,22,27,35,64,69,327,502]),o=['st','nd','rd','th'][Math.min(3,b-1)];
- return ({tnk:`${ri(6,99)}th ARS`,gar:`${L} Co, ${ri(1,3)}-${pick([111,112,113,116,133,136,141,142,153,155,160,167])} SEC (ARNG)`,inf:`${L} Co, ${b}-${r} IN`,mech:`${L} Co, ${b}-${r} IN (M)`,arm:`${L} Co, ${b}-${ri(32,77)} AR`,art:`${L} Btry, ${b}-${ri(3,41)} FA`,avn:`${L} Trp, ${b}-${ri(101,229)} ATK`,lift:`${L} Co, ${b}-${ri(101,159)} AHB`,eng:`${L} Co, ${(n=>n+(n%100>10&&n%100<14?'th':['th','st','nd','rd'][n%10]||'th'))(ri(1,10))} EN BN`,mp:`${ri(101,988)} MP Co`,mi:`${L} Co, ${ri(101,525)} MI BN`,ca:`${L} Co, ${ri(401,490)} CA BN`,med:`${ri(10,86)} FST / Med Co`,log:`${ri(101,880)} Trans Co`,cram:`${L} Btry, ${b}-${ri(1,62)} ADA (C-RAM)`,patb:`${L} Btry, ${b}-${pick([1,2,3,7,43,52])} ADA (Patriot)`,
+ return ({dust:`${ri(1,3)}${['st','nd','rd'][ri(0,2)]} Plt, C Co ${ri(1,7)}-${pick([101,158,227,82,1])} AVN`,ch47:`B Co, ${ri(1,7)}-${pick([101,158,227,104])} AVN`,aqrf:`${'ABC'[ri(0,2)]} Trp, ${ri(1,7)}-${pick([17,6,1])} CAV`,tnk:`${ri(6,99)}th ARS`,gar:`${L} Co, ${ri(1,3)}-${pick([111,112,113,116,133,136,141,142,153,155,160,167])} SEC (ARNG)`,inf:`${L} Co, ${b}-${r} IN`,mech:`${L} Co, ${b}-${r} IN (M)`,arm:`${L} Co, ${b}-${ri(32,77)} AR`,art:`${L} Btry, ${b}-${ri(3,41)} FA`,avn:`${L} Trp, ${b}-${ri(101,229)} ATK`,lift:`${L} Co, ${b}-${ri(101,159)} AHB`,eng:`${L} Co, ${(n=>n+(n%100>10&&n%100<14?'th':['th','st','nd','rd'][n%10]||'th'))(ri(1,10))} EN BN`,mp:`${ri(101,988)} MP Co`,mi:`${L} Co, ${ri(101,525)} MI BN`,ca:`${L} Co, ${ri(401,490)} CA BN`,med:`${ri(10,86)} FST / Med Co`,log:`${ri(101,880)} Trans Co`,cram:`${L} Btry, ${b}-${ri(1,62)} ADA (C-RAM)`,patb:`${L} Btry, ${b}-${pick([1,2,3,7,43,52])} ADA (Patriot)`,
  mar:`${L} Co, ${b}/${ri(1,8)} Marines`,lar:`${L} Co, ${b}${o} LAR Bn`,mtk:`${L} Co, ${b}${o} Tank Bn`,mart:`${L} Btry, ${b}/${pick([10,11,12])} Marines`,hmla:`HMLA-${pick([169,267,367,369])} Det`,recon:`${b}${o} Force Recon Co`,
  cvw:`CVW-${pick([2,5,8,11,14])} Det`,ddg:`USS ${pick(['Milius','Donald Cook','Porter','Higgins','Mitscher','Winston S. Churchill'])}`,seal:`SEAL Team ${pick([1,2,3,5,8,10])} Det`,cb:`NMCB-${pick([4,5,7,74,133])} Det`,p3:`VP-${pick([1,4,46,47])} Det`,
  ftr:`${pick(['336th','389th','494th','77th','522nd'])} FS Det`,a10:`${pick(['75th','74th','190th','103rd'])} FS (A-10)`,ac130:`${pick(['4th','16th'])} SOS Det`,pred:`${pick(['15th','17th','11th'])} RS (MQ-1)`,c130:`${pick(['463rd','317th','314th','43rd'])} AW Det`,bomb:`${pick(['20th','23rd','37th','28th'])} BS Det`,
@@ -741,7 +744,7 @@ const techById=id=>TECH.find(t=>t.id===id);
 function has(id){return !!(S&&S.tech[id])}
 
 /* ================= state ================= */
-const DIFFS={arcade:{n:'Arcade',budget:30000,aggr:.55,arcade:1},recruit:{n:'Recruit',budget:14000,aggr:.75},regular:{n:'Regular',budget:10000,aggr:1},veteran:{n:'Veteran',budget:7000,aggr:1.3}};
+const DIFFS={arcade:{n:'Arcade',budget:40000,aggr:.55,arcade:1},recruit:{n:'Recruit',budget:24000,aggr:.75},regular:{n:'Regular',budget:17000,aggr:1},veteran:{n:'Veteran',budget:12000,aggr:1.3}};
 let S=null;
 function newGame(dk){
  const kp=P(47.65,29.45),gp=P(49.25,29.2),up=P(51.32,25.12),dg=P(58.3,21.3);
@@ -1054,7 +1057,7 @@ function tourDay(){for(const u of S.units){if(u.state==='transit')continue;const
   if(d===TOURLIM())log(`${u.name} has passed ${TOURLIM()} days in theater. Morale and effectiveness will fall until it is rotated out.`,'bad',true,'Tour overrun');
   if(u.rotateOut&&(u.state==='garrison'||u.state==='building')){S.units=S.units.filter(x=>x!==u);log(`${u.name} has handed over and is heading home.`,'good');mor(.4)}}}
 /* aircraft */
-const AC={avn:8,lift:10,hmla:8,ftr:6,a10:6,ac130:2,pred:4,c130:4,p3:3,bomb:2,cvw:12};
+const AC={avn:8,aqrf:6,dust:6,ch47:6,lift:10,hmla:8,ftr:6,a10:6,ac130:2,pred:4,c130:4,p3:3,bomb:2,cvw:12};
 const ACCOST={avn:25,lift:15,hmla:18,ftr:45,a10:20,ac130:60,pred:5,c130:35,p3:40,bomb:120,cvw:50};
 const acTot=u=>AC[u.type]||0;
 function acInit(u){if(AC[u.type]&&!u.ac)u.ac={fmc:AC[u.type],nmc:0,lost:0}}
@@ -1068,7 +1071,7 @@ const stormy=()=>S.stormUntil>S.day;
 function weatherDay(){if(stormy())return;const mo=dateOf(S.day).getUTCMonth();if(Math.random()<(mo>=2&&mo<=6?.07:.03)){const d=ri(2,4);S.stormUntil=S.day+d;log(`A shamal sandstorm is rolling in for ${d} days. Helicopters and strike aircraft are grounded, MEDEVAC is unavailable, and combat slows.`,'adapt',true,'Sandstorm')}}
 /* medevac */
 function medevacFor(p){if(stormy())return {ok:false,why:'the sandstorm has grounded helicopters'};if(localDanger(p)>=1.2)return {ok:false,why:'the threat level is too high to land'};
- const c=S.units.filter(u=>u.type==='lift'&&u.state==='garrison'&&acFmc(u)>0&&(u.mevac||0)<3).map(u=>{const b=baseById(u.baseId);return {u,d:b?dist(b,p):1e9,f:!b||isRear(b)||b.fuel>0}}).filter(x=>x.d<=340&&x.f).sort((a,b)=>a.d-b.d)[0];
+ const c=S.units.filter(u=>(u.type==='lift'||u.type==='dust')&&u.state==='garrison'&&acFmc(u)>0&&(u.mevac||0)<(u.type==='dust'?6:3)).map(u=>{const b=baseById(u.baseId);return {u,d:b?dist(b,p):1e9,f:!b||isRear(b)||b.fuel>0}}).filter(x=>x.d<=(x.u.type==='dust'?380:340)&&x.f).sort((a,b)=>(a.u.type==='dust'?-120:0)+a.d-((b.u.type==='dust'?-120:0)+b.d))[0];
  return c?{ok:true,u:c.u}:{ok:false,why:'no MEDEVAC helicopters within range'}}
 const medLog={};
 function medevac(p,wia,where){if(wia<=0)return 0;const m=medevacFor(p);
@@ -1081,6 +1084,8 @@ const BDE=[
  {id:'ibct',n:'Infantry Brigade Combat Team',b:'army',u:{inf:4,art:1},d:'Light infantry for cities and patrols, with organic fires.'},
  {id:'rct',n:'Marine Regimental Combat Team',b:'usmc',u:{mar:4,lar:1,mtk:1,mart:1},d:'Marine riflemen with tanks, light armored recon and artillery.'},
  {id:'cab',n:'Combat Aviation Brigade',b:'army',u:{avn:2,lift:2},d:'Apaches and Black Hawks. Needs helicopter pads.'},
+ {id:'ahb',n:'Attack Helicopter Battalion (AHB)',b:'army',u:{avn:3,aqrf:1},d:'Three Apache troops and a Kiowa QRF troop: offensive aviation that hunts, escorts and breaks contacts. Needs helicopter pads.'},
+ {id:'gsab',n:'General Support Aviation Battalion (GSAB)',b:'army',u:{dust:2,ch47:1,lift:1},d:'Dustoff MEDEVAC, Chinook heavy lift and Black Hawks: wounded out, supplies in. Needs helicopter pads.'},
  {id:'sotf',n:'Special Operations Task Force',b:'socom',u:{sf:2,seal:1,tf:1,rgr:1},d:'Raids, manhunts and training local forces.'},
 ];
 const bdeCount=t=>Object.values(t.u).reduce((a,b)=>a+b,0);
@@ -1101,11 +1106,11 @@ function hubFor(dest){let best=baseById('b0'),bd=best?dist(best,dest):1e9;for(co
 function carrierFor(dest,mode,hub){const ok=u=>u.state==='garrison'&&!u.repeat&&u.p>=UT[u.type].p*.4;
  if(mode==='convoy'){const land=u=>{const b=baseById(u.baseId);return b&&!b.naval&&!b.offmap};const sc=u=>{const b=baseById(u.baseId);return u.baseId===dest.id?0:hub&&u.baseId===hub.id?1:2+(hub?dist(b,hub):dist(b,dest))/100};
   const A=typeof aoOfBase==='function'?aoOfBase(dest):null,inA=u=>A&&aoOfBase(baseById(u.baseId))===A;return S.units.filter(u=>u.type==='log'&&ok(u)&&land(u)&&(u.baseId===dest.id||inA(u)||(hub&&u.baseId===hub.id)||(hub&&dist(baseById(u.baseId),hub)<=320))).sort((a,b)=>(inA(a)?-.5:0)+sc(a)-((inA(b)?-.5:0)+sc(b)))[0]}
- return S.units.filter(u=>(u.type==='c130'||u.type==='lift')&&ok(u)&&baseById(u.baseId)).sort((a,b)=>(a.type==='c130'?0:1)-(b.type==='c130'?0:1)||dist(baseById(a.baseId),dest)-dist(baseById(b.baseId),dest))[0]}
+ return S.units.filter(u=>(u.type==='c130'||u.type==='ch47'||u.type==='lift')&&ok(u)&&baseById(u.baseId)).sort((a,b)=>(a.type==='c130'?0:1)-(b.type==='c130'?0:1)||dist(baseById(a.baseId),dest)-dist(baseById(b.baseId),dest))[0]}
 const CAD={std:{n:'Standard',wk:2,hub:4,conc:1,cost:1,thr:10,d:'2 deliveries a week, one at a time'},surge:{n:'Bolstered',wk:4,hub:6,conc:2,cost:1.6,thr:14,d:'4 a week, 2 on the road at once · runs cost 60% more'},max:{n:'Continuous',wk:7,hub:9,conc:3,cost:2.4,thr:18,d:'Daily deliveries, 3 at once · runs cost 2.4×'}};
 const cadOf=b=>CAD[(b&&b.cad)||'std']||CAD.std;
 const runCost=(u,dest)=>Math.round((u.type==='log'?2:u.type==='c130'?8:5)*(dest&&dest.cad?cadOf(dest).cost:1)*10)/10;
-function cargoOf(u,dest){if(u.type==='log')return 170*u.p/UT.log.p;if(u.type==='c130')return (dest.strip||0)>=1?90:65;return 35}
+function cargoOf(u,dest){if(u.type==='log')return 170*u.p/UT.log.p;if(u.type==='c130')return (dest.strip||0)>=1?90:65;if(u.type==='ch47')return 60;return 35}
 const runCap=b=>b.hub?cadOf(b).hub:cadOf(b).wk;
 function runsWk(b){b.runs=(b.runs||[]).filter(d=>d>S.day-7);return b.runs.length}
 function nextWin(b){runsWk(b);return b.runs.length<runCap(b)?0:Math.min(...b.runs)+7-S.day}
@@ -1275,7 +1280,36 @@ function assaultDay(cid){const c=cityById(cid),div=divAt(c),A=S.assaults[cid];if
   if(dist(dc,c)<240&&d.str>40&&Math.random()<.2*DIFFS[S.diff].aggr){const amt=Math.round(d.str*.22);d.str-=amt;div.str+=amt;{const B=bdaI();B.dv=B.dv||{};if(B.dv[d.id]!=null)B.dv[d.id]-=amt;if(B.dv[div.id]!=null)B.dv[div.id]+=amt}d.sent=1;
    log(`${d.n} pulls ${amt} strength out of ${dc.n} to reinforce ${c.n}.`,'adapt',true,'Enemy reinforcing')}}
  if(div.str<=0){div.str=0;cleared(c,div)}}
-function cleared(c,div){c.owner='coalition';const big=c.id==='baghdad';const vac=big?40:26+c.pop*6;c.instab=clamp(c.instab+vac,0,100);
+// ===================== SPILLOVER, AL-QAEDA IN IRAQ, ISIS =====================
+const exile=()=>S.exile||(S.exile={syria:0,iran:0,jordan:0,saudi:0});
+const BORDER_OF={syria:P(40.9,34.4),iran:P(46.0,33.6),jordan:P(39.0,32.3),saudi:P(44.0,30.0)};
+// broken units near a border slip across it
+function flee(c,amt,why){let best=null,bd=1e9;for(const [k,p] of Object.entries(BORDER_OF)){const d=dist(c,p);if(d<bd){bd=d;best=k}}if(!best||bd>330)return;const n=Math.round(amt*(1-bd/400));if(n<3)return;
+ exile()[best]+=n;const C=S.countries[best];if(C)C.h=clamp(C.h+Math.min(8,n/6),0,100);if(n>=8)log(`${why||'Survivors'} from ${c.n} slip across the border into ${COUNTRY[best]?COUNTRY[best].n:best}. About ${n*30} fighters regroup there${S.phase==='conv'?' and will filter back in':''}.`,'adapt',true,'Fighters flee abroad')}
+const AQ_CITIES=['ramadi','fallujah','baghdad','baqubah','mosul','tikrit','samarra','haditha','qaim','talafar'];
+function threatDay(){if(!S||isArc())return;const E=exile();
+ // fighters abroad come back down the ratlines: steadily early on, in bigger waves late in the war
+ for(const [k,v] of Object.entries(E)){if(v<1)continue;const out=v*(S.day>450?.035:.02);E[k]=Math.max(0,v-out);const rs=ROUTE_DEFS.filter(R=>R.c===k);const cs=[...new Set(rs.flatMap(R=>R.cities))].map(cityById).filter(Boolean);
+  for(const c of cs){if(S.phase==='ins')c.cells=clamp(c.cells+out/cs.length*.9,0,100);else{const d=divAt(c);if(d)d.str=Math.min(d.max*1.25,d.str+out/cs.length)}}
+  if(S.day>450&&v>25&&S.countries[k])S.countries[k].h=clamp(S.countries[k].h+.03,0,100)}
+ if(S.phase!=='ins')return;const k0=S.day-(S.insDay||S.day);
+ // Al-Qaeda in Iraq: cells form where US forces look exposed
+ const aq=S.cities.filter(c=>c.aq);const recent=(S.kiaDays||[]).slice(-10).reduce((a,x)=>a+(+x||0),0);const thin=S.bases.filter(b=>!isRear(b)&&b.building<=0&&baseTroops(b)<minT(b)*.6).length;
+ if(k0>=20&&aq.length<5&&Math.random()<.006+recent*.0006+thin*.004){const c=AQ_CITIES.map(cityById).filter(x=>x&&!x.aq&&x.cells>10).sort((a,b)=>b.cells-a.cells)[0];if(c){c.aq=1;c.aqDay=S.day;c.cells=clamp(c.cells+8,0,100);log(`Al-Qaeda in Iraq has set up a cell in ${c.n}. It recruits foreign fighters and plans spectacular attacks on US troops: car bombs, suicide bombers, complex ambushes.`,'bad',true,'Al-Qaeda in Iraq')}}
+ for(const c of aq){c.cells=clamp(c.cells+.25,0,100);if(c.cells<6){c.aq=0;log(`The Al-Qaeda cell in ${c.n} has been rolled up.`,'good',true,'Al-Qaeda in Iraq');continue}
+  if(Math.random()<.07){const ctx=targetsFor(c);const t=tacById(ctx.base?pick(['vbied','ffbomb','ambulance']):pick(['ambush','hbied']));if(t&&(!t.unlock||t.unlock())){log(`Al-Qaeda in Iraq strikes from ${c.n}.`,'bad',false);resolveAttack(t,c,ctx)}}}
+ // ISIS: late in the war, exiles and AQI remnants in eastern Syria become a proto-state that pushes back into Iraq
+ const I=S.isis;
+ if(!I&&S.day>=650&&(E.syria>=20||S.countries.syria.h>=75||aq.length>=2)&&Math.random()<.02){isisRise();return}
+ if(I&&I.on){const live=ftg().filter(t=>t.c==='isis'&&t.str>0);if(!live.length){I.on=0;log('ISIS strongholds in eastern Syria are destroyed. Its fighters scatter and the cross-border offensives stop.','good',true,'ISIS');return}
+  const pw=live.reduce((a,t)=>a+t.str,0)/live.reduce((a,t)=>a+t.max,0);for(const id of ['qaim','rawah','haditha','ramadi','fallujah','talafar','mosul']){const c=cityById(id);if(c)c.cells=clamp(c.cells+.35*pw,0,100)}
+  if(Math.random()<.05*pw){const tg=S.bases.filter(b=>!isRear(b)&&b.building<=0&&dist(b,P(41.2,34.4))<380&&baseTroops(b)<minT(b)*.8).sort((a,b)=>baseTroops(a)-baseTroops(b))[0];
+   if(tg){const gar=garrison(tg).filter(u=>isOff(u.type)).length;if(gar<2&&Math.random()<.5)captureBase(tg,'insurgent',25+30*pw,'An ISIS column');else{const c=nearestCity(tg);const t=tacById('vbied');if(t&&c)resolveAttack(t,c,{...targetsFor(c),base:tg});log(`An ISIS column hits ${tg.n} from the western desert.`,'bad',true,'ISIS')}}}}}
+function isisRise(){S.isis={on:1,day:S.day};const W=wash();ftg();for(const [id,n,lo,la,str] of [['is1','ISIS headquarters, Raqqa',39.01,35.95,70],['is2','ISIS staging area, Abu Kamal',40.92,34.45,50],['is3','ISIS weapons depot, Deir ez-Zor',40.14,35.33,55]])if(!W.ft.some(t=>t.id===id))W.ft.push({id,c:'isis',n,...P(lo,la),str,max:str});
+ for(const id of ['qaim','rawah','haditha','talafar'])if(cityById(id))cityById(id).cells=clamp(cityById(id).cells+15,0,100);exile().syria=0;
+ log('ISIS has emerged in eastern Syria: former regime officers, Al-Qaeda remnants and thousands of foreign fighters who fled Iraq. It will push columns across the border into Anbar and Nineveh. Strike boxes over Raqqa, Abu Kamal and Deir ez-Zor can hit its strongholds; you will need AOs in the west and north to hold the line.','bad',true,'ISIS');
+ if(typeof showModal==='function')showModal({eyebrow:'New threat',title:'ISIS emerges',body:'<p>Fighters who fled Iraq, Al-Qaeda remnants and foreign volunteers have built a proto-state in eastern Syria. Columns will raid across the border into Anbar and Nineveh, and recruitment in the Sunni west will surge.</p><p>Washington has cleared strikes on ISIS sites in Syria: place strike boxes over Raqqa, Abu Kamal and Deir ez-Zor from the ✸ Fires rail. Open AOs in the west and north to hold the border towns.</p>',opts:[{t:'Understood',cls:'primary',f:()=>{}}]})}
+function cleared(c,div){try{flee(c,div.max*.25,`Republican Guard survivors of the ${div.n}`)}catch(e){}c.owner='coalition';const big=c.id==='baghdad';const vac=big?40:26+c.pop*6;c.instab=clamp(c.instab+vac,0,100);
  mor(big?8:2);con(big?6:1);log(`${c.n} secured. ${div.n} destroyed.${big?' The regime has fallen. Statues come down and looting spreads through the capital.':' Looting and a power vacuum follow.'}`,'good',true,big?'Government toppled':'City secured');
  flash(c.x,c.y,'#86c27e');delete S.assaults[c.id];c.cleared=1;c.bfDay=S.day+Math.round(rnd(2,5));c.bfAmt=div.max*.06;c.cells=clamp(c.cells+div.max*.25+5,0,100);let held=0;
  for(const u of S.units){if(u.target!==c.id||u.mission!=='assault')continue;if(u.state==='engaged'&&UT[u.type].ground){u.state='securing';u.secCity=c.id;u.mission=null;u.target=null;held++}else returnHome(u)}
@@ -1858,12 +1892,12 @@ function aoDay(){baseOwnDay();aoGoDay();aoLeashDay();aoStuckDay();if(secMode()&&
  // migrate older saves: brigade centers become sectors
  for(const B of combatBdes()){if(B.noAO||(B.sec&&secById(B.sec)))continue;if(B.sc){secAssign(B,B.sc,true);continue}const o0=pickAO(B),p=o0&&o0.p?o0.p:o0&&o0.s?o0.s:autoSec(B);const s=(o0&&o0.s)||secs().find(x=>dist(x,p)<secRr(x)*.55)||secNew(p,true);B.sec=s.id;B.autoIn=1;log(`${bdeShort(B)} is given ${s.n}. It moves in on arrival; reassign it any time from Forces › Order of battle.`,'info',true,'Sector assigned')}
  for(const B of combatBdes())if(B.autoIn&&!saa().on&&!bdeAlive(B).some(u=>u.state==='transit')){B.autoIn=0;const s=secById(B.sec);if(s)secMove(bdeAlive(B),s,bdeAbbr(B),true)}
- aoChainDay();if(!S.tierDone){S.tierDone=1;let n=0;for(const b of S.bases)if(b.building<=0&&applyTier(b))n++;if(n)log(`Base infrastructure now comes with base size: ${n} base${n>1?'s were':' was'} brought up to standard for ${n>1?'their':'its'} size.`,'info')}
+ aoChainDay();if(!S.tier2Done){S.tier2Done=1;for(const b of S.bases)if(b.building<=0&&(b.level||1)>=2)applyTier(b)}if(!S.tierDone){S.tierDone=1;let n=0;for(const b of S.bases)if(b.building<=0&&applyTier(b))n++;if(n)log(`Base infrastructure now comes with base size: ${n} base${n>1?'s were':' was'} brought up to standard for ${n>1?'their':'its'} size.`,'info')}
  for(const s of secs()){const r0=s.r||0,r=secRad(s);s.r=+r.toFixed(1);secShape(s);
   if(r0&&r<r0*.85&&(s.shrinkWarn||-99)<S.day-10&&secUnits(s).length){s.shrinkWarn=S.day;log(`${s.n} shrinks to ${Math.round(r*.9)} km: its force is wearing down (strength, morale or vehicles). Units outside the new line lose their cohesion bonus.`,'adapt',true,'Sector shrinking')}
   if(s.auto&&!saa().on){aoTighten(s);secAutoDay(s)}aoSupDay(s)}}
 // ---- map overlays ----
-const AIRCOV=[['Naval strike',['ddg','cvw'],'#ff6a50',[8,3]],['Attack helicopters',['avn','hmla'],'#ff9b4a',[]],['Lift & MEDEVAC',['lift'],'#7fd3ff',[6,4]],['Close air support',['a10','ac130','ftr'],'#c39bff',[2,5]],['ISR drones & patrol aircraft',['pred','p3'],'#8fe08a',[1,4]]];
+const AIRCOV=[['Naval strike',['ddg','cvw'],'#ff6a50',[8,3]],['Attack helicopters',['avn','hmla','aqrf'],'#ff9b4a',[]],['Lift & MEDEVAC',['lift','dust','ch47'],'#7fd3ff',[6,4]],['Close air support',['a10','ac130','ftr'],'#c39bff',[2,5]],['ISR drones & patrol aircraft',['pred','p3'],'#8fe08a',[1,4]]];
 function drawAO(W,H){if(!S)return;try{drawFires()}catch(e){}try{drawOrbits()}catch(e){}if(SET.ovAir){ctx.save();for(const [n,ts,col,dash] of AIRCOV){const G=new Map();for(const u of S.units){if(!ts.includes(u.type)||u.p<=0)continue;const b=baseById(u.baseId);if(!b)continue;const t=UT[u.type],rg=(t.strike&&t.strike.range)||t.range||0;if(!rg||rg>2000)continue;if(!G.has(b.id))G.set(b.id,{b,us:[]});G.get(b.id).us.push(u)}
   for(const {b,us} of G.values()){const r0=Math.max(...us.map(airReach)),[x,y]=w2s(b),r=r0*view.s;ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.fillStyle=col+'10';ctx.fill();ctx.setLineDash(dash);ctx.strokeStyle=col+'cc';ctx.lineWidth=1.6;ctx.stroke();ctx.setLineDash([]);
    const up=us.reduce((a,u)=>a+(AC[u.type]?acFmc(u):0),0),tot=us.reduce((a,u)=>a+(AC[u.type]||0),0),arr=us.every(z=>z.state==='transit');
@@ -1974,7 +2008,7 @@ const orbits=k=>S.units.filter(u=>onOrbit(u)&&(!k||ORB_T[u.type]===k));
 const orbNear=(p,k,R)=>orbits(k).filter(u=>dist(u.orbit,p)<=(R||160));
 // a tanker track refuels jets whose base lies within reach of it
 function trackBonus(b){if(!b||!S)return 0;let best=0;for(const t of orbits('aar')){if(dist(b,t.orbit)<=950)best=Math.max(best,650)}return best}
-function airPatrolDay(){if(!S)return;const st=stormy();
+function airPatrolDay(){if(!S)return;const st=stormy();if(!st)for(const q of S.units.filter(u=>u.type==='aqrf'&&u.state==='garrison'&&(u.qrfD||-1)<S.day&&acFmc(u)>0)){const b=baseById(q.baseId);if(!b)continue;const p=S.units.find(x=>x.state==='pinned'&&dist(dpos(x),b)<=150);if(!p)continue;q.qrfD=S.day;p.enemy=Math.max(0,(p.enemy||0)-12*eff(q));try{fxJet(b,dpos(p),'aqrf')}catch(e){}log(`${q.name} launched from ${b.n} to support ${p.name} in contact.`,'good',false)}
  for(const u of S.units){if(!u.orbit)continue;if(!ORB_T[u.type]||u.p<=0){u.orbit=null;continue}const b=baseById(u.baseId);if(!b||u.state!=='garrison'||b.building>0||st||(AC[u.type]&&acFmc(u)<=0)){u.orbDay=-1;continue}
   const c=ORB_COST[u.type]||2;if(S.budget<c){u.orbDay=-1;continue}spend('operations',c);u.orbDay=S.day}
  // ISR orbits build the picture
@@ -2197,6 +2231,9 @@ function resolveAttack(t,c,ctx){const ctr=ctrOf(t),st=S.ai.stats[t.id]||(S.ai.st
  let victims=[],where=c.n;
  let dmgB=null;if(t.tgt==='base'){const b=ctx.base||nearestBase(c,400,false);if(b){where=b.n;dmgB=b;victims=garrison(b).sort(()=>Math.random()-.5).slice(0,2)}}
  if(dmgB&&(dmgB.ambush||0)>=S.day&&Math.random()<(IFIRE.has(t.id)?.35:.15)){st.s--;L[t.id]=Math.max(.25,(L[t.id]||1)/1.18*.9);c.cells=clamp(c.cells-1,0,100);log(`${t.n} against ${dmgB.n} spoiled: a patrol on counter-fire overwatch hit the team as it set up.`,'good');bdaE('Mortar / rocket teams',1);bdaI().ek+=ri(1,3);return}
+ if(dmgB&&fl(dmgB,'aero')&&!stormy()){const q=S.units.filter(u=>(u.type==='aqrf'||u.type==='avn'||u.type==='hmla')&&u.state==='garrison'&&(u.qrfD||-1)<S.day&&acFmc(u)>0&&baseById(u.baseId)&&dist(baseById(u.baseId),dmgB)<=150).sort((a,b)=>(a.type==='aqrf'?-200:0)+dist(baseById(a.baseId),dmgB)-((b.type==='aqrf'?-200:0)+dist(baseById(b.baseId),dmgB)))[0];
+  if(q&&Math.random()<(['mortar','rocket122','iram','donkey','vbied','ffbomb','ambulance'].includes(t.id)?(q.type==='aqrf'?.55:.4):.15)){q.qrfD=S.day;st.s--;L[t.id]=Math.max(.25,(L[t.id]||1)/1.18*.85);c.cells=clamp(c.cells-2,0,100);const sp={x:dmgB.x+rnd(-14,14),y:dmgB.y+rnd(-14,14)};try{fxRockets(baseById(q.baseId),sp,4)}catch(e){}flash(sp.x,sp.y,'#ffd27a');bdaI().ek+=ri(1,4);
+   log(`The aerostat over ${dmgB.n} spotted a ${t.n.toLowerCase()} setting up. ${q.name} launched from ${baseById(q.baseId).n} and hit it before it could strike.`,'good',true,'Aviation QRF');return}}
  if(dmgB&&cbOn(dmgB).length){const blk=IFIRE.has(t.id)?cbSum(dmgB,'ifire'):cbSum(dmgB,'att');if(Math.random()<blk){st.s--;L[t.id]=Math.max(.25,(L[t.id]||1)/1.18*.85);c.cells=clamp(c.cells-1.5,0,100);if(IFIRE.has(t.id))fxArc(dmgB,{x:c.x+rnd(-10,10),y:c.y+rnd(-10,10)},'#ffd27a',2);
   log(`${t.n} against ${dmgB.n} broken up before it landed: ${cbOn(dmgB).map(x=>x.n.toLowerCase()).join(' and ')} caught the team.`,'good');return}}
  let warn=1;if(dmgB&&IFIRE.has(t.id)){dmgB.lastIF=S.day;const ad=adCover(dmgB,t.id);
@@ -2261,7 +2298,7 @@ function adaptCheck(){const pool=TAC.filter(t=>t.ph===S.phase&&(!t.unlock||t.unl
  if(top.id!==S.ai.top){const prev=S.ai.top&&tacById(S.ai.top);S.ai.top=top.id;
   let why=top.why||'';if(prev&&ctrOf(prev)>.35)why=`Your countermeasures against "${prev.n.toLowerCase()}" are working. `+why;
   log(`Enemy shifting to ${top.n.toLowerCase()}. ${why}`,'adapt',true,'Enemy adapting')}}
-function startInsurgency(reason){S.phase='ins';S.insDay=S.day;S.iranPlan=S.iranPlan||{day:S.day+Math.round(rnd(25,40)),cities:['baghdad','kut','basra']};
+function startInsurgency(reason){try{for(const d of aliveDivs()){const c=cityById(d.city);if(c)flee(c,d.str*.2,`Fighters of the ${d.n}`)}}catch(e){}S.phase='ins';S.insDay=S.day;S.iranPlan=S.iranPlan||{day:S.day+Math.round(rnd(25,40)),cities:['baghdad','kut','basra']};
  for(const d of aliveDivs()){const c=cityById(d.city);c.cells=clamp(c.cells+d.str*.6,0,100);c.owner='neutral';d.str=0;endAssault(c.id)}
  for(const c of S.cities){c.cells=clamp(c.cells+c.instab*.25*regm(c),0,100);c.instab=clamp(c.instab+3,0,100)}
  {let n=0;for(const c of S.cities)if(c.saaInf){c.cells=clamp(c.cells+Math.min(35,c.saaInf*.12),0,100);c.instab=clamp(c.instab+Math.min(15,c.saaInf*.05),0,100);n++}if(n&&(saa().inf||0)>50)log(`The infrastructure strikes of the opening air campaign are paying out in anger: ${n} cit${n>1?'ies':'y'} without power and water start the insurgency with more fighters.`,'bad',true,'Resistance')}
@@ -2305,7 +2342,7 @@ const FTGT_DEF=[['ir1','iran','IRGC garrison, Ahvaz',48.67,31.32,60],['ir2','ira
  ['sy1','syria','Foreign-fighter transit camp, Abu Kamal',40.92,34.45,35],['sy2','syria','Weapons depot, Deir ez-Zor',40.14,35.33,40],['sy3','syria','Border staging area, Al-Hasakah',40.75,36.5,30]];
 function ftg(){const W=wash();if(!W.ft)W.ft=FTGT_DEF.map(([id,c,n,lo,la,str])=>({id,c,n,...P(lo,la),str,max:str}));return W.ft}
 const atWar=k=>!!((wash().war[k]||{}).on);
-const xAuth=k=>atWar(k)||((wash().auth||{})[k]||0)>S.day;
+const xAuth=k=>k==='isis'?!!(S.isis&&S.isis.on):atWar(k)||((wash().auth||{})[k]||0)>S.day;
 const wHist=(t)=>{const W=wash();W.hist.unshift([S.day,t]);if(W.hist.length>30)W.hist.pop()};
 function warPow(k){const L=ftg().filter(t=>t.c===k),m=L.reduce((a,t)=>a+t.max,0)||1;return Math.round(25+75*L.reduce((a,t)=>a+Math.max(0,t.str),0)/m)}
 function warStart(k){const W=wash();W.war[k]={on:1,day:S.day,ask:S.day+30};S.esc=S.esc||{};S.esc[k]=5;S.countries[k].h=100;S.agg=S.agg||{};S.agg[k]=S.day+400;mor(-4);con(-3);wHist(`War with ${COUNTRY[k].n} authorized`);
@@ -2369,7 +2406,7 @@ function washSheet(){const W=wash();let h=head(`Day ${S.day} · public ${Math.ro
  const fl=[];if(W.wmdDue)fl.push(`WMD hunt is the priority: ${W.wmdDue-S.day} days until Washington wants results`);if(W.banner&&!W.bgap)fl.push('"Mission accomplished" declared');if(W.draw)fl.push(`Drawdown of ${W.draw.n} brigades in ${W.draw.day-S.day} days`);
  if(fl.length)h+=`<h3>Commitments</h3><ul class="note">${fl.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`;
  h+=`<h3>Record</h3>${W.hist.length?`<div class="list">${W.hist.map(([d,t])=>`<div class="item"><span class="mid"><span class="nm">${esc(t)}</span><span class="sb">${dtg(d)}</span></span></div>`).join('')}</div>`:'<p class="note">No decisions yet.</p>'}`;return h}
-function drawFTGT(){if(!S||!S.wash)return;ctx.save();for(const t of ftg()){if(!xAuth(t.c)&&!(wash().war[t.c]||{}).done)continue;const [x,y]=w2s(t);ctx.beginPath();ctx.moveTo(x,y-7);ctx.lineTo(x+7,y);ctx.lineTo(x,y+7);ctx.lineTo(x-7,y);ctx.closePath();ctx.fillStyle=t.str>0?'rgba(227,96,75,.9)':'rgba(120,110,100,.7)';ctx.fill();ctx.strokeStyle='#14180f';ctx.lineWidth=1.5;ctx.stroke();addLbl(t.n,x+10,y,{size:10,col:t.str>0?'#ff9a86':'#9a9080',pri:4})}ctx.restore()}
+function drawFTGT(){if(!S)return;ctx.save();for(const c of S.cities){if(!c.aq)continue;const [x,y]=w2s(c);ctx.fillStyle='rgba(20,20,20,.9)';ctx.strokeStyle='#e3604b';ctx.lineWidth=1.5;ctx.beginPath();ctx.rect(x+8,y-20,26,12);ctx.fill();ctx.stroke();ctx.fillStyle='#ff8a70';ctx.font=`700 8px ${FM}`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('AQI',x+21,y-14)}ctx.restore();if(!S.wash)return;ctx.save();for(const t of ftg()){if(!xAuth(t.c)&&!((wash().war[t.c]||{}).done))continue;const [x,y]=w2s(t);ctx.beginPath();ctx.moveTo(x,y-7);ctx.lineTo(x+7,y);ctx.lineTo(x,y+7);ctx.lineTo(x-7,y);ctx.closePath();ctx.fillStyle=t.str>0?'rgba(227,96,75,.9)':'rgba(120,110,100,.7)';ctx.fill();ctx.strokeStyle='#14180f';ctx.lineWidth=1.5;ctx.stroke();addLbl(t.n,x+10,y,{size:10,col:t.str>0?'#ff9a86':'#9a9080',pri:4})}ctx.restore()}
 
 const CAUC=[
  {id:'hawk',n:'National Security Hawks',p:'R',seats:9,war:.95,base:'Military-family and national-security conservatives; talk radio audience',lob:'Lockheed, Raytheon, Boeing; security think tanks',amt:1500,
@@ -2521,7 +2558,7 @@ function politicsDay(){S.kiaDays.push(S.dayKia);if(S.kiaDays.length>30)S.kiaDays
  if(S.gov.formed){if(S.gov.surgeCap&&S.day>=S.gov.surgeCap){S.gov.cap=Math.max(3600,S.gov.cap-(S.gov.surgeAmt||3000));S.gov.surgeCap=0;S.gov.surgeAmt=0}
   if(S.day>=S.gov.next){S.gov.next=S.day+90;if(natInstab()<35){S.gov.cap=Math.max(3600,Math.round(S.gov.cap*.88/120)*120);log(`Under the SOFA, the troop cap drops to ${S.gov.cap.toLocaleString()} as Iraqi forces take more control.`,'info',true,'SOFA drawdown')}}
   const tr=troopsIraq();if(tr>S.gov.cap){bumpAll(.12);con(-.08);if(S.day%7===0)log(`You are over the SOFA cap (${tr.toLocaleString()} of ${S.gov.cap.toLocaleString()}). Baghdad is protesting. Send units home or move them to Kuwait.`,'bad',true,'SOFA violation')}}}
-function dailyTick(){rsync();runImpacts(true);vehDay();try{wmdDay()}catch(e){}ETrack();S.day++;grievDay();if(isArc())arcadeDay();surgeDay();advDay();aoDay();try{airPatrolDay()}catch(e){console.log('orb',e)}firesDay();try{washDay()}catch(e){console.log('wash',e)}oilDay();iranPlanDay();backfillDay();roeDay();opsDay();spend('upkeep',upkeep());
+function dailyTick(){rsync();runImpacts(true);vehDay();try{wmdDay()}catch(e){}ETrack();S.day++;grievDay();if(isArc())arcadeDay();surgeDay();advDay();aoDay();try{threatDay()}catch(e){console.log('threat',e)}try{airPatrolDay()}catch(e){console.log('orb',e)}firesDay();try{washDay()}catch(e){console.log('wash',e)}oilDay();iranPlanDay();backfillDay();roeDay();opsDay();spend('upkeep',upkeep());
  for(const u of S.units)if(u.state==='transit'&&S.day>=u.arrive){const b=baseById(u.baseId);if(!b){u.p=0;continue}u.state='garrison';u.x=b.x;u.y=b.y;u.dep=S.day;acInit(u);if(u.reliefOf){const o=unitById(u.reliefOf);if(u.bde){const B=(S.bdes||[]).find(x=>x.id===u.bde);if(B){const i=B.units.indexOf(u.reliefOf);if(i>=0)B.units[i]=u.id;else if(!B.units.includes(u.id))B.units.push(u.id)}}u.reliefOf=null;if(o){if(['garrison','patrolling','building'].includes(o.state)){S.units=S.units.filter(x=>x!==o);log(`${u.name} has relieved ${o.name} at ${b.n}. The outgoing unit is heading home.`,'good');mor(.4);S.tm=clamp(S.tm+.5,0,100)}else{o.rotateOut=true;log(`${u.name} has arrived at ${b.n}; ${o.name} will head home once it is back from its mission.`,'info')}}}else log(`${u.name} has arrived at ${b.n}.`,'info')}
  S.units=S.units.filter(u=>u.p>0&&!(u.goHome&&u.state==='garrison'));
  buildDay();
@@ -2673,7 +2710,7 @@ const PAT={
  marsh:mkPat(x=>{x.strokeStyle='rgba(120,170,120,.5)';x.lineWidth=1;x.beginPath();x.moveTo(4,11);x.lineTo(4,5);x.moveTo(7,11);x.lineTo(8,6);x.moveTo(1,11);x.lineTo(0,7);x.stroke()},12,12),
  desert:mkPat(x=>{x.fillStyle='rgba(225,200,150,.22)';for(const [a,b] of [[2,3],[9,6],[5,11],[12,13]])x.fillRect(a,b,1.3,1.3)},14,14)};
 const TFILL={mtn:'#5c4c38',marsh:'#3d4b37',desert:'#5a5240'};
-const ICONOF={cram:'cram',patb:'patriot',inf:'soldier',mar:'soldier',rgr:'sof',sf:'sof',seal:'sof',tf:'sof',recon:'lav',lar:'lav',mech:'ifv',arm:'tank',mtk:'tank',art:'sp',mart:'towed',avn:'helo',hmla:'helo',lift:'heloL',eng:'dozer',cb:'dozer',mp:'hmmwvMP',mi:'hmmwvMI',ca:'hmmwvCA',med:'amb',log:'truck',cvw:'carrier',ddg:'ship',p3:'prop4',c130:'prop4',tnk:'tanker',ac130:'gunship',ftr:'jet',a10:'a10',pred:'drone',bomb:'bomber'};
+const ICONOF={cram:'cram',patb:'patriot',inf:'soldier',mar:'soldier',rgr:'sof',sf:'sof',seal:'sof',tf:'sof',recon:'lav',lar:'lav',mech:'ifv',arm:'tank',mtk:'tank',art:'sp',mart:'towed',avn:'helo',hmla:'helo',lift:'heloL',dust:'heloL',ch47:'chinook',aqrf:'helo',eng:'dozer',cb:'dozer',mp:'hmmwvMP',mi:'hmmwvMI',ca:'hmmwvCA',med:'amb',log:'truck',cvw:'carrier',ddg:'ship',p3:'prop4',c130:'prop4',tnk:'tanker',ac130:'gunship',ftr:'jet',a10:'a10',pred:'drone',bomb:'bomber'};
 const TOPVIEW=new Set(['jet','a10','prop4','gunship','drone','bomber','carrier','tanker']);
 function rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.lineTo(x+w-r,y);c.arcTo(x+w,y,x+w,y+r,r);c.lineTo(x+w,y+h-r);c.arcTo(x+w,y+h,x+w-r,y+h,r);c.lineTo(x+r,y+h);c.arcTo(x,y+h,x,y+h-r,r);c.lineTo(x,y+r);c.arcTo(x,y,x+r,y,r);c.closePath()}
 function poly(c,pts){c.beginPath();pts.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.closePath()}
@@ -2700,6 +2737,7 @@ const ICON={
  soldier:(c,F,D)=>soldier(c,F,D,0),sof:(c,F,D)=>soldier(c,F,D,1),
  helo:(c,F,D)=>{c.fillStyle=F;c.beginPath();c.ellipse(3,0,6.6,2.5,0,0,7);c.fill();c.fillRect(-12,-.8,10,1.6);c.fillRect(-12.5,-3.8,2,4.2);c.fillStyle=D;c.beginPath();c.ellipse(6.5,-.6,2.2,1.2,0,0,7);c.fill();c.fillStyle=F;c.fillRect(0,.8,5,1.1);
   c.strokeStyle=F;c.lineWidth=1;c.beginPath();c.moveTo(2,-2.4);c.lineTo(2,-4.6);c.moveTo(-10,-4.8);c.lineTo(14,-4.8);c.moveTo(-1,3.8);c.lineTo(8,3.8);c.stroke()},
+ chinook:(c,F,D)=>{c.fillStyle=F;rr(c,-11,-2.4,23,4.8,2.4);c.fill();c.fillStyle=D;c.fillRect(-9,-1.2,3,2.4);c.beginPath();c.ellipse(9,0,2,1.4,0,0,7);c.fill();c.strokeStyle=F;c.lineWidth=1;c.globalAlpha*=.75;c.beginPath();c.arc(8,0,7.5,0,7);c.stroke();c.beginPath();c.arc(-8,0,7.5,0,7);c.stroke();c.globalAlpha/=.75;c.fillStyle=F;c.fillRect(7.4,-.6,1.2,1.2);c.fillRect(-8.6,-.6,1.2,1.2)},
  heloL:(c,F,D)=>{c.fillStyle=F;rr(c,-4,-3.4,14,6.8,3.2);c.fill();c.fillRect(-12,-1,9,2);c.fillRect(-12.5,-4.4,2,4.6);c.fillStyle=D;c.fillRect(0,-1.8,2.2,1.8);c.fillRect(3.2,-1.8,2.2,1.8);c.beginPath();c.ellipse(8,-1,1.6,1.3,0,0,7);c.fill();
   c.strokeStyle=F;c.lineWidth=1;c.beginPath();c.moveTo(3,-3.4);c.lineTo(3,-5.4);c.moveTo(-10,-5.6);c.lineTo(15,-5.6);c.stroke();wheel(c,-1,4.2,1.3,F);wheel(c,7,4.2,1.3,F)},
 
@@ -3235,6 +3273,7 @@ const FAC=[
  {k:'aid',sh:'Aid',n:['Battalion aid station','Troop medical clinic'],cost:[20,80],upk:[.2,.5],d:'Returns 10% (clinic 20%) more of this base’s wounded to duty, even without a Medical company in theater.'},
  {k:'motor',sh:'Motor pool',n:['Motor pool','Maintenance facility'],cost:[25,90],upk:[.2,.5],d:'Keeps vehicles running. Without one, armor and mech here fight at 90%.'},
  {k:'asp',sh:'Ammo',n:['Ammo supply point','Bermed ammo storage'],cost:[20,70],upk:[.1,.3],d:'Adds 80 t of ammunition storage per level. A hit on it can cook off the stockpile.'},
+ {k:'aero',sh:'Aerostat',n:['Aerostat (PGSS balloon)'],cost:[60],upk:[.5],camp:1,d:'A tethered surveillance balloon over the base. Spots mortar teams, rocket crews and car bombs on the approaches, and cues an Aviation QRF to launch if one is stationed within reach.'},
  {k:'toc',sh:'TOC',n:['TOC tent','Hardened TOC'],cost:[15,80],upk:[.1,.4],d:'Tactical operations center. Patrols from this base are 10% more effective per level.'},
  {k:'fuel',sh:'Fuel',n:['Fuel point (bladders)','Bulk fuel farm'],cost:[30,120],upk:[.2,.6],d:'Stores JP-8 for vehicles, aircraft and generators: 200 t, then 600 t. Without one a base holds only 40 t in cans. Out of fuel: vehicles crawl, aircraft stay down, generators go dark.'},
  {k:'water',sh:'Water',n:['Water point','Water purification plant'],cost:[25,90],upk:[.3,.6],need:1,d:`Required once ${NEED_T}+ troops are here. Without working water, troops fall sick and morale drops.`},
@@ -3256,15 +3295,15 @@ const SEV={mortar:1,donkey:1,rocket122:1.2,iram:1.5,vbied:2,ffbomb:2,ambulance:2
 function jobName(b){const j=b.job;if(!j)return '';if(j.kind==='fac'){const f=facDef(j.fk);return `Building the ${f.n[fl(b,j.fk)].toLowerCase()}`}if(j.kind==='repair')return `Repairing the ${facDef(j.fk).sh.toLowerCase()}`;
  return ({upgrade:'Expanding to a camp',fortify:'Fortifying',heli:'Building a helicopter pad',strip:'Building the '+(STRIP[(b.strip||0)+1]||{n:'airfield'}).n.toLowerCase()})[j.kind]||'Engineering'}
 const TIER={1:{sleep:1,chow:1,shower:1,aid:1,motor:1,asp:1,toc:1,fuel:1,water:1,waste:1},
- 2:{sleep:2,chow:2,shower:2,mwr:1,px:1,aid:1,motor:1,asp:1,toc:2,fuel:1,water:2,waste:1},
- 3:{sleep:3,chow:3,shower:3,mwr:3,px:2,aid:2,motor:2,asp:2,toc:2,fuel:2,water:2,waste:2}};
+ 2:{aero:1,sleep:2,chow:2,shower:2,mwr:1,px:1,aid:1,motor:1,asp:1,toc:2,fuel:1,water:2,waste:1},
+ 3:{aero:1,sleep:3,chow:3,shower:3,mwr:3,px:2,aid:2,motor:2,asp:2,toc:2,fuel:2,water:2,waste:2}};
 const TIER_N={1:'FOB: tents, chow tent, field showers, battalion aid station, small motor pool, ammo point, fuel bladders, water point and burn pit. No PX, no MWR, no MPs or medical company',
  2:'Camp: CHUs, a DFAC, shower trailers, MWR tent, PX trailer, hardened TOC and water purification. Room for MPs, a medical company, C-RAM and Patriots',
  3:'Major base: hardened barracks, full-service DFAC, plumbed ablutions, gym & internet café, post exchange, troop medical clinic, maintenance facility, bermed ammo storage, bulk fuel farm and an incinerator'};
 const defaultFac=()=>Object.fromEntries(Object.entries(TIER[1]).map(([k,l])=>[k,{l,d:0}]));
 // raise a base's facilities to what its size comes with (never removes anything)
 function applyTier(b){if(!b||isRear(b)||b.stg||b.naval||b.offmap||b.kuwait)return 0;const T=TIER[Math.min(3,Math.max(1,b.level||1))];b.fac=b.fac||{};let n=0;for(const [k,l] of Object.entries(T)){const st=b.fac[k];if(!st||st.l<l){b.fac[k]={l,d:st?st.d:0};n++}}return n}
-const ROTARY=new Set(['avn','lift','hmla']);
+const ROTARY=new Set(['avn','lift','hmla','dust','ch47','aqrf']);
 const AIR_REQ={pred:1,c130:2,p3:2,a10:2,ac130:2,ftr:3,tnk:2};
 const STRIP=[null,
  {n:'Dirt airstrip',cost:150,upk:1.2,days:4,allows:'C-130s can land 40 t instead of airdropping 30 t; Predator drones can be stationed'},
@@ -3604,7 +3643,7 @@ function v3site(T,M,k,dead){const G=new T.Group(),a=o=>{G.add(o);return o};
  else if(k==='market'){for(let i=0;i<6;i++)a(v3box(T,[M.red,M.white,new T.MeshLambertMaterial({color:'#3f6f9a'})][i%3],5,3.5,5,(i%3-1)*7,1.75,Math.floor(i/3)*7-3.5))}
  else if(k==='mosque'){a(v3box(T,M.white,16,9,16,0,4.5,0));const dm=new T.Mesh(new T.SphereGeometry(7,14,8,0,Math.PI*2,0,Math.PI/2),new T.MeshLambertMaterial({color:'#4f8f86'}));dm.position.y=9;G.add(dm);a(v3cyl(T,M.white,1,1.3,30,10,15,10))}
  return G}
-const V3KIND={arm:'tank',mtk:'tank',mech:'ifv',lar:'lav',recon:'lav',art:'sp',mart:'sp',log:'truck',eng:'dozer',cb:'dozer',med:'amb',avn:'helo',hmla:'helo',lift:'heloL',mp:'hmmwv',mi:'hmmwv',ca:'hmmwv'};
+const V3KIND={arm:'tank',mtk:'tank',mech:'ifv',lar:'lav',recon:'lav',art:'sp',mart:'sp',log:'truck',eng:'dozer',cb:'dozer',med:'amb',avn:'helo',hmla:'helo',lift:'heloL',dust:'heloL',ch47:'heloL',aqrf:'helo',mp:'hmmwv',mi:'hmmwv',ca:'hmmwv'};
 function v3formation(u){const t=UT[u.type],k=V3KIND[u.type];if(k)return {k,n:k==='helo'||k==='heloL'?2:k==='truck'?5:k==='sp'?3:4,air:k==='helo'||k==='heloL'};
  if(t.ground)return {k:'soldier',n:9,veh:'hmmwv'};return null}
 // ---------- label sprites ----------
@@ -4128,7 +4167,7 @@ function baseSheet(b){let h=head(b.kuwait?'Staging base · airfield':b.naval?'Na
  else out+=logisticsHTML(b);
  return out}
 let baseTab='ov';
-const DROLES=[['all','All'],['man','Maneuver',['inf','mar','mech','arm','lar','mtk']],['fires','Fires',['art','mart']],['air','Aviation',['avn','lift','hmla','c130','p3','pred','tnk']],['sof','Special ops',['sf','rgr','tf','seal','recon']],['strike','Strike',['cvw','ddg','ftr','a10','ac130','bomb']]];
+const DROLES=[['all','All'],['man','Maneuver',['inf','mar','mech','arm','lar','mtk']],['fires','Fires',['art','mart']],['air','Aviation',['avn','aqrf','lift','dust','ch47','hmla','c130','p3','pred','tnk']],['sof','Special ops',['sf','rgr','tf','seal','recon']],['strike','Strike',['cvw','ddg','ftr','a10','ac130','bomb']]];
 let deployTab='bde',deployRole='all',deployCart={};
 function cartList(){return Object.entries(deployCart).filter(([k,n])=>n>0)}
 function deploySheet(b){const disc=S.surgeUntil>S.day?.5:1;const D=secMode()?aoDest():[];if(deployDest&&!D.some(s=>s.id===deployDest))deployDest=null;const dS=deployDest&&secById(deployDest);
@@ -4307,7 +4346,7 @@ function forcesSheet(){let h=head(`${S.units.length} units · ${S.units.reduce((
  const groups=[['In the fight',u=>['engaged','support'].includes(u.state)||(u.state==='moving'&&u.mission==='assault')],['Garrison',u=>u.state==='garrison'],['Moving',u=>u.state==='moving'&&u.mission!=='assault'],['In transit',u=>u.state==='transit']];
  for(const [n,f] of groups){const us=S.units.filter(f);if(us.length)h+=`<h3>${n} · ${us.length}</h3><div class="list">${us.map(u=>unitRow(u)).join('')}</div>`}return h}
 function basesSheet(){let h=head(`${S.bases.length} bases`,'Bases');
- if(!isArc()&&NET.myRole!=='red'){const iq=S.bases.filter(b=>!isRear(b)&&!b.stg&&b.building<=0),low=iq.filter(b=>daysOf(b)<5).length,onr=S.units.filter(u=>u.mission==='supply').length,logs=S.units.filter(u=>u.type==='log'),air=S.units.filter(u=>u.type==='c130'||u.type==='lift');
+ if(!isArc()&&NET.myRole!=='red'){const iq=S.bases.filter(b=>!isRear(b)&&!b.stg&&b.building<=0),low=iq.filter(b=>daysOf(b)<5).length,onr=S.units.filter(u=>u.mission==='supply').length,logs=S.units.filter(u=>u.type==='log'),air=S.units.filter(u=>u.type==='c130'||u.type==='ch47'||u.type==='lift');
   h+=`<div class="card" style="margin-top:0"><div class="eyebrow">Supply network</div><div class="note" style="margin:3px 0 6px">${iq.length} bases · <b style="color:${low?'var(--hostile)':'var(--good)'}">${low} low on stocks</b> · ${onr} runs on the road · ${logs.length} sustainment, ${air.length} airlift. Set every base at once:</div>
    <div class="seg">${[['any','Auto: best'],['convoy','Auto: convoy'],['air','Auto: air'],['off','Auto off']].map(([k,v])=>`<button data-act="supall" data-a="" data-b="${k}|">${v}</button>`).join('')}</div><div class="seg" style="margin-top:4px">${Object.entries(CAD).map(([k,v])=>`<button data-act="supall" data-a="" data-b="|${k}">${v.n}</button>`).join('')}</div></div>`}h+=`<div class="list">`;
  for(const b of S.bases)h+=`<button class="item" data-act="base" data-a="${b.id}"><span class="mid"><span class="nm">${b.n}</span><span class="sb">${b.kuwait?'Staging base':b.naval?'Naval station':b.offmap?'Off-map air base':LVN(b)}${b.building>0?` · building ${b.building}d`:''}${isRear(b)?'':` · defense ${Math.round(baseDef(b))}`}</span></span><span class="rt">${slotsUsed(b)}/${b.slots}</span></button>`;
@@ -4488,7 +4527,7 @@ function logisticsHTML(b){if(b.kuwait)return `<h3>Logistics</h3><p class="note">
  const eta=cvy&&hub?Math.max(1,Math.ceil(travelDays(hub,b,'log'))):0;
  h+=`<div class="acts">`+btn('supply',b.id,'Run a supply convoy',cvy?`${esc(cvy.name)} via ${hub.n} · about ${eta}d each way · 170 t · cheap but exposed to IEDs and ambushes`:`Needs a Sustainment company here or at ${hub?hub.n:'Kuwait'}`,fm(2),'',!cvy||full||S.budget<2,'convoy')
   +btn('supply',b.id,'Airlift supplies',air?`${esc(air.name)} · ${air.type==='c130'?((b.strip||0)>=1?'90 t landed on the airstrip':'65 t airdrop, no airstrip'):'35 t by helicopter'} · fast, low risk`:'Needs UH-60s or a C-130 detachment',fm(air?runCost(air):5),'',!air||full||S.budget<5,'air')+`</div>`;
- {const C=cadOf(b),logs=S.units.filter(u=>u.type==='log'),lf=logs.filter(u=>u.state==='garrison'),air=S.units.filter(u=>u.type==='c130'||u.type==='lift');
+ {const C=cadOf(b),logs=S.units.filter(u=>u.type==='log'),lf=logs.filter(u=>u.state==='garrison'),air=S.units.filter(u=>u.type==='c130'||u.type==='ch47'||u.type==='lift');
  {const A=aoOfBase(b);if(A){const L=aoSup(A);h+=`<div class="card" style="border-left:3px solid ${secCol(A)}"><b>Supplied as part of ${esc(A.n)}</b><div class="note" style="margin:3px 0 6px">Resupply ${L.auto==='off'?'manual':L.auto==='any'?'automatic, best available':'automatic by '+L.auto} · ${CAD[L.cad||'std'].n.toLowerCase()} cadence. The AO's trucks, engineers, medics and MPs serve this base.</div><button class="btn sm primary" data-act="secasg" data-a="${A.id}"><span class="t">AO logistics ›</span></button></div>`+fsvHTML(b);return h}}
  h+=`<h3>Supply cadence</h3><div class="seg">${Object.entries(CAD).map(([k,v])=>`<button data-act="cad" data-a="${b.id}" data-b="${k}" class="${(b.cad||'std')===k?'on':''}">${v.n}</button>`).join('')}</div><p class="note" style="margin-top:2px">${C.d}. Automatic runs start when stocks drop below ${C.thr} days. Theater pool: <b>${logs.length}</b> sustainment compan${logs.length===1?'y':'ies'} (${lf.length} free) and <b>${air.length}</b> airlift unit${air.length===1?'':'s'}. Any free sustainment company within reach of the hub can take a run, so more companies means more convoys on the road at once.</p>`}
  h+=`<div class="seg" style="margin-top:10px;align-items:center"><span class="note" style="margin:0 4px 0 0">Automatic runs</span>${[['off','Off'],['convoy','Convoy'],['air','Air'],['any','Best available']].map(([k,v])=>`<button data-act="auto" data-a="${b.id}" data-b="${k}" class="${(b.auto||'off')===k?'on':''}">${v}</button>`).join('')}</div><div class="acts" style="margin-top:4px">`;
@@ -4699,7 +4738,7 @@ function doAct(act,a,b,who,remote){if(!S||S.over)return;if(RED_ACTS.has(act)!==(
   for(const part of lst.split(',')){const [k,c]=part.split(':');const cnt=Math.min(20,+c||0);if(!UT[k])continue;for(let i=0;i<cnt;i++){const cs=UT[k].cost*disc;const T=dS?baseById('b0'):B;if(!T||S.budget<cs||(!dS&&(!hasRoom(T,k)||!canHost(T,k)))||sofaBlock(T,k))break;spend('deployment',cs);cost+=cs;const u=deployUnit(T,k,dS?{aoGo:dS.id}:null);if(dS){const Bd=aoAttach(u,dS);if(Bd)att.add(bdeAbbr(Bd))}n++}}
   if(!n)return;if(!remote)deployCart={};log(`${tag}${n} unit${n>1?'s':''} ordered to ${dS?dS.n+(att.size?`, attached to ${[...att].join(' / ')}`:''):B.n} (${fm(cost)}). ${dS?'They land at Camp Doha in 3 days, then move north into the AO.':`Arriving in ${isRear(B)?3:5} days.`}`,'info',true,'Deployment');break}
  case 'deploybde':{const aoCh=String(b).split('|')[1]||'auto';b=String(b).split('|')[0];const B=baseById(a),t=BDE.find(x=>x.id===b);if(!B||!t)return;const cost=bdeCost(t)*(S.surgeUntil>S.day?.5:1),plan=bdePlan(B,t);if(!plan||S.budget<cost)return;spend('deployment',cost);
-  const bid='bd'+S.nid++;const nm=t.b==='usmc'?`${pick(['1st','5th','7th'])} Marines ${t.id==='rct'?'RCT':'Task Force'}`:`${pick(['1st','2nd','3rd','4th'])} ${t.id==='cab'?'Combat Aviation Brigade':t.id==='sotf'?'SOTF':t.id==='mpbde'?'MP Brigade':t.id==='sust'?'Sustainment Brigade':'Brigade'}, ${pick(['1st Armored','3rd Infantry','4th Infantry','1st Cavalry','101st Airborne','82nd Airborne','25th Infantry','10th Mountain'])} Div`;
+  const bid='bd'+S.nid++;const nm=t.b==='usmc'?`${pick(['1st','5th','7th'])} Marines ${t.id==='rct'?'RCT':'Task Force'}`:`${pick(['1st','2nd','3rd','4th'])} ${t.id==='cab'?'Combat Aviation Brigade':t.id==='ahb'?'Attack Helicopter Battalion':t.id==='gsab'?'General Support Aviation Battalion':t.id==='sotf'?'SOTF':t.id==='mpbde'?'MP Brigade':t.id==='sust'?'Sustainment Brigade':'Brigade'}, ${pick(['1st Armored','3rd Infantry','4th Infantry','1st Cavalry','101st Airborne','82nd Airborne','25th Infantry','10th Mountain'])} Div`;
   const viaKW=COMBAT_BDE.has(t.id)&&secMode()&&baseById('b0');const ids=plan.map(p=>deployUnit(viaKW&&!isRear(p.b)?baseById('b0'):p.b,p.t,{bde:bid}).id);S.bdes.push({id:bid,n:nm,tpl:t.id,units:ids,day:S.day});mor(-.5);if(COMBAT_BDE.has(t.id)&&secMode()){const Bn=S.bdes[S.bdes.length-1];Bn.hq=B.id;let sc=null,why='';if(aoCh==='none'){Bn.noAO=1}else if(aoCh!=='auto'&&secById(aoCh)&&(aoChain().has(secById(aoCh))||aoReach(secById(aoCh),secRr(secById(aoCh)),null,secById(aoCh)))){sc=secById(aoCh);why=aoFit(t.id,sc).lbl}else{const o=pickAO(Bn,aoCh==='new'?'new':null);if(o){sc=o.s||(()=>{const z=secNew(o.p,true);z.obj=o.c.id;return z})();why=aoReason(o,t.id)}else sc=secNew(autoSec(Bn),true)}
    if(sc){Bn.sec=sc.id;Bn.autoIn=1;sc.r=secRad(sc);secShape(sc);log(`${nm} is assigned to ${sc.n}${why?` (${why})`:''}. It moves in on arrival; change it any time from Forces › Areas of operations.`,'info',true,'Sector assigned')}else log(`${nm} will hold near ${B.n} without an AO until you assign one.`,'info')}
   log(`${tag}${nm} (${t.n}) is deploying: ${ids.length} companies, ${fm(cost)}. Headquarters at ${B.n}.`,'info',true,'Brigade deploying');if(!remote)renderSheet(true);break}
@@ -4998,8 +5037,9 @@ s.tm??=75;s.spent??={};s.recov??=[];s.rtd??=0;s.delivered??=0;s.lastSpeed??=1;s.
 function saaAsk(){if(!S||!saa().on||saa().plan)return;showModal({eyebrow:'Opening night · Shock and awe',title:'Choose the air campaign',body:`<p>Before the ground war, ships in the Gulf and bombers strike Iraq. You choose when it starts from the ✸ Fires rail, and when the ground war follows. Brigades wait in Kuwait until G-Day (day ${saa().until||30} at the latest). Going in without softening the Republican Guard means about twice the casualties and units falling back.</p>${Object.values(SAA_PLANS).map(v=>`<p><b>${v.n}</b> · <span style="color:${v.col}">${v.risk}</span><br>${v.d}</p>`).join('')}<p class="note">Change it any time from the ✸ Fires rail.</p>`,opts:Object.entries(SAA_PLANS).map(([k,v])=>({t:v.n,cls:k==='mil'?'primary':'',f:()=>onAct('saaplan',k,'')}))})}
 function startSolo(g,sv,name){if(g==='continue'){S=migrate(sv);if(!S._name){S._name=uniqName(`${(DIFFS[S.diff]||{n:'Regular'}).n} campaign`)}}else{newGame(g);if(DIFFS[g].arcade)arcadeInit();setTimeout(saaAsk,400);S._slot=newSlotId();S._name=uniqName(name||`${DIFFS[g].n} campaign`);save()}if(S.speed>0)S.lastSpeed=S.speed;else if(!S.lastSpeed)S.lastSpeed=SET.startSpeed||4;if(g!=='continue')S.lastSpeed=SET.startSpeed||4;S.speed=0;$('#title').hidden=true;resize();fitView();updSpeed();setRoleUI();updHud();
  if(g!=='continue')showModal({eyebrow:'D-Day · 20 MAR 2003',title:'Topple the regime, find its leaders',body:'<p>Your ground forces stage at Camp Doha in Kuwait. Bring combat engineers or Navy Seabees: they build every new base. The Fifth Fleet in the Gulf hosts carriers and Tomahawk ships; Al Udeid hosts heavy bombers. One leadership target in Baghdad is already partly located: a cruise missile might end this early.</p><p>Troops travel the road network. MSRs are fast but heavily mined; minor roads are slower and ambush-prone. Units hit on the road stop and fight until you reinforce them or they fall back. Watch the terrain and the highways: columns move fastest on MSR Tampa and the main roads, slowest in mountains, marshes and at river crossings away from city bridges. Every new FOB needs combat engineers or Seabees to build it, so deploy engineers early, and every base needs food and ammunition hauled in. Open the Status panel at top right for force health, supply and the cost of the war.</p>',opts:[{t:'Open Camp Doha',cls:'primary',f:()=>{sel={kind:'base',id:'b0'};openSheet('base','b0')}},{t:'Look at the map first',f:()=>{}}]})}
-const GAME_VER=96;
+const GAME_VER=97;
 const CHANGES=[
+ [97,'Aviation, aerostats & new threats',['Broken units near a border flee abroad: Republican Guard survivors and cleared-out fighters slip into Syria, Iran, Jordan or Saudi Arabia, raising hostility. Early on they filter back down the ratlines; late in the war they come back in bigger waves','Al-Qaeda in Iraq cells form in Sunni cities when US forces look exposed (heavy recent losses, thinly held bases) and launch car bombs, suicide attacks and complex ambushes until the city is cleared. They are marked AQI on the map','Late in the war ISIS can emerge in eastern Syria from exiles and Al-Qaeda remnants. Its columns raid into Anbar and Nineveh and can overrun weak bases. Strike boxes over Raqqa, Abu Kamal and Deir ez-Zor hit its strongholds; destroy them to end the offensives','Starting funds raised (Regular $17B, Recruit $24B, Veteran $12B, Arcade $40B) to cover standing up the theater','New aviation battalions: the Attack Helicopter Battalion (three Apache troops and a Kiowa QRF troop) and the General Support Aviation Battalion (Dustoff MEDEVAC, Chinook heavy lift and Black Hawks)','New units: MEDEVAC Company (HH-60 Dustoff, wider reach and more runs), Heavy Lift Company (CH-47, 60 t resupply runs), and Aviation QRF Troop (OH-58D Kiowa). All need a helicopter pad','Camps and major bases now fly an aerostat. When it spots a mortar team, rocket crew or car bomb, an Aviation QRF (or Apaches) within about 150 km launches and often hits it before it strikes. Kiowa QRFs also break troops in contact near their base']],
  [96,'Compact services table',['The Services rail now puts Implement services, Repair all and Expand on each base row of the status table, with badges for how many services are missing and how many facilities are damaged. The separate Base actions list is gone']],
  [95,'AO discipline',['Brigade support areas are always set up inside the AO, never out on the road from Kuwait','A FOB left outside its AO after the AO shrinks is given up the next day and its company pulls inside, instead of holding out alone for days','Automatic AOs build forward FOBs only once their companies are actually inside the AO to hold them, and a base whose companies are already on the road in cannot be taken while it is empty','Brigades driving north from Kuwait to their AO move in convoy and are ambushed less on the way']],
  [94,'Services by base size',['Every base screen now has a Services package for its size: FOBs run engineers; camps add sustainment, MPs and a medical company; major bases add intelligence, civil affairs and C-RAM. Implement them all in one tap','Services the base is too small for are greyed out with the size they need; expand the base (with engineers, or contractors if none are there) to unlock them','Repair all damage in one tap, and the Services rail lists every base with these actions side by side']],

@@ -1,14 +1,20 @@
 {
- "game": 96,
- "file": "game-96.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-96.html",
- "sha256": "ff858ef6634d2fffeba7e7dd874dc7f90fadd52afbdd1d4fa8da5acd28c0d602",
- "size": 1777264,
+ "game": 97,
+ "file": "game-97.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-97.html",
+ "sha256": "15fdafeeb7b9f266a872b115d82117cfb59e520cc9ce5179cbee65230a47fd09",
+ "size": 1788813,
  "notes": [
-  "Compact services table",
-  "The Services rail now puts Implement services, Repair all and Expand on each base row of the status table, with badges for how many services are missing and how many facilities are damaged. The separate Base actions list is gone"
+  "Aviation, aerostats & new threats",
+  "Broken units near a border flee abroad: Republican Guard survivors and cleared-out fighters slip into Syria, Iran, Jordan or Saudi Arabia, raising hostility. Early on they filter back down the ratlines; late in the war they come back in bigger waves",
+  "Al-Qaeda in Iraq cells form in Sunni cities when US forces look exposed (heavy recent losses, thinly held bases) and launch car bombs, suicide attacks and complex ambushes until the city is cleared. They are marked AQI on the map",
+  "Late in the war ISIS can emerge in eastern Syria from exiles and Al-Qaeda remnants. Its columns raid into Anbar and Nineveh and can overrun weak bases. Strike boxes over Raqqa, Abu Kamal and Deir ez-Zor hit its strongholds; destroy them to end the offensives",
+  "Starting funds raised (Regular $17B, Recruit $24B, Veteran $12B, Arcade $40B) to cover standing up the theater",
+  "New aviation battalions: the Attack Helicopter Battalion (three Apache troops and a Kiowa QRF troop) and the General Support Aviation Battalion (Dustoff MEDEVAC, Chinook heavy lift and Black Hawks)",
+  "New units: MEDEVAC Company (HH-60 Dustoff, wider reach and more runs), Heavy Lift Company (CH-47, 60 t resupply runs), and Aviation QRF Troop (OH-58D Kiowa). All need a helicopter pad",
+  "Camps and major bases now fly an aerostat. When it spots a mortar team, rocket crew or car bomb, an Aviation QRF (or Apaches) within about 150 km launches and often hits it before it strikes. Kiowa QRFs also break troops in contact near their base"
  ],
- "published": "2026-11-03T16:32:25.684Z",
+ "published": "2026-11-03T17:53:13.926Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
