@@ -1,16 +1,15 @@
 {
- "game": 122,
+ "game": 124,
  "semver": "1.0.0",
- "file": "game-122.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-122.html",
- "sha256": "9a33b400eecb8014ea2b51177ce6931a4c7af27ba143786228835985fc09d1c8",
- "size": 3140561,
+ "file": "game-124.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-124.html",
+ "sha256": "df15bc411441118b0d000ad1d7a9093c05207abb1d81d1367e6e8ef433da5cd4",
+ "size": 3143092,
  "notes": [
-  "AO assaults & quick moves",
-  "Planning an assault on a city inside an AO now only offers that AO's own ground units, with air and naval support from anywhere in range",
-  "Moving forces between AOs is one tap again: every AO card in the AOs menu has Bring in buttons for each other brigade, and every company's screen has Move to buttons for the other AOs"
+  "Firefights in the cities",
+  "Patrols in towns where insurgents are embedded now draw fire: sniping, RPG teams and complex attacks that can pin a company down until reinforcements, air support or a quick reaction force arrive. The more cells in the town, the more often it happens; cordon and clearance patrols draw more fire than presence patrols, and well-secured routes, armour and restraint draw less"
  ],
- "published": "2026-11-03T20:40:06.799Z",
+ "published": "2026-11-03T20:43:13.676Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
