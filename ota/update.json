@@ -1,15 +1,15 @@
 {
- "game": 76,
- "file": "game-76.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-76.html",
- "sha256": "cc90ceb5067e81cc061aff82ef27a18243ddb383606ea55fc1ba1f0234d6ace5",
- "size": 1041551,
+ "game": 83,
+ "file": "game-83.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-83.html",
+ "sha256": "6643309872dcba972ee03cfe8b8ebc14253c30d8e36a3bd29eba2c9447280a28",
+ "size": 1095158,
  "notes": [
-  "Smarter AO assignment",
-  "Brigade buttons on the Areas of operations tab now say which AO the brigade is in now, and AO buttons show how well the brigade fits it",
-  "When deploying a combat brigade, pick its AO on arrival, or leave it on Auto: it weighs each AO's risk and how well the brigade suits the ground and towns (armor for open desert, infantry for cities and mountains, Marines for towns and marsh)"
+  "Update alerts",
+  "When a new version is out while the game is open, an alert appears at the top centre of the window, separate from in-game notifications. On desktop: Restart & update (your campaign is saved first). On iPad and the web version: Reload. Later hides it until the next version",
+  "The desktop app now checks for updates every 30 minutes while you play"
  ],
- "published": "2026-11-03T02:35:48.349Z",
+ "published": "2026-11-03T13:38:58.928Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
