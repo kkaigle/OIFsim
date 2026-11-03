@@ -1,17 +1,16 @@
 {
- "game": 84,
- "file": "game-84.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-84.html",
- "sha256": "6bd374ac14815086b23fd6b6181cd8ae7b99ea578f423523353b6938549f9b0e",
- "size": 1119443,
+ "game": 85,
+ "file": "game-85.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-85.html",
+ "sha256": "e89fa9802e05a5081ee7492832a5942914fb49e8808c4a3b3ab96a4951338512",
+ "size": 1737757,
  "notes": [
-  "Wider region & Washington",
-  "The map now covers the whole region: Iran to the Strait of Hormuz, Syria, Turkey, Jordan, Saudi Arabia, the Gulf states, Israel, Lebanon and Sinai, with capitals and major cities",
-  "Washington decision points: where are the WMD (make the hunt the priority, shape the narrative, or tell the truth), \"Mission accomplished\", Saudi basing, election-year drawdowns, hot pursuit into Syria and cross-border strikes on the IRGC",
-  "Escalation can turn into regional war. With hostility and escalation high, the President can authorize a limited air war on Iran or Syria: missiles on your bases, border raids and militia surges every day. Strike boxes over their military sites wear them down until they accept a ceasefire",
-  "New ⚑ DC rail: authorizations, war status, cross-border targets and a record of Washington's decisions"
+  "Full-region terrain",
+  "Satellite imagery, tactical relief and contour lines now cover the whole region, from the Mediterranean to the Strait of Hormuz and from Turkey to Riyadh",
+  "The MGRS grid covers the whole region and is much fainter",
+  "Al Udeid now sits at its real location in Qatar. Diego Garcia is a separate bomber base marked at the south-east edge of the map (it is 3,800 km away in the Indian Ocean)"
  ],
- "published": "2026-11-03T14:02:49.708Z",
+ "published": "2026-11-03T14:14:25.665Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
