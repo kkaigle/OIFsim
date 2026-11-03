@@ -1,16 +1,15 @@
 {
- "game": 126,
+ "game": 127,
  "semver": "1.0.0",
- "file": "game-126.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-126.html",
- "sha256": "04e860575418174f26f9d1d7e39f1df76973d13cc0cbdc7ae52c200182ebaa9f",
- "size": 3241101,
+ "file": "game-127.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-127.html",
+ "sha256": "bcc8eaec2eee05d738787ba91697057b4b7bd66411639ca084a16fbe12050f7e",
+ "size": 3241686,
  "notes": [
-  "Multiplayer everywhere",
-  "Play with a partner now works on the website, the desktop app and iPad, not just on claude.ai. The host starts a co-op or versus game and gets a 4-letter code; the partner taps Play with a partner and enters it. Devices connect directly (peer to peer), so there is no account and no server to set up",
-  "On claude.ai the artifact keeps using its built-in rooms, with the list of open games"
+  "Multiplayer button fix",
+  "Play with a partner always responds now: if the live connection is slow to start it waits a few seconds at most, then opens the menu or explains why multiplayer is not available in that view"
  ],
- "published": "2026-11-03T22:18:12.149Z",
+ "published": "2026-11-03T22:25:15.582Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
