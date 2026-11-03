@@ -1,15 +1,15 @@
 {
- "game": 111,
+ "game": 112,
  "semver": "1.0.0",
- "file": "game-111.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-111.html",
- "sha256": "3cf82aa757756e855a868f1db386db56a5c78381655a859fef8268c893acdc2d",
- "size": 1844424,
+ "file": "game-112.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-112.html",
+ "sha256": "67ce401e228f0215b2b8b97df9473be854ad75808bff159b3c4b8ac24c0fbbad",
+ "size": 1848613,
  "notes": [
-  "Show on map",
-  "Every screen about something on the map (a unit, base or FOB, city, AO, brigade, enemy base, WMD lead or strike target) now has an eye button next to its name. Tap it to fly the map straight there"
+  "Simpler reorg",
+  "Reorg is now one card per AO with three fixes: realign brigades (companies elsewhere move back into the AO), refill the ranks, and rotate units at the end of their tour. Each shows its cost, and Do all three handles the lot. Units outside AOs get their own card"
  ],
- "published": "2026-11-03T18:52:56.164Z",
+ "published": "2026-11-03T18:55:00.008Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
