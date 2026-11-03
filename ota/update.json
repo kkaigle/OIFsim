@@ -1,16 +1,16 @@
 {
- "game": 92,
- "file": "game-92.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-92.html",
- "sha256": "b5d044e83b2506ffb67f10958f8d6c9db9ab831f3b4f18e4684108806d2d3a4f",
- "size": 1763839,
+ "game": 93,
+ "file": "game-93.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-93.html",
+ "sha256": "82c7ee2845661ab2bac66b9fc89dc0207b3d1d4e6dd19d3d622716b5b603dfb6",
+ "size": 1768478,
  "notes": [
-  "AO status",
-  "Every AO shows where its forces stand: Deploying, Moving in, Assuming control or Occupied. Each brigade shows how many companies are deploying, staging in Kuwait, moving north, assuming control or in control",
-  "The AO screen lists every company with its status and where it is or is heading",
-  "No more stragglers: companies of an AO brigade still sitting in Kuwait or at another base outside the AO get moved in every day until they are inside. Staging in Kuwait is not their home base"
+  "Holding the FOBs",
+  "Automatic AOs now site FOBs in moderate-risk ground rather than the red zones, and every FOB keeps at least one company home instead of sending everyone on patrol",
+  "Threatened FOBs (heavy local danger, recent attacks, or a Republican Guard division within about 150 km) get a second company moved in from a quieter FOB in the same AO",
+  "Under any ROE, an AO counter-attacks to take back a base the enemy captures inside it. Aggressive ROE accepts worse odds and brings artillery and air; weapons free reaches beyond the AO line. Under aggressive and weapons-free ROE, AOs also push into insurgent-held towns on their own: more ground taken back, more civilian risk"
  ],
- "published": "2026-11-03T16:08:19.042Z",
+ "published": "2026-11-03T16:16:11.936Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
