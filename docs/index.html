@@ -743,7 +743,7 @@ const DIFFS={arcade:{n:'Arcade',budget:30000,aggr:.55,arcade:1},recruit:{n:'Recr
 let S=null;
 function newGame(dk){
  const kp=P(47.65,29.45),gp=P(49.25,29.2),up=P(51.32,25.12),dg=P(58.3,21.3);
- S={v:3,spv:3,fmode:SET.forceMode||'sector',diff:dk,day:0,t:.25,speed:SET.startSpeed||4,budget:DIFFS[dk].budget,morale:72,congress:70,polMod:0,kia:0,wia:0,dayKia:0,kiaDays:[],phase:'conv',insDay:null,nid:1,lid:1,
+ S={v:3,spv:4,fmode:SET.forceMode||'sector',diff:dk,day:0,t:.25,speed:SET.startSpeed||4,budget:DIFFS[dk].budget,morale:72,congress:70,polMod:0,kia:0,wia:0,dayKia:0,kiaDays:[],phase:'conv',insDay:null,nid:1,lid:1,
   cities:CITY_DEFS.map(([id,n,lo,la,pop,reg,bn])=>({id,n,...P(lo,la),pop,reg,bn,instab:ri(10,18),cells:0,owner:'neutral',cd:0,civilUntil:0})),
   divs:DIV_DEFS.map(([id,n,city,str,def,kind])=>({id,n,city,str,max:str,def,kind,sent:0})),
   bases:[{id:'b0',n:'Camp Doha (Kuwait)',city:null,x:kp.x,y:kp.y,level:2,slots:60,building:0,kuwait:1},
@@ -890,8 +890,8 @@ function tacWeight(t){let w=(S.ai.learned[t.id]||1)*Math.pow(1-ctrOf(t),1.4)*(t.
  const f=S.red.focus;if(f&&f.id===t.id&&f.until>S.day)w*=2.5;return Math.max(.01,w)}
 
 /* ================= log / toasts ================= */
-const SET_DEF={forceMode:'sector',ovGround:true,ovAir:true,_sv:72,map:'tactical',droneCam:'ir',q3d:'low',tDur:9,tMax:3,tFilter:'all',pauseCrit:false,slowContact:2,postTags:true,droneHUD:false,fx:'full',advMin:2,startSpeed:4,roadLbl:true};
-let SET={...SET_DEF};try{const v=JSON.parse(localStorage.getItem('itc-set')||'null');if(v&&typeof v==='object'){SET={...SET_DEF,...v};if((SET._sv||0)<65){SET._sv=65;SET.map='tactical';SET.droneHUD=false;try{localStorage.setItem('itc-set',JSON.stringify(SET))}catch(e){}}if((SET._sv||0)<72){SET._sv=72;SET.ovAir=true;try{localStorage.setItem('itc-set',JSON.stringify(SET))}catch(e){}}}}catch(e){}
+const SET_DEF={forceMode:'sector',ovGround:true,ovAir:true,_sv:88,map:'tactical',droneCam:'ir',q3d:'low',tDur:9,tMax:3,tFilter:'all',pauseCrit:false,slowContact:4,postTags:true,droneHUD:false,fx:'full',advMin:2,startSpeed:16,roadLbl:true};
+let SET={...SET_DEF};try{const v=JSON.parse(localStorage.getItem('itc-set')||'null');if(v&&typeof v==='object'){SET={...SET_DEF,...v};if((SET._sv||0)<65){SET._sv=65;SET.map='tactical';SET.droneHUD=false;try{localStorage.setItem('itc-set',JSON.stringify(SET))}catch(e){}}if((SET._sv||0)<72){SET._sv=72;SET.ovAir=true;try{localStorage.setItem('itc-set',JSON.stringify(SET))}catch(e){}}if((SET._sv||0)<88){SET._sv=88;SET.startSpeed=Math.min(256,(SET.startSpeed||4)*4);if(SET.slowContact)SET.slowContact=Math.min(16,SET.slowContact*4);try{localStorage.setItem('itc-set',JSON.stringify(SET))}catch(e){}}}}catch(e){}
 function saveSet(){try{localStorage.setItem('itc-set',JSON.stringify(SET))}catch(e){}}
 const ADVISORY=new Set(['Sector placed','Sector FOB','Sector assigned','Sector shrinking','AOs assigned','Brigade rally','New advisor','Advisor relieved','Advisor','Target escaped','Oil restart','Oil flowing','Sabotage foiled','Fuel shortage','Update ready','Updating','Up to date','Update check failed','Saved','Save failed','Paused','ROE changed','Enemy adapting','Regime expands','Regime digging in','Sandstorm','Regional','Enemy reinforcing','Partner connected','Rotations ordered','Rotation ordered','Deployment','Brigade deploying','Offensive launched','Campaign ended','Engineer operations','Civil affairs']);
 const CRIT=new Set(['Troops in contact','Base overrun','Base captured','Missile from Iran','Iran retaliates','Insider attack','Forced withdrawal']);
@@ -1187,7 +1187,7 @@ function hitUnit(u,kia,wia){vehFromLoss(u,Math.min(u.p,kia+wia),HITWHY||'');
  const loss=Math.min(u.p,kia+wia),k=Math.min(kia,loss);u.p-=loss;addKia(k);S.wia+=loss-k;const dow=medevac(u,loss-k,nearestCity(u).n);woundAdd(u,loss-k-dow);mor(-(k*.02+.2));S.tm=clamp(S.tm-k*.15,0,100);return [k+dow,loss-k-dow]}
 let HITWHY='';var patrolDay,cbDay,clearArrive;function fieldAttack(u){HITWHY='IED / ambush';try{return fieldAttack0(u)}finally{HITWHY=''}}
 function fieldAttack0(u){if(inKW(dpos(u)))return;try{const q=dpos(u);DFX.push({x:q.x,y:q.y,t:performance.now(),k:Math.random()<.5?'ied':'amb',seed:hsh(u.id)})}catch(e){}const leg=u.state==='moving'&&u.path&&u.path[0]?u.path[0].k:'off',rn=u.state==='moving'&&u.path&&u.path[0]?u.path[0].h:null;const rd=rn?{n:rn}:null;const ied=Math.random()<(leg==='msr'?.8:leg==='minor'?.35:.15);const nm=nearestCity(u).n;
- const ctr=ied?Math.min(.8,.35*cexp(N('eng'),.35)+(has('jammer')?.25:0)+(isr()?.08:0)):Math.min(.8,.35*cexp(N('avn'),.45)+(isr()?.2:0));
+ const q0=dpos(u),oc=orbNear(q0,'cas',150).length,oi=orbNear(q0,'isr',180).length;const ctr=ied?Math.min(.85,.35*cexp(N('eng'),.35)+(has('jammer')?.25:0)+(isr()?.08:0)+(oi?.12:0)):Math.min(.85,.35*cexp(N('avn'),.45)+(isr()?.2:0)+(oc?.18:0)+(oi?.06:0));
  const where=rd?`on ${rd.n}`:'in open country';
  if(Math.random()<ctr){log(`${ied?'IED':'Ambush'} ${where} near ${nm} spotted and defeated before it hit ${u.name}.`,'good');if(ied)bdaE('IEDs cleared',1);else bdaI().ek+=ri(1,4);return}
  const kia=Math.round(rnd(0,ied?2.99:3.99)*.8*(ied?(has('mrap')?.45:1)*(has('uahmmwv')?.8:1):1)*kiaMul()),wia=Math.round(kia*rnd(1.8,3)+rnd(0,2));
@@ -1377,7 +1377,7 @@ function resolveTarget(k){const [kind,id]=String(k).split(':');if(kind==='div'){
  const s=shById(id);if(!s)return null;const L=s.leader&&leaderById(s.leader);return {kind:'sh',sh:s,city:cityById(s.city),x:s.x,y:s.y,n:L?`${lnm(L)} hideout`:SH_T[s.type].n}}
 // aerial refueling: tankers extend fixed-wing reach from their own air base
 const fixedWing=t=>{const T=UT[t];return !!T&&T.home==='air'&&!ROTARY.has(t)&&t!=='tnk'&&t!=='c130'};
-function tankerBonus(b){if(!b||!S)return 0;const n=S.units.filter(x=>x.type==='tnk'&&x.baseId===b.id&&x.state!=='transit'&&x.p>0).length;return n?Math.min(950,650+150*(n-1)):0}
+function tankerBonus(b){if(!b||!S)return 0;const n=S.units.filter(x=>x.type==='tnk'&&x.baseId===b.id&&x.state!=='transit'&&x.p>0&&!x.orbit).length;return Math.max(n?Math.min(950,650+150*(n-1)):0,trackBonus(b))}
 const tkB=u=>fixedWing(u.type)?tankerBonus(baseById(u.baseId)):0;
 const supR=(u,b)=>(UT[u.type].sup||0)+(fixedWing(u.type)?tankerBonus(b):0);
 function airReach(u){const t=UT[u.type],rg=(t.strike&&t.strike.range)||t.range||0;if(rg>2000)return rg;const tb=tkB(u);if(!AC[u.type])return rg+tb;acInit(u);return rg*clamp(.55+.45*u.ac.fmc/AC[u.type],.55,1)+tb}
@@ -1823,7 +1823,7 @@ function aoDay(){baseOwnDay();aoGoDay();if(!S.bdes)return;for(const s of secs())
   if(s.auto&&!saa().on){aoTighten(s);secAutoDay(s)}aoSupDay(s)}}
 // ---- map overlays ----
 const AIRCOV=[['Naval strike',['ddg','cvw'],'#ff6a50',[8,3]],['Attack helicopters',['avn','hmla'],'#ff9b4a',[]],['Lift & MEDEVAC',['lift'],'#7fd3ff',[6,4]],['Close air support',['a10','ac130','ftr'],'#c39bff',[2,5]],['ISR drones & patrol aircraft',['pred','p3'],'#8fe08a',[1,4]]];
-function drawAO(W,H){if(!S)return;try{drawFires()}catch(e){}if(SET.ovAir){ctx.save();for(const [n,ts,col,dash] of AIRCOV){const G=new Map();for(const u of S.units){if(!ts.includes(u.type)||u.p<=0)continue;const b=baseById(u.baseId);if(!b)continue;const t=UT[u.type],rg=(t.strike&&t.strike.range)||t.range||0;if(!rg||rg>2000)continue;if(!G.has(b.id))G.set(b.id,{b,us:[]});G.get(b.id).us.push(u)}
+function drawAO(W,H){if(!S)return;try{drawFires()}catch(e){}try{drawOrbits()}catch(e){}if(SET.ovAir){ctx.save();for(const [n,ts,col,dash] of AIRCOV){const G=new Map();for(const u of S.units){if(!ts.includes(u.type)||u.p<=0)continue;const b=baseById(u.baseId);if(!b)continue;const t=UT[u.type],rg=(t.strike&&t.strike.range)||t.range||0;if(!rg||rg>2000)continue;if(!G.has(b.id))G.set(b.id,{b,us:[]});G.get(b.id).us.push(u)}
   for(const {b,us} of G.values()){const r0=Math.max(...us.map(airReach)),[x,y]=w2s(b),r=r0*view.s;ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.fillStyle=col+'10';ctx.fill();ctx.setLineDash(dash);ctx.strokeStyle=col+'cc';ctx.lineWidth=1.6;ctx.stroke();ctx.setLineDash([]);
    const up=us.reduce((a,u)=>a+(AC[u.type]?acFmc(u):0),0),tot=us.reduce((a,u)=>a+(AC[u.type]||0),0),arr=us.every(z=>z.state==='transit');
    ctx.font=`600 9px ${FM}`;ctx.fillStyle=col;ctx.textAlign='center';const nm=[...new Set(us.map(z=>UT[z.type].n.replace(/ \(.*\)/,'').replace(/ (Det|Detachment|Squadron|Troop|Company)$/,'')))];const gi=AIRCOV.findIndex(g=>g[0]===n),an=-Math.PI/2+gi*.38;
@@ -1913,10 +1913,49 @@ function secPtSheet(){const p=SECPT;if(!p)return head('','No point');let h=head(
  if(inn.length)h+=`<p class="note" style="margin-top:0">Already inside ${inn.map(s=>esc(s.n)).join(', ')}.</p>`;
  h+=`<div class="acts">${btn('secnewpt',`${p.x.toFixed(2)},${p.y.toFixed(2)}`,'Place a new sector here','Then assign brigades or companies to it','','primary')}${btn('fznewpt',`${p.x.toFixed(2)},${p.y.toFixed(2)}`,'Place a strike box here','Ships and air wings in reach fire on targets inside it','','')}</div>`;
  const mvs=secs().filter(s=>dist(s,p)>15);if(mvs.length)h+=`<h3>Or move an AO's centre here</h3><p class="note" style="margin-top:0">FOBs left outside the new AO are abandoned and its forces build new ones. ${aoReach(p,100)?'':'This ground has no held AO to its south, so only an AO that keeps a link back to Kuwait can move here.'}</p><div class="list">${mvs.map(s=>{const ok=aoReach(p,secRr(s),null,s);return `<button class="item" data-act="secshift" data-a="${s.id}" data-b="${p.x.toFixed(2)},${p.y.toFixed(2)}" ${ok?'':'disabled'}><span class="mid"><span class="nm">${esc(s.n)}</span><span class="sb">${ok?`${Math.round(dist(s,p)*.9)} km move · ${S.bases.filter(b=>b.sec===s.id&&b.role).length} FOBs now`:'Out of reach from the south'}</span></span><span class="rt">${ok?'Move ›':''}</span></button>`}).join('')}</div>`;
+ h+=orbitHTML(p);
  const L=combatBdes();if(L.length)h+=`<h3>Or send a brigade here</h3><div class="list">${L.map(B=>{const s=B.sec&&secById(B.sec);return `<button class="item" data-act="secset" data-a="${B.id}" data-b="${p.x.toFixed(2)},${p.y.toFixed(2)}"><span class="mid"><span class="nm">${esc(bdeShort(B))}</span><span class="sb">${s?`Now ${esc(s.n)}`:'Unassigned'}${inn.length?' · joins the sector here':' · opens a new sector'}</span></span><span class="rt">Assign ›</span></button>`}).join('')}</div>`;return h}
 function secNewSheet(){let h=head('Sector command','Place a new sector');h+=`<p class="note" style="margin-top:0">Or tap anywhere on the map and choose "Place sector" in the toolbox.</p>`;
  const C=S.cities.filter(c=>inPoly(c,BORDER)&&!secs().some(s=>dist(s,c)<secRr(s)*.55)).map(c=>({c,t:threatAt(c)})).sort((a,b)=>(S.phase==='conv'?(divAt(b.c)?1:0)-(divAt(a.c)?1:0):0)||b.t-a.t);
  return h+`<div class="list">${C.map(({c,t})=>`<button class="item" data-act="secnewpt" data-a="${c.x.toFixed(2)},${c.y.toFixed(2)}"><span class="mid"><span class="nm">${esc(c.n)}${divAt(c)?' <span class="chip h">Regime held</span>':''}</span><span class="sb">Threat ${t>=.55?'high':t>=.25?'elevated':'low'}</span></span><span class="rt">Place ›</span></button>`).join('')}</div>`}
+
+// ===================== AIR PATROLS (daily orbits / tanker tracks) =====================
+const ORB_T={tnk:'aar',ftr:'cas',cvw:'cas',a10:'cas',ac130:'cas',pred:'isr',p3:'isr'};
+const ORB_N={aar:'Refueling track',cas:'Close air support orbit',isr:'ISR orbit'};
+const ORB_C={aar:'#7fd3ff',cas:'#ffa24a',isr:'#8fe08a'};
+const ORB_COST={tnk:3,ftr:4,cvw:5,a10:3,ac130:3,pred:1,p3:2};
+const orbReach=u=>u.type==='tnk'?1500:Math.max(0,airReach(u)*.92);
+const orbOk=(u,p)=>{const b=baseById(u.baseId);return !!b&&!!ORB_T[u.type]&&u.state!=='transit'&&dist(b,p)<=orbReach(u)};
+// aircraft on station today (not grounded, not in maintenance, base working)
+const onOrbit=u=>!!u.orbit&&u.p>0&&u.state==='garrison'&&u.orbDay===S.day;
+const orbits=k=>S.units.filter(u=>onOrbit(u)&&(!k||ORB_T[u.type]===k));
+const orbNear=(p,k,R)=>orbits(k).filter(u=>dist(u.orbit,p)<=(R||160));
+// a tanker track refuels jets whose base lies within reach of it
+function trackBonus(b){if(!b||!S)return 0;let best=0;for(const t of orbits('aar')){if(dist(b,t.orbit)<=950)best=Math.max(best,650)}return best}
+function airPatrolDay(){if(!S)return;const st=stormy();
+ for(const u of S.units){if(!u.orbit)continue;if(!ORB_T[u.type]||u.p<=0){u.orbit=null;continue}const b=baseById(u.baseId);if(!b||u.state!=='garrison'||b.building>0||st||(AC[u.type]&&acFmc(u)<=0)){u.orbDay=-1;continue}
+  const c=ORB_COST[u.type]||2;if(S.budget<c){u.orbDay=-1;continue}spend('operations',c);u.orbDay=S.day}
+ // ISR orbits build the picture
+ for(const u of orbits('isr'))for(const s of S.sh){if(dist(s,u.orbit)>180)continue;const was=s.prog;s.prog=Math.min(1,s.prog+(u.type==='pred'?.035:.025));if(was<.5&&s.prog>=.5)log(`${u.name} on its ISR orbit spotted a ${(SH_T[s.type]||{n:'site'}).n.toLowerCase()} near ${(cityById(s.city)||{n:'?'}).n}.`,'good',true,'Stronghold located')}
+ // CAS on station breaks contacts nearby
+ for(const u of orbits('cas')){const p=S.units.filter(x=>x.state==='pinned'&&dist(dpos(x),u.orbit)<=170).sort((a,b)=>(b.enemy||0)-(a.enemy||0))[0];if(!p)continue;const dm=(UT[u.type].strike?UT[u.type].strike.dmg:12)*.6*eff(u);p.enemy=Math.max(0,(p.enemy||0)-dm);
+  try{fxJet(u.orbit,dpos(p),u.type==='cvw'?'ftr':u.type)}catch(e){}log(`${u.name} on its CAS orbit rolls in on the fighters pinning ${p.name}.`,'good',false)}}
+function orbitLbl(u){const k=ORB_T[u.type];return `${ORB_N[k]} at grid ${gridS(u.orbit)}${onOrbit(u)?' · on station':' · grounded today'} · ${fm(ORB_COST[u.type]||2)}/day`}
+function orbitHTML(p){const L=S.units.filter(u=>ORB_T[u.type]&&u.p>0);if(!L.length)return '';
+ return `<h3>Fly a daily air patrol here</h3><p class="note" style="margin-top:0">Tankers fly a refueling track (jets at bases within about 950 km reach 650 km farther). Fighters, A-10s and gunships fly a close air support orbit (they break troops in contact and spoil ambushes within about 150 km). Drones and P-3s fly an ISR orbit (they find strongholds and IEDs).</p><div class="list">${L.map(u=>{const ok=orbOk(u,p),k=ORB_T[u.type];return `<button class="item" data-act="orbit" data-a="${u.id}" data-b="${p.x.toFixed(2)},${p.y.toFixed(2)}" ${ok?'':'disabled'}>${symSVG(u.type,26,18)}<span class="mid"><span class="nm">${esc(u.name)}</span><span class="sb">${ORB_N[k]}${!ok?' · out of reach':''}${u.orbit?` · now at ${gridS(u.orbit)}`:''} · ${fm(ORB_COST[u.type]||2)}/day</span></span><span class="rt">${ok?'Patrol ›':''}</span></button>`}).join('')}</div>`}
+function orbitsHTML(){const L=S.units.filter(u=>u.orbit);let h=`<h3>Air patrols · ${L.length}</h3>`;if(!L.length)return h+`<p class="note" style="margin-top:0">None. Tap the map and choose "Fly a daily air patrol here" to put a tanker, fighters, A-10s, gunships or drones on a daily orbit.</p>`;
+ return h+`<div class="list">${L.map(u=>`<div class="item">${symSVG(u.type,26,18)}<span class="mid"><span class="nm">${esc(u.name)}</span><span class="sb">${esc(orbitLbl(u))}</span></span><button class="btn sm" data-act="orbitoff" data-a="${u.id}"><span class="t">Stop</span></button></div>`).join('')}</div>`}
+function drawOrbits(){if(!S)return;const L=S.units.filter(u=>u.orbit&&u.p>0);if(!L.length)return;const now=performance.now();ctx.save();
+ for(const u of L){const k=ORB_T[u.type];if(!k)continue;const b=baseById(u.baseId),o=u.orbit,col=ORB_C[k],live=onOrbit(u);const [ox,oy]=w2s(o);const ang=b?Math.atan2(o.y-b.y,o.x-b.x)+Math.PI/2:0,L0=(k==='aar'?70:45)*view.s,R0=(k==='aar'?16:12)*view.s;
+  const ca=Math.cos(ang),sa=Math.sin(ang);const pt=t=>{// racetrack: two straights and two turns, t in 0..1
+   const per=2*L0*2+2*Math.PI*R0,d=t*per;let x,y;if(d<2*L0){x=-L0+d;y=-R0}else if(d<2*L0+Math.PI*R0){const a=-Math.PI/2+(d-2*L0)/R0;x=L0+Math.cos(a)*R0;y=Math.sin(a)*R0}else if(d<4*L0+Math.PI*R0){x=L0-(d-2*L0-Math.PI*R0);y=R0}else{const a=Math.PI/2+(d-4*L0-Math.PI*R0)/R0;x=-L0+Math.cos(a)*R0;y=Math.sin(a)*R0}
+   return [ox+x*ca-y*sa,oy+x*sa+y*ca]};
+  ctx.beginPath();for(let i=0;i<=60;i++){const [x,y]=pt(i/60);i?ctx.lineTo(x,y):ctx.moveTo(x,y)}ctx.closePath();ctx.strokeStyle=col+(live?'cc':'55');ctx.lineWidth=1.6;ctx.setLineDash([6,4]);ctx.stroke();ctx.setLineDash([]);
+  if(k!=='aar'){ctx.beginPath();ctx.arc(ox,oy,(k==='cas'?150:180)*view.s,0,7);ctx.strokeStyle=col+'22';ctx.lineWidth=1;ctx.stroke()}
+  if(b&&live){const [bx,by]=w2s(b);ctx.beginPath();ctx.moveTo(bx,by);ctx.lineTo(ox,oy);ctx.strokeStyle=col+'33';ctx.setLineDash([2,5]);ctx.stroke();ctx.setLineDash([])}
+  if(live){const per=k==='aar'?26000:k==='isr'?30000:18000,t=((now+hsh(u.id)%10000)%per)/per,[x,y]=pt(t),[x2,y2]=pt((t+.004)%1);drawIcon(u.type==='cvw'?'ftr':u.type,x,y,clamp(26*view.s,18,34),{plate:false,ang:Math.atan2(y2-y,x2-x)})}
+  ctx.font=`700 9px ${FM}`;ctx.textAlign='center';ctx.fillStyle=col;ctx.fillText(`${k==='aar'?'AAR TRACK':k==='cas'?'CAS':'ISR'} · ${UT[u.type].n.replace(/ \(.*\)/,'').replace(/ (Det|Detachment|Squadron|Troop|Company)$/,'').toUpperCase()}${live?'':' · GROUNDED'}`,ox,oy-R0-8)}
+ ctx.restore()}
 
 // ===================== SHOCK & AWE · STRIKE BOXES =====================
 const hardOf=d=>d?clamp(d.def/(d.def0||d.def),.5,1.6):1;
@@ -1973,7 +2012,7 @@ function fzShot(u,z,st,T){const A=saa(),b=baseById(u.baseId);let f=fzFocus(z);
  try{let ms=1500;if(b){if(u.type==='ddg')ms=fxMissile(b,tg,'#f4f4f4');else ms=fxJet(b.offmap?{x:tg.x+260,y:tg.y+200}:b,tg,u.type)}schedImpact(ms,()=>{fxBoom(tg,u.type==='bomb'?1.6:1.1);flash(tg.x,tg.y,'#e7a53b')})}catch(e){}
  if(AC[u.type]&&f==='mil'&&Math.random()<.02)acLose(u,1,'to anti-aircraft fire')}
 // fire every ready asset in a box once; returns shots fired
-function fzFire(z){const A=saa(),T=fzTargets(z);let n=0;for(const u of fzUnits(z)){const st=UT[u.type].strike;if(!st||u.state!=='garrison'||(u.rdy||0)>S.day)continue;const b=baseById(u.baseId);if(!b||b.building>0||b.restricted||!fzInRange(u,z))continue;if(AC[u.type]&&acFmc(u)<=0)continue;if(stormy()&&u.type!=='ddg')continue;
+function fzFire(z){const A=saa(),T=fzTargets(z);let n=0;for(const u of fzUnits(z)){const st=UT[u.type].strike;if(!st||u.state!=='garrison'||(u.rdy||0)>S.day||u.orbit)continue;const b=baseById(u.baseId);if(!b||b.building>0||b.restricted||!fzInRange(u,z))continue;if(AC[u.type]&&acFmc(u)<=0)continue;if(stormy()&&u.type!=='ddg')continue;
   if(!fzHas(T,fzFocus(z)))break;if(S.budget<st.cost)continue;spend('strikes',st.cost);u.rdy=S.day+st.cd;fzShot(u,z,st,T);n++}return n}
 const fzDayCost=z=>Math.round(fzUnits(z).reduce((a,u)=>{const st=UT[u.type].strike;return a+(st?st.cost/st.cd:0)},0));
 function firesDay(){const A=saa();if(A.on&&A.began===undefined)A.began=A.shots?0:null;if(A.on&&S.day>=(A.until||30))saaGround('auto');
@@ -1991,6 +2030,7 @@ function firesSheet(){const A=saa(),red=NET.myRole==='red';const live=fzs().filt
  const ds=aliveDivs().filter(d=>d.def0),avg=ds.length?ds.reduce((a,d)=>a+Math.max(0,1-d.def/d.def0),0)/ds.length:0;
  h+=strip([['Strikes',`${A.shots||0}`],['Daily cost',live.length?fm(live.reduce((a,z)=>a+fzDayCost(z),0)):'Holding'],['RG softened',`${Math.round(avg*100)}%`],['Infrastructure hit',`${Math.round(A.inf||0)}`,(A.inf||0)>120?'var(--hostile)':(A.inf||0)>50?'var(--warn)':null],['Boxes',`${fzs().length}`]]);
  if((A.inf||0)>50)h+=`<p class="note" style="color:var(--warn)">Infrastructure damage will feed the resistance: cities hit hard start the insurgency with more cells.</p>`;
+ h+=orbitsHTML();
  const all=S.units.filter(u=>FIRES_T.has(u.type)&&u.p>0);
  h+=`<h3>Strike boxes · ${fzs().length}</h3>`;
  for(const z of fzs()){const us=fzUnits(z),T=fzTargets(z),R=fzRad(z),f=fzFocus(z);
@@ -2420,7 +2460,7 @@ function politicsDay(){S.kiaDays.push(S.dayKia);if(S.kiaDays.length>30)S.kiaDays
  if(S.gov.formed){if(S.gov.surgeCap&&S.day>=S.gov.surgeCap){S.gov.cap=Math.max(3600,S.gov.cap-(S.gov.surgeAmt||3000));S.gov.surgeCap=0;S.gov.surgeAmt=0}
   if(S.day>=S.gov.next){S.gov.next=S.day+90;if(natInstab()<35){S.gov.cap=Math.max(3600,Math.round(S.gov.cap*.88/120)*120);log(`Under the SOFA, the troop cap drops to ${S.gov.cap.toLocaleString()} as Iraqi forces take more control.`,'info',true,'SOFA drawdown')}}
   const tr=troopsIraq();if(tr>S.gov.cap){bumpAll(.12);con(-.08);if(S.day%7===0)log(`You are over the SOFA cap (${tr.toLocaleString()} of ${S.gov.cap.toLocaleString()}). Baghdad is protesting. Send units home or move them to Kuwait.`,'bad',true,'SOFA violation')}}}
-function dailyTick(){rsync();runImpacts(true);vehDay();try{wmdDay()}catch(e){}ETrack();S.day++;grievDay();if(isArc())arcadeDay();surgeDay();advDay();aoDay();firesDay();try{washDay()}catch(e){console.log('wash',e)}oilDay();iranPlanDay();backfillDay();roeDay();opsDay();spend('upkeep',upkeep());
+function dailyTick(){rsync();runImpacts(true);vehDay();try{wmdDay()}catch(e){}ETrack();S.day++;grievDay();if(isArc())arcadeDay();surgeDay();advDay();aoDay();try{airPatrolDay()}catch(e){console.log('orb',e)}firesDay();try{washDay()}catch(e){console.log('wash',e)}oilDay();iranPlanDay();backfillDay();roeDay();opsDay();spend('upkeep',upkeep());
  for(const u of S.units)if(u.state==='transit'&&S.day>=u.arrive){const b=baseById(u.baseId);if(!b){u.p=0;continue}u.state='garrison';u.x=b.x;u.y=b.y;u.dep=S.day;acInit(u);if(u.reliefOf){const o=unitById(u.reliefOf);if(u.bde){const B=(S.bdes||[]).find(x=>x.id===u.bde);if(B){const i=B.units.indexOf(u.reliefOf);if(i>=0)B.units[i]=u.id;else if(!B.units.includes(u.id))B.units.push(u.id)}}u.reliefOf=null;if(o){if(['garrison','patrolling','building'].includes(o.state)){S.units=S.units.filter(x=>x!==o);log(`${u.name} has relieved ${o.name} at ${b.n}. The outgoing unit is heading home.`,'good');mor(.4);S.tm=clamp(S.tm+.5,0,100)}else{o.rotateOut=true;log(`${u.name} has arrived at ${b.n}; ${o.name} will head home once it is back from its mission.`,'info')}}}else log(`${u.name} has arrived at ${b.n}.`,'info')}
  S.units=S.units.filter(u=>u.p>0&&!(u.goHome&&u.state==='garrison'));
  buildDay();
@@ -2542,7 +2582,7 @@ function symSVG(type,w=30,h=20){const c='#a8d45e',g=UT[type].g;let s='';const x=
 /* ================= canvas ================= */
 const cv=$('#cv'),ctx=cv.getContext('2d');let dpr=1,view={s:.4,x:0,y:0},sel=null;
 function resize(){const r=cv.getBoundingClientRect();dpr=Math.min(2.5,window.devicePixelRatio||1);cv.width=Math.max(1,Math.round(r.width*dpr));cv.height=Math.max(1,Math.round(r.height*dpr))}
-const DAY_SEC=144;let FOCUS=null;
+const DAY_SEC=600;let FOCUS=null;
 function echPos(u){const b=baseById(u.baseId);return ['garrison','transit'].includes(u.state)&&b?{x:b.x,y:b.y}:{x:u.x,y:u.y}}
 function echFit(us){if(!us.length)return;const r=cv.getBoundingClientRect();const ps=us.map(echPos);let x0=Math.min(...ps.map(p=>p.x)),x1=Math.max(...ps.map(p=>p.x)),y0=Math.min(...ps.map(p=>p.y)),y1=Math.max(...ps.map(p=>p.y));
  const pad=56,W=r.width,top=110,bot=sheet?r.height*.46:r.height-60,H=bot-top;const s1=clamp(Math.min((W-pad*2)/Math.max(30,x1-x0),(H-pad*2)/Math.max(30,y1-y0)),.5,6);const cx=(x0+x1)/2,cy=(y0+y1)/2;view.s=s1;view.x=W/2-cx*s1;view.y=top+H/2-cy*s1}
@@ -2572,8 +2612,8 @@ const PAT={
  marsh:mkPat(x=>{x.strokeStyle='rgba(120,170,120,.5)';x.lineWidth=1;x.beginPath();x.moveTo(4,11);x.lineTo(4,5);x.moveTo(7,11);x.lineTo(8,6);x.moveTo(1,11);x.lineTo(0,7);x.stroke()},12,12),
  desert:mkPat(x=>{x.fillStyle='rgba(225,200,150,.22)';for(const [a,b] of [[2,3],[9,6],[5,11],[12,13]])x.fillRect(a,b,1.3,1.3)},14,14)};
 const TFILL={mtn:'#5c4c38',marsh:'#3d4b37',desert:'#5a5240'};
-const ICONOF={cram:'cram',patb:'patriot',inf:'soldier',mar:'soldier',rgr:'sof',sf:'sof',seal:'sof',tf:'sof',recon:'lav',lar:'lav',mech:'ifv',arm:'tank',mtk:'tank',art:'sp',mart:'towed',avn:'helo',hmla:'helo',lift:'heloL',eng:'dozer',cb:'dozer',mp:'hmmwvMP',mi:'hmmwvMI',ca:'hmmwvCA',med:'amb',log:'truck',cvw:'carrier',ddg:'ship',p3:'prop4',c130:'prop4',tnk:'prop4',ac130:'gunship',ftr:'jet',a10:'a10',pred:'drone',bomb:'bomber'};
-const TOPVIEW=new Set(['jet','a10','prop4','gunship','drone','bomber','carrier']);
+const ICONOF={cram:'cram',patb:'patriot',inf:'soldier',mar:'soldier',rgr:'sof',sf:'sof',seal:'sof',tf:'sof',recon:'lav',lar:'lav',mech:'ifv',arm:'tank',mtk:'tank',art:'sp',mart:'towed',avn:'helo',hmla:'helo',lift:'heloL',eng:'dozer',cb:'dozer',mp:'hmmwvMP',mi:'hmmwvMI',ca:'hmmwvCA',med:'amb',log:'truck',cvw:'carrier',ddg:'ship',p3:'prop4',c130:'prop4',tnk:'tanker',ac130:'gunship',ftr:'jet',a10:'a10',pred:'drone',bomb:'bomber'};
+const TOPVIEW=new Set(['jet','a10','prop4','gunship','drone','bomber','carrier','tanker']);
 function rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.lineTo(x+w-r,y);c.arcTo(x+w,y,x+w,y+r,r);c.lineTo(x+w,y+h-r);c.arcTo(x+w,y+h,x+w-r,y+h,r);c.lineTo(x+r,y+h);c.arcTo(x,y+h,x,y+h-r,r);c.lineTo(x,y+r);c.arcTo(x,y,x+r,y,r);c.closePath()}
 function poly(c,pts){c.beginPath();pts.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.closePath()}
 function wheel(c,x,y,r,dk){c.fillStyle=dk;c.beginPath();c.arc(x,y,r,0,7);c.fill()}
@@ -2601,12 +2641,30 @@ const ICON={
   c.strokeStyle=F;c.lineWidth=1;c.beginPath();c.moveTo(2,-2.4);c.lineTo(2,-4.6);c.moveTo(-10,-4.8);c.lineTo(14,-4.8);c.moveTo(-1,3.8);c.lineTo(8,3.8);c.stroke()},
  heloL:(c,F,D)=>{c.fillStyle=F;rr(c,-4,-3.4,14,6.8,3.2);c.fill();c.fillRect(-12,-1,9,2);c.fillRect(-12.5,-4.4,2,4.6);c.fillStyle=D;c.fillRect(0,-1.8,2.2,1.8);c.fillRect(3.2,-1.8,2.2,1.8);c.beginPath();c.ellipse(8,-1,1.6,1.3,0,0,7);c.fill();
   c.strokeStyle=F;c.lineWidth=1;c.beginPath();c.moveTo(3,-3.4);c.lineTo(3,-5.4);c.moveTo(-10,-5.6);c.lineTo(15,-5.6);c.stroke();wheel(c,-1,4.2,1.3,F);wheel(c,7,4.2,1.3,F)},
- jet:(c,F,D)=>{c.fillStyle=F;poly(c,[[12,0],[6,-1.6],[-10,-1.6],[-12,0],[-10,1.6],[6,1.6]]);c.fill();poly(c,[[3,0],[-3,-9],[-6,-9],[-3,0],[-6,9],[-3,9]]);c.fill();poly(c,[[-8,0],[-11.5,-4.5],[-13,-4.5],[-11.5,0],[-13,4.5],[-11.5,4.5]]);c.fill();c.fillStyle=D;c.beginPath();c.ellipse(6.5,0,2.2,.9,0,0,7);c.fill()},
- a10:(c,F,D)=>{c.fillStyle=F;rr(c,-11,-1.3,22,2.6,1.3);c.fill();rr(c,-1,-11,4.2,22,1.2);c.fill();c.fillRect(-12,-5,2.6,10);wheel(c,-6,-2.8,1.8,F);wheel(c,-6,2.8,1.8,F);c.fillStyle=D;c.fillRect(-12,-5.4,2.6,1.4);c.fillRect(-12,4,2.6,1.4)},
- prop4:(c,F,D)=>{c.fillStyle=F;rr(c,-11,-1.9,23,3.8,1.9);c.fill();poly(c,[[3,-11],[0,-11],[-1,11],[2,11],[3.4,0]]);c.fill();c.fillRect(-11.5,-4.8,2.5,9.6);for(const y of [-8,-4,4,8]){c.fillRect(2.5,y-.7,2.6,1.4)}},
- gunship:(c,F,D)=>{ICON.prop4(c,F,D);c.fillStyle=D;for(const x of [-6,-3,0])c.fillRect(x,1.6,1.4,1.2)},
- drone:(c,F,D)=>{c.fillStyle=F;rr(c,-6,-1.1,16,2.2,1.1);c.fill();c.fillRect(1,-11,2,22);c.strokeStyle=F;c.lineWidth=1.3;c.beginPath();c.moveTo(-6,0);c.lineTo(-9.5,-4);c.moveTo(-6,0);c.lineTo(-9.5,4);c.stroke();c.fillStyle=D;c.beginPath();c.arc(8,0,1.2,0,7);c.fill()},
- bomber:(c,F,D)=>{c.fillStyle=F;rr(c,-12,-1.6,25,3.2,1.6);c.fill();poly(c,[[4,0],[-4,-12.5],[-7.5,-12.5],[-1.5,0],[-7.5,12.5],[-4,12.5]]);c.fill();c.fillRect(-12.5,-4.5,2.5,9);c.fillStyle=D;for(const y of [-9,-5,5,9])c.fillRect(-3.5+Math.abs(y)*-.25,y-.6,2.4,1.2)},
+
+ jet:(c,F,D)=>{c.fillStyle=F;poly(c,[[13.5,0],[10,-1.1],[4,-1.9],[-9.5,-1.9],[-12.5,-1.1],[-12.5,1.1],[-9.5,1.9],[4,1.9],[10,1.1]]);c.fill();
+  poly(c,[[4,-1.9],[-4.5,-11],[-7.2,-11],[-6,-1.9]]);c.fill();poly(c,[[4,1.9],[-4.5,11],[-7.2,11],[-6,1.9]]);c.fill();
+  poly(c,[[-8.5,-1.9],[-11.5,-6.2],[-13,-6.2],[-12.3,-1.9]]);c.fill();poly(c,[[-8.5,1.9],[-11.5,6.2],[-13,6.2],[-12.3,1.9]]);c.fill();
+  c.fillStyle=D;c.beginPath();c.ellipse(7,0,2.4,.85,0,0,7);c.fill();c.fillRect(-11,-2.9,4.5,.8);c.fillRect(-11,2.1,4.5,.8);c.fillRect(1,-2.5,3.2,.7);c.fillRect(1,1.8,3.2,.7);c.fillStyle='rgba(255,170,90,.9)';c.beginPath();c.arc(-12.9,-.6,.6,0,7);c.arc(-12.9,.6,.6,0,7);c.fill()},
+ a10:(c,F,D)=>{c.fillStyle=F;rr(c,-11.5,-1.3,24,2.6,1.3);c.fill();poly(c,[[2.8,-12.5],[-.6,-12.5],[-1.4,0],[-.6,12.5],[2.8,12.5],[3.6,0]]);c.fill();c.fillRect(-12.5,-5.5,2.6,11);
+  c.beginPath();c.ellipse(-6,-2.9,2.6,1.35,0,0,7);c.ellipse(-6,2.9,2.6,1.35,0,0,7);c.fill();c.fillStyle=D;c.fillRect(-12.8,-6,2.6,1.5);c.fillRect(-12.8,4.5,2.6,1.5);c.beginPath();c.ellipse(7,0,1.8,.75,0,0,7);c.fill();c.fillRect(12,-.3,1.6,.6);c.beginPath();c.arc(-8.6,-2.9,.8,0,7);c.arc(-8.6,2.9,.8,0,7);c.fill()},
+ prop4:(c,F,D)=>{c.fillStyle=F;rr(c,-12,-2,24.5,4,2);c.fill();c.fillRect(-.6,-13.2,3.8,26.4);c.fillRect(-12.5,-5.8,2.8,11.6);for(const y of [-9,-4.6,4.6,9])rr(c,2.6,y-.85,3.4,1.7,.8),c.fill();
+  c.strokeStyle=F;c.globalAlpha*=.55;c.lineWidth=.6;for(const y of [-9,-4.6,4.6,9]){c.beginPath();c.arc(6.4,y,1.9,0,7);c.stroke()}c.globalAlpha/=.55;c.fillStyle=D;c.beginPath();c.ellipse(9.5,0,1.8,1,0,0,7);c.fill();c.fillRect(-12.5,-.4,4,.8)},
+ tanker:(c,F,D)=>{c.fillStyle=F;rr(c,-12.5,-1.7,26,3.4,1.7);c.fill();poly(c,[[3,-1.7],[-5.5,-12.5],[-8,-12.5],[-2.5,-1.7]]);c.fill();poly(c,[[3,1.7],[-5.5,12.5],[-8,12.5],[-2.5,1.7]]);c.fill();
+  poly(c,[[-9,-1.5],[-12.2,-5.4],[-13.5,-5.4],[-12.4,-1.5]]);c.fill();poly(c,[[-9,1.5],[-12.2,5.4],[-13.5,5.4],[-12.4,1.5]]);c.fill();
+  for(const [x,y] of [[-.8,-5.2],[-3.6,-8.8],[-.8,5.2],[-3.6,8.8]]){c.beginPath();c.ellipse(x,y,1.9,.8,0,0,7);c.fill()}c.fillStyle=D;c.beginPath();c.ellipse(10.5,0,1.6,.8,0,0,7);c.fill();c.strokeStyle=F;c.lineWidth=.9;c.beginPath();c.moveTo(-12.5,0);c.lineTo(-17,0);c.stroke();c.fillRect(-17.6,-1.2,1.2,2.4)},
+ gunship:(c,F,D)=>{ICON.prop4(c,F,D);c.fillStyle=D;for(const x of [-7,-4,-1])c.fillRect(x,1.4,1.6,1.4);c.fillStyle='rgba(255,180,90,.85)';c.fillRect(-7,2.8,1.6,1.4)},
+ drone:(c,F,D)=>{c.fillStyle=F;rr(c,-7.5,-1.1,18,2.2,1.1);c.fill();c.beginPath();c.ellipse(9,0,2.2,1.6,0,0,7);c.fill();c.fillRect(.6,-12.5,2,25);c.strokeStyle=F;c.lineWidth=1.3;c.beginPath();c.moveTo(-7,0);c.lineTo(-10.5,-3.8);c.moveTo(-7,0);c.lineTo(-10.5,3.8);c.stroke();
+  c.lineWidth=.6;c.globalAlpha*=.6;c.beginPath();c.moveTo(-8.2,-2.6);c.lineTo(-8.2,2.6);c.stroke();c.globalAlpha/=.6;c.fillStyle=D;c.beginPath();c.arc(10,0,.9,0,7);c.fill()},
+ bomber:(c,F,D)=>{c.fillStyle=F;rr(c,-13,-1.5,27.5,3,1.5);c.fill();poly(c,[[4,-1.5],[-3.5,-14],[-6.5,-14],[-1.5,-1.5]]);c.fill();poly(c,[[4,1.5],[-3.5,14],[-6.5,14],[-1.5,1.5]]);c.fill();
+  poly(c,[[-9.5,-1.5],[-12.5,-6],[-14,-6],[-13,-1.5]]);c.fill();poly(c,[[-9.5,1.5],[-12.5,6],[-14,6],[-13,1.5]]);c.fill();
+  for(const s of [-1,1])for(const [x,y] of [[1.2,4.2],[-.9,7.6],[-2.9,10.8]]){c.beginPath();c.ellipse(x,y*s,1.6,.95,0,0,7);c.fill()}c.fillStyle=D;c.beginPath();c.ellipse(11.5,0,1.6,.8,0,0,7);c.fill()},
+
+
+
+
+
+
  ship:(c,F,D)=>{c.fillStyle=F;poly(c,[[-12,1],[12,1],[9.5,4.2],[-10.5,4.2]]);c.fill();c.fillRect(-4,-3,8,4);c.fillRect(-1,-6,2,3);c.strokeStyle=F;c.lineWidth=1;c.beginPath();c.moveTo(0,-6);c.lineTo(0,-9);c.moveTo(7,0);c.lineTo(10.5,-1.6);c.stroke();c.fillStyle=D;c.fillRect(-3,-2,6,1.2)},
  carrier:(c,F,D)=>{c.fillStyle=F;poly(c,[[-12,-4.5],[9,-4.5],[12,-1.5],[12,4.5],[-12,4.5]]);c.fill();c.fillStyle=D;c.fillRect(2,1.6,5,2.2);c.strokeStyle=D;c.lineWidth=.7;c.setLineDash([1.5,1.5]);c.beginPath();c.moveTo(-11,-1.5);c.lineTo(10,-1.5);c.stroke();c.setLineDash([]);c.fillStyle=D;poly(c,[[-6,-3.4],[-8.5,-2.3],[-8.5,-.6],[-6,-1.6]]);c.fill()},
 };
@@ -2648,7 +2706,7 @@ function drawFX(now){const keep=[];for(const f of FX){const el=now-f.t0-f.delay;
    const [x,y]=P(k),[x2,y2]=P(Math.min(1,k+.02));ctx.save();ctx.translate(x,y);ctx.rotate(Math.atan2(y2-y,x2-x));ctx.fillStyle=f.col||'#f4f4f4';ctx.fillRect(-5,-1.2,10,2.4);ctx.fillStyle='#ffb347';ctx.beginPath();ctx.arc(-6,0,2.2,0,7);ctx.fill();ctx.restore();continue}
   if(f.k==='jet'){let t,ang;if(k<.5){t=k/.5;ang=Math.atan2(by-ay,bx-ax)}else{t=1-(k-.5)/.5;ang=Math.atan2(ay-by,ax-bx)}const ease=t*t*(3-2*t),x=ax+(bx-ax)*ease,y=ay+(by-ay)*ease;
    if(!f.dropped&&k>=.48){f.dropped=1;fxBoom(f.b,f.type==='bomb'?1.4:1.1);if(f.type==='bomb'){fxBoom({x:f.b.x+3,y:f.b.y+2},1.2,180);fxBoom({x:f.b.x-3,y:f.b.y-2},1.2,360)}}
-   drawIcon(f.type,x,y,30,{plate:false,ang});continue}}
+   drawIcon(f.type==='cvw'?'ftr':f.type,x,y,30,{plate:false,ang});continue}}
  FX=keep}
 const lvlCol=v=>v<.35?'#e3604b':v<.7?'#e7a53b':'#86c27e';
 function drawBaseStatus(b,bx,by,s){const u=useOf(b),tr=baseTroops(b),tgt=b.minT||baseAuth(b)||1,bm=baseMorale(b);
@@ -3251,8 +3309,8 @@ function settingsSheet(){let h=head('Command preferences','Settings');
   +row('Most shown at once','',seg('tMax',[[1,'1'],[2,'2'],[3,'3'],[4,'4']]))
   +row('Which to show','Everything still goes to the Intel log.',seg('tFilter',[['all','All'],['important','Bad news only'],['off','Critical only']]))
   +row('Pause on critical alerts','Troops in contact, bases overrun, missile attacks, insider attacks.',seg('pauseCrit',[[true,'On'],[false,'Off']]))
-  +row('Slow down on troops in contact','Drops the clock to this speed when a unit gets pinned (if pause is off).',seg('slowContact',[[0,'Off'],[1,'1×'],[2,'2×'],[4,'4×']]));
- h+=`<h3>Timing</h3>`+row('Game speed','1× ≈ 2½ minutes per day.',seg('_speed',SPEEDS.map(v=>[v,v+'×'])))+row('Speed when you first unpause','Games always load paused. Press play (or +) to start the clock at this speed in a new campaign; continued campaigns resume at their last speed.',seg('startSpeed',[[1,'1×'],[2,'2×'],[4,'4×'],[8,'8×'],[16,'16×']]))+row('Advisor refresh','How often the top three recommendations are replaced.',seg('advMin',[[1,'1 min'],[2,'2 min'],[5,'5 min'],[10,'10 min']]));
+  +row('Slow down on troops in contact','Drops the clock to this speed when a unit gets pinned (if pause is off).',seg('slowContact',[[0,'Off'],[1,'1×'],[4,'4×'],[16,'16×']]));
+ h+=`<h3>Timing</h3>`+row('Game speed','1× = 10 minutes per game day · 4× ≈ 2½ minutes · 64× ≈ 9 seconds.',seg('_speed',SPEEDS.map(v=>[v,v+'×'])))+row('Speed when you first unpause','Games always load paused. Press play (or +) to start the clock at this speed in a new campaign; continued campaigns resume at their last speed.',seg('startSpeed',[[1,'1×'],[4,'4×'],[16,'16×'],[32,'32×'],[64,'64×']]))+row('Advisor refresh','How often the top three recommendations are replaced.',seg('advMin',[[1,'1 min'],[2,'2 min'],[5,'5 min'],[10,'10 min']]));
  h+=`<h3>Map</h3>`+row('Unit status tags','Colored posture tags under field units when zoomed in.',seg('postTags',[[true,'On'],[false,'Off']]))+row('Road name markers','',seg('roadLbl',[[true,'On'],[false,'Off']]))+row('Drone camera overlay','Crosshair, vignette and readout at high zoom.',seg('droneHUD',[[true,'On'],[false,'Off']]))+row('Combat effects','Gunfire, impacts and smoke.',seg('fx',[['full','Full'],['reduced','Reduced'],['off','Off']]))+row('Force management','Sector command: place sectors and assign brigades and companies; automatic sectors build FOBs, patrol and fire on their own. Classic: you manage every unit and base yourself.',seg('forceMode',[['sector','Sector command'],['classic','Classic']]))+row('Brigade sectors overlay','Each combat brigade\'s sector circle, name and radius.',seg('ovGround',[['true','Show'],['false','Hide']]))+row('Aviation coverage overlay','Range rings for attack helicopters, lift and MEDEVAC, close air support and ISR from the bases they fly out of.',seg('ovAir',[['true','Show'],['false','Hide']]))+row('Map style','Satellite: NASA Blue Marble imagery with terrain detail. Tactical: a military operations map with relief tints, contour lines, spot heights, a real MGRS grid and a scale bar. The ▦ button on the map switches quickly.',seg('map',[['satellite','Satellite'],['tactical','Tactical']]))+row('Drone camera filter','Look of the map and 3D drone view when zoomed in close.',seg('droneCam',[['ir','IR white-hot'],['bh','IR black-hot'],['nv','Night vision'],['eo','Daylight'],['off','Off']]))+row('3D view quality','High draws more buildings and smoother edges; Low is easier on phones and batteries.',seg('q3d',[['low','Low'],['high','High']]));
  h+=`<div class="acts"><button class="btn" data-act="setreset"><span class="t">Reset to defaults</span></button><button class="btn" data-act="verhist"><span class="t">What's new · version history</span><span class="s">You are on v${GAME_VER}</span></button></div><p class="note">Settings are saved on this device. Your campaign autosaves in this browser once per game day.</p>`;return h}
 const ROE=[null,
@@ -4073,7 +4131,7 @@ function planSheet(c){const d=divAt(c);if(!d)return head('','Target cleared');le
   h+=`<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin:16px 0 6px"><div style="min-width:0"><h3 style="margin:0">${g.title}</h3><div class="note" style="margin:2px 0 0;font-size:12px">${g.sub} · avg eff ${Math.round(ge*100)}%${planGroup==='loc'?` · power ${gp.toFixed(0)}`:''}</div></div>
    <button class="btn sm" data-act="selgroup" data-a="${g.key}" style="flex:none"><span class="t">${nSel===g.us.length?'Clear':'Select all'}</span></button></div><div class="list">${g.us.map(u=>planRow(u,c)).join('')}</div>`}
  return h+`<div class="acts">${btn('launch',c.id,`Launch assault (${n} units)`,'Ground units move out by road now; fire support engages from base','','primary',!n,[...planSel].join(','))}</div>`}
-function unitSheet(u){const t=UT[u.type],b=baseById(u.baseId);let h=head(`${BR[t.b]} · ${t.n}`,esc(u.name));
+function unitSheet(u){const t=UT[u.type],b=baseById(u.baseId);let h=head(`${BR[t.b]} · ${t.n}`,esc(u.name));if(ORB_T[u.type])h+=u.orbit?`<div class="card" style="margin-top:0;border-left:3px solid ${ORB_C[ORB_T[u.type]]}"><b>${esc(orbitLbl(u))}</b><div class="acts" style="margin-top:6px">${btn('orbitoff',u.id,'Stop the daily patrol','Back to strike missions and on-call support','','')}</div></div>`:`<p class="note" style="margin-top:0">Daily air patrol: tap the map where it should orbit and choose "Fly a daily air patrol here".</p>`;
  {const P=postureOf(u);h+=`<div class="ubanner" style="--pc:${P.col}">${symSVG(u.type,44,30)}<div class="mid"><div class="ub-k">${P.lbl}</div><div class="ub-w">📍 ${esc(P.where)}</div><div class="ub-t">${esc(P.task)}</div></div><div style="display:grid;gap:4px"><button class="btn sm" data-act="umap" data-a="${u.id}"><span class="t">◎ Map</span></button><button class="btn sm" data-act="v3" data-a="unit:${u.id}"><span class="t">◭ 3D</span></button></div></div>`}
  {const td=tourDays(u),L=TOURLIM();h+=strip([['Personnel',`${u.p}/${t.p}`,mcol(u.p/t.p*100)],['Effective',`${Math.round(eff(u)*u.p/t.p*100)}%`],['Experience',`${Math.round(u.exp*100)}%`],['Cohesion',`${Math.round(u.coh??100)}%`],['Tour',`${td}d`,td>=L?'var(--hostile)':td>=L-30?'var(--warn)':null],AC[u.type]?['Aircraft',`${acFmc(u)}/${acTot(u)}`]:null,VEH[u.type]?['Vehicles',`${vehUp(u)}/${vehTot(u)}`,vehUp(u)<vehTot(u)*.7?'var(--hostile)':vehUp(u)<vehTot(u)?'var(--warn)':null]:null])}
  if(VEH[u.type]&&(u.vx||(u.vr||[]).length))h+=`<p class="note" style="margin-top:4px">${vName(u.type)}: ${u.vx?`<b style="color:var(--hostile)">${u.vx} destroyed</b> (Refill replaces them)`:''}${u.vx&&(u.vr||[]).length?' · ':''}${(u.vr||[]).length?`<b style="color:var(--warn)">${u.vr.length} in the motor pool</b>, back in ${Math.max(1,Math.ceil(Math.min(...u.vr)-S.day))}d`:''}</p>`;
@@ -4553,6 +4611,8 @@ function doAct(act,a,b,who,remote){if(!S||S.over)return;if(RED_ACTS.has(act)!==(
  case 'cad':{const B=baseById(a);if(!B||isRear(B)||!CAD[b])return;B.cad=b==='std'?null:b;toast(`${tag}${B.n}: ${CAD[b].n.toLowerCase()} supply cadence.`);break}
  case 'supall':{const [m,c]=String(b).split('|');for(const B of S.bases){if(isRear(B)||B.stg||B.building>0)continue;if(m)B.auto=m==='off'?null:m;if(c)B.cad=c==='std'?null:c}toast(`${tag}Supply network updated for every base.`);break}
  case 'saaplan':saaPlan(a);if(!remote)renderSheet(true);break;
+ case 'orbit':{const u=unitById(a);const [x,y]=String(b).split(',').map(Number);if(!u||!isFinite(x)||!orbOk(u,{x,y}))break;u.orbit={x,y};u.orbDay=S.day;log(`${tag}${u.name} will fly a daily ${ORB_N[ORB_T[u.type]].toLowerCase()} at grid ${gridS(u.orbit)} (${fm(ORB_COST[u.type]||2)} a day).`,'info');if(!remote){SECPT=null;closeSheet()}break}
+ case 'orbitoff':{const u=unitById(a);if(!u)break;u.orbit=null;log(`${tag}${u.name} is off its daily patrol.`,'info');if(!remote)renderSheet(true);break}
  case 'saago':saaGround('order');if(!remote)renderSheet(true);break;
  case 'saabegin':{const A=saa();if(!A.on||A.began!=null||!fzs().length)break;A.began=S.day;if(!A.plan)A.plan='mil';for(const z of fzs())z.mode='fire';let n=0;for(const z of fzs())n+=fzFire(z);log(`${tag}Shock and awe begins. ${n} strikes are inbound on ${fzs().length} strike box${fzs().length>1?'es':''} tonight; every box keeps firing as its ships and air wings rearm.`,'info',true,'Shock and awe');if(!remote)renderSheet(true);break}
  case 'fzmode':{const z=fzById(a),A=saa();if(!z)break;if(b==='fire'&&A.on&&A.began==null)break;z.mode=b==='fire'?'fire':'hold';if(!remote)renderSheet(true);break}
@@ -4760,7 +4820,7 @@ function doAct(act,a,b,who,remote){if(!S||S.over)return;if(RED_ACTS.has(act)!==(
 function afterChange(){updHud();if(sheet&&NET.role!=='guest')renderSheet(true);renderSide();netSync(false)}
 document.querySelectorAll('#tabs button').forEach(b=>b.addEventListener('click',()=>{const t=b.dataset.tab;if(!S)return;if(t==='map'){closeSheet();return}sel=null;
  const red=NET.myRole==='red';openSheet(red&&t==='forces'?'red':red&&t==='tech'?'sponsors':t,null)}));
-const SPEEDS=[1,2,4,8,16,32,64];
+const SPEEDS=[1,2,4,8,16,32,64,128,256];
 const spLabel=v=>v+'×';
 function setSpeed(v){if(!S)return;if(NET.role==='guest'){NET.room&&NET.room.emit('cmd',{act:'speed',a:String(v),b:''}).catch(()=>{});return}doAct('speed',String(v),'',NET.myRole,false)}
 $('#spPause').onclick=()=>{if(S)setSpeed(S.speed>0?0:(S.lastSpeed||16))};
@@ -4868,12 +4928,13 @@ for(const b of s.bases)if(b.building>0&&!b.builder)b.builder='legacy';
 s.tm??=75;s.spent??={};s.recov??=[];s.rtd??=0;s.delivered??=0;s.lastSpeed??=1;s.stormUntil??=0;s.heatUntil??=0;s.v=3;
  for(const b of s.bases)if(!(b.naval||b.offmap||b.kuwait)){b.food??=60;b.ammo??=60}
  for(const d of CITY_DEFS)if(!s.cities.some(c=>c.id===d[0])){const [id,n,lo,la,pop,reg,bn]=d;s.cities.push({id,n,...P(lo,la),pop,reg,bn,instab:ri(10,18),cells:0,owner:'neutral',cd:0,civilUntil:0})}
- if(!s.spv){s.spv=2;const m=v=>SPEEDS.reduce((a,x)=>Math.abs(Math.log(x/(v*16||16)))<Math.abs(Math.log(a/(v*16||16)))?x:a,16);if(s.speed>0)s.speed=m(s.speed);s.lastSpeed=m(s.lastSpeed||1)}if(s.spv<3){s.spv=3;if(s.speed>4)s.speed=4;if((s.lastSpeed||0)>4)s.lastSpeed=4}if(s.speed>0&&!SPEEDS.includes(s.speed))s.speed=4;return s}
+ if(!s.spv){s.spv=2;const m=v=>SPEEDS.reduce((a,x)=>Math.abs(Math.log(x/(v*16||16)))<Math.abs(Math.log(a/(v*16||16)))?x:a,16);if(s.speed>0)s.speed=m(s.speed);s.lastSpeed=m(s.lastSpeed||1)}if(s.spv<3){s.spv=3;if(s.speed>4)s.speed=4;if((s.lastSpeed||0)>4)s.lastSpeed=4}if(s.spv<4){s.spv=4;if(s.speed>0)s.speed=Math.min(256,s.speed*4);if(s.lastSpeed)s.lastSpeed=Math.min(256,s.lastSpeed*4)}if(s.speed>0&&!SPEEDS.includes(s.speed))s.speed=4;return s}
 function saaAsk(){if(!S||!saa().on||saa().plan)return;showModal({eyebrow:'Opening night · Shock and awe',title:'Choose the air campaign',body:`<p>Before the ground war, ships in the Gulf and bombers strike Iraq. You choose when it starts from the ✸ Fires rail, and when the ground war follows. Brigades wait in Kuwait until G-Day (day ${saa().until||30} at the latest). Going in without softening the Republican Guard means about twice the casualties and units falling back.</p>${Object.values(SAA_PLANS).map(v=>`<p><b>${v.n}</b> · <span style="color:${v.col}">${v.risk}</span><br>${v.d}</p>`).join('')}<p class="note">Change it any time from the ✸ Fires rail.</p>`,opts:Object.entries(SAA_PLANS).map(([k,v])=>({t:v.n,cls:k==='mil'?'primary':'',f:()=>onAct('saaplan',k,'')}))})}
 function startSolo(g,sv,name){if(g==='continue'){S=migrate(sv);if(!S._name){S._name=uniqName(`${(DIFFS[S.diff]||{n:'Regular'}).n} campaign`)}}else{newGame(g);if(DIFFS[g].arcade)arcadeInit();setTimeout(saaAsk,400);S._slot=newSlotId();S._name=uniqName(name||`${DIFFS[g].n} campaign`);save()}if(S.speed>0)S.lastSpeed=S.speed;else if(!S.lastSpeed)S.lastSpeed=SET.startSpeed||4;if(g!=='continue')S.lastSpeed=SET.startSpeed||4;S.speed=0;$('#title').hidden=true;resize();fitView();updSpeed();setRoleUI();updHud();
  if(g!=='continue')showModal({eyebrow:'D-Day · 20 MAR 2003',title:'Topple the regime, find its leaders',body:'<p>Your ground forces stage at Camp Doha in Kuwait. Bring combat engineers or Navy Seabees: they build every new base. The Fifth Fleet in the Gulf hosts carriers and Tomahawk ships; Al Udeid hosts heavy bombers. One leadership target in Baghdad is already partly located: a cruise missile might end this early.</p><p>Troops travel the road network. MSRs are fast but heavily mined; minor roads are slower and ambush-prone. Units hit on the road stop and fight until you reinforce them or they fall back. Watch the terrain and the highways: columns move fastest on MSR Tampa and the main roads, slowest in mountains, marshes and at river crossings away from city bridges. Every new FOB needs combat engineers or Seabees to build it, so deploy engineers early, and every base needs food and ammunition hauled in. Open the Status panel at top right for force health, supply and the cost of the war.</p>',opts:[{t:'Open Camp Doha',cls:'primary',f:()=>{sel={kind:'base',id:'b0'};openSheet('base','b0')}},{t:'Look at the map first',f:()=>{}}]})}
-const GAME_VER=87;
+const GAME_VER=88;
 const CHANGES=[
+ [88,'Aircraft icons, air patrols & a slower clock',['New aircraft icons: fighters with swept wings and twin tails, the straight-winged A-10 with its rear engine pods, four-engine props for C-130s, P-3s and gunships, a swept-wing KC-135 tanker with its boom, the long-winged B-52, and a slim Predator. Carrier strikes now fly jets, not carriers','Daily air patrols: tap the map and choose Fly a daily air patrol here. Tankers fly a refueling track (jets at bases within about 950 km reach 650 km farther). Fighters, A-10s and gunships fly CAS orbits that break troops in contact and spoil ambushes. Drones and P-3s fly ISR orbits that find strongholds and IEDs. Each costs a little every day','The clock is slower: 1× is now 10 minutes per game day (it was about 2½). The speed ladder now goes up to 256×, so the top speed is as fast as before. Your saved speed is converted so the pace you were playing at stays the same']],
  [87,'Through Kuwait · aerial refueling',['Every ground and air unit bound for an AO in Iraq now lands at Camp Doha first and then moves north into its sector. Brigades too','New Aerial Refueling Squadron (KC-135 / KC-10): fighters, A-10s and gunships at the same air base reach about 650 km farther (800 with two squadrons). It needs a land air base with a paved runway, not a carrier, and is what lets jets at Al Udeid reach Iraq','More room at the big air bases: Al Udeid 16 slots, Diego Garcia 8, Camp Doha 60, and host-nation bases 12 to 16, expandable to 28. Prince Sultan, Muwaffaq Salti and Incirlik now sit at their real locations']],
  [86,'Fire missions & softening',['Shock and awe now waits for your order: plan strike boxes and assign assets, then press Begin shock and awe on the ✸ Fires rail. Launch the ground war whenever you are ready (day 30 at the latest, or push it back)','Every strike box can hold, keep up sustained fire, or fire a single salvo on demand, before or after G-Day. The daily cost of sustained fire is shown per box','Softening now matters: assaulting intact, dug-in Republican Guard positions costs about twice the casualties, and badly hit units fall back. Fully softened positions cut losses to about 0.6×. Assault planning shows the expected loss multiplier']],
  [85,'Full-region terrain',['Satellite imagery, tactical relief and contour lines now cover the whole region, from the Mediterranean to the Strait of Hormuz and from Turkey to Riyadh','The MGRS grid covers the whole region and is much fainter','Al Udeid now sits at its real location in Qatar. Diego Garcia is a separate bomber base marked at the south-east edge of the map (it is 3,800 km away in the Indian Ocean)']],
