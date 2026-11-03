@@ -443,6 +443,14 @@ h3{font-size:12px;margin:10px 0 4px;padding-bottom:3px}
 .metrics .ml span{display:flex;justify-content:space-between;gap:4px}.metrics .ml b{font-weight:700}
 .thrkey{right:calc(max(10px,env(safe-area-inset-right,0px)) + 248px)!important}
 @media (max-width:620px){.metrics{width:180px}.rright{top:140px}}
+.tabs{display:none!important}
+.rtop{left:50%;top:8px;transform:translateX(-50%)}
+.rgh{flex-direction:column;align-items:center}.rgrow{display:flex;gap:4px}
+.rail .rgrow button{width:62px;padding:5px 0 3px;display:grid;justify-items:center;gap:2px;font-family:var(--f-mono);font-size:7.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.rail .rgrow button svg{width:16px;height:16px;fill:none;stroke:var(--friendly);stroke-width:1.6}
+.rail .rgrow button.on{border-left-color:var(--friendly);color:var(--text);background:rgba(34,46,24,.96)}
+.rail .rgrow .badge{top:-5px;right:-5px;left:auto}
+@media (max-width:620px){.rtop{left:auto;right:max(10px,env(safe-area-inset-right,0px));top:auto;bottom:8px;transform:none}.rail .rgrow button{width:48px;font-size:6.5px}.metrics{bottom:62px}}
 </style>
 
 <div id="app">
@@ -483,6 +491,11 @@ h3{font-size:12px;margin:10px 0 4px;padding-bottom:3px}
     <aside class="opsp" id="opsP" aria-label="Ongoing operations"><div class="opsp-h"><div><div class="eyebrow">Current operations</div><div class="opsp-t" id="opsT">Ongoing operations</div></div><button class="x" id="opsX" aria-label="Close">✕</button></div><div class="opsp-b" id="opsBody"></div></aside>
     <nav class="rail" id="rail" aria-label="Command tools">
       <div class="rcol rleft"><div class="rg"><div class="rgl">Command</div><button id="advBtn" data-rail="adv"><b>★</b><span>Advisors</span><i class="rb" id="advBadge" hidden></i></button><button id="washBtn" data-rail="wash"><b>⚑</b><span>DC</span></button><button id="roeBtn" data-rail="roe"><b id="roeIc">1</b><span>ROE</span></button><button id="setBtn" data-rail="set"><b>⚙</b><span>Settings</span></button></div><div class="rg"><div class="rgl">Operations</div><button id="opsBtn" data-rail="ops"><b>⚔</b><span>Ops</span><i class="rb" id="opsBadge" hidden></i></button><button id="firesBtn" data-rail="fires"><b>✸</b><span>Fires</span></button><button id="reoBtn" data-rail="reorg"><b>⇄</b><span>Reorg</span><i class="rb" id="reoBadge" hidden></i></button><button id="svBtn" data-rail="svc"><b>✚</b><span>Services</span><i class="rb" id="svCount" hidden></i></button><button id="oilBtn" data-rail="oil"><b>⛁</b><span>Oil</span><i class="rb" id="oilBadge" hidden></i></button></div></div>
+      <div class="rcol rtop"><div class="rg rgh"><div class="rgl">Manage</div><div class="rgrow"><button data-tab="map" class="on"><svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg>Theater</button>
+    <button data-tab="forces"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="1"/><path d="M3 6l18 12M21 6L3 18"/></svg><span id="tabForces">Forces</span></button>
+    <button data-tab="bases"><svg viewBox="0 0 24 24"><path d="M4 20V9l8-5 8 5v11z"/><path d="M9 20v-6h6v6"/></svg>Bases</button>
+    <button data-tab="tech"><svg viewBox="0 0 24 24"><path d="M14 4l6 6-9 9H5v-6z"/><path d="M12 6l6 6"/></svg><span id="tabTech">Contracts</span></button>
+    <button data-tab="intel"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>Intel<span class="badge" id="badge" hidden>0</span></button></div></div></div>
       <div class="rcol rright"><div class="rg"><div class="rgl">Intel</div><button id="bdaBtn" data-rail="bda"><b>✠</b><span>BDA</span></button><button id="srBtn" data-rail="sitrep"><b>▤</b><span>SITREP</span></button><button id="thrBtn" data-rail="threat"><b>◍</b><span>Threat</span></button><button id="keyBtn" data-rail="key"><b>◩</b><span>Key</span></button></div></div>
     </nav>
     <div class="metrics" id="metrics" aria-label="Campaign metrics"></div>
@@ -491,13 +504,7 @@ h3{font-size:12px;margin:10px 0 4px;padding-bottom:3px}
     <aside class="side" id="side" aria-label="Theater status"><div class="side-head"><span>Theater status</span><span><button id="sbPin">Pin</button><button id="sbClose" aria-label="Close status panel">✕</button></span></div><div id="sideBody"></div></aside>
     <div class="sheet mid" id="sheet"><button class="grab" id="grab" aria-label="Resize panel: tap to cycle size, or drag"><i></i><span id="grabLbl">▴ expand</span></button><div class="sheet-body gut" id="sheetBody"></div></div>
   </div>
-  <nav class="tabs" id="tabs">
-    <button data-tab="map" class="on"><svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg>Theater</button>
-    <button data-tab="forces"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="1"/><path d="M3 6l18 12M21 6L3 18"/></svg><span id="tabForces">Forces</span></button>
-    <button data-tab="bases"><svg viewBox="0 0 24 24"><path d="M4 20V9l8-5 8 5v11z"/><path d="M9 20v-6h6v6"/></svg>Bases</button>
-    <button data-tab="tech"><svg viewBox="0 0 24 24"><path d="M14 4l6 6-9 9H5v-6z"/><path d="M12 6l6 6"/></svg><span id="tabTech">Contracts</span></button>
-    <button data-tab="intel"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>Intel<span class="badge" id="badge" hidden>0</span></button>
-  </nav>
+  <nav class="tabs" id="tabs" hidden></nav>
 </div>
 <div class="overlay" id="modal" hidden><div class="modal" id="modalBody"></div></div>
 <div class="title" id="title"><div class="title-in gut" id="titleIn"></div></div>
@@ -1921,7 +1928,7 @@ function drawAO(W,H){if(!S)return;try{drawFires()}catch(e){}try{drawOrbits()}cat
   ctx.beginPath();ctx.moveTo(x-6,y);ctx.lineTo(x+6,y);ctx.moveTo(x,y-6);ctx.lineTo(x,y+6);ctx.stroke();
   for(const b of S.bases.filter(b=>b.sec===s.id&&(b.role==='fwd'||b.role==='rear'))){const [bx,by]=w2s(b);ctx.fillStyle=col;ctx.font=`700 9px ${FM}`;ctx.textAlign='center';ctx.fillText(b.role==='fwd'?'FWD':'FIRES',bx,by+20)}}ctx.restore()}
 function drawAOLabels(){if(!S||SET.ovGround===false||!secMode())return;ctx.save();ctx.textAlign='center';ctx.textBaseline='middle';for(const s of secs()){const col=secCol(s),[x,y0]=w2s(s),P=secPolyPts(s),top=P?Math.min(...P.map(q=>w2s(q)[1])):y0-secRr(s)*view.s,y=Math.max(top+16,y0-secRr(s)*view.s+16);
-  ctx.font=`700 12px ${FD}`;ctx.lineWidth=3.5;ctx.strokeStyle='rgba(8,10,8,.85)';const t1=s.n.toUpperCase()+(s.auto?' · AUTO':'')+(s.post==='tight'?' · COMPRESSED':'');ctx.strokeText(t1,x,y);ctx.fillStyle=col;ctx.fillText(t1,x,y);ctx.font=`500 9.5px ${FM}`;const bs=secBdes(s),lo=secLoose(s).length;const t2=`${bs.length?bs.map(o=>bdeAbbr(o).toUpperCase()).join(' + '):''}${lo?`${bs.length?' + ':''}${lo} CO`:''}${!bs.length&&!lo?'NO FORCES':''} · ~${secKm(s)} KM${s.cond==='heavy'?' · HEAVY-HANDED':''}`;ctx.strokeText(t2,x,y+13);ctx.fillStyle=s.cond==='heavy'?'#ff8a70':col;ctx.fillText(t2,x,y+13)}ctx.restore()}
+  ctx.font=`700 12px ${FD}`;ctx.lineWidth=3.5;ctx.strokeStyle='rgba(8,10,8,.85)';const t1=s.n.toUpperCase()+(s.auto?' · AUTO':'')+(s.post==='tight'?' · COMPRESSED':'');ctx.strokeText(t1,x,y);ctx.fillStyle=col;ctx.fillText(t1,x,y);ctx.font=`500 9.5px ${FM}`;const bs=secBdes(s),lo=secLoose(s).length;const nco=secUnits(s).length,t2=`${bs.length?`${bs.length} BDE${bs.length>1?'S':''} · ${nco} COYS`:'NO FORCES'} · ~${secKm(s)} KM${s.cond==='heavy'?' · HEAVY-HANDED':''}`;ctx.strokeText(t2,x,y+13);ctx.fillStyle=s.cond==='heavy'?'#ff8a70':col;ctx.fillText(t2,x,y+13)}ctx.restore()}
 // ---- screens ----
 const ROLEG=[['man','Maneuver',['arm','mtk','mech','inf','mar','lar','recon']],['fires','Fires',['art','mart']],['avn','Aviation',['avn','hmla','lift']],['sof','Special operations',['sf','rgr','seal','tf']],['sup','Support & enablers',['eng','cb','mp','mi','ca','log','med','cram','patb']],['airnav','Air & naval',['ftr','a10','ac130','pred','c130','bomb','cvw','ddg','p3']]];
 function postCounts(us){const c={fight:0,field:0,base:0,move:0,trans:0};for(const u of us){if(['engaged','pinned','support'].includes(u.state)||(u.state==='moving'&&u.mission==='assault'))c.fight++;else if(u.state==='transit')c.trans++;else if(u.state==='moving')c.move++;else if(AWAY(u))c.field++;else c.base++}return c}
@@ -2196,7 +2203,7 @@ function reorgSheet(){const L=reorgItems(),red=NET.myRole==='red';let h=head(`${
  const G=new Map();for(const x of L){if(!G.has(x.g))G.set(x.g,[]);G.get(x.g).push(x)}
  for(const [g,xs] of G){h+=`<h3>${g} · ${xs.length}</h3><div class="list">${xs.slice(0,8).map(x=>`<div class="item stack"><span class="mid"><span class="nm">${esc(x.t)}</span><span class="sb wrap">${esc(x.s)}</span></span>${red?'':`<button class="btn sm" data-act="${x.btn[0]}" data-a="${x.btn[1]}" data-b="${x.btn[2]}" ><span class="t">${esc(x.btn[3])}</span></button>`}</div>`).join('')}</div>`}
  return h}
-function updRail(){{const arc=isArc();for(const id of ['reoBtn','svBtn','roeBtn'])if($('#'+id))$('#'+id).hidden=arc;const tb=document.querySelector&&document.querySelector('#tabs [data-tab="tech"]');if(tb&&tb.style)tb.style.display=arc?'none':''}{const ic=$('#roeIc');if(ic&&S&&ic.textContent!==String(roeL())){ic.textContent=String(roeL());ic.style.color=['','#3fbf8a','#eaa53a','#ff8a70'][roeL()]}if(ic&&S)ic.style.color=['','#3fbf8a','#eaa53a','#ff8a70'][roeL()]}if(!S)return;const g=svcGaps(),sv=$('#svCount'),sb=$('#svBtn');sv.hidden=!(g.crit+g.warn);sv.textContent=g.crit+g.warn;sb.classList.toggle('alert',g.crit>0);sb.classList.toggle('warnb',!g.crit&&g.warn>0);
+function updRail(){{const arc=isArc();for(const id of ['reoBtn','svBtn','roeBtn'])if($('#'+id))$('#'+id).hidden=arc;const tb=document.querySelector&&document.querySelector('button[data-tab="tech"]');if(tb&&tb.style)tb.style.display=arc?'none':''}{const ic=$('#roeIc');if(ic&&S&&ic.textContent!==String(roeL())){ic.textContent=String(roeL());ic.style.color=['','#3fbf8a','#eaa53a','#ff8a70'][roeL()]}if(ic&&S)ic.style.color=['','#3fbf8a','#eaa53a','#ff8a70'][roeL()]}if(!S)return;const g=svcGaps(),sv=$('#svCount'),sb=$('#svBtn');sv.hidden=!(g.crit+g.warn);sv.textContent=g.crit+g.warn;sb.classList.toggle('alert',g.crit>0);sb.classList.toggle('warnb',!g.crit&&g.warn>0);
  if(!ADV.t)advRefresh();const fresh=Date.now()-ADV.t>=ADV_MS;if(fresh&&!(sheet&&sheet.kind==='adv'))advRefresh();const ab=$('#advBadge'),un=ADV.recs.filter(r=>!ADV.done[r.id]).length;ab.hidden=!(ADV.recs.length&&!ADV.seen&&un);ab.textContent=un;$('#advBtn').classList.toggle('new',!ADV.seen&&un>0);
  const rn=reorgCount();const rb=$('#reoBadge');rb.hidden=!rn;rb.textContent=rn;
  {const ob=$('#oilBadge');if(ob){const on=oilBroken();ob.hidden=!on;ob.textContent=on}}
@@ -3234,7 +3241,7 @@ let SHSZ='mid';try{const v=localStorage.getItem('itc-shsz');if(v==='mid'||v==='t
 function applySz(){const el=$('#sheet');el.classList.remove('mini','mid','tall');el.classList.add(SHSZ);const l=$('#grabLbl');if(l)l.textContent=SHSZ==='tall'?'▾ shrink':SHSZ==='mini'?'▴ show':'▴ expand';if(SHSZ!=='mini')try{localStorage.setItem('itc-shsz',SHSZ)}catch(e){}}
 function setSz(z){SHSZ=z;applySz()}
 function closeSheet(){sheet=null;sel=null;$('#sheet').classList.remove('open');setTab('map');sideApply()}
-function setTab(t){document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.tab===t))}
+function setTab(t){document.querySelectorAll('button[data-tab]').forEach(b=>b.classList.toggle('on',b.dataset.tab===t))}
 function head(eb,title){return `<div class="sh-head"><div style="min-width:0"><div class="eyebrow">${eb}</div><h2>${title}</h2></div><button class="x" data-act="close" aria-label="Close">✕</button></div>`}
 function strip(items){return `<div class="strip">${items.filter(Boolean).map(([k,v,c])=>`<div class="st"><span class="k">${k}</span><span class="v"${c?` style="color:${c}"`:''}>${v}</span></div>`).join('')}</div>`}
 function bar(v,col){return `<div class="bar"><i style="width:${clamp(v,0,100)}%;background:${col}"></i></div>`}
@@ -4949,7 +4956,7 @@ function doAct(act,a,b,who,remote){if(!S||S.over)return;if(RED_ACTS.has(act)!==(
  default:ok=false}
  if(ok)afterChange()}
 function afterChange(){updHud();if(sheet&&NET.role!=='guest')renderSheet(true);renderSide();netSync(false)}
-document.querySelectorAll('#tabs button').forEach(b=>b.addEventListener('click',()=>{const t=b.dataset.tab;if(!S)return;if(t==='map'){closeSheet();return}sel=null;
+document.querySelectorAll('button[data-tab]').forEach(b=>b.addEventListener('click',()=>{const t=b.dataset.tab;if(!S)return;if(t==='map'){closeSheet();return}sel=null;
  const red=NET.myRole==='red';openSheet(red&&t==='forces'?'red':red&&t==='tech'?'sponsors':t,null)}));
 const SPEEDS=[1,2,4,8,16,32,64,128,256];
 const spLabel=v=>v+'×';
@@ -5026,7 +5033,7 @@ function renderSide(){if(!S||!SIDE.open)return;const el=$('#sideBody'),st=el.scr
 
 /* ================= HUD ================= */
 // ---- campaign metrics: concentric half-circle gauges
-let METMIN=(()=>{try{return localStorage.getItem('itc-metmin')==='1'}catch(e){return false}})();
+let METMIN=(()=>{try{const v=localStorage.getItem('itc-metmin');if(v!=null)return v==='1'}catch(e){}return typeof innerWidth==='number'&&innerWidth<620})();
 function metProgress(){if(S.phase==='conv'){const L=S.divs||[],m=L.reduce((a,d)=>a+d.max,0)||1;return clamp(1-L.reduce((a,d)=>a+Math.max(0,d.str),0)/m,0,1)}const ld=S.leaders.filter(l=>l.status!=='free').length/Math.max(1,S.leaders.length);return clamp(.45*clamp((60-natInstab())/35,0,1)+.35*((S.stable||0)/30)+.2*ld,0,1)}
 function metricsUpd(){const el=$('#metrics');if(!el||!S)return;const ni=natInstab(),host=Math.max(S.countries.iran.h,S.countries.syria.h);
  const M=[['Progress',metProgress(),'#a8d45e'],['Public',S.morale/100,'#7fd3ff'],['Congress',S.congress/100,'#c39bff'],['Stability',1-ni/100,'#e7c46a'],['Hostility',host/100,'#e3604b']];
@@ -5073,8 +5080,9 @@ s.tm??=75;s.spent??={};s.recov??=[];s.rtd??=0;s.delivered??=0;s.lastSpeed??=1;s.
 function saaAsk(){if(!S||!saa().on||saa().plan)return;showModal({eyebrow:'Opening night · Shock and awe',title:'Choose the air campaign',body:`<p>Before the ground war, ships in the Gulf and bombers strike Iraq. You choose when it starts from the ✸ Fires rail, and when the ground war follows. Brigades wait in Kuwait until G-Day (day ${saa().until||30} at the latest). Going in without softening the Republican Guard means about twice the casualties and units falling back.</p>${Object.values(SAA_PLANS).map(v=>`<p><b>${v.n}</b> · <span style="color:${v.col}">${v.risk}</span><br>${v.d}</p>`).join('')}<p class="note">Change it any time from the ✸ Fires rail.</p>`,opts:Object.entries(SAA_PLANS).map(([k,v])=>({t:v.n,cls:k==='mil'?'primary':'',f:()=>onAct('saaplan',k,'')}))})}
 function startSolo(g,sv,name){if(g==='continue'){S=migrate(sv);if(!S._name){S._name=uniqName(`${(DIFFS[S.diff]||{n:'Regular'}).n} campaign`)}}else{newGame(g);if(DIFFS[g].arcade)arcadeInit();setTimeout(saaAsk,400);S._slot=newSlotId();S._name=uniqName(name||`${DIFFS[g].n} campaign`);save()}if(S.speed>0)S.lastSpeed=S.speed;else if(!S.lastSpeed)S.lastSpeed=SET.startSpeed||4;if(g!=='continue')S.lastSpeed=SET.startSpeed||4;S.speed=0;$('#title').hidden=true;resize();fitView();updSpeed();setRoleUI();updHud();
  if(g!=='continue')showModal({eyebrow:'D-Day · 20 MAR 2003',title:'Topple the regime, find its leaders',body:'<p>Your ground forces stage at Camp Doha in Kuwait. Bring combat engineers or Navy Seabees: they build every new base. The Fifth Fleet in the Gulf hosts carriers and Tomahawk ships; Al Udeid hosts heavy bombers. One leadership target in Baghdad is already partly located: a cruise missile might end this early.</p><p>Troops travel the road network. MSRs are fast but heavily mined; minor roads are slower and ambush-prone. Units hit on the road stop and fight until you reinforce them or they fall back. Watch the terrain and the highways: columns move fastest on MSR Tampa and the main roads, slowest in mountains, marshes and at river crossings away from city bridges. Every new FOB needs combat engineers or Seabees to build it, so deploy engineers early, and every base needs food and ammunition hauled in. Open the Status panel at top right for force health, supply and the cost of the war.</p>',opts:[{t:'Open Camp Doha',cls:'primary',f:()=>{sel={kind:'base',id:'b0'};openSheet('base','b0')}},{t:'Look at the map first',f:()=>{}}]})}
-const GAME_VER=102;const GAME_SEMVER='1.0.0';const SEMVER={101:'1.0.0',102:'1.0.0'};const vLbl=n=>SEMVER[n]||(n>=101?'1.0.'+(n-101):'0.'+n);
+const GAME_VER=103;const GAME_SEMVER='1.0.0';const SEMVER={101:'1.0.0',102:'1.0.0',103:'1.0.0'};const vLbl=n=>SEMVER[n]||(n>=101?'1.0.'+(n-101):'0.'+n);
 const CHANGES=[
+ [103,'Cleaner map',['AO labels now read "2 BDES · 13 COYS · ~93 KM" instead of listing every brigade','The bottom menu (Theater, Forces, Bases, Contracts, Intel) is now a Manage group of icons at the top centre of the map, in the same style as the other command groups, so the map runs to the bottom of the screen']],
  [102,'New command layout',['The command tools are grouped around the map: Command (advisors, Washington, ROE, settings) and Operations (current ops, fires, reorganize, base services, oil) down the left, Intel (BDA, SITREP, threat map, map key) on the right under the view controls','New campaign metrics in the bottom-right corner: concentric half-circle gauges for progress, public support, Congress, stability and regional hostility, with the numbers and your funds. Tap it to collapse it to a single progress readout']],
  [101,'Version 1.0.0',['Versions are now numbered 1.0.0 and up','Foot troops patrol within about 40 km of their FOB, vehicle companies within about 80 km','Automatic AOs wait until companies have actually arrived inside the AO before building forward FOBs or a fires base: no more FOBs going up while the brigade is still on the road']],
  [100,'Lobbying Congress',['Caucuses are far more willing to back war money: the hawks and the Armed Services Committee nearly always do (defense money lines their districts and donors), the establishment and Blue Dogs often do','But a caucus backing a deal is only half of it: the bill still has to clear the whole Congress, so even a hawk-backed supplemental can die on the floor. Each pitch shows both odds','Deals are worth about 60% more money']],

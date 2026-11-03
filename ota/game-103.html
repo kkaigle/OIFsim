@@ -428,6 +428,28 @@ h3{font-size:12px;margin:10px 0 4px;padding-bottom:3px}
 #updAlert button.ua-x{background:transparent;color:#a8d45e;border-color:rgba(168,212,94,.4);padding:9px 10px}
 @keyframes updIn{from{opacity:0;transform:translate(-50%,-12px)}to{opacity:1;transform:translate(-50%,0)}}
 @media (max-width:520px){#updAlert .ua-m{white-space:normal}}
+.rail{position:absolute;inset:0;left:0;top:0;pointer-events:none;z-index:4;display:block}
+.rcol{position:absolute;display:flex;flex-direction:column;gap:9px;pointer-events:auto}
+.rleft{left:max(6px,env(safe-area-inset-left,0px));top:8px}
+.rright{right:max(10px,env(safe-area-inset-right,0px));top:146px}
+.rg{display:flex;flex-direction:column;gap:4px}
+.rgl{font-family:var(--f-mono);font-size:7px;letter-spacing:.16em;text-transform:uppercase;color:var(--friendly);opacity:.75;text-align:center;padding-bottom:1px;border-bottom:1px solid var(--line)}
+.metrics{position:absolute;right:max(10px,env(safe-area-inset-right,0px));bottom:8px;z-index:4;width:236px;background:rgba(10,13,8,.9);border:1px solid var(--line);padding:6px 8px 6px;cursor:pointer;user-select:none}
+.metrics.min{width:auto}.metrics.min .mx{display:none}
+.metrics .mh{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--friendly)}
+.metrics svg{display:block;width:100%;height:auto}
+.metrics .ml{display:grid;grid-template-columns:1fr 1fr;gap:1px 10px;font-family:var(--f-mono);font-size:9px;color:var(--muted);margin-top:2px}
+.metrics .ml span{display:flex;justify-content:space-between;gap:4px}.metrics .ml b{font-weight:700}
+.thrkey{right:calc(max(10px,env(safe-area-inset-right,0px)) + 248px)!important}
+@media (max-width:620px){.metrics{width:180px}.rright{top:140px}}
+.tabs{display:none!important}
+.rtop{left:50%;top:8px;transform:translateX(-50%)}
+.rgh{flex-direction:column;align-items:center}.rgrow{display:flex;gap:4px}
+.rail .rgrow button{width:62px;padding:5px 0 3px;display:grid;justify-items:center;gap:2px;font-family:var(--f-mono);font-size:7.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.rail .rgrow button svg{width:16px;height:16px;fill:none;stroke:var(--friendly);stroke-width:1.6}
+.rail .rgrow button.on{border-left-color:var(--friendly);color:var(--text);background:rgba(34,46,24,.96)}
+.rail .rgrow .badge{top:-5px;right:-5px;left:auto}
+@media (max-width:620px){.rtop{left:auto;right:max(10px,env(safe-area-inset-right,0px));top:auto;bottom:8px;transform:none}.rail .rgrow button{width:48px;font-size:6.5px}.metrics{bottom:62px}}
 </style>
 
 <div id="app">
@@ -467,32 +489,21 @@ h3{font-size:12px;margin:10px 0 4px;padding-bottom:3px}
     <button class="v3btn" id="v3Btn" hidden>◭ 3D VIEW</button>
     <aside class="opsp" id="opsP" aria-label="Ongoing operations"><div class="opsp-h"><div><div class="eyebrow">Current operations</div><div class="opsp-t" id="opsT">Ongoing operations</div></div><button class="x" id="opsX" aria-label="Close">✕</button></div><div class="opsp-b" id="opsBody"></div></aside>
     <nav class="rail" id="rail" aria-label="Command tools">
-      <button id="opsBtn" data-rail="ops"><b>⚔</b><span>Ops</span><i class="rb" id="opsBadge" hidden></i></button>
-      <button id="advBtn" data-rail="adv"><b>★</b><span>Advisors</span><i class="rb" id="advBadge" hidden></i></button>
-      <button id="reoBtn" data-rail="reorg"><b>⇄</b><span>Reorg</span><i class="rb" id="reoBadge" hidden></i></button>
-      <button id="svBtn" data-rail="svc"><b>✚</b><span>Services</span><i class="rb" id="svCount" hidden></i></button>
-      <button id="roeBtn" data-rail="roe"><b id="roeIc">1</b><span>ROE</span></button>
-      <button id="firesBtn" data-rail="fires"><b>✸</b><span>Fires</span></button>
-      <button id="washBtn" data-rail="wash"><b>⚑</b><span>DC</span></button>
-      <button id="oilBtn" data-rail="oil"><b>⛁</b><span>Oil</span><i class="rb" id="oilBadge" hidden></i></button>
-      <button id="bdaBtn" data-rail="bda"><b>✠</b><span>BDA</span></button>
-      <button id="srBtn" data-rail="sitrep"><b>▤</b><span>SITREP</span></button>
-      <button id="thrBtn" data-rail="threat"><b>◍</b><span>Threat</span></button>
-      <button id="setBtn" data-rail="set"><b>⚙</b><span>Settings</span></button>
-      <button id="keyBtn" data-rail="key"><b>◩</b><span>Key</span></button>
+      <div class="rcol rleft"><div class="rg"><div class="rgl">Command</div><button id="advBtn" data-rail="adv"><b>★</b><span>Advisors</span><i class="rb" id="advBadge" hidden></i></button><button id="washBtn" data-rail="wash"><b>⚑</b><span>DC</span></button><button id="roeBtn" data-rail="roe"><b id="roeIc">1</b><span>ROE</span></button><button id="setBtn" data-rail="set"><b>⚙</b><span>Settings</span></button></div><div class="rg"><div class="rgl">Operations</div><button id="opsBtn" data-rail="ops"><b>⚔</b><span>Ops</span><i class="rb" id="opsBadge" hidden></i></button><button id="firesBtn" data-rail="fires"><b>✸</b><span>Fires</span></button><button id="reoBtn" data-rail="reorg"><b>⇄</b><span>Reorg</span><i class="rb" id="reoBadge" hidden></i></button><button id="svBtn" data-rail="svc"><b>✚</b><span>Services</span><i class="rb" id="svCount" hidden></i></button><button id="oilBtn" data-rail="oil"><b>⛁</b><span>Oil</span><i class="rb" id="oilBadge" hidden></i></button></div></div>
+      <div class="rcol rtop"><div class="rg rgh"><div class="rgl">Manage</div><div class="rgrow"><button data-tab="map" class="on"><svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg>Theater</button>
+    <button data-tab="forces"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="1"/><path d="M3 6l18 12M21 6L3 18"/></svg><span id="tabForces">Forces</span></button>
+    <button data-tab="bases"><svg viewBox="0 0 24 24"><path d="M4 20V9l8-5 8 5v11z"/><path d="M9 20v-6h6v6"/></svg>Bases</button>
+    <button data-tab="tech"><svg viewBox="0 0 24 24"><path d="M14 4l6 6-9 9H5v-6z"/><path d="M12 6l6 6"/></svg><span id="tabTech">Contracts</span></button>
+    <button data-tab="intel"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>Intel<span class="badge" id="badge" hidden>0</span></button></div></div></div>
+      <div class="rcol rright"><div class="rg"><div class="rgl">Intel</div><button id="bdaBtn" data-rail="bda"><b>✠</b><span>BDA</span></button><button id="srBtn" data-rail="sitrep"><b>▤</b><span>SITREP</span></button><button id="thrBtn" data-rail="threat"><b>◍</b><span>Threat</span></button><button id="keyBtn" data-rail="key"><b>◩</b><span>Key</span></button></div></div>
     </nav>
+    <div class="metrics" id="metrics" aria-label="Campaign metrics"></div>
     <div class="echbar" id="echBar" hidden></div>
     <button class="cbtn" id="cBtn" hidden>⚔ <span id="cCount">0</span> in contact</button>
     <aside class="side" id="side" aria-label="Theater status"><div class="side-head"><span>Theater status</span><span><button id="sbPin">Pin</button><button id="sbClose" aria-label="Close status panel">✕</button></span></div><div id="sideBody"></div></aside>
     <div class="sheet mid" id="sheet"><button class="grab" id="grab" aria-label="Resize panel: tap to cycle size, or drag"><i></i><span id="grabLbl">▴ expand</span></button><div class="sheet-body gut" id="sheetBody"></div></div>
   </div>
-  <nav class="tabs" id="tabs">
-    <button data-tab="map" class="on"><svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg>Theater</button>
-    <button data-tab="forces"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="1"/><path d="M3 6l18 12M21 6L3 18"/></svg><span id="tabForces">Forces</span></button>
-    <button data-tab="bases"><svg viewBox="0 0 24 24"><path d="M4 20V9l8-5 8 5v11z"/><path d="M9 20v-6h6v6"/></svg>Bases</button>
-    <button data-tab="tech"><svg viewBox="0 0 24 24"><path d="M14 4l6 6-9 9H5v-6z"/><path d="M12 6l6 6"/></svg><span id="tabTech">Contracts</span></button>
-    <button data-tab="intel"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>Intel<span class="badge" id="badge" hidden>0</span></button>
-  </nav>
+  <nav class="tabs" id="tabs" hidden></nav>
 </div>
 <div class="overlay" id="modal" hidden><div class="modal" id="modalBody"></div></div>
 <div class="title" id="title"><div class="title-in gut" id="titleIn"></div></div>
@@ -1816,9 +1827,9 @@ function secAutoDay(s){const R=secRr(s),us=secUnits(s);if(!us.length)return;cons
  const E=enemyPts(s,R),front=E[0]||null,busy=mine.some(b=>b.building>0);
  const build=(q,role)=>{const sc=siteCost(q),cost=isArc()?0:sc.cost;if(S.budget<cost+300)return;spend('construction',cost);const n=FOB_NAMES.find(f=>!S.bases.some(b=>b.n===f))||('FOB '+S.nid);const z=terrainAt(q);const nb={id:'b'+S.nid++,n,city:null,x:q.x,y:q.y,level:1,slots:6,food:60,ammo:60,fuel:40,fac:defaultFac(),high:z&&z.k==='mtn'?1:0,building:sc.days,builder:'legacy',sec:s.id,role,fort:role==='fwd'?1:0,bday:S.day};S.bases.push(nb);newBaseHit(nb);
   log(role==='fwd'?`${s.n} is pushing a forward FOB, ${n}, toward ${front?(front.n||'the enemy'):'the sector\'s worst ground'} (grid ${gridS(nb)}). Ready in ${sc.days} days.`:`${s.n} is building ${n} in the rear (grid ${gridS(nb)}) to keep its guns out of reach while they fire missions forward.`,'info',true,'Sector FOB')};
- const manIn=man.filter(u=>u.state!=='transit'&&inSecS(s,baseById(u.baseId)||{x:1e9,y:1e9}));
+ const atAO=u=>PRESENT.has(u.state)&&inSecS(s,baseById(u.baseId)||{x:1e9,y:1e9})&&inSecS(s,dpos(u)),manIn=man.filter(atAO),firIn=fir.filter(atAO);
  if(!busy){const want=Math.min(Math.ceil(manIn.length/2),clamp(Math.round(R/60),2,4));if(manIn.length&&fwd.length<want){const q=secSiteFor(s,R,front?(q=>dist(q,front)):(q=>dist(q,s)));if(q)build(q,'fwd')}
-  else if(fir.length&&!rear.length){const rng=Math.min(...fir.map(u=>UT[u.type].sup||200))*.85;const q=secSiteFor(s,R,front?(q=>{const d=dist(q,front);return d>rng?1e6+d:-d}):(q=>-dist(q,s)));if(q)build(q,'rear')}}
+  else if(firIn.length&&manIn.length&&!rear.length){const rng=Math.min(...fir.map(u=>UT[u.type].sup||200))*.85;const q=secSiteFor(s,R,front?(q=>{const d=dist(q,front);return d>rng?1e6+d:-d}):(q=>-dist(q,s)));if(q)build(q,'rear')}}
  // a quiet FOB is struck and rebuilt where the threat now is (FOBs only)
  if(!busy&&(s.mvCd||0)<=S.day&&fwd.length){const old=fwd.filter(b=>(b.level||1)<2&&b.building<=0&&S.day-(b.bday??0)>=20&&threatAt(b)<.12).sort((a,b)=>threatAt(a)-threatAt(b))[0];
   if(old){const q=secSiteFor(s,R,q=>-threatAt(q));if(q&&threatAt(q)>=.3&&dist(q,old)>70){s.mvCd=S.day+15;secAbandon(s,[old]);build(q,'fwd');log(`${s.n} strikes ${old.n}: the area around it has gone quiet, so the company moves to a new FOB on the MSR where the threat now is.`,'info',false)}else s.mvCd=S.day+5}}
@@ -1916,7 +1927,7 @@ function drawAO(W,H){if(!S)return;try{drawFires()}catch(e){}try{drawOrbits()}cat
   ctx.beginPath();ctx.moveTo(x-6,y);ctx.lineTo(x+6,y);ctx.moveTo(x,y-6);ctx.lineTo(x,y+6);ctx.stroke();
   for(const b of S.bases.filter(b=>b.sec===s.id&&(b.role==='fwd'||b.role==='rear'))){const [bx,by]=w2s(b);ctx.fillStyle=col;ctx.font=`700 9px ${FM}`;ctx.textAlign='center';ctx.fillText(b.role==='fwd'?'FWD':'FIRES',bx,by+20)}}ctx.restore()}
 function drawAOLabels(){if(!S||SET.ovGround===false||!secMode())return;ctx.save();ctx.textAlign='center';ctx.textBaseline='middle';for(const s of secs()){const col=secCol(s),[x,y0]=w2s(s),P=secPolyPts(s),top=P?Math.min(...P.map(q=>w2s(q)[1])):y0-secRr(s)*view.s,y=Math.max(top+16,y0-secRr(s)*view.s+16);
-  ctx.font=`700 12px ${FD}`;ctx.lineWidth=3.5;ctx.strokeStyle='rgba(8,10,8,.85)';const t1=s.n.toUpperCase()+(s.auto?' · AUTO':'')+(s.post==='tight'?' · COMPRESSED':'');ctx.strokeText(t1,x,y);ctx.fillStyle=col;ctx.fillText(t1,x,y);ctx.font=`500 9.5px ${FM}`;const bs=secBdes(s),lo=secLoose(s).length;const t2=`${bs.length?bs.map(o=>bdeAbbr(o).toUpperCase()).join(' + '):''}${lo?`${bs.length?' + ':''}${lo} CO`:''}${!bs.length&&!lo?'NO FORCES':''} · ~${secKm(s)} KM${s.cond==='heavy'?' · HEAVY-HANDED':''}`;ctx.strokeText(t2,x,y+13);ctx.fillStyle=s.cond==='heavy'?'#ff8a70':col;ctx.fillText(t2,x,y+13)}ctx.restore()}
+  ctx.font=`700 12px ${FD}`;ctx.lineWidth=3.5;ctx.strokeStyle='rgba(8,10,8,.85)';const t1=s.n.toUpperCase()+(s.auto?' · AUTO':'')+(s.post==='tight'?' · COMPRESSED':'');ctx.strokeText(t1,x,y);ctx.fillStyle=col;ctx.fillText(t1,x,y);ctx.font=`500 9.5px ${FM}`;const bs=secBdes(s),lo=secLoose(s).length;const nco=secUnits(s).length,t2=`${bs.length?`${bs.length} BDE${bs.length>1?'S':''} · ${nco} COYS`:'NO FORCES'} · ~${secKm(s)} KM${s.cond==='heavy'?' · HEAVY-HANDED':''}`;ctx.strokeText(t2,x,y+13);ctx.fillStyle=s.cond==='heavy'?'#ff8a70':col;ctx.fillText(t2,x,y+13)}ctx.restore()}
 // ---- screens ----
 const ROLEG=[['man','Maneuver',['arm','mtk','mech','inf','mar','lar','recon']],['fires','Fires',['art','mart']],['avn','Aviation',['avn','hmla','lift']],['sof','Special operations',['sf','rgr','seal','tf']],['sup','Support & enablers',['eng','cb','mp','mi','ca','log','med','cram','patb']],['airnav','Air & naval',['ftr','a10','ac130','pred','c130','bomb','cvw','ddg','p3']]];
 function postCounts(us){const c={fight:0,field:0,base:0,move:0,trans:0};for(const u of us){if(['engaged','pinned','support'].includes(u.state)||(u.state==='moving'&&u.mission==='assault'))c.fight++;else if(u.state==='transit')c.trans++;else if(u.state==='moving')c.move++;else if(AWAY(u))c.field++;else c.base++}return c}
@@ -2191,7 +2202,7 @@ function reorgSheet(){const L=reorgItems(),red=NET.myRole==='red';let h=head(`${
  const G=new Map();for(const x of L){if(!G.has(x.g))G.set(x.g,[]);G.get(x.g).push(x)}
  for(const [g,xs] of G){h+=`<h3>${g} · ${xs.length}</h3><div class="list">${xs.slice(0,8).map(x=>`<div class="item stack"><span class="mid"><span class="nm">${esc(x.t)}</span><span class="sb wrap">${esc(x.s)}</span></span>${red?'':`<button class="btn sm" data-act="${x.btn[0]}" data-a="${x.btn[1]}" data-b="${x.btn[2]}" ><span class="t">${esc(x.btn[3])}</span></button>`}</div>`).join('')}</div>`}
  return h}
-function updRail(){{const arc=isArc();for(const id of ['reoBtn','svBtn','roeBtn'])if($('#'+id))$('#'+id).hidden=arc;const tb=document.querySelector&&document.querySelector('#tabs [data-tab="tech"]');if(tb&&tb.style)tb.style.display=arc?'none':''}{const ic=$('#roeIc');if(ic&&S&&ic.textContent!==String(roeL())){ic.textContent=String(roeL());ic.style.color=['','#3fbf8a','#eaa53a','#ff8a70'][roeL()]}if(ic&&S)ic.style.color=['','#3fbf8a','#eaa53a','#ff8a70'][roeL()]}if(!S)return;const g=svcGaps(),sv=$('#svCount'),sb=$('#svBtn');sv.hidden=!(g.crit+g.warn);sv.textContent=g.crit+g.warn;sb.classList.toggle('alert',g.crit>0);sb.classList.toggle('warnb',!g.crit&&g.warn>0);
+function updRail(){{const arc=isArc();for(const id of ['reoBtn','svBtn','roeBtn'])if($('#'+id))$('#'+id).hidden=arc;const tb=document.querySelector&&document.querySelector('button[data-tab="tech"]');if(tb&&tb.style)tb.style.display=arc?'none':''}{const ic=$('#roeIc');if(ic&&S&&ic.textContent!==String(roeL())){ic.textContent=String(roeL());ic.style.color=['','#3fbf8a','#eaa53a','#ff8a70'][roeL()]}if(ic&&S)ic.style.color=['','#3fbf8a','#eaa53a','#ff8a70'][roeL()]}if(!S)return;const g=svcGaps(),sv=$('#svCount'),sb=$('#svBtn');sv.hidden=!(g.crit+g.warn);sv.textContent=g.crit+g.warn;sb.classList.toggle('alert',g.crit>0);sb.classList.toggle('warnb',!g.crit&&g.warn>0);
  if(!ADV.t)advRefresh();const fresh=Date.now()-ADV.t>=ADV_MS;if(fresh&&!(sheet&&sheet.kind==='adv'))advRefresh();const ab=$('#advBadge'),un=ADV.recs.filter(r=>!ADV.done[r.id]).length;ab.hidden=!(ADV.recs.length&&!ADV.seen&&un);ab.textContent=un;$('#advBtn').classList.toggle('new',!ADV.seen&&un>0);
  const rn=reorgCount();const rb=$('#reoBadge');rb.hidden=!rn;rb.textContent=rn;
  {const ob=$('#oilBadge');if(ob){const on=oilBroken();ob.hidden=!on;ob.textContent=on}}
@@ -3229,7 +3240,7 @@ let SHSZ='mid';try{const v=localStorage.getItem('itc-shsz');if(v==='mid'||v==='t
 function applySz(){const el=$('#sheet');el.classList.remove('mini','mid','tall');el.classList.add(SHSZ);const l=$('#grabLbl');if(l)l.textContent=SHSZ==='tall'?'▾ shrink':SHSZ==='mini'?'▴ show':'▴ expand';if(SHSZ!=='mini')try{localStorage.setItem('itc-shsz',SHSZ)}catch(e){}}
 function setSz(z){SHSZ=z;applySz()}
 function closeSheet(){sheet=null;sel=null;$('#sheet').classList.remove('open');setTab('map');sideApply()}
-function setTab(t){document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.tab===t))}
+function setTab(t){document.querySelectorAll('button[data-tab]').forEach(b=>b.classList.toggle('on',b.dataset.tab===t))}
 function head(eb,title){return `<div class="sh-head"><div style="min-width:0"><div class="eyebrow">${eb}</div><h2>${title}</h2></div><button class="x" data-act="close" aria-label="Close">✕</button></div>`}
 function strip(items){return `<div class="strip">${items.filter(Boolean).map(([k,v,c])=>`<div class="st"><span class="k">${k}</span><span class="v"${c?` style="color:${c}"`:''}>${v}</span></div>`).join('')}</div>`}
 function bar(v,col){return `<div class="bar"><i style="width:${clamp(v,0,100)}%;background:${col}"></i></div>`}
@@ -3430,7 +3441,7 @@ function settingsSheet(){let h=head('Command preferences','Settings');
   +row('Slow down on troops in contact','Drops the clock to this speed when a unit gets pinned (if pause is off).',seg('slowContact',[[0,'Off'],[1,'1×'],[4,'4×'],[16,'16×']]));
  h+=`<h3>Timing</h3>`+row('Game speed','1× = 10 minutes per game day · 4× ≈ 2½ minutes · 64× ≈ 9 seconds.',seg('_speed',SPEEDS.map(v=>[v,v+'×'])))+row('Speed when you first unpause','Games always load paused. Press play (or +) to start the clock at this speed in a new campaign; continued campaigns resume at their last speed.',seg('startSpeed',[[1,'1×'],[4,'4×'],[16,'16×'],[32,'32×'],[64,'64×']]))+row('Advisor refresh','How often the top three recommendations are replaced.',seg('advMin',[[1,'1 min'],[2,'2 min'],[5,'5 min'],[10,'10 min']]));
  h+=`<h3>Map</h3>`+row('Unit status tags','Colored posture tags under field units when zoomed in.',seg('postTags',[[true,'On'],[false,'Off']]))+row('Road name markers','',seg('roadLbl',[[true,'On'],[false,'Off']]))+row('Drone camera overlay','Crosshair, vignette and readout at high zoom.',seg('droneHUD',[[true,'On'],[false,'Off']]))+row('Combat effects','Gunfire, impacts and smoke.',seg('fx',[['full','Full'],['reduced','Reduced'],['off','Off']]))+row('Force management','Sector command: place sectors and assign brigades and companies; automatic sectors build FOBs, patrol and fire on their own. Classic: you manage every unit and base yourself.',seg('forceMode',[['sector','Sector command'],['classic','Classic']]))+row('Brigade sectors overlay','Each combat brigade\'s sector circle, name and radius.',seg('ovGround',[['true','Show'],['false','Hide']]))+row('Aviation coverage overlay','Range rings for attack helicopters, lift and MEDEVAC, close air support and ISR from the bases they fly out of.',seg('ovAir',[['true','Show'],['false','Hide']]))+row('Map style','Satellite: NASA Blue Marble imagery with terrain detail. Tactical: a military operations map with relief tints, contour lines, spot heights, a real MGRS grid and a scale bar. The ▦ button on the map switches quickly.',seg('map',[['satellite','Satellite'],['tactical','Tactical']]))+row('Drone camera filter','Look of the map and 3D drone view when zoomed in close.',seg('droneCam',[['ir','IR white-hot'],['bh','IR black-hot'],['nv','Night vision'],['eo','Daylight'],['off','Off']]))+row('3D view quality','High draws more buildings and smoother edges; Low is easier on phones and batteries.',seg('q3d',[['low','Low'],['high','High']]));
- h+=`<div class="acts"><button class="btn" data-act="setreset"><span class="t">Reset to defaults</span></button><button class="btn" data-act="verhist"><span class="t">What's new · version history</span><span class="s">You are on v${GAME_VER}</span></button></div><p class="note">Settings are saved on this device. Your campaign autosaves in this browser once per game day.</p>`;return h}
+ h+=`<div class="acts"><button class="btn" data-act="setreset"><span class="t">Reset to defaults</span></button><button class="btn" data-act="verhist"><span class="t">What's new · version history</span><span class="s">You are on v${vLbl(GAME_VER)}</span></button></div><p class="note">Settings are saved on this device. Your campaign autosaves in this browser once per game day.</p>`;return h}
 const ROE=[null,
  {n:'Restrictive',k:'Hold fire / escalate on order',col:'var(--good)',d:'Troops return fire only. Nobody comes to help a unit in contact until you send reinforcements or air support yourself. AOs still defend their FOBs and counter-attack to take back any base the enemy captures inside them.',fx:['Civilian casualties rare','Patrols win more goodwill (instability falls faster)','Scrutiny fades over time','No combat bonus']},
  {n:'Aggressive',k:'Engage threats on sight',col:'var(--warn)',d:'Units shoot first and press the fight. They fight harder in contact, assaults and city holds, but reckless fire hits bystanders. AOs counter-attack lost bases at worse odds and push into insurgent-held towns on their own.',fx:['+15% combat effectiveness in contact, assaults, cordons','Civilian casualties now and then','Scrutiny builds slowly','You still decide on reinforcements']},
@@ -4601,7 +4612,7 @@ function ppDay(){for(const u of S.units)if((u.repeat||u.bpat)&&!isOff(u.type)){u
   for(const u of S.units)if(u.bpat===b.id&&(u.baseId!==b.id||!u.repeat||!pp||!pp.n)){if(u.baseId!==b.id||!pp||!pp.n){u.repeat=false;u.ptgt=null}u.bpat=null}
   if(!pp||!pp.n||isRear(b)||b.building>0)continue;let as=ppUnits(b);
   if(pp.auto===undefined&&!pp.sec)pp.auto=true;const secs=patSectors(b);pp.hist=pp.hist||{};
-  const assign=u=>{let o,ty;const okS=secs.filter(x=>aoOk(u,x)&&(!aoBound(u)||dist(b,x)<=120));if(pp.auto){const sc=okS.map(x=>({x,v:x.threat*(x.kind==='perim'&&(b.lastIF??-99)>S.day-10?1.6:1)*(x.kind==='city'?1.2:1)/(1+((pp.hist[x.id]||-9)>S.day-3?1.5:0))/(1+as.filter(z=>z!==u&&z.psecId===x.id).length)})).sort((a,c)=>c.v-a.v);o=sc[0]&&sc[0].x;ty=o&&recType(o,u)}else{o=okS.find(x=>x.id===pp.sec);ty=pp.type}
+  const assign=u=>{let o,ty;const okS=secs.filter(x=>aoOk(u,x)&&dist(b,x)<=(UT[u.type].veh?80:40));if(pp.auto){const sc=okS.map(x=>({x,v:x.threat*(x.kind==='perim'&&(b.lastIF??-99)>S.day-10?1.6:1)*(x.kind==='city'?1.2:1)/(1+((pp.hist[x.id]||-9)>S.day-3?1.5:0))/(1+as.filter(z=>z!==u&&z.psecId===x.id).length)})).sort((a,c)=>c.v-a.v);o=sc[0]&&sc[0].x;ty=o&&recType(o,u)}else{o=okS.find(x=>x.id===pp.sec);ty=pp.type}
    if(!o&&!pp.auto){pp.auto=true;return assign(u)}if(!o)return;if(ty==='cordon'&&u.p<UT[u.type].p*.7)ty=o.kind==='sh'?'recon':'presence';u.ptgt={x:o.x,y:o.y};u.ptype=ty;u.psec=o.n;u.psecId=o.id;u.pbase=b.id;u.pcity=o.city||null;u.prt=o.rt??null;pp.hist[o.id]=S.day};
   for(const u of as)if(u.state==='garrison')assign(u);
   if(as.length>pp.n){for(const u of as.slice(pp.n)){u.bpat=null;u.repeat=false;u.ptgt=null}continue}
@@ -4944,7 +4955,7 @@ function doAct(act,a,b,who,remote){if(!S||S.over)return;if(RED_ACTS.has(act)!==(
  default:ok=false}
  if(ok)afterChange()}
 function afterChange(){updHud();if(sheet&&NET.role!=='guest')renderSheet(true);renderSide();netSync(false)}
-document.querySelectorAll('#tabs button').forEach(b=>b.addEventListener('click',()=>{const t=b.dataset.tab;if(!S)return;if(t==='map'){closeSheet();return}sel=null;
+document.querySelectorAll('button[data-tab]').forEach(b=>b.addEventListener('click',()=>{const t=b.dataset.tab;if(!S)return;if(t==='map'){closeSheet();return}sel=null;
  const red=NET.myRole==='red';openSheet(red&&t==='forces'?'red':red&&t==='tech'?'sponsors':t,null)}));
 const SPEEDS=[1,2,4,8,16,32,64,128,256];
 const spLabel=v=>v+'×';
@@ -5020,7 +5031,17 @@ function renderSide(){if(!S||!SIDE.open)return;const el=$('#sideBody'),st=el.scr
  el.innerHTML=h;el.scrollTop=st}
 
 /* ================= HUD ================= */
-function updHud(){if(!S)return;const d=dateOf(S.day);
+// ---- campaign metrics: concentric half-circle gauges
+let METMIN=(()=>{try{const v=localStorage.getItem('itc-metmin');if(v!=null)return v==='1'}catch(e){}return typeof innerWidth==='number'&&innerWidth<620})();
+function metProgress(){if(S.phase==='conv'){const L=S.divs||[],m=L.reduce((a,d)=>a+d.max,0)||1;return clamp(1-L.reduce((a,d)=>a+Math.max(0,d.str),0)/m,0,1)}const ld=S.leaders.filter(l=>l.status!=='free').length/Math.max(1,S.leaders.length);return clamp(.45*clamp((60-natInstab())/35,0,1)+.35*((S.stable||0)/30)+.2*ld,0,1)}
+function metricsUpd(){const el=$('#metrics');if(!el||!S)return;const ni=natInstab(),host=Math.max(S.countries.iran.h,S.countries.syria.h);
+ const M=[['Progress',metProgress(),'#a8d45e'],['Public',S.morale/100,'#7fd3ff'],['Congress',S.congress/100,'#c39bff'],['Stability',1-ni/100,'#e7c46a'],['Hostility',host/100,'#e3604b']];
+ const key=METMIN+'|'+M.map(m=>Math.round(m[1]*100)).join(',');if(el.dataset.k===key)return;el.dataset.k=key;el.classList.toggle('min',METMIN);
+ if(METMIN){el.innerHTML=`<div class="mh"><span>Metrics ▴</span><span style="color:${M[0][2]};margin-left:10px">${Math.round(M[0][1]*100)}%</span></div>`;return}
+ const cx=110,cy=104,arcs=M.map(([n,v,c],i)=>{const r=96-i*15,L=Math.PI*r,f=clamp(v,0,1);const d=`M ${cx-r} ${cy} A ${r} ${r} 0 0 1 ${cx+r} ${cy}`;return `<path d="${d}" fill="none" stroke="rgba(233,227,212,.08)" stroke-width="9"/><path d="${d}" fill="none" stroke="${c}" stroke-width="9" stroke-linecap="butt" stroke-dasharray="${(L*f).toFixed(1)} ${L.toFixed(1)}"/>`}).join('');
+ el.innerHTML=`<div class="mh"><span>Campaign metrics</span><span>▾</span></div><svg viewBox="0 0 220 110">${arcs}<text x="${cx}" y="${cy-14}" text-anchor="middle" font-family="Barlow Condensed,Arial Narrow,sans-serif" font-weight="700" font-size="22" fill="#a8d45e">${Math.round(M[0][1]*100)}%</text><text x="${cx}" y="${cy-2}" text-anchor="middle" font-family="monospace" font-size="6.5" letter-spacing="1" fill="#9aa38c">${S.phase==='conv'?'INVASION':'PEACE'}</text></svg><div class="ml mx">${M.map(([n,v,c])=>`<span><i style="font-style:normal;color:${c}">■ ${n}</i><b style="color:${c}">${Math.round(v*100)}</b></span>`).join('')}<span><i style="font-style:normal">Funds</i><b>${fm(S.budget)}</b></span></div>`}
+{const el=$('#metrics');if(el&&el.addEventListener)el.addEventListener('click',()=>{METMIN=!METMIN;try{localStorage.setItem('itc-metmin',METMIN?'1':'0')}catch(e){}el.dataset.k='';metricsUpd()})}
+function updHud(){if(!S)return;try{metricsUpd()}catch(e){}const d=dateOf(S.day);
  const mp=NET.role==='host'?` · Game ${NET.code}${NET.partner?' · partner on':' · waiting'}`:NET.role==='guest'?` · Game ${NET.code} · ${NET.myRole==='red'?'Red Cell':'co-commander'}`:'';
  $('#date').textContent=`${pad(d.getUTCDate())} ${MON[d.getUTCMonth()]} ${String(d.getUTCFullYear()).slice(2)} · ${clockStr()} · D+${S.day}${stormy()?' · SANDSTORM':''}${mp}`;
  const ph=$('#phase');ph.textContent=S.phase==='ins'?'Insurgency':'Major combat';ph.classList.toggle('ins',S.phase==='ins');
@@ -5058,8 +5079,11 @@ s.tm??=75;s.spent??={};s.recov??=[];s.rtd??=0;s.delivered??=0;s.lastSpeed??=1;s.
 function saaAsk(){if(!S||!saa().on||saa().plan)return;showModal({eyebrow:'Opening night · Shock and awe',title:'Choose the air campaign',body:`<p>Before the ground war, ships in the Gulf and bombers strike Iraq. You choose when it starts from the ✸ Fires rail, and when the ground war follows. Brigades wait in Kuwait until G-Day (day ${saa().until||30} at the latest). Going in without softening the Republican Guard means about twice the casualties and units falling back.</p>${Object.values(SAA_PLANS).map(v=>`<p><b>${v.n}</b> · <span style="color:${v.col}">${v.risk}</span><br>${v.d}</p>`).join('')}<p class="note">Change it any time from the ✸ Fires rail.</p>`,opts:Object.entries(SAA_PLANS).map(([k,v])=>({t:v.n,cls:k==='mil'?'primary':'',f:()=>onAct('saaplan',k,'')}))})}
 function startSolo(g,sv,name){if(g==='continue'){S=migrate(sv);if(!S._name){S._name=uniqName(`${(DIFFS[S.diff]||{n:'Regular'}).n} campaign`)}}else{newGame(g);if(DIFFS[g].arcade)arcadeInit();setTimeout(saaAsk,400);S._slot=newSlotId();S._name=uniqName(name||`${DIFFS[g].n} campaign`);save()}if(S.speed>0)S.lastSpeed=S.speed;else if(!S.lastSpeed)S.lastSpeed=SET.startSpeed||4;if(g!=='continue')S.lastSpeed=SET.startSpeed||4;S.speed=0;$('#title').hidden=true;resize();fitView();updSpeed();setRoleUI();updHud();
  if(g!=='continue')showModal({eyebrow:'D-Day · 20 MAR 2003',title:'Topple the regime, find its leaders',body:'<p>Your ground forces stage at Camp Doha in Kuwait. Bring combat engineers or Navy Seabees: they build every new base. The Fifth Fleet in the Gulf hosts carriers and Tomahawk ships; Al Udeid hosts heavy bombers. One leadership target in Baghdad is already partly located: a cruise missile might end this early.</p><p>Troops travel the road network. MSRs are fast but heavily mined; minor roads are slower and ambush-prone. Units hit on the road stop and fight until you reinforce them or they fall back. Watch the terrain and the highways: columns move fastest on MSR Tampa and the main roads, slowest in mountains, marshes and at river crossings away from city bridges. Every new FOB needs combat engineers or Seabees to build it, so deploy engineers early, and every base needs food and ammunition hauled in. Open the Status panel at top right for force health, supply and the cost of the war.</p>',opts:[{t:'Open Camp Doha',cls:'primary',f:()=>{sel={kind:'base',id:'b0'};openSheet('base','b0')}},{t:'Look at the map first',f:()=>{}}]})}
-const GAME_VER=100;
+const GAME_VER=103;const GAME_SEMVER='1.0.0';const SEMVER={101:'1.0.0',102:'1.0.0',103:'1.0.0'};const vLbl=n=>SEMVER[n]||(n>=101?'1.0.'+(n-101):'0.'+n);
 const CHANGES=[
+ [103,'Cleaner map',['AO labels now read "2 BDES · 13 COYS · ~93 KM" instead of listing every brigade','The bottom menu (Theater, Forces, Bases, Contracts, Intel) is now a Manage group of icons at the top centre of the map, in the same style as the other command groups, so the map runs to the bottom of the screen']],
+ [102,'New command layout',['The command tools are grouped around the map: Command (advisors, Washington, ROE, settings) and Operations (current ops, fires, reorganize, base services, oil) down the left, Intel (BDA, SITREP, threat map, map key) on the right under the view controls','New campaign metrics in the bottom-right corner: concentric half-circle gauges for progress, public support, Congress, stability and regional hostility, with the numbers and your funds. Tap it to collapse it to a single progress readout']],
+ [101,'Version 1.0.0',['Versions are now numbered 1.0.0 and up','Foot troops patrol within about 40 km of their FOB, vehicle companies within about 80 km','Automatic AOs wait until companies have actually arrived inside the AO before building forward FOBs or a fires base: no more FOBs going up while the brigade is still on the road']],
  [100,'Lobbying Congress',['Caucuses are far more willing to back war money: the hawks and the Armed Services Committee nearly always do (defense money lines their districts and donors), the establishment and Blue Dogs often do','But a caucus backing a deal is only half of it: the bill still has to clear the whole Congress, so even a hawk-backed supplemental can die on the floor. Each pitch shows both odds','Deals are worth about 60% more money']],
  [99,'MSRs',['Automatic AOs site their FOBs along the main supply routes, and move them: a FOB whose area has gone quiet for 20 days is struck and rebuilt on the MSR where the threat now is. Camps and bigger bases are never taken down without your order (hand them over from the base screen)','New MSR overwatch on the ✸ Fires screen: each MSR shows its most dangerous stretch. Clear it with air strikes before ground forces move, or put a CAS or ISR aircraft on daily overwatch over it. Cleared or watched stretches see fewer than half the ambushes and IEDs']],
  [98,'Looser AO links',['New AOs no longer need to touch a held AO: they can sit up to about one AO beyond your held AOs, or about 300 km in from Kuwait. Units still land in Kuwait and drive north through the AOs behind them','Moving or releasing a brigade is never blocked any more: you get a warning if it leaves AOs further north without support to the south. AOs only pull back on their own if they end up far beyond that reach']],
@@ -5124,12 +5148,12 @@ const CHANGES=[
  [38,'Cities & drone view',['Slower pace: new games start at 4×','City street networks with named patrol routes and route security','Drone camera view at high zoom','More highways, labeled along their length']],
  [37,'Field control',['Clear unit status and location everywhere','Threat-based patrols with five mission types','Sheets have jump buttons and folding sections']]];
 function seenVer(sv){let v=0;try{v=+localStorage.getItem('itc-ver-seen')||0}catch(e){}if(sv&&sv.gv)v=Math.max(v,sv.gv);if(!v&&sv)v=36;return v}
-function changesHTML(from,all){const L=CHANGES.filter(c=>all||c[0]>from);if(!L.length)return '';return L.map(([v,t,items])=>`<div class="chg"><div class="chg-h"><b>v${v}</b> ${esc(t)}</div><ul>${items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`).join('')}
+function changesHTML(from,all){const L=CHANGES.filter(c=>all||c[0]>from);if(!L.length)return '';return L.map(([v,t,items])=>`<div class="chg"><div class="chg-h"><b>v${vLbl(v)}</b> ${esc(t)}</div><ul>${items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`).join('')}
 function verSeen(){try{localStorage.setItem('itc-ver-seen',String(GAME_VER))}catch(e){}}
-function verSheet(){return head(`Iraq Theater Command · v${GAME_VER}`,'Version history')+changesHTML(0,true)}
+function verSheet(){return head(`Iraq Theater Command · v${vLbl(GAME_VER)}`,'Version history')+changesHTML(0,true)}
 function showTitle(){if(V3.open)close3D();const sv=load();netLeave();S=null;closeSheet();mq=[];mOpen=false;$('#modal').hidden=true;
  const sv0=sv,from=seenVer(sv0),news=from&&from<GAME_VER?changesHTML(from):(!from?changesHTML(GAME_VER-1):'');
- $('#titleIn').innerHTML=`<div class="oplan">OPLAN 1003V · CENTCOM · SECRET//REL TO PLAYER <span class="vtag">v${GAME_VER}</span></div><div id="updB">${updBanner()}</div>
+ $('#titleIn').innerHTML=`<div class="oplan">OPLAN 1003V · CENTCOM · SECRET//REL TO PLAYER <span class="vtag">v${vLbl(GAME_VER)}</span></div><div id="updB">${updBanner()}</div>
  <h1>Iraq Theater <span>Command</span></h1>
  <p>Topple the regime, hunt its leadership, then hold the country while Syria and Iran feed the insurgency.</p>
  <div class="rules">
@@ -5140,7 +5164,7 @@ function showTitle(){if(V3.open)close3D();const sv=load();netLeave();S=null;clos
   <div><b>Logistics.</b> Bases burn food and ammunition every day. Run truck convoys or airlifts from Kuwait or forward hubs, or troop morale and combat power collapse. Medical units return some wounded to duty.</div>
   <div><b>Politics.</b> Casualties drive public opinion, which drives Congress, which decides your funding. After the government falls, a Status of Forces Agreement caps your troops.</div>
  </div>
- ${news?`<div class="whatsnew" id="whatsNew"><div class="wn-h"><span class="eyebrow">${from?`What's new since your last save (v${from})`:`What's new in v${GAME_VER}`}</span><button class="x" id="wnX" aria-label="Dismiss">✕</button></div><div class="wn-b">${news}</div></div>`:''}
+ ${news?`<div class="whatsnew" id="whatsNew"><div class="wn-h"><span class="eyebrow">${from?`What's new since your last save (v${vLbl(from)})`:`What's new in v${vLbl(GAME_VER)}`}</span><button class="x" id="wnX" aria-label="Dismiss">✕</button></div><div class="wn-b">${news}</div></div>`:''}
  <div class="diff">${sv&&!sv.over&&sv.v>=2?`<button class="btn primary" data-go="continue"><span><span class="t">Continue · ${esc(sv._name||'campaign')}</span><span class="s">${DIFFS[sv.diff].n} · D+${sv.day} · ${sv.kia} KIA · ${fm(sv.budget)}</span></span></button>`:''}
  ${slotsHTML()}
  ${TNEW?`<div class="newc"><div class="eyebrow">New ${DIFFS[TNEW].n} campaign</div><label class="note" for="campName" style="margin:4px 0 2px;display:block">Name it so you can find it later</label><input id="campName" maxlength="40" value="${esc(uniqName(DIFFS[TNEW].n+' campaign'))}"><div class="newc-b"><button class="btn primary" data-go="start"><span class="t">Start campaign</span></button><button class="btn" data-go="cancelnew"><span class="t">Cancel</span></button></div></div>`:''}
@@ -5199,12 +5223,12 @@ new ResizeObserver(()=>{resize();try{draw()}catch(e){}}).observe(cv);
 // ---- desktop over-the-air updates ----
 let UPD={st:'idle'};const UPDD=()=>window.itcDesktop&&window.itcDesktop.checkUpdates;
 function updRefresh(){try{updAlert()}catch(e){}const b=$('#updB');if(b&&b.innerHTML!==undefined)b.innerHTML=updBanner();if(sheet&&sheet.kind==='set')try{renderSheet(true)}catch(e){}}
-function updCheck(){if(!UPDD())return;UPD={...UPD,st:'checking'};updRefresh();window.itcDesktop.checkUpdates().then(st=>{UPD=st;updRefresh();if(st.st==='none')toast(`You have the latest version (v${GAME_VER}).`,'good','Up to date');if(st.st==='error')toast('Could not reach the update server. Check your connection and try again.','warn','Update check failed')})}
-function updApply(){if(!UPDD()||UPD.st!=='ready')return;if(S&&NET.role!=='guest')save();toast(`Restarting into v${UPD.v}. Your campaign was saved and backed up.`,'good','Updating');setTimeout(()=>window.itcDesktop.applyUpdate(),400)}
+function updCheck(){if(!UPDD())return;UPD={...UPD,st:'checking'};updRefresh();window.itcDesktop.checkUpdates().then(st=>{UPD=st;updRefresh();if(st.st==='none')toast(`You have the latest version (v${vLbl(GAME_VER)}).`,'good','Up to date');if(st.st==='error')toast('Could not reach the update server. Check your connection and try again.','warn','Update check failed')})}
+function updApply(){if(!UPDD()||UPD.st!=='ready')return;if(S&&NET.role!=='guest')save();toast(`Restarting into v${vLbl(UPD.v)}. Your campaign was saved and backed up.`,'good','Updating');setTimeout(()=>window.itcDesktop.applyUpdate(),400)}
 function updTile(){if(!UPDD())return '';const u=UPD,n=(u.notes||[]).slice(0,3).map(x=>`<li>${esc(x)}</li>`).join('');
- if(u.st==='ready')return `<div class="tiles" style="grid-template-columns:1fr"><button class="tile" data-act="updgo"><b>⬆</b><span class="tl">Restart to update to v${u.v}</span><span class="ts">Downloaded · your campaign is saved first</span></button></div>${n?`<ul class="note">${n}</ul>`:''}`;
+ if(u.st==='ready')return `<div class="tiles" style="grid-template-columns:1fr"><button class="tile" data-act="updgo"><b>⬆</b><span class="tl">Restart to update to v${vLbl(u.v)}</span><span class="ts">Downloaded · your campaign is saved first</span></button></div>${n?`<ul class="note">${n}</ul>`:''}`;
  if(u.st==='shell')return `<div class="tiles" style="grid-template-columns:1fr"><button class="tile" data-act="updshell"><b>⬇</b><span class="tl">New desktop app ${esc(u.shell||'')}</span><span class="ts">Download and replace this app · saves carry over</span></button></div>`;
- const lbl=u.st==='checking'?'Checking…':u.st==='downloading'?`Downloading v${u.v}…`:'Check for updates',sub=u.st==='none'?`Up to date · v${GAME_VER}`:u.st==='error'?'Last check failed':`Installed v${GAME_VER}`;
+ const lbl=u.st==='checking'?'Checking…':u.st==='downloading'?`Downloading v${vLbl(u.v)}…`:'Check for updates',sub=u.st==='none'?`Up to date · v${vLbl(GAME_VER)}`:u.st==='error'?'Last check failed':`Installed v${vLbl(GAME_VER)}`;
  return `<div class="tiles" style="grid-template-columns:1fr"><button class="tile" data-act="updchk"><b>⟳</b><span class="tl">${lbl}</span><span class="ts">${sub}</span></button></div>`}
 // ---- update alert: a game-level banner, top centre, outside the in-game notifications
 let WEBUPD=null,UPDX=(()=>{try{return localStorage.getItem('itc-updx')||''}catch(e){return ''}})();
@@ -5214,16 +5238,16 @@ function updAlert(){let el=document.getElementById('updAlert');const des=!!UPDD(
   if(k==='x'){UPDX=el.dataset.key||'';try{localStorage.setItem('itc-updx',UPDX)}catch(e){}el.hidden=true;return}
   if(k==='go'){if(el.dataset.kind==='ready')updApply();else if(el.dataset.kind==='shell')window.itcDesktop&&window.itcDesktop.openShellDownload();else{try{if(S&&!S.over&&NET.role!=='guest')save()}catch(e){}location.reload()}}})}
  el.dataset.kind=kind;el.dataset.key=key;const v=kind==='shell'?UPD.shell:kind==='ready'?UPD.v:WEBUPD.v,n=(kind==='web'?WEBUPD.notes:UPD.notes)||[];
- el.innerHTML=`<span class="ua-t"><span class="ua-k">${kind==='shell'?'New desktop app':'Update available'} · v${esc(String(v))}</span><span class="ua-m">${n[0]?esc(n[0].replace(/\.?$/,'.')):kind==='shell'?'Download the new app. Saves carry over.':'A new version of the game is ready.'}${kind==='ready'?' Your campaign is saved before restarting.':''}</span></span><button data-u="go">${kind==='shell'?'Download':kind==='ready'?'Restart & update':'Reload'}</button><button class="ua-x" data-u="x" aria-label="Later">Later</button>`;el.hidden=false}
+ el.innerHTML=`<span class="ua-t"><span class="ua-k">${kind==='shell'?'New desktop app':'Update available'} · v${esc(kind==='shell'?String(v):vLbl(v))}</span><span class="ua-m">${n[0]?esc(n[0].replace(/\.?$/,'.')):kind==='shell'?'Download the new app. Saves carry over.':'A new version of the game is ready.'}${kind==='ready'?' Your campaign is saved before restarting.':''}</span></span><button data-u="go">${kind==='shell'?'Download':kind==='ready'?'Restart & update':'Reload'}</button><button class="ua-x" data-u="x" aria-label="Later">Later</button>`;el.hidden=false}
 // web/iPad build: look for a newer index.html on the server every 20 minutes
 function webUpdCheck(){if(typeof location==='undefined'||UPDD()||!document.querySelector||!document.querySelector('link[rel="manifest"]')||!/^https?:/.test(location.protocol)||!window.fetch)return;
  fetch('index.html?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.text():'').then(t=>{const m=t&&t.match(/const GAME_VER=(\d+);/);if(!m||+m[1]<=GAME_VER)return;const nm=t.match(/const CHANGES=\[\s*\[\d+,'((?:[^'\\]|\\.)*)'/);WEBUPD={v:+m[1],notes:nm?[nm[1].replace(/\\'/g,"'")]:[]};updAlert()}).catch(()=>{})}
 setTimeout(webUpdCheck,6000);setInterval(webUpdCheck,20*60*1000);
 // desktop: ask the app to check every 30 minutes while the game is open
 if(UPDD())setInterval(()=>{try{if(UPD.st!=='ready'&&UPD.st!=='downloading')window.itcDesktop.checkUpdates().then(st=>{if(st){UPD=st;updRefresh()}}).catch(()=>{})}catch(e){}},30*60*1000);
-function updBanner(){if(!UPDD())return '';if(UPD.st==='ready')return `<div class="updb"><span>Update <b>v${UPD.v}</b> is ready${(UPD.notes||[])[0]?' · '+esc(UPD.notes[0]):''}</span><button class="btn sm" data-go="updgo"><span class="t">Restart &amp; update</span></button></div>`;
+function updBanner(){if(!UPDD())return '';if(UPD.st==='ready')return `<div class="updb"><span>Update <b>v${vLbl(UPD.v)}</b> is ready${(UPD.notes||[])[0]?' · '+esc(UPD.notes[0]):''}</span><button class="btn sm" data-go="updgo"><span class="t">Restart &amp; update</span></button></div>`;
  if(UPD.st==='shell')return `<div class="updb"><span>New desktop app <b>${esc(UPD.shell||'')}</b> available</span><button class="btn sm" data-go="updshell"><span class="t">Download</span></button></div>`;return ''}
-if(window.itcDesktop&&window.itcDesktop.ready){try{window.itcDesktop.ready(GAME_VER);window.itcDesktop.onUpdate(st=>{const was=UPD.st;UPD=st;if(st.st==='ready'&&was!=='ready'){toast(`Version ${st.v} downloaded. Restart from Settings or the main menu to update.`,'good','Update ready');updRefresh()}else if(st.st==='shell'&&was!=='shell')updRefresh()});window.itcDesktop.updateStatus().then(st=>{if(st&&st.st!=='idle'){UPD=st;updRefresh()}})}catch(e){}}
+if(window.itcDesktop&&window.itcDesktop.ready){try{window.itcDesktop.ready(GAME_VER);window.itcDesktop.onUpdate(st=>{const was=UPD.st;UPD=st;if(st.st==='ready'&&was!=='ready'){toast(`Version ${vLbl(st.v)} downloaded. Restart from Settings or the main menu to update.`,'good','Update ready');updRefresh()}else if(st.st==='shell'&&was!=='shell')updRefresh()});window.itcDesktop.updateStatus().then(st=>{if(st&&st.st!=='idle'){UPD=st;updRefresh()}})}catch(e){}}
 function ovSync(){const g=$('#ovG'),a=$('#ovA');if(g&&g.classList)g.classList.toggle('on',SET.ovGround!==false);if(a&&a.classList)a.classList.toggle('on',!!SET.ovAir)}
 {const g=$('#ovG'),a=$('#ovA');if(g)g.onclick=()=>{SET.ovGround=SET.ovGround===false;saveSet();ovSync();try{draw()}catch(e){}};if(a)a.onclick=()=>{SET.ovAir=!SET.ovAir;saveSet();ovSync();try{draw()}catch(e){}};ovSync()}
 function mapBtnSync(){const mb=$('#mapBtn');if(!mb||!mb.classList)return;const m=isMil();mb.textContent=m?'◩ Satellite':'▦ Tactical';mb.classList.toggle('on',m)}

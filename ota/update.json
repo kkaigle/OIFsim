@@ -1,16 +1,16 @@
 {
- "game": 102,
+ "game": 103,
  "semver": "1.0.0",
- "file": "game-102.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-102.html",
- "sha256": "e13d866ae1ffe413fe50f456105bd620914482253d52d9ea3a91490050c22cf9",
- "size": 1801913,
+ "file": "game-103.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-103.html",
+ "sha256": "564437f2dd2f7b20b4af1b809fa8ca5c465bdc16c37d6dc69ea4a19d0e56bd74",
+ "size": 1803198,
  "notes": [
-  "New command layout",
-  "The command tools are grouped around the map: Command (advisors, Washington, ROE, settings) and Operations (current ops, fires, reorganize, base services, oil) down the left, Intel (BDA, SITREP, threat map, map key) on the right under the view controls",
-  "New campaign metrics in the bottom-right corner: concentric half-circle gauges for progress, public support, Congress, stability and regional hostility, with the numbers and your funds. Tap it to collapse it to a single progress readout"
+  "Cleaner map",
+  "AO labels now read \"2 BDES · 13 COYS · ~93 KM\" instead of listing every brigade",
+  "The bottom menu (Theater, Forces, Bases, Contracts, Intel) is now a Manage group of icons at the top centre of the map, in the same style as the other command groups, so the map runs to the bottom of the screen"
  ],
- "published": "2026-11-03T18:18:30.835Z",
+ "published": "2026-11-03T18:23:16.960Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
