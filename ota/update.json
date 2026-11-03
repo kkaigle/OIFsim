@@ -1,18 +1,17 @@
 {
- "game": 117,
+ "game": 118,
  "semver": "1.0.0",
- "file": "game-117.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-117.html",
- "sha256": "fdfb6b3d3b78aacc884c6fa0821aac01488f6f19d4c2418a05f4f7989418e997",
- "size": 3113293,
+ "file": "game-118.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-118.html",
+ "sha256": "f923695b230202500cadc35f6d1d3fc80a4e0eb11f09c4748f51e3d7372319c7",
+ "size": 3120765,
  "notes": [
-  "Real map from OpenStreetMap",
-  "Cities now sit at their real positions and show their real street networks, city footprints and named arterials from OpenStreetMap",
-  "The Tigris, Euphrates, Diyala, the Zab rivers, the Shatt al-Arab and others follow their true courses; lakes and reservoirs (Tharthar, Razazah, Habbaniyah, Qadisiyah, Mosul Dam, Dukan, Hamrin and more) and the Mesopotamian marshes take their real shapes",
-  "MSRs and highways follow the real roads between cities where OpenStreetMap has them",
-  "Map data © OpenStreetMap contributors (ODbL)"
+  "Deploy to AOs & patrol focus",
+  "During major combat Congress funds the war it authorised: the daily running cost of the force is covered in full (plus a small margin) every day, so burn never outruns appropriations early on. The monthly O&M lump, the allotment cut and get-well plans start once major combat ends",
+  "Deploy to an AO is back on the AO screen and on every AO card. Every ground unit, whether sent to an AO or straight to a base in Iraq, lands at Camp Doha first and then drives north to where it was assigned",
+  "New Patrols tab on each AO: Balanced (patrol where the threat is), Focus cities (set how many companies patrol each city every day) or Dispersed presence (rotate through every town, road and approach in range)"
  ],
- "published": "2026-11-03T19:55:47.688Z",
+ "published": "2026-11-03T20:15:43.926Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
