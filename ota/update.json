@@ -1,16 +1,16 @@
 {
- "game": 89,
- "file": "game-89.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-89.html",
- "sha256": "4fe7b3a16b0e988d72293298959785697436c18105b66df230f98a6bed36d69a",
- "size": 1758555,
+ "game": 90,
+ "file": "game-90.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-90.html",
+ "sha256": "b5753597972dfb30e4e889859d61de24186cb5ae7f875f42e9a98f257847fc8f",
+ "size": 1759147,
  "notes": [
-  "Tighter AOs",
-  "A single brigade's AO is about a third smaller, and AOs top out smaller",
-  "Neighbouring AOs now share a boundary instead of overlapping: when a new AO opens next to one, both redraw their edges along the line between them, with only a thin overlap",
-  "Units stay inside their AOs. Outside it they have no FOB support or quick reaction force, MEDEVAC is slower, they fight at 70% and are about twice as likely to be ambushed. Units that drift out on their own pull back inside, and fallbacks and quick-reaction forces stay within the AO. Ordered assaults and raids can still cross the line"
+  "Deploying by brigade",
+  "The deploy screen opens on Brigades & task forces; single companies are one tab over",
+  "The deploy screen stays open after you order a brigade, so you can send several in a row",
+  "Auto AO assignment works south to north: new brigades go to the AOs nearest Kuwait first, and fill thin AOs before stacking up full ones"
  ],
- "published": "2026-11-03T15:34:56.063Z",
+ "published": "2026-11-03T15:46:06.267Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
