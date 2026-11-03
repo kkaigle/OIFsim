@@ -429,6 +429,20 @@ h3{font-size:12px;margin:10px 0 4px;padding-bottom:3px}
 #updAlert button.ua-x{background:transparent;color:#a8d45e;border-color:rgba(168,212,94,.4);padding:9px 10px}
 @keyframes updIn{from{opacity:0;transform:translate(-50%,-12px)}to{opacity:1;transform:translate(-50%,0)}}
 @media (max-width:520px){#updAlert .ua-m{white-space:normal}}
+.rail{position:absolute;inset:0;left:0;top:0;pointer-events:none;z-index:4;display:block}
+.rcol{position:absolute;display:flex;flex-direction:column;gap:9px;pointer-events:auto}
+.rleft{left:max(6px,env(safe-area-inset-left,0px));top:8px}
+.rright{right:max(10px,env(safe-area-inset-right,0px));top:146px}
+.rg{display:flex;flex-direction:column;gap:4px}
+.rgl{font-family:var(--f-mono);font-size:7px;letter-spacing:.16em;text-transform:uppercase;color:var(--friendly);opacity:.75;text-align:center;padding-bottom:1px;border-bottom:1px solid var(--line)}
+.metrics{position:absolute;right:max(10px,env(safe-area-inset-right,0px));bottom:8px;z-index:4;width:236px;background:rgba(10,13,8,.9);border:1px solid var(--line);padding:6px 8px 6px;cursor:pointer;user-select:none}
+.metrics.min{width:auto}.metrics.min .mx{display:none}
+.metrics .mh{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--friendly)}
+.metrics svg{display:block;width:100%;height:auto}
+.metrics .ml{display:grid;grid-template-columns:1fr 1fr;gap:1px 10px;font-family:var(--f-mono);font-size:9px;color:var(--muted);margin-top:2px}
+.metrics .ml span{display:flex;justify-content:space-between;gap:4px}.metrics .ml b{font-weight:700}
+.thrkey{right:calc(max(10px,env(safe-area-inset-right,0px)) + 248px)!important}
+@media (max-width:620px){.metrics{width:180px}.rright{top:140px}}
 </style>
 
 <div id="app">
@@ -468,20 +482,10 @@ h3{font-size:12px;margin:10px 0 4px;padding-bottom:3px}
     <button class="v3btn" id="v3Btn" hidden>◭ 3D VIEW</button>
     <aside class="opsp" id="opsP" aria-label="Ongoing operations"><div class="opsp-h"><div><div class="eyebrow">Current operations</div><div class="opsp-t" id="opsT">Ongoing operations</div></div><button class="x" id="opsX" aria-label="Close">✕</button></div><div class="opsp-b" id="opsBody"></div></aside>
     <nav class="rail" id="rail" aria-label="Command tools">
-      <button id="opsBtn" data-rail="ops"><b>⚔</b><span>Ops</span><i class="rb" id="opsBadge" hidden></i></button>
-      <button id="advBtn" data-rail="adv"><b>★</b><span>Advisors</span><i class="rb" id="advBadge" hidden></i></button>
-      <button id="reoBtn" data-rail="reorg"><b>⇄</b><span>Reorg</span><i class="rb" id="reoBadge" hidden></i></button>
-      <button id="svBtn" data-rail="svc"><b>✚</b><span>Services</span><i class="rb" id="svCount" hidden></i></button>
-      <button id="roeBtn" data-rail="roe"><b id="roeIc">1</b><span>ROE</span></button>
-      <button id="firesBtn" data-rail="fires"><b>✸</b><span>Fires</span></button>
-      <button id="washBtn" data-rail="wash"><b>⚑</b><span>DC</span></button>
-      <button id="oilBtn" data-rail="oil"><b>⛁</b><span>Oil</span><i class="rb" id="oilBadge" hidden></i></button>
-      <button id="bdaBtn" data-rail="bda"><b>✠</b><span>BDA</span></button>
-      <button id="srBtn" data-rail="sitrep"><b>▤</b><span>SITREP</span></button>
-      <button id="thrBtn" data-rail="threat"><b>◍</b><span>Threat</span></button>
-      <button id="setBtn" data-rail="set"><b>⚙</b><span>Settings</span></button>
-      <button id="keyBtn" data-rail="key"><b>◩</b><span>Key</span></button>
+      <div class="rcol rleft"><div class="rg"><div class="rgl">Command</div><button id="advBtn" data-rail="adv"><b>★</b><span>Advisors</span><i class="rb" id="advBadge" hidden></i></button><button id="washBtn" data-rail="wash"><b>⚑</b><span>DC</span></button><button id="roeBtn" data-rail="roe"><b id="roeIc">1</b><span>ROE</span></button><button id="setBtn" data-rail="set"><b>⚙</b><span>Settings</span></button></div><div class="rg"><div class="rgl">Operations</div><button id="opsBtn" data-rail="ops"><b>⚔</b><span>Ops</span><i class="rb" id="opsBadge" hidden></i></button><button id="firesBtn" data-rail="fires"><b>✸</b><span>Fires</span></button><button id="reoBtn" data-rail="reorg"><b>⇄</b><span>Reorg</span><i class="rb" id="reoBadge" hidden></i></button><button id="svBtn" data-rail="svc"><b>✚</b><span>Services</span><i class="rb" id="svCount" hidden></i></button><button id="oilBtn" data-rail="oil"><b>⛁</b><span>Oil</span><i class="rb" id="oilBadge" hidden></i></button></div></div>
+      <div class="rcol rright"><div class="rg"><div class="rgl">Intel</div><button id="bdaBtn" data-rail="bda"><b>✠</b><span>BDA</span></button><button id="srBtn" data-rail="sitrep"><b>▤</b><span>SITREP</span></button><button id="thrBtn" data-rail="threat"><b>◍</b><span>Threat</span></button><button id="keyBtn" data-rail="key"><b>◩</b><span>Key</span></button></div></div>
     </nav>
+    <div class="metrics" id="metrics" aria-label="Campaign metrics"></div>
     <div class="echbar" id="echBar" hidden></div>
     <button class="cbtn" id="cBtn" hidden>⚔ <span id="cCount">0</span> in contact</button>
     <aside class="side" id="side" aria-label="Theater status"><div class="side-head"><span>Theater status</span><span><button id="sbPin">Pin</button><button id="sbClose" aria-label="Close status panel">✕</button></span></div><div id="sideBody"></div></aside>
@@ -5021,7 +5025,17 @@ function renderSide(){if(!S||!SIDE.open)return;const el=$('#sideBody'),st=el.scr
  el.innerHTML=h;el.scrollTop=st}
 
 /* ================= HUD ================= */
-function updHud(){if(!S)return;const d=dateOf(S.day);
+// ---- campaign metrics: concentric half-circle gauges
+let METMIN=(()=>{try{return localStorage.getItem('itc-metmin')==='1'}catch(e){return false}})();
+function metProgress(){if(S.phase==='conv'){const L=S.divs||[],m=L.reduce((a,d)=>a+d.max,0)||1;return clamp(1-L.reduce((a,d)=>a+Math.max(0,d.str),0)/m,0,1)}const ld=S.leaders.filter(l=>l.status!=='free').length/Math.max(1,S.leaders.length);return clamp(.45*clamp((60-natInstab())/35,0,1)+.35*((S.stable||0)/30)+.2*ld,0,1)}
+function metricsUpd(){const el=$('#metrics');if(!el||!S)return;const ni=natInstab(),host=Math.max(S.countries.iran.h,S.countries.syria.h);
+ const M=[['Progress',metProgress(),'#a8d45e'],['Public',S.morale/100,'#7fd3ff'],['Congress',S.congress/100,'#c39bff'],['Stability',1-ni/100,'#e7c46a'],['Hostility',host/100,'#e3604b']];
+ const key=METMIN+'|'+M.map(m=>Math.round(m[1]*100)).join(',');if(el.dataset.k===key)return;el.dataset.k=key;el.classList.toggle('min',METMIN);
+ if(METMIN){el.innerHTML=`<div class="mh"><span>Metrics ▴</span><span style="color:${M[0][2]};margin-left:10px">${Math.round(M[0][1]*100)}%</span></div>`;return}
+ const cx=110,cy=104,arcs=M.map(([n,v,c],i)=>{const r=96-i*15,L=Math.PI*r,f=clamp(v,0,1);const d=`M ${cx-r} ${cy} A ${r} ${r} 0 0 1 ${cx+r} ${cy}`;return `<path d="${d}" fill="none" stroke="rgba(233,227,212,.08)" stroke-width="9"/><path d="${d}" fill="none" stroke="${c}" stroke-width="9" stroke-linecap="butt" stroke-dasharray="${(L*f).toFixed(1)} ${L.toFixed(1)}"/>`}).join('');
+ el.innerHTML=`<div class="mh"><span>Campaign metrics</span><span>▾</span></div><svg viewBox="0 0 220 110">${arcs}<text x="${cx}" y="${cy-14}" text-anchor="middle" font-family="Barlow Condensed,Arial Narrow,sans-serif" font-weight="700" font-size="22" fill="#a8d45e">${Math.round(M[0][1]*100)}%</text><text x="${cx}" y="${cy-2}" text-anchor="middle" font-family="monospace" font-size="6.5" letter-spacing="1" fill="#9aa38c">${S.phase==='conv'?'INVASION':'PEACE'}</text></svg><div class="ml mx">${M.map(([n,v,c])=>`<span><i style="font-style:normal;color:${c}">■ ${n}</i><b style="color:${c}">${Math.round(v*100)}</b></span>`).join('')}<span><i style="font-style:normal">Funds</i><b>${fm(S.budget)}</b></span></div>`}
+{const el=$('#metrics');if(el&&el.addEventListener)el.addEventListener('click',()=>{METMIN=!METMIN;try{localStorage.setItem('itc-metmin',METMIN?'1':'0')}catch(e){}el.dataset.k='';metricsUpd()})}
+function updHud(){if(!S)return;try{metricsUpd()}catch(e){}const d=dateOf(S.day);
  const mp=NET.role==='host'?` · Game ${NET.code}${NET.partner?' · partner on':' · waiting'}`:NET.role==='guest'?` · Game ${NET.code} · ${NET.myRole==='red'?'Red Cell':'co-commander'}`:'';
  $('#date').textContent=`${pad(d.getUTCDate())} ${MON[d.getUTCMonth()]} ${String(d.getUTCFullYear()).slice(2)} · ${clockStr()} · D+${S.day}${stormy()?' · SANDSTORM':''}${mp}`;
  const ph=$('#phase');ph.textContent=S.phase==='ins'?'Insurgency':'Major combat';ph.classList.toggle('ins',S.phase==='ins');
@@ -5059,8 +5073,9 @@ s.tm??=75;s.spent??={};s.recov??=[];s.rtd??=0;s.delivered??=0;s.lastSpeed??=1;s.
 function saaAsk(){if(!S||!saa().on||saa().plan)return;showModal({eyebrow:'Opening night · Shock and awe',title:'Choose the air campaign',body:`<p>Before the ground war, ships in the Gulf and bombers strike Iraq. You choose when it starts from the ✸ Fires rail, and when the ground war follows. Brigades wait in Kuwait until G-Day (day ${saa().until||30} at the latest). Going in without softening the Republican Guard means about twice the casualties and units falling back.</p>${Object.values(SAA_PLANS).map(v=>`<p><b>${v.n}</b> · <span style="color:${v.col}">${v.risk}</span><br>${v.d}</p>`).join('')}<p class="note">Change it any time from the ✸ Fires rail.</p>`,opts:Object.entries(SAA_PLANS).map(([k,v])=>({t:v.n,cls:k==='mil'?'primary':'',f:()=>onAct('saaplan',k,'')}))})}
 function startSolo(g,sv,name){if(g==='continue'){S=migrate(sv);if(!S._name){S._name=uniqName(`${(DIFFS[S.diff]||{n:'Regular'}).n} campaign`)}}else{newGame(g);if(DIFFS[g].arcade)arcadeInit();setTimeout(saaAsk,400);S._slot=newSlotId();S._name=uniqName(name||`${DIFFS[g].n} campaign`);save()}if(S.speed>0)S.lastSpeed=S.speed;else if(!S.lastSpeed)S.lastSpeed=SET.startSpeed||4;if(g!=='continue')S.lastSpeed=SET.startSpeed||4;S.speed=0;$('#title').hidden=true;resize();fitView();updSpeed();setRoleUI();updHud();
  if(g!=='continue')showModal({eyebrow:'D-Day · 20 MAR 2003',title:'Topple the regime, find its leaders',body:'<p>Your ground forces stage at Camp Doha in Kuwait. Bring combat engineers or Navy Seabees: they build every new base. The Fifth Fleet in the Gulf hosts carriers and Tomahawk ships; Al Udeid hosts heavy bombers. One leadership target in Baghdad is already partly located: a cruise missile might end this early.</p><p>Troops travel the road network. MSRs are fast but heavily mined; minor roads are slower and ambush-prone. Units hit on the road stop and fight until you reinforce them or they fall back. Watch the terrain and the highways: columns move fastest on MSR Tampa and the main roads, slowest in mountains, marshes and at river crossings away from city bridges. Every new FOB needs combat engineers or Seabees to build it, so deploy engineers early, and every base needs food and ammunition hauled in. Open the Status panel at top right for force health, supply and the cost of the war.</p>',opts:[{t:'Open Camp Doha',cls:'primary',f:()=>{sel={kind:'base',id:'b0'};openSheet('base','b0')}},{t:'Look at the map first',f:()=>{}}]})}
-const GAME_VER=101;const GAME_SEMVER='1.0.0';const SEMVER={101:'1.0.0'};const vLbl=n=>SEMVER[n]||(n>=101?'1.0.'+(n-101):'0.'+n);
+const GAME_VER=102;const GAME_SEMVER='1.0.0';const SEMVER={101:'1.0.0',102:'1.0.0'};const vLbl=n=>SEMVER[n]||(n>=101?'1.0.'+(n-101):'0.'+n);
 const CHANGES=[
+ [102,'New command layout',['The command tools are grouped around the map: Command (advisors, Washington, ROE, settings) and Operations (current ops, fires, reorganize, base services, oil) down the left, Intel (BDA, SITREP, threat map, map key) on the right under the view controls','New campaign metrics in the bottom-right corner: concentric half-circle gauges for progress, public support, Congress, stability and regional hostility, with the numbers and your funds. Tap it to collapse it to a single progress readout']],
  [101,'Version 1.0.0',['Versions are now numbered 1.0.0 and up','Foot troops patrol within about 40 km of their FOB, vehicle companies within about 80 km','Automatic AOs wait until companies have actually arrived inside the AO before building forward FOBs or a fires base: no more FOBs going up while the brigade is still on the road']],
  [100,'Lobbying Congress',['Caucuses are far more willing to back war money: the hawks and the Armed Services Committee nearly always do (defense money lines their districts and donors), the establishment and Blue Dogs often do','But a caucus backing a deal is only half of it: the bill still has to clear the whole Congress, so even a hawk-backed supplemental can die on the floor. Each pitch shows both odds','Deals are worth about 60% more money']],
  [99,'MSRs',['Automatic AOs site their FOBs along the main supply routes, and move them: a FOB whose area has gone quiet for 20 days is struck and rebuilt on the MSR where the threat now is. Camps and bigger bases are never taken down without your order (hand them over from the base screen)','New MSR overwatch on the ✸ Fires screen: each MSR shows its most dangerous stretch. Clear it with air strikes before ground forces move, or put a CAS or ISR aircraft on daily overwatch over it. Cleared or watched stretches see fewer than half the ambushes and IEDs']],
