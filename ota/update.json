@@ -1,16 +1,18 @@
 {
- "game": 108,
+ "game": 110,
  "semver": "1.0.0",
- "file": "game-108.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-108.html",
- "sha256": "a59a7ef48fe026f1d2dc68b095c7335e58d5dfb836ea904123ee75db077319c8",
- "size": 1829804,
+ "file": "game-110.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-110.html",
+ "sha256": "2162750be0cc28802b4b89dcc7760715f36f3a71d1108a861b5d38f0bc78cadc",
+ "size": 1842577,
  "notes": [
-  "Tooltips",
-  "Hover any command button, menu icon, top-bar figure or action (press and hold on touch) for a short explanation, with the cost of actions that spend money and why a greyed-out button is unavailable",
-  "Tooltips are on by default and can be turned off under Settings › Help"
+  "Mounted patrols",
+  "Daily appropriations now sit next to daily spending: the top bar shows burn (red when it outruns funding) against what Congress funds per day, and the SITREP and Washington screens show how far over or under you are",
+  "AO offensives (see below) cost $60M or $150M to launch, then $18M or $40M a day",
+  "Infantry, Marines, MPs, recon and special forces now ride HMMWVs (later up-armored, then MRAPs) between towns and only dismount to foot patrol inside cities. Mounted, they move at vehicle pace on roads and across desert, burn some fuel, and take fewer casualties from small-arms ambushes",
+  "Light companies can now patrol out to about 70 km of their FOB mounted, and the map shows their vehicles when they are out of town"
  ],
- "published": "2026-11-03T18:41:13.376Z",
+ "published": "2026-11-03T18:49:18.443Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
