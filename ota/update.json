@@ -1,16 +1,16 @@
 {
- "game": 113,
+ "game": 114,
  "semver": "1.0.0",
- "file": "game-113.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-113.html",
- "sha256": "733e06df02ce04da79912c707e244622ef1ed55eef5406f52a1092bc6d26b93a",
- "size": 1861733,
+ "file": "game-114.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-114.html",
+ "sha256": "79c8d88d71309544428b69ce8794bf1a3b1687293ea9dcbdfe6d1980bb21b11e",
+ "size": 1863173,
  "notes": [
-  "Staged offensives",
-  "Tooltips have a third setting, Detailed: on top of what a control does and costs, it explains how it shapes the campaign, what it helps and what it can cost you",
-  "Offensives now stage first: the strike force (4 companies for a limited, 8 for a major) consolidates at the FOB nearest the target, supply runs top it up to 7 days of stock, and the attack begins once everyone is staged and supplied. The Offensive tab shows a simple checklist: consolidating, resupply, attack. If staging drags past 10 days, it goes in with what is ready"
+  "AO moves fixed",
+  "Brigades sent to a new AO no longer get stuck: when the usual site rules find no spot for a support area (for example near an enemy division), the AO now picks the safest spot inside its line, toward the friendly side, instead of leaving companies waiting at their old bases",
+  "An empty support area can no longer be overrun before its companies arrive and send them all back home"
  ],
- "published": "2026-11-03T19:01:42.183Z",
+ "published": "2026-11-03T19:09:11.743Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
