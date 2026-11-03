@@ -1,16 +1,17 @@
 {
- "game": 103,
+ "game": 105,
  "semver": "1.0.0",
- "file": "game-103.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-103.html",
- "sha256": "564437f2dd2f7b20b4af1b809fa8ca5c465bdc16c37d6dc69ea4a19d0e56bd74",
- "size": 1803198,
+ "file": "game-105.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-105.html",
+ "sha256": "8611f24c76785b427599176fd140167fa488658636043e477192f469c52c56b9",
+ "size": 1811070,
  "notes": [
-  "Cleaner map",
-  "AO labels now read \"2 BDES · 13 COYS · ~93 KM\" instead of listing every brigade",
-  "The bottom menu (Theater, Forces, Bases, Contracts, Intel) is now a Manage group of icons at the top centre of the map, in the same style as the other command groups, so the map runs to the bottom of the screen"
+  "Logistics screen",
+  "New Logistics button in the Manage group: every AO's supply status on one screen, with resupply mode and Push supplies for each, while the map marks each AO base with its days of stock (green, amber, red) and inbound runs",
+  "AO logistics now has its own uncluttered screen: supply settings, cadence, hub, support elements and a stock line for every base with its own Resupply button. Units and brigades stay on the AO's Forces screen",
+  "A red badge on Logistics counts AOs with a base under 4 days"
  ],
- "published": "2026-11-03T18:23:16.960Z",
+ "published": "2026-11-03T18:29:56.822Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
