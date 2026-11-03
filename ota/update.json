@@ -1,16 +1,15 @@
 {
- "game": 75,
- "file": "game-75.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-75.html",
- "sha256": "bca2f5d93193fe439d54421a81fc215e9712e956c16370f00c64755980a8d87c",
- "size": 1036792,
+ "game": 76,
+ "file": "game-76.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-76.html",
+ "sha256": "cc90ceb5067e81cc061aff82ef27a18243ddb383606ea55fc1ba1f0234d6ace5",
+ "size": 1041551,
  "notes": [
-  "AO shapes & posture",
-  "AOs now follow the ground: they stop at the borders, reach less through mountains and marsh, lose depth at every river crossing, and pull back from strong enemy formations",
-  "AOs are about 15% smaller overall",
-  "New posture per AO: Compress & tighten security keeps patrols close to the FOBs, digs the bases in and calms the core cities, at the cost of a smaller AO"
+  "Smarter AO assignment",
+  "Brigade buttons on the Areas of operations tab now say which AO the brigade is in now, and AO buttons show how well the brigade fits it",
+  "When deploying a combat brigade, pick its AO on arrival, or leave it on Auto: it weighs each AO's risk and how well the brigade suits the ground and towns (armor for open desert, infantry for cities and mountains, Marines for towns and marsh)"
  ],
- "published": "2026-11-03T02:20:14.135Z",
+ "published": "2026-11-03T02:35:48.349Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
