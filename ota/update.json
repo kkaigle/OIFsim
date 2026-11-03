@@ -1,16 +1,17 @@
 {
- "game": 94,
- "file": "game-94.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-94.html",
- "sha256": "c36b76f32d046f4c386819cac00b8e0725a5b577cff5e70bc13c8b9c487f2252",
- "size": 1774360,
+ "game": 95,
+ "file": "game-95.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-95.html",
+ "sha256": "25416d962bc1f1d145dc7ac48fae0b55d19dcda2a8ca9d02f6f2c871b424c86e",
+ "size": 1775297,
  "notes": [
-  "Services by base size",
-  "Every base screen now has a Services package for its size: FOBs run engineers; camps add sustainment, MPs and a medical company; major bases add intelligence, civil affairs and C-RAM. Implement them all in one tap",
-  "Services the base is too small for are greyed out with the size they need; expand the base (with engineers, or contractors if none are there) to unlock them",
-  "Repair all damage in one tap, and the Services rail lists every base with these actions side by side"
+  "AO discipline",
+  "Brigade support areas are always set up inside the AO, never out on the road from Kuwait",
+  "A FOB left outside its AO after the AO shrinks is given up the next day and its company pulls inside, instead of holding out alone for days",
+  "Automatic AOs build forward FOBs only once their companies are actually inside the AO to hold them, and a base whose companies are already on the road in cannot be taken while it is empty",
+  "Brigades driving north from Kuwait to their AO move in convoy and are ambushed less on the way"
  ],
- "published": "2026-11-03T16:26:06.071Z",
+ "published": "2026-11-03T16:31:17.032Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
