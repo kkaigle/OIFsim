@@ -1,16 +1,16 @@
 {
- "game": 74,
- "file": "game-74.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-74.html",
- "sha256": "16441b6e06fb19109c7347b1bf5898fb7de9eeff89f6790ccca216979735d4cd",
- "size": 1032939,
+ "game": 75,
+ "file": "game-75.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-75.html",
+ "sha256": "bca2f5d93193fe439d54421a81fc215e9712e956c16370f00c64755980a8d87c",
+ "size": 1036792,
  "notes": [
-  "Areas of operations tab",
-  "New Forces › Areas of operations tab: place AOs, assign or release brigades with one tap, see each AO's FOBs and how many companies sit at each",
-  "Only brigades take an AO; they spread across two to four FOBs per AO depending on its size, balanced automatically",
-  "Kuwait is a rear area: no ground attacks, IEDs, ambushes or patrols there, only the occasional rocket or mortar round"
+  "AO shapes & posture",
+  "AOs now follow the ground: they stop at the borders, reach less through mountains and marsh, lose depth at every river crossing, and pull back from strong enemy formations",
+  "AOs are about 15% smaller overall",
+  "New posture per AO: Compress & tighten security keeps patrols close to the FOBs, digs the bases in and calms the core cities, at the cost of a smaller AO"
  ],
- "published": "2026-11-03T02:12:01.815Z",
+ "published": "2026-11-03T02:20:14.135Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
