@@ -1,15 +1,17 @@
 {
- "game": 140,
+ "game": 141,
  "semver": "1.0.0",
- "file": "game-140.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-140.html",
- "sha256": "f96c6a891cc51e046099625169afc14cd5065e497851b21c591f224f7cf4123f",
- "size": 12124105,
+ "file": "game-141.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-141.html",
+ "sha256": "9caf4fece52ba78177acdace5f080f74f6cd08e10c717f624da01a1d1ec0c7c6",
+ "size": 12699853,
  "notes": [
-  "Drone camera stays a drone camera",
-  "Dragging in the drone view now turns and tilts the drone camera instead of dropping you back to orbit. It stays looking down from altitude, and resumes its slow circle a few seconds after you let go. Right-drag or two fingers still pan"
+  "HMMWVs for infantry and recon",
+  "Infantry, Marine rifle, Force Recon, MP-style and other foot units now ride in a detailed HMMWV model in the 3D view. On the move, on the highways and outside towns they drive as a convoy of three; inside a town on patrol, securing or in a firefight they dismount and walk the streets as individual soldiers in two files, with their HMMWVs parked behind them. Soldiers are now to scale beside their vehicles",
+  "Force Recon companies now show as HMMWV units instead of LAVs",
+  "Military police, intelligence and civil affairs units also use the new HMMWV"
  ],
- "published": "2026-11-04T16:06:58.207Z",
+ "published": "2026-11-04T16:33:30.740Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
