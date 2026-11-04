@@ -1,18 +1,15 @@
 {
- "game": 129,
+ "game": 130,
  "semver": "1.0.0",
- "file": "game-129.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-129.html",
- "sha256": "79a78b53f62af765369c02e7f2f1c8c3816a2b4dad95a80a9bbfa29ef273c077",
- "size": 3267721,
+ "file": "game-130.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-130.html",
+ "sha256": "b88b68c2b393808457eb322fde6e2333032a1a1ae0b3fabda3cad46638ad490e",
+ "size": 4525150,
  "notes": [
-  "Co-op command, comms & device transfer",
-  "Your partner now sees air strikes, missiles, artillery, explosions and ambushes as they happen, not just the results",
-  "Command split: in Settings › Multiplayer the host decides who commands the Army, Marines, Air Force, Navy and SOCOM (me, partner or shared), with one-tap presets. Orders for the other player's services are refused. Sustainment (supply runs, cadence, hubs) belongs to whoever has the Army, so the Marines ask the Army for supplies",
-  "Comms: a chat between the two commanders with support requests (fire support, reinforcements, supplies, MEDEVAC, air cover) tied to a unit, base, city or the map. Requests drop a pulsing marker on both maps and come with quick actions for the other player: the closest of their units to send, air support on a contact, convoys or airlifts to the nearest base",
-  "Move a campaign between devices without files: Settings › Campaign › Send to another device shows a code; on the other device tap Receive a campaign on the main menu and enter it"
+  "Real Abrams model",
+  "US tank companies in the 3D view are now a detailed M1A2 Abrams model instead of blocks. Model by Muhamad Mirza Arrafi, CC BY 4.0"
  ],
- "published": "2026-11-04T02:46:22.109Z",
+ "published": "2026-11-04T02:55:50.092Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
