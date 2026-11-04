@@ -1,15 +1,15 @@
 {
- "game": 130,
+ "game": 131,
  "semver": "1.0.0",
- "file": "game-130.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-130.html",
- "sha256": "b88b68c2b393808457eb322fde6e2333032a1a1ae0b3fabda3cad46638ad490e",
- "size": 4525150,
+ "file": "game-131.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-131.html",
+ "sha256": "a5f3b81a0f3ce88c20071aa9f34e92966859d92ab5c6aff2db3be61e228aa366",
+ "size": 4526174,
  "notes": [
-  "Real Abrams model",
-  "US tank companies in the 3D view are now a detailed M1A2 Abrams model instead of blocks. Model by Muhamad Mirza Arrafi, CC BY 4.0"
+  "Credits",
+  "New Credits section at the bottom of Settings: the Abrams 3D model, OpenStreetMap map data, and the software and fonts the game uses"
  ],
- "published": "2026-11-04T02:55:50.092Z",
+ "published": "2026-11-04T03:07:29.856Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
