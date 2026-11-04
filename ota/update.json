@@ -1,15 +1,15 @@
 {
- "game": 131,
+ "game": 132,
  "semver": "1.0.0",
- "file": "game-131.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-131.html",
- "sha256": "a5f3b81a0f3ce88c20071aa9f34e92966859d92ab5c6aff2db3be61e228aa366",
- "size": 4526174,
+ "file": "game-132.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-132.html",
+ "sha256": "070b234af58b4cc4a2038bcade080e0bb69f247845973fe98b9c0b934cd7161a",
+ "size": 5895484,
  "notes": [
-  "Credits",
-  "New Credits section at the bottom of Settings: the Abrams 3D model, OpenStreetMap map data, and the software and fonts the game uses"
+  "Bradley model",
+  "US mechanized infantry companies in the 3D view are now a detailed M2 Bradley IFV, and the turret traverses in firefights. Model by 42manako, CC BY 4.0. The Abrams model was also slimmed down so it loads faster"
  ],
- "published": "2026-11-04T03:07:29.856Z",
+ "published": "2026-11-04T03:11:53.652Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
