@@ -1,19 +1,16 @@
 {
- "game": 146,
- "semver": "0.5.4a",
- "file": "game-146.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-146.html",
- "sha256": "2640125f0a622857e809dc27f5e12bb2077ffada94831c9f6ed97fa79c7d8976",
- "size": 12731355,
+ "game": 148,
+ "semver": "0.6.0a",
+ "file": "game-148.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-148.html",
+ "sha256": "b3ef186a234cffa166f9e3280fb8306a3e50a6bc06e4e44979510322a9c90897",
+ "size": 13477735,
  "notes": [
-  "A longer war at home",
-  "Public and congressional support now erode over a year or more instead of a month: every bad headline moves opinion about a third as much, Congress follows the public more slowly, and calm months let support settle back. A slow war-weariness sets in during the insurgency",
-  "Washington's pressure over the missing WMD starts after about ten months instead of three weeks, and a priority hunt runs for four months",
-  "The story is spread across years: the Saudi, Iranian and Syrian decisions, the detainee scandal, the Iraqi security forces, militias and the Awakening now arrive months apart, and the new Iraqi government forms later",
-  "Funding cuts are now a conversation. When major combat ends, the Secretary of Defense and the Armed Services Committee ask for your assessment first: present a campaign plan and keep the money (hold more ground within four months), accept a leaner budget, or offer a phased drawdown. Funding restrictions on the conditions ladder are discussed the same way, and you can testify to head them off",
-  "Congressional reviews of ground held are quarterly instead of monthly, get-well plans run three months, and the conditions ladder only starts after six months of war with two months to meet each set of conditions"
+  "The build-up",
+  "New campaigns open in late February 2003, during the build-up. The war has not started: set up AOs, deploy and stage brigades in Kuwait and plan the strike boxes. When ready, ask the President for the final ultimatum from the Fires rail (Washington issues it on its own by late March). Saddam has 48 hours; he refuses, the President gives the green light, and shock and awe can begin. No strikes, assaults or regime moves happen before that",
+  "The day count (D+) starts the night shock and awe begins. Before that the top bar shows BUILD-UP, then ULTIMATUM, then GREEN LIGHT. The 2004 election and 2006 midterms stay on their real dates"
  ],
- "published": "2026-11-04T18:59:57.584Z",
+ "published": "2026-11-04T19:11:43.175Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
