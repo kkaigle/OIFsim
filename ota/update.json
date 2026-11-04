@@ -1,17 +1,17 @@
 {
- "game": 135,
+ "game": 136,
  "semver": "1.0.0",
- "file": "game-135.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-135.html",
- "sha256": "8915cdeedd287705d4e070c6c7a56e0a068d047b544b5ce527e4fed3a4c75d7d",
- "size": 12043030,
+ "file": "game-136.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-136.html",
+ "sha256": "556e6d6f5b8d72b99845bf809dda3972cc75ef6bea0e2fd80f358ed5d60ddcb6",
+ "size": 12092847,
  "notes": [
-  "Every OpenStreetMap building in 3D",
-  "The 3D view now places every OpenStreetMap building in the area instead of a thinned sample, at its true footprint, with height from its mapped floors where OpenStreetMap has them",
-  "All mapped buildings are now included: no more 30,000 cap per city (Erbil has about 98,000, Najaf 55,000, Baghdad 41,500), and buildings mapped as multipolygons are now picked up too",
-  "Streets and routes in 3D are drawn at realistic widths so they no longer cover the buildings beside them; you can zoom in closer to street level"
+  "Houses in 3D, filled neighbourhoods, smaller vehicles",
+  "Homes near the camera in the 3D view now use a detailed Iraqi house model, in four variants (single storey, two storey with a set-back upper floor, rooftop water tanks, and a narrower house with a side annex), each in mixed colours and orientations. They swap in as you move around",
+  "Neighbourhoods that OpenStreetMap leaves unmapped are filled with houses lining the real streets, so cities no longer have large empty patches. Mapped buildings are drawn slightly smaller so dense quarters show their alleys",
+  "Vehicles and troops in 3D are half their old size so convoys fit on the streets"
  ],
- "published": "2026-11-04T14:17:12.945Z",
+ "published": "2026-11-04T15:26:52.105Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
