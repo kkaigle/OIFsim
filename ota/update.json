@@ -1,17 +1,17 @@
 {
- "game": 134,
+ "game": 135,
  "semver": "1.0.0",
- "file": "game-134.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-134.html",
- "sha256": "090037455e3be5652b437ecbe1bb4ddf6eeb7b039be0fba930e4e2910cb930ce",
- "size": 10916951,
+ "file": "game-135.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-135.html",
+ "sha256": "8915cdeedd287705d4e070c6c7a56e0a068d047b544b5ce527e4fed3a4c75d7d",
+ "size": 12043030,
  "notes": [
-  "Cities built from OpenStreetMap",
-  "Buildings now come from OpenStreetMap: each one sits where it really is, at its real size and orientation (about 145,000 across the cities, up to 30,000 in the largest). Hospitals, schools, markets, mosques, water and power plants use the real tagged buildings where OpenStreetMap has them. Where OpenStreetMap has few buildings mapped, the gaps are filled in as before",
-  "Every street in each city is drawn from OpenStreetMap, with main roads heavier than side streets",
-  "The national road network (motorways, trunk roads, primary and secondary roads) is drawn across the map under the MSRs"
+  "Every OpenStreetMap building in 3D",
+  "The 3D view now places every OpenStreetMap building in the area instead of a thinned sample, at its true footprint, with height from its mapped floors where OpenStreetMap has them",
+  "All mapped buildings are now included: no more 30,000 cap per city (Erbil has about 98,000, Najaf 55,000, Baghdad 41,500), and buildings mapped as multipolygons are now picked up too",
+  "Streets and routes in 3D are drawn at realistic widths so they no longer cover the buildings beside them; you can zoom in closer to street level"
  ],
- "published": "2026-11-04T13:34:40.602Z",
+ "published": "2026-11-04T14:17:12.945Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
