@@ -1,16 +1,17 @@
 {
- "game": 149,
- "semver": "0.6.1a",
- "file": "game-149.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-149.html",
- "sha256": "2d486d4656064aad5a6d659559ddafc7ff245df33fe15ff42dd09502a97120df",
- "size": 13480201,
+ "game": 150,
+ "semver": "0.6.2a",
+ "file": "game-150.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-150.html",
+ "sha256": "b3d7546c6409976b0cddbfb9a428fdc7d4e51e46bf6ca549378c25b72cb0952d",
+ "size": 13484943,
  "notes": [
-  "Tanker tracks stretch the reach",
-  "A tanker flying a refuelling track now extends the reach of every jet that can take fuel in flight (strike fighters, carrier air wings, bombers, A-10s and AC-130s) whose base is within reach of the track: they fly out, top off and fight from there, out to about 85% of their normal radius beyond the track. On the air-cover overlay the ring stretches into a long capsule toward each track. Strike boxes, fire missions, strike targets and air patrol stations all use the stretched reach",
-  "Drones, patrol aircraft and transports cannot refuel in flight and get no tanker bonus. Fixed-wing aircraft reach about 20% farther than before"
+  "Update check before battle",
+  "The main menu now checks for an update every time it opens and shows the result above the campaign list: up to date, downloading, ready to restart, or why the check failed. The desktop app and the web and iPad version both do this",
+  "The desktop app no longer gives up on an update for good when it was slow to start once. It now waits longer, retries a version that failed after 12 hours or when you check by hand, and times out a stalled download instead of hanging",
+  "Desktop app 1.62.0 has these fixes built in. Older desktop apps still get game updates"
  ],
- "published": "2026-11-04T19:32:10.597Z",
+ "published": "2026-11-04T19:47:54.519Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
