@@ -1,16 +1,16 @@
 {
- "game": 148,
- "semver": "0.6.0a",
- "file": "game-148.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-148.html",
- "sha256": "b3ef186a234cffa166f9e3280fb8306a3e50a6bc06e4e44979510322a9c90897",
- "size": 13477735,
+ "game": 149,
+ "semver": "0.6.1a",
+ "file": "game-149.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-149.html",
+ "sha256": "2d486d4656064aad5a6d659559ddafc7ff245df33fe15ff42dd09502a97120df",
+ "size": 13480201,
  "notes": [
-  "The build-up",
-  "New campaigns open in late February 2003, during the build-up. The war has not started: set up AOs, deploy and stage brigades in Kuwait and plan the strike boxes. When ready, ask the President for the final ultimatum from the Fires rail (Washington issues it on its own by late March). Saddam has 48 hours; he refuses, the President gives the green light, and shock and awe can begin. No strikes, assaults or regime moves happen before that",
-  "The day count (D+) starts the night shock and awe begins. Before that the top bar shows BUILD-UP, then ULTIMATUM, then GREEN LIGHT. The 2004 election and 2006 midterms stay on their real dates"
+  "Tanker tracks stretch the reach",
+  "A tanker flying a refuelling track now extends the reach of every jet that can take fuel in flight (strike fighters, carrier air wings, bombers, A-10s and AC-130s) whose base is within reach of the track: they fly out, top off and fight from there, out to about 85% of their normal radius beyond the track. On the air-cover overlay the ring stretches into a long capsule toward each track. Strike boxes, fire missions, strike targets and air patrol stations all use the stretched reach",
+  "Drones, patrol aircraft and transports cannot refuel in flight and get no tanker bonus. Fixed-wing aircraft reach about 20% farther than before"
  ],
- "published": "2026-11-04T19:11:43.175Z",
+ "published": "2026-11-04T19:32:10.597Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
