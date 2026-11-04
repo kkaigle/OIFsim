@@ -1,15 +1,16 @@
 {
- "game": 132,
+ "game": 133,
  "semver": "1.0.0",
- "file": "game-132.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-132.html",
- "sha256": "070b234af58b4cc4a2038bcade080e0bb69f247845973fe98b9c0b934cd7161a",
- "size": 5895484,
+ "file": "game-133.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-133.html",
+ "sha256": "ed09fb53cb97d084339cbb9794f7837abe653dc67c2affb676c785b8874b77a1",
+ "size": 5903218,
  "notes": [
-  "Bradley model",
-  "US mechanized infantry companies in the 3D view are now a detailed M2 Bradley IFV, and the turret traverses in firefights. Model by 42manako, CC BY 4.0. The Abrams model was also slimmed down so it loads faster"
+  "Battle sounds",
+  "Zoom in on the fighting and you hear it: small-arms and machine-gun fire from units in contact, explosions, IEDs and ambushes, incoming artillery, missiles, rockets and jet strikes, plus the rumble of moving vehicles and the beat of helicopter rotors. The closer you zoom and the nearer the action is to the centre of the screen, the louder it gets; it works in the 3D view and for multiplayer partners too",
+  "Settings › Map: Sound on or off and a volume level"
  ],
- "published": "2026-11-04T03:11:53.652Z",
+ "published": "2026-11-04T03:27:22.662Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
