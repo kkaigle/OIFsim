@@ -1,20 +1,16 @@
 {
- "game": 143,
- "semver": "0.5.1a",
- "file": "game-143.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-143.html",
- "sha256": "266f6fa8a206125cc8f1dee89f3bf043b94b5782bdbec246bce1441fbb6d2443",
- "size": 12716855,
+ "game": 144,
+ "semver": "0.5.2a",
+ "file": "game-144.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-144.html",
+ "sha256": "6f6544921dc68cca5e5efd4065cf8f8bf38e20c9835ecc5f5bf20e9b4423a7c8",
+ "size": 12722436,
  "notes": [
-  "Weather shader, threat button, harder-hitting fires",
-  "The weather overlay is now a smooth shaded field like the threat assessment: dust, haze, heat, rain, fog and snow blend softly across region edges and break into patches, with blowing dust, rain and snow moving on top",
-  "Threat assessment moved out of the Intel column to a ◍ Threat button under ☁ Weather. Only one of the two map shaders shows at a time",
-  "Fire missions hit much harder: fighters in the blast are killed or wounded, survivors are pushed back from the impact, rounds on the enemy around troops in contact cut down the attackers, suppress their fire and can break the contact outright, and enemy armor and strongholds take heavier damage",
-  "The drone camera always boxes known targets in red, including enemy armor in cities we have intel on, whatever the drone overlay setting",
-  "Vehicles stick to the roads: driving cross-country is now much slower (soft sand, wadis and berms), so route planning sends columns along the MSRs and minor roads to staging areas and AOs, and only leaves the road for the last stretch. Highways are the fastest way to cover any distance",
-  "Explosions on the map now flash, fireball and leave rising smoke with a shock ring and flying debris, and hits leave scorched, irregular burn marks with a crater, blast rays and glowing embers for the first day, instead of flat circles"
+  "Lase from the map · precision or barrage",
+  "A ✛ Lase button joins Map, 3D and Drone. On the map it turns on the laser designator: tap a red-boxed target or any spot and the fire mission panel opens, with the lased point marked on the map. In 3D it works as before",
+  "Fire missions are called by type, not by unit: artillery, mortars and air each offer ◎ Precision or ▦ Barrage, and the nearest ready unit answers. Artillery precision is laser-guided Copperhead, or GPS Excalibur in bad weather once researched; a barrage is HE from up to two batteries. Mortars fire 2 adjusted rounds or a barrage from up to two sections. Aircraft drop a laser-guided bomb or GPS JDAM, or lay a string of bombs along the target"
  ],
- "published": "2026-11-04T16:49:43.681Z",
+ "published": "2026-11-04T18:32:58.485Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
