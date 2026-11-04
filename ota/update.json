@@ -1,19 +1,20 @@
 {
- "game": 142,
- "semver": "0.5.0a",
- "file": "game-142.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-142.html",
- "sha256": "bc5cd0055a5da378a3b3a6b692b613973c1ed3ae7f734b0822ffd26cb9cd10af",
- "size": 12710326,
+ "game": 143,
+ "semver": "0.5.1a",
+ "file": "game-143.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-143.html",
+ "sha256": "266f6fa8a206125cc8f1dee89f3bf043b94b5782bdbec246bce1441fbb6d2443",
+ "size": 12716855,
  "notes": [
-  "Weather",
-  "Version numbering moves to the alpha line: this is v0.5.0a. Earlier builds are listed as 0.4.x",
-  "A ☁ Weather overlay joins Sectors and Air cover. It shades the map with dust, haze, heat, rain, fog and snow across four regions (north, west, central, south) and opens a panel with temperature, wind, and GO / MARGINAL / NO-GO for helicopters, jets and drones in each region",
-  "Weather changes daily and follows the seasons: spring and summer shamal dust storms, summer heat over 45°C, winter rain and fog in the south, snow in the northern mountains",
-  "Bad weather costs our troops effectiveness (down to about 70% in a sandstorm), while dug-in enemy lose little. Dust storms and snow ground helicopters, MEDEVAC and drones in that region; sandstorms also ground strike jets unless they carry GPS-guided JDAMs. Rain, fog and low cloud stop laser-guided bombs and Copperhead rounds",
-  "Troops in contact: the drone camera and drone map overlay box the enemy positions in red along a front facing our unit, whether or not a drone is overhead, because the troops call it in. Enemy fighters stand at those positions in 3D, our tracers fly at them and theirs fly back at us, instead of fire spraying in every direction"
+  "Weather shader, threat button, harder-hitting fires",
+  "The weather overlay is now a smooth shaded field like the threat assessment: dust, haze, heat, rain, fog and snow blend softly across region edges and break into patches, with blowing dust, rain and snow moving on top",
+  "Threat assessment moved out of the Intel column to a ◍ Threat button under ☁ Weather. Only one of the two map shaders shows at a time",
+  "Fire missions hit much harder: fighters in the blast are killed or wounded, survivors are pushed back from the impact, rounds on the enemy around troops in contact cut down the attackers, suppress their fire and can break the contact outright, and enemy armor and strongholds take heavier damage",
+  "The drone camera always boxes known targets in red, including enemy armor in cities we have intel on, whatever the drone overlay setting",
+  "Vehicles stick to the roads: driving cross-country is now much slower (soft sand, wadis and berms), so route planning sends columns along the MSRs and minor roads to staging areas and AOs, and only leaves the road for the last stretch. Highways are the fastest way to cover any distance",
+  "Explosions on the map now flash, fireball and leave rising smoke with a shock ring and flying debris, and hits leave scorched, irregular burn marks with a crater, blast rays and glowing embers for the first day, instead of flat circles"
  ],
- "published": "2026-11-04T16:39:35.329Z",
+ "published": "2026-11-04T16:49:43.681Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
