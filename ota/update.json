@@ -1,16 +1,17 @@
 {
- "game": 144,
- "semver": "0.5.2a",
- "file": "game-144.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-144.html",
- "sha256": "6f6544921dc68cca5e5efd4065cf8f8bf38e20c9835ecc5f5bf20e9b4423a7c8",
- "size": 12722436,
+ "game": 145,
+ "semver": "0.5.3a",
+ "file": "game-145.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-145.html",
+ "sha256": "426f64366452abe70b2a2fedeb0101cb1e1030753e974d336e4c3c0b7e6ac0b1",
+ "size": 12725434,
  "notes": [
-  "Lase from the map · precision or barrage",
-  "A ✛ Lase button joins Map, 3D and Drone. On the map it turns on the laser designator: tap a red-boxed target or any spot and the fire mission panel opens, with the lased point marked on the map. In 3D it works as before",
-  "Fire missions are called by type, not by unit: artillery, mortars and air each offer ◎ Precision or ▦ Barrage, and the nearest ready unit answers. Artillery precision is laser-guided Copperhead, or GPS Excalibur in bad weather once researched; a barrage is HE from up to two batteries. Mortars fire 2 adjusted rounds or a barrage from up to two sections. Aircraft drop a laser-guided bomb or GPS JDAM, or lay a string of bombs along the target"
+  "Securing cities · insurgency timing · offensives",
+  "The insurgency no longer starts while the regime still stands. It begins a week or more after the government falls (sooner if the last formations are destroyed or the country is very unstable, at the latest about six weeks after)",
+  "Before that, cities we take go through a securing phase: with troops in the streets, the regime holdouts are worn down over two to three weeks and the city is declared secure, after which incidents are rare. Pull the troops out and armed men come back. Some cities throw up small militia bands (Fedayeen, Ba'ath loyalists) while they are being secured; drones box them for fires",
+  "AO offensives now run until violence in the AO falls below the threshold and then end on their own as a success, usually in two to four weeks with enough force (limited at most 21 days, major at most 42). Progress scales with the companies committed and their condition; daily cost, casualties and civilian harm per day are lower to match the longer campaigns"
  ],
- "published": "2026-11-04T18:32:58.485Z",
+ "published": "2026-11-04T18:48:09.895Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
