@@ -1,17 +1,15 @@
 {
- "game": 139,
+ "game": 140,
  "semver": "1.0.0",
- "file": "game-139.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-139.html",
- "sha256": "4250b0be7432c5ed8d3af81504cd3b2359a1e772f6f0f8fab075836f09c3f1d9",
- "size": 12123586,
+ "file": "game-140.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-140.html",
+ "sha256": "f96c6a891cc51e046099625169afc14cd5065e497851b21c591f224f7cf4123f",
+ "size": 12124105,
  "notes": [
-  "View switch and centre reticle",
-  "Map, 3D and Drone buttons sit under the overlay buttons and are always on screen, in the map and in 3D, so you can swap views in one tap. They replace the 3D VIEW button in the lower right and the Orbit and Drone buttons inside 3D",
-  "Zoom in past about halfway and a reticle marks the centre of the screen, with its grid reference when you are close. That is the exact spot the 3D and drone views open on",
-  "The fire mission panel in 3D now sits on the left, under the view title"
+  "Drone camera stays a drone camera",
+  "Dragging in the drone view now turns and tilts the drone camera instead of dropping you back to orbit. It stays looking down from altitude, and resumes its slow circle a few seconds after you let go. Right-drag or two fingers still pan"
  ],
- "published": "2026-11-04T16:03:23.223Z",
+ "published": "2026-11-04T16:06:58.207Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
