@@ -1,17 +1,17 @@
 {
- "game": 138,
+ "game": 139,
  "semver": "1.0.0",
- "file": "game-138.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-138.html",
- "sha256": "e3d421d78068d68f5fbe463900a767ff47b48f4372051748a901a7f96e71f2e6",
- "size": 12120226,
+ "file": "game-139.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-139.html",
+ "sha256": "4250b0be7432c5ed8d3af81504cd3b2359a1e772f6f0f8fab075836f09c3f1d9",
+ "size": 12123586,
  "notes": [
-  "Lase and strike at any time",
-  "Targets of interest found by intel ops are marked on the map once you zoom well into a city (not at theater zoom): enemy fighters, technicals and mortar teams, armor during the invasion, strongholds, and reported safe havens with their confidence. Zoom closer for labels. The same targets show in the 3D and drone views",
-  "The laser designator in the 3D view works at any point in the war, not only after major combat. During the invasion, rounds landing on a lased enemy formation wear down the division holding that city",
-  "Strike aircraft in range can now drop a laser-guided bomb on the lased spot, alongside artillery and mortars"
+  "View switch and centre reticle",
+  "Map, 3D and Drone buttons sit under the overlay buttons and are always on screen, in the map and in 3D, so you can swap views in one tap. They replace the 3D VIEW button in the lower right and the Orbit and Drone buttons inside 3D",
+  "Zoom in past about halfway and a reticle marks the centre of the screen, with its grid reference when you are close. That is the exact spot the 3D and drone views open on",
+  "The fire mission panel in 3D now sits on the left, under the view title"
  ],
- "published": "2026-11-04T15:52:40.088Z",
+ "published": "2026-11-04T16:03:23.223Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
