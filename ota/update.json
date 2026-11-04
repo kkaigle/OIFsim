@@ -1,17 +1,18 @@
 {
- "game": 136,
+ "game": 137,
  "semver": "1.0.0",
- "file": "game-136.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-136.html",
- "sha256": "556e6d6f5b8d72b99845bf809dda3972cc75ef6bea0e2fd80f358ed5d60ddcb6",
- "size": 12092847,
+ "file": "game-137.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-137.html",
+ "sha256": "d0ea8ee053b7de73e630c6307f5bdf3113cb90e441876260ca44f0af5331f114",
+ "size": 12116850,
  "notes": [
-  "Houses in 3D, filled neighbourhoods, smaller vehicles",
-  "Homes near the camera in the 3D view now use a detailed Iraqi house model, in four variants (single storey, two storey with a set-back upper floor, rooftop water tanks, and a narrower house with a side annex), each in mixed colours and orientations. They swap in as you move around",
-  "Neighbourhoods that OpenStreetMap leaves unmapped are filled with houses lining the real streets, so cities no longer have large empty patches. Mapped buildings are drawn slightly smaller so dense quarters show their alleys",
-  "Vehicles and troops in 3D are half their old size so convoys fit on the streets"
+  "Lase targets, safe-haven intel, smoke over the cities",
+  "In the 3D view, ◉ Lase turns on a laser designator once major combat is over: tap a target or any spot on the ground and call in 155 mm HE, laser-guided Copperhead rounds or 120 mm mortars from units in range. Each mission shows the civilian risk first, and the rounds really land: buildings fall, people may die, smoke rises",
+  "Drones now box known enemies in red on the drone camera and the map: fighters, technicals and mortar teams moving through the streets and in the open. The drone targeting overlay is on by default",
+  "Intel turns up reports of insurgents sheltering in schools, mosques and hospitals. Some are true and some are planted. Strike one and you find out which, with heavy civilian casualties and a city in uproar if it was bogus. Drones can watch a site overnight to firm up the confidence before you decide",
+  "Smoke and fire now rise from buildings that were hit and from burning streets in restive cities, on the map and in 3D"
  ],
- "published": "2026-11-04T15:26:52.105Z",
+ "published": "2026-11-04T15:45:06.552Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
