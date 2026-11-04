@@ -1,16 +1,18 @@
 {
- "game": 128,
+ "game": 129,
  "semver": "1.0.0",
- "file": "game-128.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-128.html",
- "sha256": "8acd0e458e322be590c599f2f617264e6b3ae744c62a5515e8b673dd04b5839d",
- "size": 3248824,
+ "file": "game-129.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-129.html",
+ "sha256": "79a78b53f62af765369c02e7f2f1c8c3816a2b4dad95a80a9bbfa29ef273c077",
+ "size": 3267721,
  "notes": [
-  "Multiplayer setup",
-  "Play with a partner now opens a setup panel on the main menu: pick co-op or versus, a difficulty and a name (or host your saved campaign), then Host game. The code shows in large type with a Copy button. Joining is on the same panel",
-  "New Multiplayer section in Settings: host the campaign you are playing right now (co-op or versus), see and copy the code and whether your partner is connected, end the session, or leave a game you joined. Hosted campaigns now save like any other"
+  "Co-op command, comms & device transfer",
+  "Your partner now sees air strikes, missiles, artillery, explosions and ambushes as they happen, not just the results",
+  "Command split: in Settings › Multiplayer the host decides who commands the Army, Marines, Air Force, Navy and SOCOM (me, partner or shared), with one-tap presets. Orders for the other player's services are refused. Sustainment (supply runs, cadence, hubs) belongs to whoever has the Army, so the Marines ask the Army for supplies",
+  "Comms: a chat between the two commanders with support requests (fire support, reinforcements, supplies, MEDEVAC, air cover) tied to a unit, base, city or the map. Requests drop a pulsing marker on both maps and come with quick actions for the other player: the closest of their units to send, air support on a contact, convoys or airlifts to the nearest base",
+  "Move a campaign between devices without files: Settings › Campaign › Send to another device shows a code; on the other device tap Receive a campaign on the main menu and enter it"
  ],
- "published": "2026-11-03T22:44:06.359Z",
+ "published": "2026-11-04T02:46:22.109Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
