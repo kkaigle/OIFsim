@@ -1,16 +1,17 @@
 {
- "game": 133,
+ "game": 134,
  "semver": "1.0.0",
- "file": "game-133.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-133.html",
- "sha256": "ed09fb53cb97d084339cbb9794f7837abe653dc67c2affb676c785b8874b77a1",
- "size": 5903218,
+ "file": "game-134.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-134.html",
+ "sha256": "090037455e3be5652b437ecbe1bb4ddf6eeb7b039be0fba930e4e2910cb930ce",
+ "size": 10916951,
  "notes": [
-  "Battle sounds",
-  "Zoom in on the fighting and you hear it: small-arms and machine-gun fire from units in contact, explosions, IEDs and ambushes, incoming artillery, missiles, rockets and jet strikes, plus the rumble of moving vehicles and the beat of helicopter rotors. The closer you zoom and the nearer the action is to the centre of the screen, the louder it gets; it works in the 3D view and for multiplayer partners too",
-  "Settings › Map: Sound on or off and a volume level"
+  "Cities built from OpenStreetMap",
+  "Buildings now come from OpenStreetMap: each one sits where it really is, at its real size and orientation (about 145,000 across the cities, up to 30,000 in the largest). Hospitals, schools, markets, mosques, water and power plants use the real tagged buildings where OpenStreetMap has them. Where OpenStreetMap has few buildings mapped, the gaps are filled in as before",
+  "Every street in each city is drawn from OpenStreetMap, with main roads heavier than side streets",
+  "The national road network (motorways, trunk roads, primary and secondary roads) is drawn across the map under the MSRs"
  ],
- "published": "2026-11-04T03:27:22.662Z",
+ "published": "2026-11-04T13:34:40.602Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
