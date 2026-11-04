@@ -1,17 +1,19 @@
 {
- "game": 141,
- "semver": "1.0.0",
- "file": "game-141.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-141.html",
- "sha256": "9caf4fece52ba78177acdace5f080f74f6cd08e10c717f624da01a1d1ec0c7c6",
- "size": 12699853,
+ "game": 142,
+ "semver": "0.5.0a",
+ "file": "game-142.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-142.html",
+ "sha256": "bc5cd0055a5da378a3b3a6b692b613973c1ed3ae7f734b0822ffd26cb9cd10af",
+ "size": 12710326,
  "notes": [
-  "HMMWVs for infantry and recon",
-  "Infantry, Marine rifle, Force Recon, MP-style and other foot units now ride in a detailed HMMWV model in the 3D view. On the move, on the highways and outside towns they drive as a convoy of three; inside a town on patrol, securing or in a firefight they dismount and walk the streets as individual soldiers in two files, with their HMMWVs parked behind them. Soldiers are now to scale beside their vehicles",
-  "Force Recon companies now show as HMMWV units instead of LAVs",
-  "Military police, intelligence and civil affairs units also use the new HMMWV"
+  "Weather",
+  "Version numbering moves to the alpha line: this is v0.5.0a. Earlier builds are listed as 0.4.x",
+  "A ☁ Weather overlay joins Sectors and Air cover. It shades the map with dust, haze, heat, rain, fog and snow across four regions (north, west, central, south) and opens a panel with temperature, wind, and GO / MARGINAL / NO-GO for helicopters, jets and drones in each region",
+  "Weather changes daily and follows the seasons: spring and summer shamal dust storms, summer heat over 45°C, winter rain and fog in the south, snow in the northern mountains",
+  "Bad weather costs our troops effectiveness (down to about 70% in a sandstorm), while dug-in enemy lose little. Dust storms and snow ground helicopters, MEDEVAC and drones in that region; sandstorms also ground strike jets unless they carry GPS-guided JDAMs. Rain, fog and low cloud stop laser-guided bombs and Copperhead rounds",
+  "Troops in contact: the drone camera and drone map overlay box the enemy positions in red along a front facing our unit, whether or not a drone is overhead, because the troops call it in. Enemy fighters stand at those positions in 3D, our tracers fly at them and theirs fly back at us, instead of fire spraying in every direction"
  ],
- "published": "2026-11-04T16:33:30.740Z",
+ "published": "2026-11-04T16:39:35.329Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
