@@ -1,17 +1,18 @@
 {
- "game": 153,
- "semver": "0.6.5a",
- "file": "game-153.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-153.html",
- "sha256": "69123378d08498e889d8b5b4aa73c15c366e9244978ec016fa7ca9d913239cad",
- "size": 14028410,
+ "game": 154,
+ "semver": "0.6.6a",
+ "file": "game-154.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-154.html",
+ "sha256": "469b13aeb20a02e6979ca5e20b854d686ce2ccca36690ae2210b8b4cdde854ba",
+ "size": 14047842,
  "notes": [
-  "Base layout builder, keyboard controls & 3D optimization",
-  "Interactive Base Layout Builder (Base › Layout): custom-place, move and rotate 13 compound structures in 2D and 3D",
-  "WASD & Arrow keys smoothly pan the map and 3D camera, Q/E rotate in 3D, +/− zoom, plus a rebindable Keyboard & controls menu in Settings",
-  "3D optimization: shared unit geometries/materials and frustum-culled instanced city meshes"
+  "3D Grid-Snapping Base Builder, PBR Graphics Overhaul & Custom .GLB Asset Framework",
+  "Interactive 3D & 2D 16×16 Grid Base Builder: build bases directly inside the 3D tactical view or 2D Layout blueprint with cell snapping, collision prevention, and live 3D ghost preview",
+  "15 buildable compound structures (including T-Wall barriers and Patriot SAM batteries) that grant real gameplay bonuses to Defense, Perimeter Security, QoL, and Ammo/Fuel Storage",
+  "Pluggable 3D Asset Framework: click '📦 Load .GLB' in the Base Builder (or call window.registerITCModel) to replace any placeholder structure with your own custom .GLB/.GLTF 3D model",
+  "3D Graphics Engine Overhaul: ACES Filmic tone mapping, sRGB output encoding, PCF soft directional sunlight shadows on High quality, and PBR MeshStandardMaterial shaders"
  ],
- "published": "2026-11-05T16:08:00.000Z",
+ "published": "2026-11-05T16:31:00.000Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {

@@ -230,6 +230,19 @@ table.bda td{background:none!important;padding:4px 6px;border-bottom:1px solid c
 .v3-t{background:rgba(12,16,10,.82);border:1px solid var(--line);border-left:3px solid var(--friendly);padding:6px 10px;max-width:75%}.v3-n{font-family:var(--f-display);font-weight:700;font-size:16px;letter-spacing:.04em;text-transform:uppercase}.v3s{font-size:11px;color:var(--muted)}
 .v3-top .x{pointer-events:auto;background:rgba(12,16,10,.85)}
 .v3u{position:absolute;left:8px;right:8px;bottom:10px;display:flex;gap:5px;overflow-x:auto;scrollbar-width:none}.v3u button{flex:none;background:rgba(12,16,10,.85);border:1px solid var(--line);color:var(--ink,#e9e3d4);font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;padding:6px 9px;text-transform:uppercase}.v3u button.on{border-color:var(--friendly);color:var(--friendly)}
+.v3bld{position:absolute;left:8px;right:8px;bottom:46px;z-index:10;background:rgba(12,16,10,.92);border:1px solid rgba(168,212,94,.45);border-left:3px solid var(--friendly);padding:7px 10px;display:flex;flex-direction:column;gap:6px;backdrop-filter:blur(6px);max-width:780px}
+.v3bld[hidden]{display:none!important}
+.v3bh{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--f-mono);font-size:10.5px;color:var(--sand)}
+.v3bh b{color:var(--friendly);letter-spacing:.06em;text-transform:uppercase}
+.v3ba{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.v3ba button,.v3bp button{background:rgba(24,30,20,.92);border:1px solid var(--line);color:var(--ink,#e9e3d4);font-family:var(--f-mono);font-size:10px;padding:4px 8px;cursor:pointer}
+.v3ba button:hover,.v3bp button:hover{border-color:var(--sand)}
+.v3ba button.on,.v3bp button.on{border-color:var(--friendly);color:var(--friendly);background:rgba(42,60,28,.9)}
+.v3ba button:disabled{opacity:.4;cursor:default}
+.v3bp{display:flex;gap:5px;overflow-x:auto;padding-bottom:2px;scrollbar-width:thin}
+.v3bp button{flex:none;display:flex;align-items:center;gap:5px;padding:5px 8px}
+.v3bp button i{font-style:normal;font-size:12px}
+.v3bp button small{color:var(--muted);font-size:9px}
 .v3f.onmap{left:calc(max(8px,env(safe-area-inset-left,0px)) + 64px);top:150px}.fsd{flex:1 1 100%;font-style:normal;color:var(--muted);font-size:10px}
 .v3f{z-index:11!important;position:absolute;left:max(8px,env(safe-area-inset-left,0px));top:84px;width:min(340px,calc(100% - 120px));max-height:calc(100% - 140px);overflow:auto;background:rgba(12,14,10,.93);border:1px solid var(--line);border-left:3px solid #e3604b;padding:8px 10px;font-size:12px;z-index:4}
 .v3fh{display:flex;justify-content:space-between;align-items:center;font-family:var(--f-mono);letter-spacing:.06em;color:#ff8a78;margin-bottom:6px}.v3fh button{background:none;border:1px solid var(--line);color:inherit;padding:1px 7px}
@@ -4147,7 +4160,7 @@ h3{font-size:12px;margin:10px 0 4px;padding-bottom:3px}
     <button class="mapbtn ov" id="ovT" style="top:174px" aria-label="Threat assessment overlay">◍ Threat</button>
     <div id="wxP" class="wxp" hidden></div>
     <div class="vsw" id="vsw" role="group" aria-label="View"><button data-vw="map" id="vwMap">▦ Map</button><button data-vw="3d" id="vw3d">◭ 3D</button><button data-vw="drone" id="vwDrone">◉ Drone</button><button data-vw="lase" id="vwLase" class="lz">✛ Lase</button></div>
-    <div class="v3d" id="v3d" hidden><div id="v3c"></div><div class="v3-top"><div class="v3-t"><div class="eyebrow">3D tactical view</div><div id="v3T" class="v3-n"></div><div id="v3S" class="v3s"></div></div><button class="x" id="v3X" aria-label="Close 3D view">✕</button></div><div id="v3U" class="v3u"></div><div id="v3ret" class="v3ret" hidden><i></i></div><canvas id="v3o" class="v3o"></canvas></div>
+    <div class="v3d" id="v3d" hidden><div id="v3c"></div><div class="v3-top"><div class="v3-t"><div class="eyebrow">3D tactical view</div><div id="v3T" class="v3-n"></div><div id="v3S" class="v3s"></div></div><button class="x" id="v3X" aria-label="Close 3D view">✕</button></div><div id="v3Bld" class="v3bld" hidden></div><div id="v3U" class="v3u"></div><div id="v3ret" class="v3ret" hidden><i></i></div><canvas id="v3o" class="v3o"></canvas><input type="file" id="glbIn" accept=".glb,.gltf" hidden></div>
     <div id="droneFx" class="dfx" hidden></div><canvas id="tgo" class="tgo"></canvas>
     <button class="v3btn" id="v3Btn" hidden>◭ 3D VIEW</button>
     <aside class="opsp" id="opsP" aria-label="Ongoing operations"><div class="opsp-h"><div><div class="eyebrow">Current operations</div><div class="opsp-t" id="opsT">Ongoing operations</div></div><button class="x" id="opsX" aria-label="Close">✕</button></div><div class="opsp-b" id="opsBody"></div></aside>
@@ -4725,7 +4738,7 @@ function fsvHTML(b){if(isRear(b)||b.stg||b.building>0)return '';const k=fsv(b),r
  return h+`<p class="note" style="margin-top:2px"><b style="color:var(--text)">${FSVC[k].n}.</b> ${rows[k]}</p>`}
 function baseOp(b){if(isRear(b))return b.building<=0;return b.building<=0&&baseTroops(b)-kpCrew(b)>=minT(b)&&b.food>0&&b.ammo>0}
 function opWhy(b){const w=[];const need=minT(b),kp=kpCrew(b);if(baseTroops(b)-kp<need)w.push(`at least ${need} troops available${kp?` (${kp} on kitchen or work-site duty)`:''}`);if(b.food<=0)w.push('food');if(b.ammo<=0)w.push('ammunition');return w}
-function perimeter(b){const mp=garrison(b).filter(u=>u.type==='mp').length;return clamp(.15+.55*cexp(mp,.9)+(has('harden')?.1:0)+(b.fort||0)*.05-(baseOp(b)?0:.1),0,.95)}
+function perimeter(b){const mp=garrison(b).filter(u=>u.type==='mp').length,lb=typeof layoutBonus==='function'?layoutBonus(b).perim:0;return clamp(.15+.55*cexp(mp,.9)+(has('harden')?.1:0)+(b.fort||0)*.05+lb-(baseOp(b)?0:.1),0,.95)}
 const perimLbl=v=>v<.35?'Weak':v<.6?'Adequate':'Strong';
 /* replacements & base status */
 const PRESENT=new Set(['garrison','patrolling','building','support']);
@@ -4837,7 +4850,7 @@ function bdePlan(b,t){const plan=[];const used={};const cands=[b,...opBases().fi
 function deployUnit(B,type,extra){const t=UT[type];const u={id:'u'+S.nid++,type,name:unitName(type),p:t.p,baseId:B.id,state:'transit',arrive:S.day+(isRear(B)?3:5),x:B.x,y:B.y,exp:0,mission:null,target:null,rdy:0,coh:100,...(extra||{})};S.units.push(u);return u}
 /* supply */
 function capOf(b){if(b.stg)return 300;return (b.hub?900:b.level>=2?480:240)+(b.level>=3?(b.hub?400:240):0)}
-const capF=b=>capOf(b)/2,capA=b=>capOf(b)/2+fl(b,'asp')*80,capU=b=>b.stg?220:[70,220,600][fl(b,'fuel')]+(b.hub?300:0);
+const capF=b=>capOf(b)/2,capA=b=>capOf(b)/2+fl(b,'asp')*80+(typeof layoutBonus==='function'?layoutBonus(b).ammo:0),capU=b=>(b.stg?220:[70,220,600][fl(b,'fuel')]+(b.hub?300:0))+(typeof layoutBonus==='function'?layoutBonus(b).fuel:0);
 function useOf(b){let f=0,a=0,fu=0;for(const u of S.units){if(u.baseId!==b.id||!PRESENT.has(u.state))continue;const t=UT[u.type],w=u.p/t.p;f+=.6*w;a+=(u.state==='support'?2.5:u.state==='patrolling'?.7:.3)*w;fu+=.15*w+(t.veh?(u.state==='patrolling'?1.2:.5):MTD.has(u.type)&&u.state==='patrolling'?.4:0)+(AC[u.type]?1.5*acFmc(u)/acTot(u):0)}
  if(S.heatUntil>S.day)f*=1.4;if(fsv(b)==='locals')f*=.75;else if(fsv(b)==='kbr')f*=.9;if(works(b,'chow'))f*=fl(b,'chow')>=3?.85:fl(b,'chow')>=2?.9:1;return {f,a,u:fu}}
 function daysOf(b){const u=useOf(b);return Math.min(u.f>0?b.food/u.f:99,u.a>0?b.ammo/u.a:99,u.u>0?(b.fuel??0)/u.u:99)}
@@ -5057,7 +5070,7 @@ function cleared(c,div){try{flee(c,div.max*.25,`Republican Guard survivors of th
  log(`Survivors of the ${div.n} are slipping into ${c.n}'s neighborhoods and organizing local militias.`,'adapt');
  if(big){S.gov.fallen=1;S.gov.fallenDay=S.day;scatterLeaders();setTimeout(()=>decide('disband'),300)}}
 function baseDef(b){return baseDef0(b)*(kpCrew(b)?.93:1)}
-function baseDef0(b){let d=b.level*15+(b.high?25:0)+(b.fort||0)*12+(b.sec&&typeof secById==='function'&&secById(b.sec)&&secById(b.sec).post==='tight'?18:0)+(has('harden')?20:0)+(garrison(b).some(u=>u.type==='cb')?15:0);for(const u of garrison(b))d+=UT[u.type].def*(u.p/UT[u.type].p)*eff(u);return d}
+function baseDef0(b){let d=b.level*15+(b.high?25:0)+(b.fort||0)*12+(typeof layoutBonus==='function'?layoutBonus(b).def:0)+(b.sec&&typeof secById==='function'&&secById(b.sec)&&secById(b.sec).post==='tight'?18:0)+(has('harden')?20:0)+(garrison(b).some(u=>u.type==='cb')?15:0);for(const u of garrison(b))d+=UT[u.type].def*(u.p/UT[u.type].p)*eff(u);return d}
 function ebStr0(b,base){return base+b.level*8+(b.fort||0)*6+(b.high?8:0)}
 function ebDef(e){return 1.35+.22*(e.fort||0)+.15*(e.level||1)+(e.high?.25:0)}
 function captureBase(b,by,base,who){if(b.role==='bsa'&&!S.units.some(u=>u.baseId===b.id&&u.state==='garrison')){if(S.units.some(u=>u.baseId===b.id)){const k0=baseById('b0'),A=b.sec&&secById(b.sec);let q=null;if(A){const ox=b.x,oy=b.y;b.x=b.y=-9999;q=msrSpot(A);b.x=ox;b.y=oy}if(q&&dist(q,k0)<dist(b,k0)){b.x=q.x;b.y=q.y}else{b.x+=(k0.x-b.x)*.08;b.y+=(k0.y-b.y)*.08}log(`Enemy fighters reach the empty site of ${b.n} before our companies do. The support area is laid out a little further back.`,'adapt',false)}return}if(inPoly(b,KUWAIT)){log(`${b.n} took fire, but Kuwaiti and coalition security held. Nothing gets inside the wire in Kuwait.`,'info');return}if(isArc()){for(const k of Object.keys(b.fac||{}))if(b.fac[k])b.fac[k].d=Math.min(100,(b.fac[k].d||0)+25);log(`${b.n} was hit hard, but the defenders held the gate. Repairs are under way.`,'bad',true,'Base held');return}const others=opBases().filter(x=>x!==b&&!x.naval&&!x.offmap&&!x.stg).sort((x,y)=>dist(x,b)-dist(y,b));
@@ -7607,7 +7620,7 @@ const facDef=k=>FAC.find(f=>f.k===k);
 const fl=(b,k)=>b&&b.fac&&b.fac[k]?b.fac[k].l:0;
 const fdmg=(b,k)=>b&&b.fac&&b.fac[k]?b.fac[k].d:0;
 const works=(b,k)=>fl(b,k)>0&&fdmg(b,k)<50;
-function qol(b){if(!b||isRear(b))return 70;if(b.stg)return 38;let q=((b.fuel??1)<=0?-20:0)+(fsv(b)==='kbr'?12:fsv(b)==='locals'?-5:0);for(const f of FAC)if(f.q){const l=fl(b,f.k);if(l)q+=f.q*(l/f.n.length)*(1-fdmg(b,f.k)/100)}return q}
+function qol(b){if(!b||isRear(b))return 70;if(b.stg)return 38;let q=((b.fuel??1)<=0?-20:0)+(fsv(b)==='kbr'?12:fsv(b)==='locals'?-5:0)+(typeof layoutBonus==='function'?layoutBonus(b).qol:0);for(const f of FAC)if(f.q){const l=fl(b,f.k);if(l)q+=f.q*(l/f.n.length)*(1-fdmg(b,f.k)/100)}return q}
 function needsFail(b){if(!b||isArc()||isRear(b)||b.stg||baseTroops(b)<NEED_T)return [];return FAC.filter(f=>f.need&&!works(b,f.k)).map(f=>f.k)}
 function facUpkAll(b){let u=0;if(b.fac)for(const [k,st] of Object.entries(b.fac)){const f=facDef(k);if(f)for(let i=0;i<st.l;i++)u+=f.upk[i]||0}return u}
 function damageBase(b,sev){if(!b||isRear(b)||!b.fac||!sev)return '';const built=FAC.filter(f=>fl(b,f.k)>0);if(!built.length)return '';const hit=[];
@@ -7770,7 +7783,8 @@ if(window.addEventListener){window.addEventListener('keydown',e=>{const ae=docum
  else if(k===KB.view3d){V3.open?close3D():open3DHere('orbit');vswSync()}
  else if(k===KB.lase){const lb=$('#vwLase');if(lb)lb.click()}
  else if(k===KB.threat)setThreat(!THREAT);
- else if(k===KB.rotate&&sheet&&sheet.kind==='base'&&baseTab==='layout')localAct('bldrot',sheet.id,'');
+ else if(k===KB.rotate&&(V3.open&&V3.bldMode&&V3.baseId||(sheet&&sheet.kind==='base'&&baseTab==='layout')))localAct('bldrot',V3.open&&V3.baseId?V3.baseId:sheet.id,'');
+ else if((k==='backspace'||k==='delete')&&BLD_SEL!=null&&(V3.open&&V3.bldMode&&V3.baseId||(sheet&&sheet.kind==='base'&&baseTab==='layout')))localAct('blddel',V3.open&&V3.baseId?V3.baseId:sheet.id,'');
  else if(['1','2','3','4','5'].includes(k)){const tb=document.querySelectorAll('button[data-tab]')[+k-1];if(tb)tb.click()}});
  window.addEventListener('keyup',e=>{KB_DOWN.delete(String(e.key||'').toLowerCase())});window.addEventListener('blur',()=>KB_DOWN.clear())}
 const ROE=[null,
@@ -7966,6 +7980,15 @@ async function v3Model1(T,L,M){const bin=Uint8Array.from(atob(M.b64),c=>c.charCo
  // a separate turret node whose pivot sits over its own centre can traverse in firefights
  if(M.turret){let tn=null;root.traverse(o=>{if(!tn&&o.name===M.turret)tn=o});if(tn){wrap.updateMatrixWorld(true);const tb=new T.Box3().setFromObject(tn),tc=new T.Vector3(),tp=new T.Vector3();tb.getCenter(tc);tn.getWorldPosition(tp);if(Math.hypot(tc.x-tp.x,tc.z-tp.z)<.5)wrap.userData.turretName=M.turret}}
  return wrap}
+const V3_CUSTOM_MODELS={};
+window.ITC_ASSET_MANIFEST={toc:'models/toc.glb',sleep:'models/sleep.glb',chow:'models/chow.glb',aid:'models/aid.glb',motor:'models/motor.glb',asp:'models/asp.glb',fuel:'models/fuel.glb',water:'models/water.glb',heli:'models/heli.glb',tower:'models/tower.glb',hesco:'models/hesco.glb',twall:'models/twall.glb',cram:'models/cram.glb',patriot:'models/patriot.glb',aero:'models/aero.glb'};
+window.registerITCModel=async function(key,src,opts={}){const T=await load3D(),L=await gltfLib(T);let buf=src;if(typeof src==='string'){const r=await fetch(src);if(!r.ok)throw new Error('HTTP '+r.status);buf=await r.arrayBuffer()}
+ const gl=await new Promise((res,rej)=>new L().parse(buf,'',res,rej)),root=gl.scene;root.updateMatrixWorld(true);
+ let bb=new T.Box3().setFromObject(root),sz=new T.Vector3(),c=new T.Vector3();bb.getSize(sz);bb.getCenter(c);
+ root.position.set(-c.x,-bb.min.y,-c.z);const wrap=new T.Group();wrap.add(root);wrap.userData.rawSize={x:Math.max(.1,sz.x),y:Math.max(.1,sz.y),z:Math.max(.1,sz.z)};
+ root.traverse(o=>{if(o.isMesh){o.castShadow=o.receiveShadow=true}});
+ V3_CUSTOM_MODELS[key]=wrap;if(V3.open&&V3.baseId){const B=baseById(V3.baseId);if(B)v3RebuildBase(B);v3BldUI()}if(sheet&&sheet.kind==='base')renderSheet(true);return wrap};
+function promptCustomGLB(key){const inp=$('#glbIn');if(!inp)return;inp.onchange=async e=>{const f=e.target.files&&e.target.files[0];inp.value='';if(!f)return;try{const buf=await f.arrayBuffer();await window.registerITCModel(key||BLD_PAL||'toc',buf);toast(`Loaded 3D asset "${f.name}" for ${(BLD_CAT[key||BLD_PAL]||{n:key}).n}.`,'good','3D Asset Loaded')}catch(err){toast('Could not parse .GLB/.GLTF file.','bad')}};inp.click()}
 async function v3Assets(T){if(V3.models)return;V3.models={};let L=null;try{L=await gltfLib(T)}catch(e){console.log('gltf loader',e);return}for(const [k,M] of Object.entries(MODELS3D)){try{V3.models[k]=await v3Model1(T,L,M)}catch(e){console.log('model',k,e)}}}
 const W3=100;                      // 3D units per world unit (~0.9 km)
 function load3D(){return new Promise((res,rej)=>{if(window.THREE)return res(window.THREE);
@@ -7986,10 +8009,14 @@ function v3col(p,h,T){const z=terrainAt(p);const C=new T.Color();if(h<-4)return 
  const c=nearestCity(p);if(c&&dist(c,p)<netR(c)*1.03)C.lerp(new T.Color('#a39272'),.6);
  C.offsetHSL(0,0,(v3noise(p.x*3,p.y*3)-.5)*.06);return C}
 const v3pos=(T,p,lift=0)=>new T.Vector3((p.x-V3.c.x)*W3,v3h(p)+lift,(p.y-V3.c.y)*W3);
-// ---------- low-poly models ----------
-function v3mats(T){const m=c=>new T.MeshLambertMaterial({color:c,flatShading:true});return {tan:m('#b59d70'),tan2:m('#9c875f'),dark:m('#2e2b24'),track:m('#3a372f'),glass:m('#3a4a52'),olive:m('#6b6a45'),grey:m('#8d9192'),white:m('#e7e3d6'),red:m('#8a2e22'),rust:m('#7a5b3a'),en:m('#4f5640'),en2:m('#3d4232'),skin:m('#c49a74'),hesco:m('#a8906a'),flag:m('#2f4a7a'),waterT:m('#6f97a8'),yel:m('#e0b94a'),rotor:new T.MeshBasicMaterial({color:'#222',transparent:true,opacity:.35})}}
-function v3box(T,M,w,h,d,x,y,z){const g=new T.Mesh(V3._boxG||(V3._boxG=new T.BoxGeometry(1,1,1)),M);g.scale.set(w,h,d);g.position.set(x,y,z);return g}
-function v3cyl(T,M,r1,r2,h,x,y,z,rx,rz){const g=new T.Mesh(r1===r2?(V3._cylG||(V3._cylG=new T.CylinderGeometry(1,1,1,8))):new T.CylinderGeometry(r1,r2,h,8),M);if(r1===r2)g.scale.set(r1,h,r2);g.position.set(x,y,z);if(rx)g.rotation.x=rx;if(rz)g.rotation.z=rz;return g}
+// ---------- PBR low-poly materials & primitives ----------
+function v3mats(T){const std=T.MeshStandardMaterial||T.MeshLambertMaterial,m=(c,r=.82,mt=.08)=>new std({color:c,roughness:r,metalness:mt,flatShading:true});
+ return {tan:m('#b59d70',.84,.05),tan2:m('#9c875f',.86,.06),dark:m('#2e2b24',.7,.25),track:m('#3a372f',.85,.2),glass:m('#3a4a52',.25,.6),olive:m('#6b6a45',.78,.1),grey:m('#8d9192',.65,.35),conc:m('#b7b2a4',.9,.04),white:m('#e7e3d6',.78,.05),red:m('#9e3022',.7,.1),rust:m('#7a5b3a',.88,.15),en:m('#4f5640',.8,.1),en2:m('#3d4232',.82,.1),skin:m('#c49a74',.85,.02),hesco:m('#a8906a',.92,.02),flag:m('#2f4a7a',.8,.05),waterT:m('#5b8fa6',.55,.2),yel:m('#e0b94a',.7,.1),pad:m('#766c56',.94,.02),rotor:new T.MeshBasicMaterial({color:'#222',transparent:true,opacity:.35}),
+  ghostOk:new T.MeshBasicMaterial({color:'#62e878',transparent:true,opacity:.52, wireframe:false}),
+  ghostBad:new T.MeshBasicMaterial({color:'#ff5242',transparent:true,opacity:.52, wireframe:false}),
+  selWire:new T.MeshBasicMaterial({color:'#a8d45e',wireframe:true,transparent:true,opacity:.85})}}
+function v3box(T,M,w,h,d,x,y,z){const g=new T.Mesh(V3._boxG||(V3._boxG=new T.BoxGeometry(1,1,1)),M);g.scale.set(w,h,d);g.position.set(x,y,z);if(SET.q3d==='high'){g.castShadow=true;g.receiveShadow=true}return g}
+function v3cyl(T,M,r1,r2,h,x,y,z,rx,rz){const g=new T.Mesh(r1===r2?(V3._cylG||(V3._cylG=new T.CylinderGeometry(1,1,1,10))):new T.CylinderGeometry(r1,r2,h,10),M);if(r1===r2)g.scale.set(r1,h,r2);g.position.set(x,y,z);if(rx)g.rotation.x=rx;if(rz)g.rotation.z=rz;if(SET.q3d==='high'){g.castShadow=true;g.receiveShadow=true}return g}
 // vehicles are sized to a set length in the 3D view so every kind fits the streets (about half their old size)
 const V3LEN={tank:4.9,t72:4.7,ifv:3.4,bmp:3.3,lav:3.5,sp:4.8,truck:3.6,tech:2.8,hmmwv:2.6,dozer:3.4},V3SCK={};
 function v3model(T,M,kind,enemy){const m=v3model0(T,M,kind,enemy);if(/^helo|^heli|jet|fighter/.test(kind))return m;const L=V3LEN[kind];
@@ -8088,12 +8115,14 @@ function v3houses(T){if(!V3.hm)return;const O=V3.orb,now=performance.now();if(no
   const hh=Math.max(.9,(h.w+h.d)/2*.5*G.hf*h.s);q.setFromAxisAngle(Y,-h.ang+(h.f?Math.PI:0));m.compose(new T.Vector3(h.x,h.y,h.z),q,new T.Vector3(h.w,hh,h.d));const k=cnt[h.v]++;im.setMatrixAt(k,m);im.setColorAt(k,col.set(h.col))}
  V3.hm.forEach((im,j)=>{im.count=cnt[j];im.instanceMatrix.needsUpdate=true;if(im.instanceColor)im.instanceColor.needsUpdate=true;if(!im.boundingSphere)im.boundingSphere=new T.Sphere();im.boundingSphere.set(new T.Vector3(O.tx,0,O.tz),V3.R*W3*1.2);im.frustumCulled=true});for(const mm of dirty)mm.instanceMatrix.needsUpdate=true;V3.hcur=sel}
 // ---------- scene ----------
-function v3build(T,focus){const R=focus.R,M=v3mats(T),scene=new T.Scene();V3.c={x:focus.x,y:focus.y};V3.R=R;V3.M=M;V3.hc=[];V3.hm=null;V3.hcur=[];V3.bc=[];V3.bm=null;V3.bcur=[];V3.ruinN=0;
- scene.background=new T.Color('#c9bfa5');scene.fog=new T.Fog('#c9bfa5',R*W3*.6,R*W3*2.2);
- scene.add(new T.HemisphereLight('#fff6e0','#6b5a3d',.75));const sun=new T.DirectionalLight('#fff1d2',.85);sun.position.set(400,700,250);scene.add(sun);
- const q=SET.q3d==='high';const seg=q?180:110,size=R*2*W3;const g=new T.PlaneGeometry(size,size,seg,seg);g.rotateX(-Math.PI/2);const pos=g.attributes.position,cols=[];
+function v3build(T,focus){const R=focus.R,M=v3mats(T),scene=new T.Scene();V3.c={x:focus.x,y:focus.y};V3.R=R;V3.M=M;V3.hc=[];V3.hm=null;V3.hcur=[];V3.bc=[];V3.bm=null;V3.bcur=[];V3.ruinN=0;V3.baseMap=new Map();
+ scene.background=new T.Color('#c9bfa5');scene.fog=new T.Fog('#c9bfa5',R*W3*.65,R*W3*2.3);
+ const q=SET.q3d==='high';scene.add(new T.HemisphereLight('#fff8e6','#6b5a3d',.72));const sun=new T.DirectionalLight('#fff2d4',1.02);sun.position.set(360,680,240);
+ if(q){sun.castShadow=true;sun.shadow.mapSize.width=1024;sun.shadow.mapSize.height=1024;const sc=sun.shadow.camera;sc.near=20;sc.far=1600;sc.left=-260;sc.right=260;sc.top=260;sc.bottom=-260;sun.shadow.bias=-.0006}
+ scene.add(sun);
+ const seg=q?180:110,size=R*2*W3;const g=new T.PlaneGeometry(size,size,seg,seg);g.rotateX(-Math.PI/2);const pos=g.attributes.position,cols=[];
  for(let i=0;i<pos.count;i++){const wp={x:V3.c.x+pos.getX(i)/W3,y:V3.c.y+pos.getZ(i)/W3},h=v3h(wp);pos.setY(i,h);const C=v3col(wp,h,T);cols.push(C.r,C.g,C.b)}
- g.setAttribute('color',new T.Float32BufferAttribute(cols,3));g.computeVertexNormals();scene.add(new T.Mesh(g,new T.MeshLambertMaterial({vertexColors:true,flatShading:true})));
+ g.setAttribute('color',new T.Float32BufferAttribute(cols,3));g.computeVertexNormals();const ter=new T.Mesh(g,new T.MeshLambertMaterial({vertexColors:true,flatShading:true}));ter.receiveShadow=q;scene.add(ter);
  const water=new T.Mesh(new T.PlaneGeometry(size,size),new T.MeshLambertMaterial({color:'#4f7f8e',transparent:true,opacity:.85}));water.rotation.x=-Math.PI/2;water.position.y=-1.6;scene.add(water);
  {const rmat=new T.MeshLambertMaterial({color:'#4c7f93',side:T.DoubleSide,polygonOffset:true,polygonOffsetFactor:-1});for(const r of RIVERS){const P=[];for(let i=1;i<r.length;i++){const a=r[i-1],b=r[i];if(segD(V3.c,a,b)>R*1.4)continue;const n=Math.max(1,Math.ceil(dist(a,b)/.2));for(let k=0;k<=n;k++)P.push({x:a.x+(b.x-a.x)*k/n,y:a.y+(b.y-a.y)*k/n})}if(P.length>1)V3._river=[P,rmat]}}
  // roads: highways + city routes as ribbons
@@ -8129,10 +8158,7 @@ function v3build(T,focus){const R=focus.R,M=v3mats(T),scene=new T.Scene();V3.c={
   for(const [ix,iy,ir] of (c.imp||[])){if(Math.hypot(ix-V3.c.x,iy-V3.c.y)>R)continue;const cr=new T.Mesh(new T.CircleGeometry(ir*W3*.55,16),new T.MeshBasicMaterial({color:'#2b2620',transparent:true,opacity:.45,depthWrite:false}));cr.rotation.x=-Math.PI/2;cr.position.copy(v3pos(T,{x:ix,y:iy},.8));scene.add(cr)}}
  // bases
  for(const b of S.bases){if(isRear(b)||b.naval||b.offmap||dist(b,V3.c)>R*1.2)continue;const ctr=baseCenter(b),cp=v3pos(T,ctr),half=(b.stg?2.2:compR(b))*W3*.5,G=new T.Group();G.position.copy(cp);
-  const n=Math.ceil(half*8/6);for(let i=0;i<n;i++){const t=i/n*4,side=Math.floor(t),f=t-side,L=half*2;const xy=[[-half+f*L,-half],[half,-half+f*L],[half-f*L,half],[-half,half-f*L]][side];G.add(v3box(T,M.hesco,side%2?2.2:6.4,3,side%2?6.4:2.2,xy[0],1.5,xy[1]))}
-  v3baseBuild(T,M,b,half,G);
-  G.add(v3cyl(T,M.grey,.25,.25,16,0,8,half*.6));G.add(v3box(T,M.flag,4,2.5,.1,2,14.5,half*.6));
-  const lb=v3label(T,b.n.toUpperCase(),'#a8d45e');lb.position.set(0,26,0);G.add(lb);scene.add(G)}
+  V3.baseMap.set(b.id,{b,half,G});v3PopulateBase(T,M,b,half,G);scene.add(G)}
  // strongholds & regime forces
  V3.enemy=[];for(const sh of S.sh){if(!(sh.found||(sh.type==='hq'&&sh.prog>=.5))||dist(sh,V3.c)>R)continue;const p=v3pos(T,sh),G=new T.Group();G.position.copy(p);G.add(v3box(T,M.rust,14,5,10,0,2.5,0));G.add(v3box(T,M.dark,4,3,4,8,1.5,6));const lb=v3label(T,(SH_T[sh.type]||{n:'Stronghold'}).n.toUpperCase(),'#e3604b');lb.position.y=16;G.add(lb);scene.add(G);V3.enemy.push({p:sh,r:2})}
  for(const c of near){const d=divAt(c);if(!d)continue;const n=Math.min(14,Math.round(d.str/8)+3),r0=srnd(hsh(c.id+'3d'));for(const t of enemyVeh(c,d)){const m=v3model(T,M,t.k,true);m.position.copy(v3pos(T,t));m.rotation.y=Math.atan2(Math.cos(t.a),Math.sin(t.a));scene.add(m);V3.enemy.push({p:t,r:.4,k:t.k})}
@@ -8188,13 +8214,18 @@ function v3focus(kind,id){if(kind==='city'){const c=cityById(id);return c&&{x:c.
  if(kind==='unit'){const u=unitById(id);if(!u)return null;const p=AWAY(u)?dpos(u):baseById(u.baseId);return p&&{x:p.x,y:p.y,R:7,n:u.name,follow:u.id}}
  if(kind==='base'){const b=baseById(id);return b&&{x:b.x,y:b.y,R:6,n:b.n}}if(kind==='sh'){const s=shById(id);return s&&{x:s.x,y:s.y,R:6,n:(SH_T[s.type]||{n:'Stronghold'}).n}}
  if(kind==='eb'){const e=ebById(id);return e&&{x:e.x,y:e.y,R:6,n:e.n}}if(kind==='pt'){const [x,y]=String(id).split(',').map(Number);return {x,y,R:6,n:mgrs({x,y})}}return null}
-async function open3D(kind,id){const F=v3focus(kind,id);if(!F)return;const el=$('#v3d');el.hidden=false;$('#v3T').textContent=F.n;$('#v3S').textContent='Loading 3D engine…';V3.open=true;
+async function open3D(kind,id){const F=v3focus(kind,id);if(!F)return;const el=$('#v3d');el.hidden=false;$('#v3T').textContent=F.n;$('#v3S').textContent='Loading 3D engine…';V3.open=true;V3.focusKind=kind;V3.baseId=kind==='base'?id:null;V3.bldMode=kind==='base'&&(NET.myRole!=='red');V3.hoverCell=null;
  if(sheet&&SHSZ!=='mini')setSz('mini');
  let T;try{T=await load3D()}catch(e){$('#v3S').textContent='The 3D engine could not load. Check your connection and try again.';return}if(!V3.open)return;try{$('#v3S').textContent='Loading models…';await v3Assets(T)}catch(e){}if(!V3.open)return;
- const host=$('#v3c');host.innerHTML='';const W=host.clientWidth,H=host.clientHeight;const rd=new T.WebGLRenderer({antialias:SET.q3d==='high',powerPreference:'high-performance'});rd.setPixelRatio(Math.min(window.devicePixelRatio||1,SET.q3d==='high'?2:1.25));rd.setSize(W,H);host.appendChild(rd.domElement);
- V3.us=new Map();V3.fx=[];const scene=v3build(T,F),cam=new T.PerspectiveCamera(50,W/H,2,F.R*W3*4);try{v3housesInit(T,scene)}catch(e){console.log('houses',e)}try{v3bigInit(T,scene)}catch(e){console.log('big blocks',e)}
- V3.T=T;V3.rd=rd;V3.scene=scene;V3.cam=cam;V3.follow=F.follow||null;V3.orb={yaw:.7,pitch:F.follow?.45:.62,dist:F.follow?260:kind==='base'?210:F.R*W3*.75,tx:0,tz:0,mode:'orbit'};
- v3bindControls(rd.domElement);try{v3igBuild(T,scene);v3smokeInit()}catch(e){console.log('3d extras',e)}if(V3.pendLz){V3.orb.mode='drone';V3.orb.pitch=1.25;V3.orb.dist=Math.min(V3.R*W3*.55,320);V3.lase=1;V3.lz=V3.pendLz;V3.pendLz=null;setTimeout(v3fireUI,60)}else V3.lz=null;if(V3.pendAt){V3.orb.tx=(V3.pendAt.x-V3.c.x)*W3;V3.orb.tz=(V3.pendAt.y-V3.c.y)*W3;V3.orb.dist=Math.min(V3.orb.dist,420);V3.pendAt=null}if(V3.pendMode){if(V3.pendMode==='drone'){V3.orb.mode='drone';V3.orb.dist=Math.min(V3.orb.dist,V3.R*W3*1.1);V3.orb.pitch=1.25}V3.pendMode=null}v3hud();$('#v3S').textContent='Drag or WASD/Arrows to move · Q/E to rotate · scroll or +/− to zoom';
+ const host=$('#v3c');host.innerHTML='';const W=host.clientWidth,H=host.clientHeight,q=SET.q3d==='high';const rd=new T.WebGLRenderer({antialias:q,powerPreference:'high-performance'});rd.setPixelRatio(Math.min(window.devicePixelRatio||1,q?2:1.25));rd.setSize(W,H);
+ if(T.ACESFilmicToneMapping)rd.toneMapping=T.ACESFilmicToneMapping;rd.toneMappingExposure=1.06;if(T.sRGBEncoding)rd.outputEncoding=T.sRGBEncoding;if(q&&rd.shadowMap){rd.shadowMap.enabled=true;if(T.PCFSoftShadowMap)rd.shadowMap.type=T.PCFSoftShadowMap}
+ host.appendChild(rd.domElement);
+ V3.us=new Map();V3.fx=[];const scene=v3build(T,F),cam=new T.PerspectiveCamera(50,W/H,2,F.R*W3*4);
+ if(!V3.baseId&&V3.baseMap&&V3.baseMap.size){let best=null,bd=1e9;for(const [bid,E] of V3.baseMap){const d=dist(E.b,V3.c);if(d<bd){bd=d;best=bid}}if(best)V3.baseId=best}
+ try{v3housesInit(T,scene)}catch(e){console.log('houses',e)}try{v3bigInit(T,scene)}catch(e){console.log('big blocks',e)}
+ V3.T=T;V3.rd=rd;V3.scene=scene;V3.cam=cam;V3.follow=F.follow||null;V3.orb={yaw:.7,pitch:F.follow?.45:kind==='base'?.74:.62,dist:F.follow?260:kind==='base'?175:F.R*W3*.75,tx:0,tz:0,mode:'orbit'};
+ v3bindControls(rd.domElement);try{v3igBuild(T,scene);v3smokeInit()}catch(e){console.log('3d extras',e)}if(V3.pendLz){V3.orb.mode='drone';V3.orb.pitch=1.25;V3.orb.dist=Math.min(V3.R*W3*.55,320);V3.lase=1;V3.lz=V3.pendLz;V3.pendLz=null;setTimeout(v3fireUI,60)}else V3.lz=null;if(V3.pendAt){V3.orb.tx=(V3.pendAt.x-V3.c.x)*W3;V3.orb.tz=(V3.pendAt.y-V3.c.y)*W3;V3.orb.dist=Math.min(V3.orb.dist,420);V3.pendAt=null}if(V3.pendMode){if(V3.pendMode==='drone'){V3.orb.mode='drone';V3.orb.dist=Math.min(V3.orb.dist,V3.R*W3*1.1);V3.orb.pitch=1.25}V3.pendMode=null}
+ v3hud();v3BldUI();$('#v3S').textContent=V3.bldMode?'3D Base Builder active · Hover compound grid to snap · Click to place · R to rotate · Drag to orbit':'Drag or WASD/Arrows to move · Q/E to rotate · scroll or +/− to zoom';
  let last=performance.now();const loop=()=>{if(!V3.open)return;const now=performance.now(),dt=now-last;last=now;try{v3houses(T);v3big(T);v3units(T,scene);v3fx(T,scene,dt);v3cam(T);v3smoke();rd.render(scene,cam);v3targets(T);v3laseHud(T);if(now-(V3.igT||0)>700){V3.igT=now;v3igSync()}if(now-(V3.hudT||0)>1000){V3.hudT=now;v3hud()}}catch(e){console.log('3D',e)}V3.raf=requestAnimationFrame(loop)};loop()}
 function v3targets(T){const oc=$('#v3o');if(!oc)return;const W=oc.clientWidth,H=oc.clientHeight;if(oc.width!==W)oc.width=W;if(oc.height!==H)oc.height=H;const x=oc.getContext('2d');x.clearRect(0,0,W,H);
  if(!V3.orb||V3.orb.mode!=='drone')return;const L=droneTargets((c,r)=>dist(c,V3.c)<V3.R+r),now=performance.now(),save=ctx;let n=0;try{if((SET._sv||0)<137){SET._sv=137;SET.droneHUD=true;localStorage.setItem('itc-set',JSON.stringify(SET))}}catch(e){}
@@ -8206,33 +8237,92 @@ function v3cam(T){const O=V3.orb,cam=V3.cam;{const dm=O.mode==='drone'&&SET.dron
  if(O.mode==='drone'){if(performance.now()-(V3.dIdle||0)>5000)O.yaw+=.0009;if(O.pitch<.85)O.pitch=Math.min(1.25,O.pitch+.03)}
  const ty=v3h({x:V3.c.x+O.tx/W3,y:V3.c.y+O.tz/W3});const cx=O.tx+Math.cos(O.yaw)*Math.cos(O.pitch)*O.dist,cz=O.tz+Math.sin(O.yaw)*Math.cos(O.pitch)*O.dist,cy=ty+Math.sin(O.pitch)*O.dist;
  cam.position.set(cx,Math.max(cy,v3h({x:V3.c.x+cx/W3,y:V3.c.y+cz/W3})+6),cz);cam.lookAt(O.tx,ty,O.tz)}
-function v3bindControls(cv3){const pts=new Map();let pinch=null;cv3.style.touchAction='none';cv3.addEventListener('pointerdown',e=>{V3.tap={x:e.clientX,y:e.clientY,t:performance.now()}});cv3.addEventListener('pointerup',e=>{const t=V3.tap;if(V3.lase&&t&&Math.hypot(e.clientX-t.x,e.clientY-t.y)<8&&performance.now()-t.t<600)v3laseAt(e.clientX,e.clientY)});
+function v3RayHit(clientX,clientY){if(!V3.T||!V3.cam||!V3.rd||!V3.baseId||!V3.baseMap)return null;const E=V3.baseMap.get(V3.baseId);if(!E||!E.G||!E.G.userData.pad)return null;
+ const T=V3.T,r=V3.rd.domElement.getBoundingClientRect(),ndc=new T.Vector2(((clientX-r.left)/r.width)*2-1,-((clientY-r.top)/r.height)*2+1),rc=V3._rc||(V3._rc=new T.Raycaster());
+ rc.setFromCamera(ndc,V3.cam);
+ const blds=(E.G.userData.blds||[]);const bh=rc.intersectObjects(blds,true);
+ let hitIdx=null;if(bh.length){let o=bh[0].object;while(o&&o.userData.bldIdx==null)o=o.parent;if(o&&o.userData.bldIdx!=null)hitIdx=o.userData.bldIdx}
+ const ph=rc.intersectObject(E.G.userData.pad,false);if(!ph.length)return hitIdx!=null?{E,hitIdx,onPad:false}:null;
+ const lp=E.G.worldToLocal(ph[0].point.clone()),span=E.half*.82,u=clamp(lp.x/span,-1,1),v=clamp(lp.z/span,-1,1);
+ return {E,hitIdx,onPad:true,u,v}}
+function v3HoverBase(clientX,clientY){if(!V3.bldMode||!V3.baseId)return;const h=v3RayHit(clientX,clientY),E=V3.baseMap&&V3.baseMap.get(V3.baseId);if(!E)return;
+ const gh=E.G.userData.ghost;if(!h||!h.onPad){if(gh)gh.visible=false;V3.hoverCell=null;return}
+ const L=ensureBaseLayout(E.b),sel=BLD_SEL!=null&&L[BLD_SEL]?L[BLD_SEL]:null,k=sel?sel.k:(BLD_PAL||'sleep'),rot=sel?sel.rot||0:(BLD_ROT||0),sn=bldSnap(h.u,h.v,k,rot),ok=bldCanPlace(E.b,sn.gx,sn.gz,k,rot,BLD_SEL);
+ V3.hoverCell={...sn,k,rot,ok};v3SyncGhost()}
+function v3SyncGhost(){if(!V3.T||!V3.M||!V3.baseId||!V3.baseMap)return;const E=V3.baseMap.get(V3.baseId);if(!E)return;
+ if(E.G.userData.grid)E.G.userData.grid.visible=!!V3.bldMode;
+ if(E.G.userData.ghost){E.G.remove(E.G.userData.ghost);E.G.userData.ghost=null}
+ if(!V3.bldMode||!V3.hoverCell)return;
+ const T=V3.T,M=V3.M,hc=V3.hoverCell,D=BLD_CAT[hc.k];if(!D)return;
+ const gm=v3baseMesh(T,M,hc.k,E.b),mat=hc.ok?M.ghostOk:M.ghostBad;
+ gm.traverse(o=>{if(o.isMesh)o.material=mat});
+ const cellW=(E.half*2*.82)/16,[cw,cd]=bldDims(hc.k,0);
+ const pad=new T.Mesh(new T.BoxGeometry(cw*cellW*.96,.35,cd*cellW*.96),mat);pad.position.y=.18;gm.add(pad);
+ gm.position.set(hc.u*E.half*.82,.2,hc.v*E.half*.82);gm.rotation.y=(hc.rot||0)*Math.PI/2;
+ E.G.add(gm);E.G.userData.ghost=gm}
+function v3TapBase(clientX,clientY){if(!V3.bldMode||!V3.baseId)return false;const h=v3RayHit(clientX,clientY);if(!h)return false;
+ const B=h.E.b,L=ensureBaseLayout(B);
+ if(h.hitIdx!=null&&BLD_SEL!==h.hitIdx){BLD_SEL=h.hitIdx;v3RebuildBase(B);v3BldUI();if(sheet&&sheet.kind==='base')renderSheet(true);return true}
+ if(!h.onPad)return false;
+ const sel=BLD_SEL!=null&&L[BLD_SEL]?L[BLD_SEL]:null,k=sel?sel.k:(BLD_PAL||'sleep'),rot=sel?sel.rot||0:(BLD_ROT||0),sn=bldSnap(h.u,h.v,k,rot);
+ if(!bldCanPlace(B,sn.gx,sn.gz,k,rot,BLD_SEL)){toast('Grid cells occupied — pick an open spot on the compound grid.','bad');return true}
+ if(sel){sel.u=sn.u;sel.v=sn.v;sel.gx=sn.gx;sel.gz=sn.gz;sel.rot=rot}
+ else{L.push({k,u:sn.u,v:sn.v,gx:sn.gx,gz:sn.gz,rot})}
+ v3RebuildBase(B);v3HoverBase(clientX,clientY);v3BldUI();if(sheet&&sheet.kind==='base')renderSheet(true);return true}
+function v3bindControls(cv3){const pts=new Map();let pinch=null;cv3.style.touchAction='none';
+ cv3.addEventListener('pointerdown',e=>{V3.tap={x:e.clientX,y:e.clientY,t:performance.now(),b:e.button}});
+ cv3.addEventListener('pointerup',e=>{const t=V3.tap;if(t&&t.b===0&&Math.hypot(e.clientX-t.x,e.clientY-t.y)<8&&performance.now()-t.t<600){if(V3.lase){v3laseAt(e.clientX,e.clientY);return}if(V3.bldMode&&v3TapBase(e.clientX,e.clientY))return}});
  cv3.addEventListener('pointerdown',e=>{cv3.setPointerCapture(e.pointerId);pts.set(e.pointerId,{x:e.clientX,y:e.clientY,b:e.button});if(pts.size===2){const [a,b]=[...pts.values()];pinch={d:Math.hypot(a.x-b.x,a.y-b.y),dist:V3.orb.dist,cx:(a.x+b.x)/2,cy:(a.y+b.y)/2}}});
- cv3.addEventListener('pointermove',e=>{const p=pts.get(e.pointerId);if(!p)return;const dx=e.clientX-p.x,dy=e.clientY-p.y;p.x=e.clientX;p.y=e.clientY;const O=V3.orb;
+ cv3.addEventListener('pointermove',e=>{if(!pts.size&&V3.bldMode){v3HoverBase(e.clientX,e.clientY);return}const p=pts.get(e.pointerId);if(!p)return;const dx=e.clientX-p.x,dy=e.clientY-p.y;p.x=e.clientX;p.y=e.clientY;const O=V3.orb;
   if(pts.size===2&&pinch){const [a,b]=[...pts.values()];O.dist=clamp(pinch.dist*pinch.d/Math.max(10,Math.hypot(a.x-b.x,a.y-b.y)),14,V3.R*W3*2.2);const cx=(a.x+b.x)/2,cy=(a.y+b.y)/2;v3pan(cx-pinch.cx,cy-pinch.cy);pinch.cx=cx;pinch.cy=cy;return}
   if(p.b===2||e.shiftKey)v3pan(dx,dy);else if(O.mode==='drone'){O.yaw-=dx*.006;O.pitch=clamp(O.pitch+dy*.004,.85,1.48);V3.dIdle=performance.now()}else{O.yaw-=dx*.006;O.pitch=clamp(O.pitch+dy*.005,.12,1.45)}});
  const up=e=>{pts.delete(e.pointerId);if(pts.size<2)pinch=null};cv3.addEventListener('pointerup',up);cv3.addEventListener('pointercancel',up);cv3.addEventListener('contextmenu',e=>e.preventDefault());
  cv3.addEventListener('wheel',e=>{e.preventDefault();V3.orb.dist=clamp(V3.orb.dist*Math.exp(e.deltaY*.0012),14,V3.R*W3*2.2)},{passive:false})}
 function v3pan(dx,dy){const O=V3.orb,k=O.dist/600;V3.follow=null;const s=Math.sin(O.yaw),c=Math.cos(O.yaw);O.tx+=(dx*s-dy*c)*k*-1;O.tz+=(-dx*c-dy*s)*k*-1;const lim=V3.R*W3*.95;O.tx=clamp(O.tx,-lim,lim);O.tz=clamp(O.tz,-lim,lim);v3hud()}
 function v3hud(){const us=[...(V3.us||new Map()).values()].filter(R=>R.u&&AWAY(R.u));const el=$('#v3U');if(!el)return;
- el.innerHTML=''+us.slice(0,8).map(R=>`<button data-v3f="${R.u.id}" class="${V3.follow===R.u.id?'on':''}">◎ ${esc(R.u.name.split(',')[0])}</button>`).join('')}
-function close3D(){V3.open=false;V3.lase=0;V3.smk=[];V3.igm=null;setTimeout(()=>{try{v3fireUI()}catch(e){}},30);cancelAnimationFrame(V3.raf);const el=$('#v3d');if(el)el.hidden=true;try{if(V3.scene)V3.scene.traverse(o=>{if(o.geometry)o.geometry.dispose();if(o.material){(Array.isArray(o.material)?o.material:[o.material]).forEach(m=>{if(m.map)m.map.dispose();m.dispose()})}});if(V3.rd){V3.rd.dispose();V3.rd.domElement.remove()}}catch(e){}V3._boxG=null;V3._cylG=null;V3.scene=null;V3.rd=null;V3.us=null}
-function v3baseBuild(T,M,b,half,G){const L=ensureBaseLayout(b);for(const it of L){const D=BLD_CAT[it.k];if(!D)continue;const g=new T.Group();g.position.set(it.u*half*.82,0,it.v*half*.82);g.rotation.y=(it.rot||0)*Math.PI/2;const w=D.w,d=D.d,h=D.h;
- if(it.k==='tower'){for(const sx of [-1,1])for(const sz of [-1,1])g.add(v3box(T,.5,h*.65,.5,M.grey,sx*(w*.35),h*.32,sz*(d*.35)));g.add(v3box(T,w,h*.35,d,M.tan2,0,h*.78,0));g.add(v3box(T,w*1.15,.4,d*1.15,M.dark,0,h*.98,0))}
- else if(it.k==='hesco'){g.add(v3box(T,w,h,d,M.hesco,0,h/2,0))}
- else if(it.k==='toc'){g.add(v3box(T,w,h,d,M.olive,0,h/2,0));g.add(v3box(T,w*.85,.5,d*.85,M.hesco,0,h+.25,0));g.add(v3cyl(T,.18,6,M.grey,w*.3,h+3,-d*.25))}
- else if(it.k==='sleep'){const m=(b.level||1)>=2?M.white:M.tan;for(let i=-1;i<=1;i++)g.add(v3box(T,w*.28,h,d*.88,m,i*w*.33,h/2,0))}
- else if(it.k==='chow'){g.add(v3box(T,w,h,d,M.white,0,h/2,0));g.add(v3box(T,w*.3,1.1,d*.3,M.grey,-w*.25,h+.55,0))}
- else if(it.k==='aid'){g.add(v3box(T,w,h,d,M.white,0,h/2,0));g.add(v3box(T,w*.38,.25,d*.12,M.red,0,h+.14,0));g.add(v3box(T,w*.12,.25,d*.38,M.red,0,h+.14,0))}
- else if(it.k==='motor'){g.add(v3box(T,w,.4,d,M.grey,0,.2,0));g.add(v3box(T,w*.92,h,d*.55,M.tan2,0,h/2,-d*.18));for(let i=-1;i<=1;i++)g.add(v3box(T,2.2,1.6,3.6,M.olive,i*w*.28,.8,d*.22))}
- else if(it.k==='asp'){g.add(v3box(T,w,1.8,1.1,M.hesco,0,.9,-d/2));g.add(v3box(T,w,1.8,1.1,M.hesco,0,.9,d/2));g.add(v3box(T,1.1,1.8,d,M.hesco,-w/2,.9,0));g.add(v3box(T,1.1,1.8,d,M.hesco,w/2,.9,0));for(let i=-1;i<=1;i+=2)g.add(v3box(T,w*.32,1.4,d*.45,M.olive,i*w*.2,.7,0))}
- else if(it.k==='fuel'){g.add(v3box(T,w,1.1,d,M.hesco,0,.55,0));for(let i=-1;i<=1;i++){const c=v3cyl(T,1.5,d*.68,M.dark,i*w*.28,1.5,0);c.rotation.x=Math.PI/2;g.add(c)}}
- else if(it.k==='water'){for(const sx of [-1,1])for(const sz of [-1,1])g.add(v3box(T,.4,h*.6,.4,M.grey,sx*1.4,h*.3,sz*1.4));g.add(v3cyl(T,2.4,h*.42,M.waterT,0,h*.78,0));g.add(v3box(T,w*.45,2.2,d*.45,M.white,w*.22,1.1,0))}
- else if(it.k==='heli'){g.add(v3box(T,w,.25,d,M.dark,0,.13,0));g.add(v3box(T,1.1,.3,d*.55,M.yel,-2.2,.16,0));g.add(v3box(T,1.1,.3,d*.55,M.yel,2.2,.16,0));g.add(v3box(T,4.4,.3,1.1,M.yel,0,.16,0))}
- else if(it.k==='cram'){g.add(v3box(T,w*.7,1.8,d*.7,M.tan,0,.9,0));g.add(v3cyl(T,1.2,2.4,M.white,0,3,0));const br=v3cyl(T,.35,2.6,M.dark,0,3.2,1.2);br.rotation.x=Math.PI/3;g.add(br)}
- else if(it.k==='aero'){g.add(v3box(T,w*.6,.6,d*.6,M.grey,0,.3,0));g.add(v3cyl(T,.08,22,M.grey,0,11,0));const bl=v3cyl(T,3.2,10,M.white,0,22,0);bl.rotation.z=Math.PI/2;g.add(bl)}
- else{g.add(v3box(T,w,h,d,M.tan,0,h/2,0))}
- G.add(g)}}
+ const bBtn=V3.baseId&&NET.myRole!=='red'?`<button data-v3b="tog" class="${V3.bldMode?'on':''}">🏗 ${V3.bldMode?'Building Base (16×16 Grid)':'Build Base'}</button>`:'';
+ el.innerHTML=bBtn+us.slice(0,8).map(R=>`<button data-v3f="${R.u.id}" class="${V3.follow===R.u.id?'on':''}">◎ ${esc(R.u.name.split(',')[0])}</button>`).join('')}
+function v3BldUI(){const el=$('#v3Bld');if(!el)return;if(!V3.open||!V3.bldMode||!V3.baseId){el.hidden=true;return}
+ const B=baseById(V3.baseId);if(!B){el.hidden=true;return}el.hidden=false;
+ const L=ensureBaseLayout(B);if(BLD_SEL!=null&&!L[BLD_SEL])BLD_SEL=null;const sel=BLD_SEL!=null?L[BLD_SEL]:null,lb=layoutBonus(B),curK=sel?sel.k:(BLD_PAL||'sleep');
+ let h=`<div class="v3bh"><div><b>🏗 3D Base Builder · ${esc(B.n)}</b> <span>(${L.length} structures · 16×16 Snap Grid · Def +${lb.def} · Perim +${Math.round(lb.perim*100)}% · QoL +${lb.qol} · Cap +${lb.ammo}t/+${lb.fuel}t)</span></div>`;
+ h+=`<div class="v3ba"><button data-v3ba="new" class="${!sel?'on':''}">+ Place Mode</button><button data-v3ba="rot">↻ Rotate (R)</button><button data-v3ba="del" ${sel?'':'disabled'}>✕ Delete</button><button data-v3ba="auto">⊞ Auto-Layout</button><button data-v3ba="glb">📦 Load .GLB (${(BLD_CAT[curK]||BLD_CAT.sleep).n})</button><button data-v3ba="done">✓ Done</button></div></div>`;
+ h+=`<div class="v3bp">`;
+ for(const [k,D] of Object.entries(BLD_CAT)){const on=(!sel&&BLD_PAL===k)||(sel&&sel.k===k),hasCustom=!!V3_CUSTOM_MODELS[k];h+=`<button data-v3bp="${k}" class="${on?'on':''}"><i>${D.ic}</i><span>${D.n}${hasCustom?' ★':''}</span><small>${D.gw}×${D.gd}</small></button>`}
+ el.innerHTML=h+`</div>`}
+function close3D(){V3.open=false;V3.lase=0;V3.bldMode=false;V3.hoverCell=null;V3.smk=[];V3.igm=null;const bldEl=$('#v3Bld');if(bldEl)bldEl.hidden=true;setTimeout(()=>{try{v3fireUI()}catch(e){}},30);cancelAnimationFrame(V3.raf);const el=$('#v3d');if(el)el.hidden=true;try{if(V3.scene)V3.scene.traverse(o=>{if(o.geometry)o.geometry.dispose();if(o.material){(Array.isArray(o.material)?o.material:[o.material]).forEach(m=>{if(m.map)m.map.dispose();m.dispose()})}});if(V3.rd){V3.rd.dispose();V3.rd.domElement.remove()}}catch(e){}V3._boxG=null;V3._cylG=null;V3.scene=null;V3.rd=null;V3.us=null;V3.baseMap=null}
+function v3PopulateBase(T,M,b,half,G){while(G.children.length)G.remove(G.children[0]);G.userData={blds:[]};
+ G.add(v3box(T,M.pad,half*1.96,.24,half*1.96,0,.12,0));
+ G.add(v3box(T,M.dark,5.2,.28,half*1.85,0,.15,0));G.add(v3box(T,M.dark,half*1.85,.28,4.2,0,.15,0));
+ const n=Math.ceil(half*8/6);for(let i=0;i<n;i++){const t=i/n*4,side=Math.floor(t),f=t-side,L=half*2;const xy=[[-half+f*L,-half],[half,-half+f*L],[half-f*L,half],[-half,half-f*L]][side];if(side===2&&Math.abs(xy[0])<7)continue;G.add(v3box(T,M.hesco,side%2?2.2:6.4,3.2,side%2?6.4:2.2,xy[0],1.6,xy[1]))}
+ const span=half*2*.82,gh=new T.GridHelper(span,16,'#a8d45e','#6e654b');gh.position.y=.34;gh.visible=!!(V3.bldMode&&V3.baseId===b.id);G.add(gh);G.userData.grid=gh;
+ const rp=new T.Mesh(new T.PlaneGeometry(span,span),new T.MeshBasicMaterial({visible:false,side:T.DoubleSide}));rp.rotation.x=-Math.PI/2;rp.position.y=.34;G.add(rp);G.userData.pad=rp;
+ v3baseBuild(T,M,b,half,G);
+ G.add(v3cyl(T,M.grey,.22,.22,16,4.5,8,half*.85));G.add(v3box(T,M.flag,4,2.4,.12,6.5,14.5,half*.85));
+ const lb=v3label(T,b.n.toUpperCase(),'#a8d45e');lb.position.set(0,28,0);G.add(lb)}
+function v3RebuildBase(b){if(!b||!V3.open||!V3.baseMap||!V3.T||!V3.M)return;const E=V3.baseMap.get(b.id);if(!E)return;v3PopulateBase(V3.T,V3.M,E.b,E.half,E.G);v3SyncGhost()}
+function v3baseMesh(T,M,k,b){const D=BLD_CAT[k]||BLD_CAT.sleep,w=D.w,d=D.d,h=D.h,g=new T.Group();
+ if(V3_CUSTOM_MODELS[k]){const cl=V3_CUSTOM_MODELS[k].clone(true),rs=V3_CUSTOM_MODELS[k].userData.rawSize||{x:w,y:h,z:d},sc=Math.min(w/rs.x,d/rs.z)*.92;cl.scale.setScalar(sc);g.add(cl);return g}
+ if(k==='tower'){for(const sx of [-1,1])for(const sz of [-1,1])g.add(v3box(T,M.grey,.5,h*.65,.5,sx*(w*.35),h*.32,sz*(d*.35)));g.add(v3box(T,M.hesco,w*.95,2.2,d*.95,0,1.1,0));g.add(v3box(T,M.tan2,w,h*.32,d,0,h*.76,0));g.add(v3box(T,M.glass,w*.88,h*.14,d*.88,0,h*.84,0));g.add(v3box(T,M.dark,w*1.16,.45,d*1.16,0,h*.98,0))}
+ else if(k==='hesco'){const segs=Math.max(2,Math.round(w/2.8));for(let i=0;i<segs;i++){const x=(i-(segs-1)/2)*(w/segs);g.add(v3box(T,M.hesco,w/segs*.94,h,d,x,h/2,0));g.add(v3box(T,M.dark,w/segs*.84,.18,d*.84,x,h+.08,0))}}
+ else if(k==='twall'){const segs=Math.max(3,Math.round(w/2.2));for(let i=0;i<segs;i++){const x=(i-(segs-1)/2)*(w/segs);g.add(v3box(T,M.conc,w/segs*.95,.7,d*1.15,x,.35,0));g.add(v3box(T,M.conc,w/segs*.95,h-.5,d*.45,x,h/2+.25,0))}}
+ else if(k==='toc'){g.add(v3box(T,M.hesco,w*1.08,2.4,d*1.08,0,1.2,0));g.add(v3box(T,M.olive,w*.92,h,d*.92,0,h/2+.2,0));g.add(v3box(T,M.tan2,w*.78,.5,d*.78,0,h+.45,0));g.add(v3cyl(T,M.grey,.16,.16,6.5,w*.3,h+3.2,-d*.25));g.add(v3cyl(T,M.white,1.2,1.2,.35,-w*.26,h+.8,d*.22,.4))}
+ else if(k==='sleep'){const m=(b&&b.level||1)>=2?M.white:M.tan;for(let i=-1;i<=1;i++){g.add(v3box(T,m,w*.28,h,d*.88,i*w*.33,h/2,0));g.add(v3box(T,M.grey,w*.12,.7,.6,i*w*.33,h*.65,d*.46))}}
+ else if(k==='chow'){g.add(v3box(T,M.white,w,h*.85,d,0,h*.42,0));g.add(v3box(T,M.tan2,w*1.04,.55,d*1.04,0,h*.88,0));for(const x of [-w*.28,0,w*.28])g.add(v3box(T,M.grey,w*.18,1.1,d*.28,x,h+.5,0))}
+ else if(k==='aid'){g.add(v3box(T,M.hesco,w*1.06,1.8,d*1.06,0,.9,0));g.add(v3box(T,M.white,w*.92,h,d*.92,0,h/2+.1,0));g.add(v3box(T,M.red,w*.42,.28,d*.14,0,h+.22,0));g.add(v3box(T,M.red,w*.14,.28,d*.42,0,h+.22,0))}
+ else if(k==='motor'){g.add(v3box(T,M.conc,w,.35,d,0,.18,0));g.add(v3box(T,M.tan2,w*.92,h,d*.52,0,h/2+.18,-d*.2));for(let i=-1;i<=1;i++)g.add(v3box(T,M.olive,2.2,1.6,3.6,i*w*.28,1,d*.22))}
+ else if(k==='asp'){g.add(v3box(T,M.hesco,w,2.2,1.3,0,1.1,-d/2+.65));g.add(v3box(T,M.hesco,w,2.2,1.3,0,1.1,d/2-.65));g.add(v3box(T,M.hesco,1.3,2.2,d,-w/2+.65,1.1,0));g.add(v3box(T,M.hesco,1.3,2.2,d,w/2-.65,1.1,0));for(const x of [-w*.22,w*.22])g.add(v3box(T,M.olive,w*.3,1.5,d*.52,x,.75,0))}
+ else if(k==='fuel'){g.add(v3box(T,M.hesco,w,1.2,d,0,.6,0));for(let i=-1;i<=1;i++)g.add(v3cyl(T,M.dark,1.45,1.45,d*.72,i*w*.28,1.65,0,Math.PI/2))}
+ else if(k==='water'){for(const sx of [-1,1])for(const sz of [-1,1])g.add(v3box(T,M.grey,.45,h*.62,.45,sx*1.5,h*.31,sz*1.5));g.add(v3cyl(T,M.waterT,2.5,2.5,h*.38,0,h*.78,0));g.add(v3box(T,M.white,w*.48,2.2,d*.48,w*.2,1.1,0))}
+ else if(k==='heli'){g.add(v3box(T,M.dark,w,.3,d,0,.15,0));g.add(v3box(T,M.yel,1.1,.34,d*.52,-2.2,.18,0));g.add(v3box(T,M.yel,1.1,.34,d*.52,2.2,.18,0));g.add(v3box(T,M.yel,4.4,.34,1.1,0,.18,0))}
+ else if(k==='cram'){g.add(v3box(T,M.hesco,w*.95,1.4,d*.95,0,.7,0));g.add(v3box(T,M.tan,w*.68,1.8,d*.68,0,1.1,0));g.add(v3cyl(T,M.white,1.15,1.15,2.3,0,3.1,0));g.add(v3cyl(T,M.dark,.32,.32,2.6,0,3.3,1.1,Math.PI/3))}
+ else if(k==='patriot'){g.add(v3box(T,M.hesco,w*.96,1.4,d*.96,0,.7,0));g.add(v3box(T,M.olive,w*.55,1.3,d*.7,0,.95,0));const canister=v3box(T,M.tan2,w*.48,2.2,d*.65,0,2.8,.4);canister.rotation.x=-.48;g.add(canister)}
+ else if(k==='aero'){g.add(v3box(T,M.grey,w*.6,.7,d*.6,0,.35,0));g.add(v3cyl(T,M.grey,.08,.08,22,0,11,0));g.add(v3cyl(T,M.white,3.1,2.6,10.5,0,22,0,0,Math.PI/2))}
+ else{g.add(v3box(T,M.tan,w,h,d,0,h/2,0))}
+ return g}
+function v3baseBuild(T,M,b,half,G){const L=ensureBaseLayout(b);L.forEach((it,idx)=>{const D=BLD_CAT[it.k];if(!D)return;const g=v3baseMesh(T,M,it.k,b);g.position.set(it.u*half*.82,.2,it.v*half*.82);g.rotation.y=(it.rot||0)*Math.PI/2;g.userData.bldIdx=idx;
+ if(V3.bldMode&&V3.baseId===b.id&&BLD_SEL===idx){const sb=new T.Mesh(new T.BoxGeometry(D.w+1.2,D.h+1.2,D.d+1.2),M.selWire);sb.position.y=D.h/2+.4;g.add(sb)}
+ G.add(g);if(G.userData.blds)G.userData.blds.push(g)})}
 
 function infraCityHTML(c){const N0=cityNet(c),L=N0.sites;if(!L.length)return '';const red=NET.myRole==='red',held=c.owner!=='enemy'&&!divAt(c),g=c.griev||0;
  let h=`<h3>Critical infrastructure · ${L.filter(st=>infHp(c,st.id)<=0).length} destroyed</h3>`;
@@ -8776,43 +8866,60 @@ function baseSheet(b){let h=head(b.kuwait?'Staging base · airfield':b.naval?'Na
  else out+=logisticsHTML(b);
  return out}
 let baseTab='ov',BLD_PAL='sleep',BLD_SEL=null,BLD_ROT=0;
+const BLD_GRID=16;
 const BLD_CAT={
- toc:{n:'Command TOC',ic:'⚑',w:11,d:8,h:3.8,col:'#6e7852'},
- sleep:{n:'CHUs / Billets',ic:'⌂',w:14,d:8,h:3.0,col:'#d8d3c4'},
- chow:{n:'DFAC Hall',ic:'♨',w:14,d:9,h:4.2,col:'#ece9df'},
- aid:{n:'Aid Station',ic:'✚',w:10,d:8,h:3.4,col:'#e2ded2'},
- motor:{n:'Motor Pool',ic:'⚙',w:16,d:11,h:4.0,col:'#9c8d6e'},
- asp:{n:'Ammo Berms',ic:'✸',w:12,d:10,h:2.5,col:'#8a7550'},
- fuel:{n:'Fuel Farm',ic:'⛽',w:12,d:9,h:2.6,col:'#5c5b52'},
- water:{n:'Water Tower',ic:'💧',w:8,d:8,h:9.0,col:'#4c7ea8'},
- heli:{n:'Helipad',ic:'H',w:14,d:14,h:.4,col:'#5a5c58'},
- tower:{n:'Guard Tower',ic:'⛨',w:4.5,d:4.5,h:9.5,col:'#7a6c50'},
- hesco:{n:'HESCO Wall',ic:'▬',w:14,d:2.6,h:2.8,col:'#b39b6c'},
- cram:{n:'C-RAM Mount',ic:'⌖',w:6,d:6,h:4.5,col:'#b8b29e'},
- aero:{n:'Aerostat',ic:'◉',w:8,d:8,h:4.0,col:'#c9cbc9'}
+ toc:{n:'Command TOC',ic:'⚑',w:11,d:8,h:3.8,gw:2,gd:2,col:'#6e7852',def:4,qol:2,max:2},
+ sleep:{n:'CHUs / Billets',ic:'⌂',w:14,d:8,h:3.0,gw:3,gd:2,col:'#d8d3c4',qol:3,max:6},
+ chow:{n:'DFAC Hall',ic:'♨',w:14,d:9,h:4.2,gw:3,gd:2,col:'#ece9df',qol:4,max:2},
+ aid:{n:'Aid Station',ic:'✚',w:10,d:8,h:3.4,gw:2,gd:2,col:'#e2ded2',qol:3,def:2,max:2},
+ motor:{n:'Motor Pool',ic:'⚙',w:16,d:11,h:4.0,gw:3,gd:2,col:'#9c8d6e',def:3,fuel:25,max:2},
+ asp:{n:'Ammo Berms',ic:'✸',w:12,d:10,h:2.5,gw:2,gd:2,col:'#8a7550',ammo:40,max:3},
+ fuel:{n:'Fuel Farm',ic:'⛽',w:12,d:9,h:2.6,gw:2,gd:2,col:'#5c5b52',fuel:60,max:3},
+ water:{n:'Water Tower',ic:'💧',w:8,d:8,h:9.0,gw:2,gd:2,col:'#4c7ea8',qol:3,max:2},
+ heli:{n:'Helipad',ic:'H',w:14,d:14,h:.4,gw:3,gd:3,col:'#5a5c58',def:3,max:2},
+ tower:{n:'Guard Tower',ic:'⛨',w:4.8,d:4.8,h:9.5,gw:1,gd:1,col:'#7a6c50',def:3,perim:.015,max:8},
+ hesco:{n:'HESCO Wall',ic:'▬',w:11,d:3.2,h:2.8,gw:2,gd:1,col:'#b39b6c',def:2,perim:.01,max:12},
+ twall:{n:'T-Wall Barrier',ic:'▮',w:11,d:2.6,h:3.8,gw:2,gd:1,col:'#a39e93',def:4,perim:.02,max:10},
+ cram:{n:'C-RAM Mount',ic:'⌖',w:6,d:6,h:4.5,gw:1,gd:1,col:'#b8b29e',def:6,perim:.02,max:4},
+ patriot:{n:'Patriot SAM',ic:'🚀',w:10,d:10,h:4.8,gw:2,gd:2,col:'#6c7356',def:10,perim:.025,max:2},
+ aero:{n:'Aerostat',ic:'◉',w:8,d:8,h:4.0,gw:2,gd:2,col:'#c9cbc9',def:4,perim:.04,max:1}
 };
-function ensureBaseLayout(b){if(!b)return [];if(Array.isArray(b.layout)&&b.layout.length)return b.layout;
- const L=[];for(const [u,v] of [[-.88,-.88],[.88,-.88],[.88,.88],[-.88,.88]])L.push({k:'tower',u,v,rot:0});
- L.push({k:'hesco',u:-.24,v:.82,rot:0},{k:'hesco',u:.24,v:.82,rot:0});
- const slots=[['toc',-.32,-.36,0],['sleep',.34,-.38,0],['sleep',.34,-.08,0],['chow',-.32,.02,0],['aid',-.32,.36,0],['motor',.34,.36,0],['asp',-.64,-.55,0],['fuel',-.64,.48,0],['water',.66,-.52,0]];
- for(const [k,u,v,rot] of slots)if(b.kuwait||fl(b,k)>0||k==='toc'||k==='sleep')L.push({k,u,v,rot});
- if(b.heli||b.kuwait)L.push({k:'heli',u:.68,v:.48,rot:0});
- if(fl(b,'aero')>0)L.push({k:'aero',u:0,v:-.62,rot:0});
- if((S&&S.units||[]).some(u=>u.baseId===b.id&&u.type==='cram'))L.push({k:'cram',u:-.68,v:0,rot:0});
+function bldDims(k,rot){const D=BLD_CAT[k]||BLD_CAT.sleep;return (rot||0)%2?[D.gd,D.gw]:[D.gw,D.gd]}
+function bldSnap(u,v,k,rot){const [cw,cd]=bldDims(k,rot),gx=clamp(Math.round(u*8-cw/2),-8,8-cw),gz=clamp(Math.round(v*8-cd/2),-8,8-cd);return {gx,gz,cw,cd,u:(gx+cw/2)/8,v:(gz+cd/2)/8}}
+function bldCanPlace(b,gx,gz,k,rot,ignoreIdx){const [cw,cd]=bldDims(k,rot);if(gx<-8||gz<-8||gx+cw>8||gz+cd>8)return false;
+ const L=ensureBaseLayout(b);for(let i=0;i<L.length;i++){if(i===ignoreIdx)continue;const o=L[i],[ow,od]=bldDims(o.k,o.rot);if(gx<o.gx+ow&&gx+cw>o.gx&&gz<o.gz+od&&gz+cd>o.gz)return false}return true}
+function layoutBonus(b){const res={def:0,perim:0,qol:0,ammo:0,fuel:0};if(!b||isRear(b)||b.naval||b.offmap)return res;
+ const L=ensureBaseLayout(b),cnt={};for(const it of L){const D=BLD_CAT[it.k];if(!D)continue;cnt[it.k]=(cnt[it.k]||0)+1;if(cnt[it.k]>(D.max||4))continue;
+  if(D.def)res.def+=D.def;if(D.perim)res.perim+=D.perim;if(D.qol)res.qol+=D.qol;if(D.ammo)res.ammo+=D.ammo;if(D.fuel)res.fuel+=D.fuel}
+ res.def=Math.min(48,res.def);res.perim=Math.min(.22,res.perim);res.qol=Math.min(20,res.qol);return res}
+function ensureBaseLayout(b){if(!b)return [];if(Array.isArray(b.layout)&&b.layout.length){for(const it of b.layout)if(it.gx==null||it.gz==null){const sn=bldSnap(it.u||0,it.v||0,it.k,it.rot||0);it.gx=sn.gx;it.gz=sn.gz;it.u=sn.u;it.v=sn.v}return b.layout}
+ const L=[],put=(k,gx,gz,rot=0)=>{const [cw,cd]=bldDims(k,rot);L.push({k,gx,gz,u:(gx+cw/2)/8,v:(gz+cd/2)/8,rot})};
+ put('tower',-8,-8);put('tower',7,-8);put('tower',7,7);put('tower',-8,7);
+ put('hesco',-3,7,0);put('hesco',1,7,0);
+ const slots=[['toc',-4,-4,0],['sleep',1,-4,0],['sleep',1,-1,0],['chow',-4,-1,0],['aid',-4,2,0],['motor',1,2,0],['asp',-7,-5,0],['fuel',-7,3,0],['water',5,-5,0]];
+ for(const [k,gx,gz,rot] of slots)if(b.kuwait||fl(b,k)>0||k==='toc'||k==='sleep')put(k,gx,gz,rot);
+ if(b.heli||b.kuwait)put('heli',4,3,0);
+ if(fl(b,'aero')>0)put('aero',-1,-7,0);
+ if((S&&S.units||[]).some(u=>u.baseId===b.id&&u.type==='cram'))put('cram',-7,0,0);
+ if((S&&S.units||[]).some(u=>u.baseId===b.id&&u.type==='pat'))put('patriot',5,-1,0);
  return b.layout=L}
-function baseLayoutHTML(b){const L=ensureBaseLayout(b);if(BLD_SEL!=null&&!L[BLD_SEL])BLD_SEL=null;const selIt=BLD_SEL!=null?L[BLD_SEL]:null;
- let svg=`<svg id="bldSvg" data-bid="${b.id}" viewBox="0 0 280 280" style="width:100%;max-width:330px;display:block;margin:6px auto;background:#26231b;border:1px solid rgba(205,183,139,.35);border-radius:8px;cursor:crosshair;touch-action:none;user-select:none">`;
- svg+=`<rect x="24" y="24" width="232" height="232" fill="#8f7f5d" fill-opacity=".28" stroke="#b39b6c" stroke-width="5" rx="4"/>`;
- for(let g=53;g<256;g+=29)svg+=`<line x1="${g}" y1="26" x2="${g}" y2="254" stroke="rgba(233,227,212,.08)" stroke-width="1"/><line x1="26" y1="${g}" x2="254" y2="${g}" stroke="rgba(233,227,212,.08)" stroke-width="1"/>`;
- svg+=`<line x1="140" y1="26" x2="140" y2="268" stroke="rgba(90,76,50,.55)" stroke-width="8"/><line x1="26" y1="140" x2="254" y2="140" stroke="rgba(90,76,50,.45)" stroke-width="6"/>`;
- svg+=`<rect x="124" y="250" width="32" height="10" fill="#26231b"/><text x="140" y="274" text-anchor="middle" fill="#c9b27c" font-family="monospace" font-size="8">MAIN ECP GATE</text>`;
- L.forEach((it,i)=>{const D=BLD_CAT[it.k];if(!D)return;const x=140+it.u*108,y=140+it.v*108,rot=(it.rot||0)%2,w=(rot?D.d:D.w)*2.2,h=(rot?D.w:D.d)*2.2,on=BLD_SEL===i;
-  svg+=`<g data-bldi="${i}" style="cursor:pointer"><rect x="${(x-w/2).toFixed(1)}" y="${(y-h/2).toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" rx="2" fill="${D.col}" stroke="${on?'#a8d45e':'#1a1812'}" stroke-width="${on?2.4:1.1}"/><text x="${x.toFixed(1)}" y="${(y+3).toFixed(1)}" text-anchor="middle" fill="#151612" font-family="sans-serif" font-weight="700" font-size="${Math.min(11,Math.max(7,Math.min(w,h)*.55)).toFixed(1)}">${D.ic}</text></g>`});
+function baseLayoutHTML(b){const L=ensureBaseLayout(b);if(BLD_SEL!=null&&!L[BLD_SEL])BLD_SEL=null;const selIt=BLD_SEL!=null?L[BLD_SEL]:null,lb=layoutBonus(b),curK=selIt?selIt.k:(BLD_PAL||'sleep');
+ let svg=`<svg id="bldSvg" data-bid="${b.id}" viewBox="0 0 280 280" style="width:100%;max-width:340px;display:block;margin:6px auto;background:#26231b;border:1px solid rgba(205,183,139,.35);border-radius:8px;cursor:crosshair;touch-action:none;user-select:none">`;
+ svg+=`<rect x="20" y="20" width="240" height="240" fill="#8f7f5d" fill-opacity=".28" stroke="#b39b6c" stroke-width="4" rx="3"/>`;
+ svg+=`<line x1="140" y1="22" x2="140" y2="266" stroke="rgba(90,76,50,.5)" stroke-width="7"/><line x1="22" y1="140" x2="258" y2="140" stroke="rgba(90,76,50,.45)" stroke-width="6"/>`;
+ for(let i=1;i<16;i++){const p=20+i*15;svg+=`<line x1="${p}" y1="20" x2="${p}" y2="260" stroke="rgba(233,227,212,${i===8?.2:.09})" stroke-width="1"/><line x1="20" y1="${p}" x2="260" y2="${p}" stroke="rgba(233,227,212,${i===8?.2:.09})" stroke-width="1"/>`}
+ svg+=`<rect x="124" y="256" width="32" height="8" fill="#26231b"/><text x="140" y="274" text-anchor="middle" fill="#c9b27c" font-family="monospace" font-size="8">MAIN ECP GATE · 16×16 SNAP GRID</text>`;
+ L.forEach((it,i)=>{const D=BLD_CAT[it.k];if(!D)return;const [cw,cd]=bldDims(it.k,it.rot),x=20+(it.gx+8)*15,y=20+(it.gz+8)*15,w=cw*15,h=cd*15,cx=x+w/2,cy=y+h/2,on=BLD_SEL===i;
+  svg+=`<g data-bldi="${i}" style="cursor:pointer"><rect x="${(x+1).toFixed(1)}" y="${(y+1).toFixed(1)}" width="${(w-2).toFixed(1)}" height="${(h-2).toFixed(1)}" rx="2" fill="${D.col}" stroke="${on?'#a8d45e':'#1a1812'}" stroke-width="${on?2.5:1.2}"/><text x="${cx.toFixed(1)}" y="${(cy+3.5).toFixed(1)}" text-anchor="middle" fill="#151612" font-family="sans-serif" font-weight="700" font-size="${Math.min(12,Math.max(8,Math.min(w,h)*.52)).toFixed(1)}">${D.ic}</text></g>`});
  svg+=`</svg>`;
- let h=`<div class="card" style="margin-top:0"><div class="eyebrow">Interactive Compound Builder · ${L.length} structures</div><div class="note" style="margin:2px 0 4px">${selIt?`Selected: <b>${BLD_CAT[selIt.k].n}</b>. Tap empty ground to move it, press <b>R</b> to rotate, or tap another asset below.`:`Tap the compound grid to place <b>${(BLD_CAT[BLD_PAL]||BLD_CAT.sleep).n}</b>, or tap an existing building to move/rotate it.`}</div>${svg}`;
- h+=`<div class="seg" style="flex-wrap:wrap;gap:4px;margin-top:6px"><button data-act="bldrot" data-a="${b.id}">↻ Rotate (R)</button><button data-act="blddel" data-a="${b.id}" ${selIt?'':'disabled'}>✕ Remove</button><button data-act="bldauto" data-a="${b.id}">⊞ Auto-layout</button><button data-act="bldclr" data-a="${b.id}">Clear</button><button data-act="v3" data-a="base:${b.id}">◭ View in 3D</button></div></div>`;
- h+=`<h3>Place asset · tap palette then tap grid</h3><div class="tiles" style="grid-template-columns:repeat(3,minmax(0,1fr))">`;
- for(const [k,D] of Object.entries(BLD_CAT)){const act=!selIt&&BLD_PAL===k;h+=`<button class="tile ${act?'pri':''}" data-act="bldpal" data-a="${k}"><b>${D.ic}</b><span class="tl">${D.n}</span><span class="ts">${D.w}×${D.d}m</span></button>`}
+ let h=`<div class="card" style="margin-top:0"><div class="eyebrow">16×16 Grid Compound Builder · ${L.length} structures</div>`;
+ h+=`<div class="kv" style="margin:4px 0 6px"><span class="k">Layout Bonuses</span><span class="v" style="color:var(--friendly)">Def +${lb.def} · Perim +${Math.round(lb.perim*100)}% · QoL +${lb.qol} · Cap +${lb.ammo}t/+${lb.fuel}t</span></div>`;
+ h+=`<div class="note" style="margin:2px 0 4px">${selIt?`Selected: <b>${BLD_CAT[selIt.k].n}</b> (${bldDims(selIt.k,selIt.rot).join('×')} cells). Tap an open grid cell to snap-move it, press <b>R</b> to rotate, or tap <b>+ Place Mode</b>.`:`Placing: <b>${(BLD_CAT[BLD_PAL]||BLD_CAT.sleep).n}</b> (${bldDims(BLD_PAL,BLD_ROT).join('×')} cells). Tap any open cell on the 16×16 grid, or open <b>◭ Build in 3D</b> for live 3D grid snapping.`}</div>${svg}`;
+ h+=`<div class="seg" style="flex-wrap:wrap;gap:4px;margin-top:6px"><button data-act="bldnew" class="${!selIt?'on':''}">+ Place Mode</button><button data-act="bldrot" data-a="${b.id}">↻ Rotate (R)</button><button data-act="blddel" data-a="${b.id}" ${selIt?'':'disabled'}>✕ Remove</button><button data-act="bldauto" data-a="${b.id}">⊞ Auto-layout</button><button data-act="bldclr" data-a="${b.id}">Clear</button><button data-act="bldglb" data-a="${curK}">📦 Load .GLB</button><button data-act="v3" data-a="base:${b.id}" class="on">◭ Build in 3D</button></div></div>`;
+ h+=`<h3>Structure &amp; Asset Palette · snaps to 16×16 grid</h3><div class="tiles" style="grid-template-columns:repeat(3,minmax(0,1fr))">`;
+ for(const [k,D] of Object.entries(BLD_CAT)){const act=(!selIt&&BLD_PAL===k)||(selIt&&selIt.k===k),hasCustom=!!V3_CUSTOM_MODELS[k];
+  const fx=[D.def?`Def +${D.def}`:'',D.perim?`Perim +${Math.round(D.perim*100)}%`:'',D.qol?`QoL +${D.qol}`:'',D.ammo?`Ammo +${D.ammo}t`:'',D.fuel?`Fuel +${D.fuel}t`:''].filter(Boolean).join(' · ');
+  h+=`<button class="tile ${act?'pri':''}" data-act="bldpal" data-a="${k}"><b>${D.ic}</b><span class="tl">${D.n}${hasCustom?' ★':''}</span><span class="ts">${D.gw}×${D.gd} grid · ${fx}</span></button>`}
  return h+`</div>`}
 const DROLES=[['all','All'],['man','Maneuver',['inf','mar','mech','arm','lar','mtk']],['fires','Fires',['art','mart']],['air','Aviation',['avn','aqrf','lift','dust','ch47','hmla','c130','p3','pred','tnk']],['sof','Special ops',['sf','rgr','tf','seal','recon']],['strike','Strike',['cvw','ddg','ftr','a10','ac130','bomb']]];
 let deployTab='bde',deployRole='all',deployCart={};
@@ -9319,12 +9426,14 @@ function sponsorsSheet(){let h=head(`${Math.round(S.red.funds)} RF available`,'F
  return h+`</div>`}
 
 /* ================= actions ================= */
-const LOCAL_ACTS=new Set(['bldpal','bldrot','blddel','bldauto','bldclr','kbrebind','kbrst','havlase','chatk','chatat','chatsend','chatgo','openfires','opencamp','xfersend','mpcopy','mpend','mpleave','mphostnow','aoall','aogo','eye','aotab','aolog','logs','fzshow','ddest','aodep','dao','secasg','secnew','secpick','secpt','aoshow','advcr','advdo2','advask','advfire','close','city','base','unit','deploy','dbr','plan','toggle','rebase','strikepick','country','itab','sh','patrolpick','prep','pgroup','selgroup','fac','dtab','drole','cart','cartclear','sitrep','plustog','bde','stgplan','fview','mvtog','mvgrp','mvbde','mvclear','mvconfirm','echtog','echmap','echsel','echrally','rtog','svc','svcfix','advdo','btab','eb','suptog','lobtog','lobopen','umap','jump','sectog','rtview','setv','setreset','qmx','qmmap','qmtab','qmtab2','qmlog','qmroe','tbop','tbsel','dtabgo','rtshow','verhist','selbde','v3','wmd','savegame','savequit','camprename','savecopy','loadmenu','oilmap','oilopen','bakopen','bakview','bakrest','updchk','updgo','updshell']);
+const LOCAL_ACTS=new Set(['bldpal','bldnew','bldglb','bldrot','blddel','bldauto','bldclr','kbrebind','kbrst','havlase','chatk','chatat','chatsend','chatgo','openfires','opencamp','xfersend','mpcopy','mpend','mpleave','mphostnow','aoall','aogo','eye','aotab','aolog','logs','fzshow','ddest','aodep','dao','secasg','secnew','secpick','secpt','aoshow','advcr','advdo2','advask','advfire','close','city','base','unit','deploy','dbr','plan','toggle','rebase','strikepick','country','itab','sh','patrolpick','prep','pgroup','selgroup','fac','dtab','drole','cart','cartclear','sitrep','plustog','bde','stgplan','fview','mvtog','mvgrp','mvbde','mvclear','mvconfirm','echtog','echmap','echsel','echrally','rtog','svc','svcfix','advdo','btab','eb','suptog','lobtog','lobopen','umap','jump','sectog','rtview','setv','setreset','qmx','qmmap','qmtab','qmtab2','qmlog','qmroe','tbop','tbsel','dtabgo','rtshow','verhist','selbde','v3','wmd','savegame','savequit','camprename','savecopy','loadmenu','oilmap','oilopen','bakopen','bakview','bakrest','updchk','updgo','updshell']);
 const RED_ACTS=new Set(['rfocus','rcells','rattack','rhide','rask']);
-$('#sheetBody').addEventListener('click',e=>{const g=e.target.closest('[data-bldi]');if(g){BLD_SEL=+g.dataset.bldi;renderSheet(true);return}
- const sv=e.target.closest('#bldSvg');if(sv&&S){const B=baseById(sv.dataset.bid);if(B){const r=sv.getBoundingClientRect(),u=clamp(((e.clientX-r.left)/r.width*280-140)/108,-.9,.9),v=clamp(((e.clientY-r.top)/r.height*280-140)/108,-.9,.9),L=ensureBaseLayout(B);
-  if(BLD_SEL!=null&&L[BLD_SEL]){L[BLD_SEL].u=+u.toFixed(2);L[BLD_SEL].v=+v.toFixed(2)}else{L.push({k:BLD_PAL||'sleep',u:+u.toFixed(2),v:+v.toFixed(2),rot:BLD_ROT||0});BLD_SEL=L.length-1}
-  if(V3.open)open3D('base',B.id);renderSheet(true);return}}
+$('#sheetBody').addEventListener('click',e=>{const g=e.target.closest('[data-bldi]');if(g){BLD_SEL=+g.dataset.bldi;if(V3.open&&V3.baseId){const B=baseById(V3.baseId);if(B)v3RebuildBase(B);v3BldUI()}renderSheet(true);return}
+ const sv=e.target.closest('#bldSvg');if(sv&&S){const B=baseById(sv.dataset.bid);if(B){const r=sv.getBoundingClientRect(),u=clamp(((e.clientX-r.left)/r.width*280-140)/120,-1,1),v=clamp(((e.clientY-r.top)/r.height*280-140)/120,-1,1),L=ensureBaseLayout(B);
+  const sel=BLD_SEL!=null&&L[BLD_SEL]?L[BLD_SEL]:null,k=sel?sel.k:(BLD_PAL||'sleep'),rot=sel?sel.rot||0:(BLD_ROT||0),sn=bldSnap(u,v,k,rot);
+  if(!bldCanPlace(B,sn.gx,sn.gz,k,rot,BLD_SEL)){toast('Grid cells occupied — pick an open spot on the 16×16 grid.','bad');return}
+  if(sel){sel.u=sn.u;sel.v=sn.v;sel.gx=sn.gx;sel.gz=sn.gz;sel.rot=rot}else{L.push({k,u:sn.u,v:sn.v,gx:sn.gx,gz:sn.gz,rot})}
+  if(V3.open)v3RebuildBase(B);v3BldUI();renderSheet(true);return}}
  const el=e.target.closest('[data-act]');if(!el||el.disabled)return;onAct(el.dataset.act,el.dataset.a||'',el.dataset.b||'')});
 function onAct(act,a,b){if(!S)return;if(act==='stgname'){const el=document.getElementById('stgName');b=el?el.value:''}if(LOCAL_ACTS.has(act))return localAct(act,a,b);
  if(NET.role==='guest'){if(NET.mode==='coop'&&S.mpR){const w=mpDeny(act,a,b,'g');if(w){toast(w,'bad','Not your command');return}}if(NET.room)NET.room.emit('cmd',{act,a,b}).then(()=>toast('Order sent to the host.','info')).catch(()=>toast('Order could not be sent.','bad'));if(act==='launch'){planSel=new Set();closeSheet()}return}
@@ -9376,11 +9485,16 @@ function localAct(act,a,b){switch(act){
  case 'selgroup':{if(!sheet||sheet.kind!=='plan')return;const c=cityById(sheet.id);const [k,v]=a.split(':');if(k==='d'){const C=planCands(c).filter(u=>v==='_'?!(u.bde&&(S.bdes||[]).some(B=>B.id===u.bde)):u.bde===v);const all=C.every(u=>planSel.has(u.id));for(const u of C)all?planSel.delete(u.id):planSel.add(u.id);renderSheet(true);break}const us=S.units.filter(u=>u.state==='garrison'&&u.p>=UT[u.type].p*.4&&(k==='b'?u.baseId===v:roleOf(u.type)===v)).filter(u=>{const t=UT[u.type],bb=baseById(u.baseId);if(!bb)return false;if(t.ground)return isOff(u.type)&&!bb.naval&&!bb.offmap;if(t.sup)return dist(bb,c)<=supR(u,bb);if(t.air)return isOff(u.type)&&dist(bb,c)<=t.range;return false});
   const all=us.every(u=>planSel.has(u.id));us.forEach(u=>all?planSel.delete(u.id):planSel.add(u.id));renderSheet(true);break}
  case 'patrolpick':patrolRepeat=true;openSheet('patrol',a);break;case 'prep':patrolRepeat=a==='1';renderSheet(true);break;
- case 'bldpal':BLD_PAL=a;BLD_SEL=null;renderSheet(true);break;
- case 'bldrot':{const B=baseById(a)||sheet&&sheet.kind==='base'&&baseById(sheet.id);if(!B)break;const L=ensureBaseLayout(B);if(BLD_SEL!=null&&L[BLD_SEL])L[BLD_SEL].rot=((L[BLD_SEL].rot||0)+1)%4;else BLD_ROT=((BLD_ROT||0)+1)%4;if(V3.open)open3D('base',B.id);renderSheet(true);break}
- case 'blddel':{const B=baseById(a);if(!B)break;const L=ensureBaseLayout(B);if(BLD_SEL!=null&&L[BLD_SEL]){L.splice(BLD_SEL,1);BLD_SEL=null;if(V3.open)open3D('base',B.id);renderSheet(true)}break}
- case 'bldauto':{const B=baseById(a);if(!B)break;B.layout=null;BLD_SEL=null;ensureBaseLayout(B);if(V3.open)open3D('base',B.id);renderSheet(true);break}
- case 'bldclr':{const B=baseById(a);if(!B)break;B.layout=[{k:'tower',u:-.88,v:-.88,rot:0},{k:'tower',u:.88,v:-.88,rot:0},{k:'tower',u:.88,v:.88,rot:0},{k:'tower',u:-.88,v:.88,rot:0}];BLD_SEL=null;if(V3.open)open3D('base',B.id);renderSheet(true);break}
+ case 'bldpal':BLD_PAL=a;BLD_SEL=null;if(V3.open&&V3.baseId){const B=baseById(V3.baseId);if(B)v3RebuildBase(B);v3BldUI()}renderSheet(true);break;
+ case 'bldnew':BLD_SEL=null;if(V3.open&&V3.baseId){const B=baseById(V3.baseId);if(B)v3RebuildBase(B);v3BldUI()}renderSheet(true);break;
+ case 'bldglb':promptCustomGLB(a||BLD_PAL||'toc');break;
+ case 'bldrot':{const B=baseById(a)||(V3.open&&V3.baseId&&baseById(V3.baseId))||(sheet&&sheet.kind==='base'&&baseById(sheet.id));if(!B)break;const L=ensureBaseLayout(B);
+  if(BLD_SEL!=null&&L[BLD_SEL]){const it=L[BLD_SEL],nr=((it.rot||0)+1)%4,sn=bldSnap(it.u,it.v,it.k,nr);if(bldCanPlace(B,sn.gx,sn.gz,it.k,nr,BLD_SEL)){it.rot=nr;it.gx=sn.gx;it.gz=sn.gz;it.u=sn.u;it.v=sn.v}else toast('Cannot rotate here: adjacent grid cell is occupied.','bad')}
+  else BLD_ROT=((BLD_ROT||0)+1)%4;
+  if(V3.open){v3RebuildBase(B);if(V3.hoverCell){const hc=V3.hoverCell,rot=BLD_ROT||0,sn=bldSnap(hc.u,hc.v,hc.k,rot);V3.hoverCell={...sn,k:hc.k,rot,ok:bldCanPlace(B,sn.gx,sn.gz,hc.k,rot,BLD_SEL)};v3SyncGhost()}v3BldUI()}renderSheet(true);break}
+ case 'blddel':{const B=baseById(a)||(V3.open&&V3.baseId&&baseById(V3.baseId));if(!B)break;const L=ensureBaseLayout(B);if(BLD_SEL!=null&&L[BLD_SEL]){L.splice(BLD_SEL,1);BLD_SEL=null;if(V3.open){v3RebuildBase(B);v3BldUI()}renderSheet(true)}break}
+ case 'bldauto':{const B=baseById(a)||(V3.open&&V3.baseId&&baseById(V3.baseId));if(!B)break;B.layout=null;BLD_SEL=null;ensureBaseLayout(B);if(V3.open){v3RebuildBase(B);v3BldUI()}renderSheet(true);break}
+ case 'bldclr':{const B=baseById(a)||(V3.open&&V3.baseId&&baseById(V3.baseId));if(!B)break;B.layout=[];const put=(k,gx,gz)=>{const [cw,cd]=bldDims(k,0);B.layout.push({k,gx,gz,u:(gx+cw/2)/8,v:(gz+cd/2)/8,rot:0})};put('tower',-8,-8);put('tower',7,-8);put('tower',7,7);put('tower',-8,7);BLD_SEL=null;if(V3.open){v3RebuildBase(B);v3BldUI()}renderSheet(true);break}
  case 'kbrebind':KB_WAIT=KB_WAIT===a?null:a;renderSheet(true);break;
  case 'kbrst':KB={...KB_DEF};KB_WAIT=null;saveKB();renderSheet(true);toast('Keybindings reset to defaults.','good');break}}
 function doAct(act,a,b,who,remote){if(!S||S.over)return;if(RED_ACTS.has(act)!==(who==='red')&&act!=='speed'&&!CHAT_ACTS.has(act))return;
@@ -9654,7 +9768,10 @@ $('#opsX').onclick=()=>{OPSP=false;$('#opsP').classList.remove('open');$('#opsBt
 $('#opsBody').addEventListener('click',e=>{const b3=e.target.closest('[data-op3]');if(b3){e.stopPropagation();const o=($('#opsBody')._L||[])[+b3.dataset.op3];if(o&&o.at){OPSP=false;$('#opsP').classList.remove('open');$('#opsBtn').classList.remove('on');o.act==='city'?open3D('city',o.a):o.act==='unit'?open3D('unit',o.a):o.act==='sh'?open3D('sh',o.a):o.act==='eb'?open3D('eb',o.a):open3D('pt',`${o.at.x},${o.at.y}`)}return}const c=e.target.closest('[data-opi]');if(!c)return;const o=($('#opsBody')._L||[])[+c.dataset.opi];if(!o)return;if(o.at)focusOn(o.at);if(window.innerWidth<700){OPSP=false;$('#opsP').classList.remove('open');$('#opsBtn').classList.remove('on')}if(o.act==='city'){sel={kind:'city',id:o.a};openSheet('city',o.a)}else if(o.act==='eb')onAct('eb',o.a,'');else if(o.act==='sh'){sel={kind:'sh',id:o.a};openSheet('sh',o.a)}else if(o.act==='unit')openSheet('unit',o.a)});
 if(document.body)setInterval(()=>{try{if(S)renderOps()}catch(e){}},1000);
 $('#v3X').onclick=close3D;
-$('#v3U').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||!V3.orb)return;if(b.dataset.v3l){V3.lase=!V3.lase;if(V3.lase){if(V3.orb.mode!=='drone'){V3.orb.mode='drone';V3.orb.pitch=1.25;V3.follow=null}toast('Laser designator on. Tap a target or a spot on the ground.','info')}else{V3.lz=null;const f=$('#v3F');if(f)f.hidden=true}v3hud();return}if(b.dataset.v3){V3.orb.mode=b.dataset.v3;V3.follow=null;if(b.dataset.v3==='drone'){V3.orb.dist=V3.R*W3*1.1}}else if(b.dataset.v3f){V3.follow=b.dataset.v3f;V3.orb.mode='orbit';V3.orb.dist=Math.min(V3.orb.dist,260)}v3hud()});
+$('#v3U').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||!V3.orb)return;if(b.dataset.v3b){V3.bldMode=!V3.bldMode;if(!V3.bldMode)V3.hoverCell=null;if(V3.baseId){const B=baseById(V3.baseId);if(B)v3RebuildBase(B)}v3hud();v3BldUI();$('#v3S').textContent=V3.bldMode?'3D Base Builder active · Hover compound grid to snap · Click to place · R to rotate · Drag to orbit':'Drag or WASD/Arrows to move · Q/E to rotate · scroll or +/− to zoom';return}if(b.dataset.v3l){V3.lase=!V3.lase;if(V3.lase){if(V3.orb.mode!=='drone'){V3.orb.mode='drone';V3.orb.pitch=1.25;V3.follow=null}toast('Laser designator on. Tap a target or a spot on the ground.','info')}else{V3.lz=null;const f=$('#v3F');if(f)f.hidden=true}v3hud();return}if(b.dataset.v3){V3.orb.mode=b.dataset.v3;V3.follow=null;if(b.dataset.v3==='drone'){V3.orb.dist=V3.R*W3*1.1}}else if(b.dataset.v3f){V3.follow=b.dataset.v3f;V3.orb.mode='orbit';V3.orb.dist=Math.min(V3.orb.dist,260)}v3hud()});
+$('#v3Bld').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled||!V3.baseId)return;const bid=V3.baseId;
+ if(b.dataset.v3bp){localAct('bldpal',b.dataset.v3bp,'');return}
+ const a=b.dataset.v3ba;if(a==='new')localAct('bldnew',bid,'');else if(a==='rot')localAct('bldrot',bid,'');else if(a==='del')localAct('blddel',bid,'');else if(a==='auto')localAct('bldauto',bid,'');else if(a==='glb'){const B=baseById(bid),L=B?ensureBaseLayout(B):[],sel=BLD_SEL!=null&&L[BLD_SEL]?L[BLD_SEL]:null;promptCustomGLB(sel?sel.k:BLD_PAL)}else if(a==='done'){V3.bldMode=false;V3.hoverCell=null;const B=baseById(bid);if(B)v3RebuildBase(B);v3hud();v3BldUI()}});
 function mapCtr(){const r=cv.getBoundingClientRect();return {x:(r.width/2-view.x)/view.s,y:(r.height/2-view.y)/view.s}}
 function open3DHere(mode){const p=mapCtr(),c=nearestCity(p);V3.pendMode=mode;if(c&&dist(c,p)<cityR(c)+2){V3.pendAt=p;open3D('city',c.id)}else open3D('pt',`${p.x.toFixed(2)},${p.y.toFixed(2)}`)}
 function vswSync(){const el=$('#vsw');if(!el)return;{const lb=$('#vwLase');if(lb){const on=V3.open?!!V3.lase:MLASE;if(lb.classList.contains('on')!==on)lb.classList.toggle('on',on)}}const m=!V3.open?'map':V3.orb&&V3.orb.mode==='drone'?'drone':'3d';if(el.dataset.m===m)return;el.dataset.m=m;el.querySelectorAll('button').forEach(b=>{if(b.dataset.vw!=='lase')b.classList.toggle('on',b.dataset.vw===m)})}
@@ -9765,8 +9882,9 @@ function saaAsk(){if(prewar())return;if(!S||!saa().on||saa().plan)return;showMod
 function startSolo(g,sv,name){if(g==='continue'){S=migrate(sv);if(!S._name){S._name=uniqName(`${(DIFFS[S.diff]||{n:'Regular'}).n} campaign`)}}else{newGame(g);if(DIFFS[g].arcade)arcadeInit();setTimeout(()=>{if(S&&S.pre&&S.pre.ph!=='go')preIntro();else saaAsk()},400);S._slot=newSlotId();S._name=uniqName(name||`${DIFFS[g].n} campaign`);save()}if(S.speed>0)S.lastSpeed=S.speed;else if(!S.lastSpeed)S.lastSpeed=SET.startSpeed||4;if(g!=='continue')S.lastSpeed=SET.startSpeed||4;S.speed=0;$('#title').hidden=true;setTimeout(()=>{try{updAlert()}catch(e){}},1500);resize();fitView();updSpeed();setRoleUI();updHud();
  if(g!=='continue')showModal({eyebrow:S&&S.pre&&S.warDay==null?'Build-up · 24 FEB 2003':'D-Day · 20 MAR 2003',title:'Topple the regime, find its leaders',body:'<p>Your ground forces stage at Camp Doha in Kuwait. Bring combat engineers or Navy Seabees: they build every new base. The Fifth Fleet in the Gulf hosts carriers and Tomahawk ships; Al Udeid hosts heavy bombers. One leadership target in Baghdad is already partly located: a cruise missile might end this early.</p><p>Troops travel the road network. MSRs are fast but heavily mined; minor roads are slower and ambush-prone. Units hit on the road stop and fight until you reinforce them or they fall back. Watch the terrain and the highways: columns move fastest on MSR Tampa and the main roads, slowest in mountains, marshes and at river crossings away from city bridges. Every new FOB needs combat engineers or Seabees to build it, so deploy engineers early, and every base needs food and ammunition hauled in. Open the Status panel at top right for force health, supply and the cost of the war.</p>',opts:[{t:'Open Camp Doha',cls:'primary',f:()=>{sel={kind:'base',id:'b0'};openSheet('base','b0')}},{t:'Look at the map first',f:()=>{}}]})}
 try{if((SET._sv||0)<137){SET._sv=137;SET.droneHUD=true;localStorage.setItem('itc-set',JSON.stringify(SET))}}catch(e){}
-const GAME_VER=153;const GAME_SEMVER='0.6.5a';try{window.itcDesktop&&window.itcDesktop.ready&&window.itcDesktop.ready(153)}catch(e){}const SEMVER={142:'0.5.0a',143:'0.5.1a',144:'0.5.2a',145:'0.5.3a',146:'0.5.4a',147:'0.5.5a',148:'0.6.0a',149:'0.6.1a',150:'0.6.2a',151:'0.6.3a',152:'0.6.4a',153:'0.6.5a'};const vLbl=n=>SEMVER[n]||(n>GAME_VER?GAME_SEMVER.replace(/^(\d+\.\d+\.)(\d+)/,(m,a,b)=>a+(+b+n-GAME_VER)):n>=142?'0.5.'+(n-142)+'a':n>=101?'0.4.'+(n-101):'0.'+n);
+const GAME_VER=154;const GAME_SEMVER='0.6.6a';try{window.itcDesktop&&window.itcDesktop.ready&&window.itcDesktop.ready(154)}catch(e){}const SEMVER={142:'0.5.0a',143:'0.5.1a',144:'0.5.2a',145:'0.5.3a',146:'0.5.4a',147:'0.5.5a',148:'0.6.0a',149:'0.6.1a',150:'0.6.2a',151:'0.6.3a',152:'0.6.4a',153:'0.6.5a',154:'0.6.6a'};const vLbl=n=>SEMVER[n]||(n>GAME_VER?GAME_SEMVER.replace(/^(\d+\.\d+\.)(\d+)/,(m,a,b)=>a+(+b+n-GAME_VER)):n>=142?'0.5.'+(n-142)+'a':n>=101?'0.4.'+(n-101):'0.'+n);
 const CHANGES=[
+ [154,'3D Grid-Snapping Base Builder, PBR Graphics Overhaul & Custom .GLB Asset Framework',['Interactive 3D & 2D 16×16 Grid Base Builder: build your bases directly inside the 3D tactical view (or the 2D Base › Layout blueprint) with discrete cell snapping (1×1, 2×1, 2×2, 3×2, 3×3 footprints), collision prevention, 3D grid overlay, and a live 3D ghost preview mesh (green when valid, red when blocked)','15 buildable compound structures (adding T-Wall barriers and Patriot SAM batteries alongside TOC, CHUs, DFAC, Aid Station, Motor Pool, Ammo Berms, Fuel Farm, Water Tower, Helipad, Guard Tower, HESCO Wall, C-RAM and Aerostat) that grant real gameplay bonuses to base Defense, Perimeter Security, Quality of Life, and Ammo/Fuel Storage','Pluggable 3D Asset Framework: click "📦 Load .GLB" in the 2D or 3D Base Builder (or call window.registerITCModel) to replace any placeholder structure with your own custom .GLB/.GLTF 3D model at runtime','3D Graphics Engine Overhaul: ACES Filmic tone mapping, sRGB output encoding, PCF soft directional sunlight shadows on High quality, and physically-based MeshStandardMaterial shaders']],
  [153,'Base layout builder, keyboard controls & 3D optimization',['Interactive Base Layout Builder (Base › Layout): custom-place, move and rotate 13 compound structures (TOC, CHUs/billets, DFAC, aid station, motor pool, ammo berms, fuel farm, water tower, helipad, guard towers, HESCO blast walls, C-RAM mounts and aerostat moorings) on a top-down blueprint grid, with live 2D compound and 3D tactical view rendering','WASD and Arrow keys smoothly pan the 2D map and 3D camera (hold Shift for fast pan, Q/E to rotate in 3D, +/− to zoom)','Shortcut keys for pause (Space), speed ([ / ]), Campaign (C), Fires (F), AOs (X), Logistics (L), Ops (O), Advisors (V), 3D view (B), Lase (G), Threat (T), Rotate structure (R) and bottom tabs (1–5), plus a rebindable Keyboard & controls menu in Settings','3D optimization: shared unit geometries and materials across bases and units, plus frustum culling with dynamic bounding spheres on instanced city meshes']],
  [152,'Campaign rail & streamlined Fires',['A new ▸ Campaign button at the top of the left rail tracks where we are in the war (Build-up → Ultimatum → Shock & Awe → Invasion → Insurgency) and houses all campaign phase actions: the 48-hour ultimatum, beginning Shock and Awe, launching the ground invasion (G-Day), and choosing the air campaign plan','The ✸ Fires menu and strike pickers are compressed and cleaned up: strikes, strike boxes, MSR overwatch and air patrols are called in by mission type (Tomahawk salvo, Heavy bomber strike, Carrier air strike, Precision air strike, Gunship mission, A-10 gun run, Hellfire strike, CAS orbit, ISR orbit, Refueling track) rather than picking individual ships or squadrons']],
  [151,'Apartment blocks and squared-off streets',['Larger homes in the 3D and drone views now use a new three-storey terraced apartment block, textured, with full detail close to the camera and a lighter version further out. Small homes keep the house model','Buildings are now squared to the street or road they front: each footprint turns to run parallel or at right angles to its nearest street, so blocks line up along the roads in the map, 3D and drone views']],
