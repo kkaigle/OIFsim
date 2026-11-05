@@ -1,21 +1,15 @@
 {
- "game": 152,
- "semver": "0.6.4a",
- "file": "game-152.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-152.html",
- "sha256": "ca61c9ea63e87872c976434b4705964466e49fe405dbefdd3e1e2941cffe3f47",
- "size": 14012503,
- "notes": [
-  "Campaign rail & streamlined Fires",
-  "A new ▸ Campaign button at the top of the left rail tracks where we are in the war (Build-up → Ultimatum → Shock & Awe → Invasion → Insurgency) and houses all campaign phase actions: the 48-hour ultimatum, beginning Shock and Awe, launching the ground invasion (G-Day), and choosing the air campaign plan",
-  "The ✸ Fires menu and strike pickers are compressed and cleaned up: strikes, strike boxes, MSR overwatch and air patrols are called in by mission type (Tomahawk salvo, Heavy bomber strike, Carrier air strike, Precision air strike, Gunship mission, A-10 gun run, Hellfire strike, CAS orbit, ISR orbit, Refueling track) rather than picking individual ships or squadrons"
- ],
- "published": "2026-11-05T15:36:28.300Z",
- "shell": "1.61.0",
- "minShell": "1.61.0",
- "shellUrl": {
-  "mac": "https://github.com/kkaigle/OIFsim/releases/latest/download/Iraq-Theater-Command-mac-arm64.zip",
-  "win": "https://github.com/kkaigle/OIFsim/releases/latest/download/Iraq-Theater-Command-windows-x64.zip"
- },
- "page": "https://github.com/kkaigle/OIFsim/releases/latest"
+  "game": 153,
+  "semver": "0.6.5a",
+  "file": "game-153.html",
+  "url": "https://iraqtheatercommand.com/ota/game-153.html",
+  "sha256": "69123378d08498e889d8b5b4aa73c15c366e9244978ec016fa7ca9d913239cad",
+  "size": 14028410,
+  "notes": [
+    "Interactive Base Layout Builder (Base \u203a Layout): custom-place, move and rotate 13 compound structures in 2D and 3D",
+    "WASD & Arrow keys smoothly pan the map and 3D camera, Q/E rotate in 3D, +/\u2212 zoom",
+    "Shortcut keys for game speed, left-rail menus, 3D view, laser designator and tabs, plus a rebindable Keyboard & controls menu in Settings",
+    "3D optimization: shared unit geometries/materials and frustum-culled instanced city meshes"
+  ],
+  "published": "2026-04-20T22:55:00Z"
 }
