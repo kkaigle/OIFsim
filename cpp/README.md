@@ -21,6 +21,28 @@ cpp\build_win.bat --run
 ```
 *(CMake automatically links a local Raylib installation if present, or fetches Raylib 5.5 from source via `FetchContent` on a clean Windows/Mac machine).*
 
+## Building Native Desktop Installers (`.dmg`, `.pkg`, `Setup.exe`, `.zip`)
+
+### Local Packaging
+- **macOS (`.app` Bundle + `.dmg` Disk Image + `.pkg` Installer)**:
+  ```bash
+  ./cpp/packaging/package_mac.sh
+  ```
+  Outputs to `cpp/dist/`:
+  - `Iraq Theater Command.app` (signed standalone bundle with `AppIcon.icns` & embedded `Resources/assets`)
+  - `IraqTheaterCommand-macOS.dmg`
+  - `IraqTheaterCommand-macOS-Installer.pkg`
+- **Windows (NSIS `Setup.exe` Installer + Portable `.zip`)**:
+  ```powershell
+  pwsh -File cpp/packaging/package_win.ps1
+  ```
+  Outputs to `cpp\dist\`:
+  - `IraqTheaterCommand-Windows-Setup.exe` (Installs to `Program Files\Iraq Theater Command`, creates Start Menu & Desktop shortcuts, and registers an Uninstaller)
+  - `IraqTheaterCommand-Windows-Portable.zip`
+
+### GitHub Actions CI/CD
+The workflow [`.github/workflows/build-installers.yml`](../.github/workflows/build-installers.yml) runs automatically on pushes/PRs to `Full-rewrite` and `main`, version tags (`v*`), and manual `workflow_dispatch`, building both macOS and Windows installers and publishing them to GitHub Actions Artifacts and GitHub Releases (`latest-build`).
+
 ## Dropping Custom 3D `.glb` Assets into the Engine
 Place any standard `.glb` (glTF 2.0 binary) file into `cpp/assets/models/` to override the built-in 3D models automatically on startup:
 - **Units & Urban Models**: `tank.glb`, `ifv.glb`, `hmmwv.glb`, `bigres.glb`, `bigresL.glb`, `ruin.glb`, `house.glb`

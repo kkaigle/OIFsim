@@ -1,0 +1,104 @@
+name: Build Mac & Windows Installers
+
+on:
+  push:
+    branches:
+      - Full-rewrite
+      - main
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - Full-rewrite
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-macos:
+    name: macOS Installer (.dmg & .pkg)
+    runs-on: macos-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Raylib (Static Archive)
+        env:
+          HOMEBREW_NO_AUTO_UPDATE: 1
+        run: brew install raylib
+
+      - name: Build macOS .app, .dmg, and .pkg Installers
+        run: |
+          chmod +x cpp/packaging/package_mac.sh
+          ./cpp/packaging/package_mac.sh
+
+      - name: Upload macOS Installers (.dmg & .pkg)
+        uses: actions/upload-artifact@v4
+        with:
+          name: IraqTheaterCommand-macOS-Installers
+          path: |
+            cpp/dist/IraqTheaterCommand-macOS.dmg
+            cpp/dist/IraqTheaterCommand-macOS-Installer.pkg
+          if-no-files-found: error
+
+  build-windows:
+    name: Windows Installer (Setup.exe & Portable .zip)
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Build Windows Release & NSIS Setup.exe Installer
+        shell: pwsh
+        run: |
+          ./cpp/packaging/package_win.ps1
+
+      - name: Upload Windows Installers (Setup.exe & .zip)
+        uses: actions/upload-artifact@v4
+        with:
+          name: IraqTheaterCommand-Windows-Installers
+          path: |
+            cpp/dist/IraqTheaterCommand-Windows-Setup.exe
+            cpp/dist/IraqTheaterCommand-Windows-Portable.zip
+          if-no-files-found: error
+
+  publish-release:
+    name: Publish Installers to GitHub Releases
+    needs: [build-macos, build-windows]
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download macOS Installers
+        uses: actions/download-artifact@v4
+        with:
+          name: IraqTheaterCommand-macOS-Installers
+          path: release_assets
+
+      - name: Download Windows Installers
+        uses: actions/download-artifact@v4
+        with:
+          name: IraqTheaterCommand-Windows-Installers
+          path: release_assets
+
+      - name: Publish Rolling / Tagged GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || 'latest-build' }}
+          name: "Iraq Theater Command — Native C++20 Installers (macOS & Windows)"
+          body: |
+            ### Iraq Theater Command — Native C++20 Desktop Installers
+            - **macOS (`.dmg` Disk Image)**: `IraqTheaterCommand-macOS.dmg` (Drag `Iraq Theater Command.app` to Applications)
+            - **macOS (`.pkg` Package Installer)**: `IraqTheaterCommand-macOS-Installer.pkg` (Installs directly to `/Applications`)
+            - **Windows (GUI Setup Installer)**: `IraqTheaterCommand-Windows-Setup.exe` (Installs to `Program Files\Iraq Theater Command` with Start Menu & Desktop shortcuts)
+            - **Windows (Portable Archive)**: `IraqTheaterCommand-Windows-Portable.zip`
+          prerelease: ${{ !startsWith(github.ref, 'refs/tags/') }}
+          files: |
+            release_assets/IraqTheaterCommand-macOS.dmg
+            release_assets/IraqTheaterCommand-macOS-Installer.pkg
+            release_assets/IraqTheaterCommand-Windows-Setup.exe
+            release_assets/IraqTheaterCommand-Windows-Portable.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

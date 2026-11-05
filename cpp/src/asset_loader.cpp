@@ -61,17 +61,29 @@ struct BinReader {
 
 std::string TheaterAssets::resolveAssetsRoot() const {
     namespace fs = std::filesystem;
-    std::vector<std::string> candidates = {
-        "assets",
-        "../assets",
-        "cpp/assets",
+    std::vector<std::string> candidates;
+
+    if (const char* appDir = GetApplicationDirectory()) {
+        fs::path base(appDir);
+        // 1. Standard Windows / Portable layout: <exe_dir>/assets
+        candidates.push_back((base / "assets").string());
+        // 2. Standard macOS .app bundle layout: Iraq Theater Command.app/Contents/Resources/assets
+        candidates.push_back((base / ".." / "Resources" / "assets").string());
+        // 3. Build folder layout: <exe_dir>/../assets
+        candidates.push_back((base / ".." / "assets").string());
+    }
+
+    candidates.push_back("assets");
+    candidates.push_back("../assets");
+    candidates.push_back("cpp/assets");
 #ifdef ITC_SOURCE_ASSETS_DIR
-        ITC_SOURCE_ASSETS_DIR,
+    candidates.push_back(ITC_SOURCE_ASSETS_DIR);
 #endif
-    };
+
     for (const auto& c : candidates) {
-        if (fs::exists(fs::path(c) / "map" / "theater.bin")) {
-            return c;
+        std::error_code ec;
+        if (fs::exists(fs::path(c) / "map" / "theater.bin", ec)) {
+            return fs::canonical(fs::path(c), ec).string();
         }
     }
     return "assets";

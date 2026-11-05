@@ -1,0 +1,9 @@
+# C++ CMake build and installer output directories
+cpp/build/
+cpp/dist/
+cpp/.cache/
+
+# OS & Editor files
+.DS_Store
+*.swp
+
