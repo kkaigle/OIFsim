@@ -16,3 +16,4 @@ echo "[ITC] Build complete: $(pwd)/build/IraqTheaterCommand"
 if [ "${1:-}" = "--run" ]; then
     ./build/IraqTheaterCommand
 fi
+

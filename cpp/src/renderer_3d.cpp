@@ -402,3 +402,4 @@ void Renderer3D::render(const SimState& sim, const TheaterAssets& assets, int sc
 }
 
 } // namespace itc
+

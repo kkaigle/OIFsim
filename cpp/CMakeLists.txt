@@ -101,3 +101,4 @@ else()
     target_compile_options(IraqTheaterCommand PRIVATE -Wall -Wextra -O3)
     target_link_libraries(IraqTheaterCommand PRIVATE m pthread dl)
 endif()
+

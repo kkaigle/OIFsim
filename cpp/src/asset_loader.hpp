@@ -77,3 +77,4 @@ private:
 void initCampaignScenario(SimState& sim, TheaterAssets& assets);
 
 } // namespace itc
+

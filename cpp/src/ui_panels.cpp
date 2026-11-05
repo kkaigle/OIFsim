@@ -659,3 +659,4 @@ void UIPanels::renderAndInteract(SimState& sim, TheaterAssets& assets, AudioEngi
 }
 
 } // namespace itc
+

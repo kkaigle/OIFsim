@@ -26,3 +26,4 @@ Place any standard `.glb` (glTF 2.0 binary) file into `cpp/assets/models/` to ov
 - **Units & Urban Models**: `tank.glb`, `ifv.glb`, `hmmwv.glb`, `bigres.glb`, `bigresL.glb`, `ruin.glb`, `house.glb`
 - **Base Builder Structures (15 types)**: `toc.glb`, `sleep.glb`, `hesco.glb`, `tower.glb`, `heli.glb`, `motor.glb`, `ammo.glb`, `fuel.glb`, `med.glb`, `comms.glb`, `mort.glb`, `gen.glb`, `dfac.glb`, `det.glb`, `uav.glb`
 - **Audio Overrides**: Place `click.wav`, `radio.wav`, `place.wav`, `explosion.wav`, `brrrt.wav`, or `missile.wav` in `cpp/assets/audio/` (or drop the FMOD Studio SDK into `cpp/third_party/fmod` and configure with `-DITC_ENABLE_FMOD=ON`).
+

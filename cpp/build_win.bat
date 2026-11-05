@@ -19,3 +19,4 @@ if "%1"=="--run" (
         "build\IraqTheaterCommand.exe"
     )
 )
+
