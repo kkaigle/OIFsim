@@ -1,3 +1,0 @@
-/Users/koreykaigle/OIFsim/cpp/build/CMakeFiles/IraqTheaterCommand.dir
-/Users/koreykaigle/OIFsim/cpp/build/CMakeFiles/edit_cache.dir
-/Users/koreykaigle/OIFsim/cpp/build/CMakeFiles/rebuild_cache.dir
