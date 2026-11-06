@@ -1,19 +1,15 @@
 {
- "game": 158,
- "semver": "0.7.0a",
- "file": "game-158.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-158.html",
- "sha256": "0e6561b78de30881b79091f42d6ef610dfbe630851130659d8c2cdc166e2c3ed",
- "size": 14186451,
+ "game": 159,
+ "semver": "0.7.1a",
+ "file": "game-159.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-159.html",
+ "sha256": "eb85d41fed4a9439a61a1a8d98cb27acfb9143f000b81460a1d1350df8fffc32",
+ "size": 14186994,
  "notes": [
-  "Base building",
-  "Base building is optional. Settings › Base building: Automatic lays bases out for you and re-plans them as they grow and upgrade; Build my own lets you place every structure in the base Layout tab or in 3D. Changing anything on a base takes that base over, and Back to automatic hands it back. The clock pauses when you open a layout and stays paused until you press play",
-  "A library of 35 structures in seven groups (living, dining and welfare, command and medical, logistics, utilities, defense, aviation), each with its own 3D model: tents, B-huts, CHU blocks and hardened barracks; chow tent, sprung DFAC and full-service DFAC; showers, MWR, gym, PX and chapel; tent or hardened TOC, comms mast, aid station, clinic and combat support hospital; motor pool, maintenance hangar, conex yard, ammo berms, fuel bladders and bulk fuel farm; water point, generators, burn pit or incinerator; guard towers, HESCO, T-walls, bunkers, entry control point, C-RAM, Patriot and aerostat; helipads. Bigger structures need a camp or a major base",
-  "Bases scale: an FOB is a 20×20 grid (about 360 m across), a camp 32×32 and a major base 48×48 (about 860 m), with a T-wall line outside the HESCO at camps and up. Automatic plans put command north-west, living north-east, logistics south-west and fuel, ammo and the burn pit south-east, away from the billets, with towers along the wire and the gate on the south road. FOBs and young camps get tents; upgrades bring B-huts, CHUs and barracks, and major bases get bigger and more DFACs",
-  "A base now clears the mapped city buildings under its footprint, in the map and in 3D",
-  "Slower clock speeds: ½× and ¼× (40 minutes per game day) for following a fight closely"
+  "Popout close fix",
+  "Closing a popout menu no longer shows the bottom panel sliding away underneath it: the menu just fades out. Switching between a popout and the bottom panel is instant"
  ],
- "published": "2026-11-06T16:36:39.605Z",
+ "published": "2026-11-06T16:42:37.560Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
