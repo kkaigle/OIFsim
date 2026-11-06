@@ -1,18 +1,18 @@
 {
- "game": 161,
- "semver": "0.8.1a",
- "file": "game-161.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-161.html",
- "sha256": "4911aed7400b12c373a543110e5ce6aae63751a2b2a461f43d6f83ce8d5a4e48",
- "size": 14219976,
+ "game": 162,
+ "semver": "0.9.0a",
+ "file": "game-162.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-162.html",
+ "sha256": "71a29c8fb4d79c657a01bd6dcd05f1de2ea691bdab6a5c66253c150d82b49d68",
+ "size": 15657357,
  "notes": [
-  "Camp Doha",
-  "Camp Doha is where it really was: the Doha peninsula on Kuwait Bay, about 17 km west of Kuwait City (29.37 N, 47.80 E). Saved campaigns move it, and the units parked there, automatically",
-  "Camp Doha is now a major installation from the start, with every facility at its top level, and it finally appears in the 3D view: a 60×60 grid (about 1.1 km across) with rows of warehouses for the prepositioned brigade set, the ARCENT headquarters, trailer parks, two full-service DFACs, gym, PX, clinic, motor pools, a hangar, fuel farms, helipads and a Patriot battery inside a double wall",
-  "Two new structures for big installations: Warehouse and Headquarters",
-  "Brigade support areas are now small (24×24) instead of camp-sized"
+  "Kuwait",
+  "Kuwait is built from OpenStreetMap: about 165,000 buildings and the real road network from Al Jahra through Kuwait City, Hawalli and Farwaniya down to Fahaheel, in both the map and the 3D and drone views. The districts carry their real names (Sharq, Salmiya, Jabriya, Shuwaikh and so on) and the highways their real ones",
+  "Kuwait's real coastline: Kuwait Bay, the Doha peninsula, the Salmiya headland, and Bubiyan and Failaka islands. The bay is water in the 3D view too, with a sloped shore",
+  "Kuwait is scenery: no insurgency or control there, and nothing to capture",
+  "Fixed: buildings vanishing when you zoomed in with the 3D or drone camera. Whole blocks were being culled as if they sat at the centre of the scene; they are now culled by where they actually are, with a margin so nothing pops in at the edges"
  ],
- "published": "2026-11-06T18:24:23.274Z",
+ "published": "2026-11-06T19:08:28.042Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
