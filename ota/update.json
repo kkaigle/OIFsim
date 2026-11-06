@@ -1,18 +1,17 @@
 {
- "game": 162,
- "semver": "0.9.0a",
- "file": "game-162.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-162.html",
- "sha256": "71a29c8fb4d79c657a01bd6dcd05f1de2ea691bdab6a5c66253c150d82b49d68",
- "size": 15657357,
+ "game": 163,
+ "semver": "0.9.1a",
+ "file": "game-163.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-163.html",
+ "sha256": "73508e250b04106f8ac7a84f3ad9371d6b4300f91c4966fab04c742f918d425b",
+ "size": 15711262,
  "notes": [
-  "Kuwait",
-  "Kuwait is built from OpenStreetMap: about 165,000 buildings and the real road network from Al Jahra through Kuwait City, Hawalli and Farwaniya down to Fahaheel, in both the map and the 3D and drone views. The districts carry their real names (Sharq, Salmiya, Jabriya, Shuwaikh and so on) and the highways their real ones",
-  "Kuwait's real coastline: Kuwait Bay, the Doha peninsula, the Salmiya headland, and Bubiyan and Failaka islands. The bay is water in the 3D view too, with a sloped shore",
-  "Kuwait is scenery: no insurgency or control there, and nothing to capture",
-  "Fixed: buildings vanishing when you zoomed in with the 3D or drone camera. Whole blocks were being culled as if they sat at the centre of the scene; they are now culled by where they actually are, with a margin so nothing pops in at the edges"
+  "Ali Al Salem",
+  "New base: Ali Al Salem Air Base, west of Al Jahra, at its real location. Its airfield comes from OpenStreetMap: both 2,990 m runways (12L/30R and 12R/30L) with overruns, the taxiways, aprons, hardened aircraft shelters, hangars and helipads, in the map and in 3D. Squadrons you base there park on its ramps",
+  "Ali Al Salem is the theater air base: strike fighters, A-10s, gunships, tankers, airlift, UAVs and helicopters fly from it, and it also takes engineers, MPs, medical, logistics, intelligence and air defense. Combat formations still come in through Camp Doha",
+  "Camp Doha is now the administrative receiving base for troops arriving in theater; it no longer takes fixed-wing aircraft. Aircraft already at Doha in a saved campaign move to Ali Al Salem"
  ],
- "published": "2026-11-06T19:08:28.042Z",
+ "published": "2026-11-06T19:36:16.890Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
