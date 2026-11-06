@@ -1,18 +1,19 @@
 {
- "game": 157,
- "semver": "0.6.9a",
- "file": "game-157.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-157.html",
- "sha256": "e8d9ac56454fc39a26ec5021beedd13d97825d1519e3edf306a16a0f64b5757c",
- "size": 14162093,
+ "game": 158,
+ "semver": "0.7.0a",
+ "file": "game-158.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-158.html",
+ "sha256": "0e6561b78de30881b79091f42d6ef610dfbe630851130659d8c2cdc166e2c3ed",
+ "size": 14186451,
  "notes": [
-  "Thermal contrast, cleaner menus",
-  "Thermal (FLIR white hot, black hot and night vision) now separates heat: open ground and sky read cool, streets cooler still, water coldest, buildings mildly warm, vehicles hot and people hottest. On the zoomed map the terrain cools and units and tracked enemy give off a heat bloom. Daylight TV and colour stay as they were",
-  "Popout menus fit their panel: no more sideways scrolling, section shortcuts wrap onto a second line, long names and buttons wrap instead of being cut off, and stat rows reflow. Drag the popout's outer edge to make it wider or narrower (double-click the edge to reset); on very large screens the text is a size up",
-  "Menus are shorter: standing explanations are tucked behind an i button in each menu header (one tap shows them everywhere), empty sections are left out (SITREP, Services, Battle damage), advisors no longer show placeholder lines, contracts drop the contractor names, and Settings opens with the long Keyboard, Credits and Multiplayer sections folded",
-  "One map reticle: the drone camera overlay no longer draws its own crosshair on top of the centre reticle"
+  "Base building",
+  "Base building is optional. Settings › Base building: Automatic lays bases out for you and re-plans them as they grow and upgrade; Build my own lets you place every structure in the base Layout tab or in 3D. Changing anything on a base takes that base over, and Back to automatic hands it back. The clock pauses when you open a layout and stays paused until you press play",
+  "A library of 35 structures in seven groups (living, dining and welfare, command and medical, logistics, utilities, defense, aviation), each with its own 3D model: tents, B-huts, CHU blocks and hardened barracks; chow tent, sprung DFAC and full-service DFAC; showers, MWR, gym, PX and chapel; tent or hardened TOC, comms mast, aid station, clinic and combat support hospital; motor pool, maintenance hangar, conex yard, ammo berms, fuel bladders and bulk fuel farm; water point, generators, burn pit or incinerator; guard towers, HESCO, T-walls, bunkers, entry control point, C-RAM, Patriot and aerostat; helipads. Bigger structures need a camp or a major base",
+  "Bases scale: an FOB is a 20×20 grid (about 360 m across), a camp 32×32 and a major base 48×48 (about 860 m), with a T-wall line outside the HESCO at camps and up. Automatic plans put command north-west, living north-east, logistics south-west and fuel, ammo and the burn pit south-east, away from the billets, with towers along the wire and the gate on the south road. FOBs and young camps get tents; upgrades bring B-huts, CHUs and barracks, and major bases get bigger and more DFACs",
+  "A base now clears the mapped city buildings under its footprint, in the map and in 3D",
+  "Slower clock speeds: ½× and ¼× (40 minutes per game day) for following a fight closely"
  ],
- "published": "2026-11-06T16:18:48.900Z",
+ "published": "2026-11-06T16:36:39.605Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
