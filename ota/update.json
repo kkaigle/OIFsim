@@ -1,15 +1,20 @@
 {
- "game": 159,
- "semver": "0.7.1a",
- "file": "game-159.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-159.html",
- "sha256": "eb85d41fed4a9439a61a1a8d98cb27acfb9143f000b81460a1d1350df8fffc32",
- "size": 14186994,
+ "game": 160,
+ "semver": "0.8.0a",
+ "file": "game-160.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-160.html",
+ "sha256": "6bb63ada40a2e4584214f2972c9c520bb4996ecae444022b071a322470b13ee9",
+ "size": 14217318,
  "notes": [
-  "Popout close fix",
-  "Closing a popout menu no longer shows the bottom panel sliding away underneath it: the menu just fades out. Switching between a popout and the bottom panel is instant"
+  "Command aids",
+  "Alert bar: small icons under the top tabs for everything that needs you: troops in contact, bases low on supplies, failing base services, unassigned brigades, AOs without a base, overdue tours, money running out, a battle plan ready, units to reorganize, no contracts in progress. Hover for details, tap to jump straight to the fix. It replaces the old in-contact button",
+  "Battle plans: in an AO, pick a target and a plan starts preparing while the AO holds, over 10 days for a limited and 14 for a major offensive, up to +25% in the fight and a quarter fewer casualties. An arrow on the map shows the plan filling in; execute it whenever you like and the offensive stages next to that target and hits it first",
+  "Contract queue: queue any programme you pay for yourself. Queued contracts are signed in order whenever one of three contracting slots is free and funds stay above a reserve of 30 days of spending, with a start estimate for each",
+  "Map modes, bottom left: Supply colours every base and AO by days of stock and shows supply runs on the road, Control colours cities held, enemy, contested or uncontested, and Command colours each AO with its brigades and rings units that have no AO",
+  "Battle view: tap the troops-in-contact alert to see both sides' strength, how long the fight should last, the enemy's fire, and every modifier on your side (experience, weather, ROE, supplies, fatigue, cohesion, morale, technology, planning bonus, fire support), with reinforce and fall-back buttons",
+  "Ledger on the Intel rail: charts of public, congressional and troop support, instability and ground held, casualties, civilian deaths and enemy killed, funds and daily spend, over 30 days, 90 days, a year or the whole war"
  ],
- "published": "2026-11-06T16:42:37.560Z",
+ "published": "2026-11-06T17:34:56.400Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
