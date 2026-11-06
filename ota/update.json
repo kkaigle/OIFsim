@@ -1,20 +1,18 @@
 {
- "game": 156,
- "semver": "0.6.8a",
- "file": "game-156.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-156.html",
- "sha256": "6164a26a49fff95b835819cc5288b649314ff0b9228782772694c7f6a7a09211",
- "size": 14153347,
+ "game": 157,
+ "semver": "0.6.9a",
+ "file": "game-157.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-157.html",
+ "sha256": "e8d9ac56454fc39a26ec5021beedd13d97825d1519e3edf306a16a0f64b5757c",
+ "size": 14162093,
  "notes": [
-  "Smoother zoom, popout menus, blue force tracker",
-  "Zooming into cities no longer stalls: building alignment is now baked into the map data, a city's streets are prepared between gestures (or ahead of time as you close in) instead of in the middle of a zoom, and big cities draw from cached tiles from mid zoom, roughly halving frame time there",
-  "On wider screens the side menus open as a popout beside the button you pressed instead of the panel at the bottom. Units, cities and other things you tap on the map still open at the bottom",
-  "In the drone and FLIR views a camera button under Lase switches between FLIR white hot, FLIR black hot, night vision, daylight TV and colour, without going into Settings",
-  "Friendly units show in blue boxes labelled by the blue force tracker in the 3D drone view and the zoomed FLIR map, next to the red boxes on known enemy",
-  "Impacts and explosions now throw a dust burst, leave a scorch mark and a smoke plume that rises and drifts for up to half a minute in 3D, and explosions on the map leave smoke that hangs for several seconds",
-  "The troops-in-contact alert and other alerts now sit to the left of the right-hand map buttons instead of on top of them"
+  "Thermal contrast, cleaner menus",
+  "Thermal (FLIR white hot, black hot and night vision) now separates heat: open ground and sky read cool, streets cooler still, water coldest, buildings mildly warm, vehicles hot and people hottest. On the zoomed map the terrain cools and units and tracked enemy give off a heat bloom. Daylight TV and colour stay as they were",
+  "Popout menus fit their panel: no more sideways scrolling, section shortcuts wrap onto a second line, long names and buttons wrap instead of being cut off, and stat rows reflow. Drag the popout's outer edge to make it wider or narrower (double-click the edge to reset); on very large screens the text is a size up",
+  "Menus are shorter: standing explanations are tucked behind an i button in each menu header (one tap shows them everywhere), empty sections are left out (SITREP, Services, Battle damage), advisors no longer show placeholder lines, contracts drop the contractor names, and Settings opens with the long Keyboard, Credits and Multiplayer sections folded",
+  "One map reticle: the drone camera overlay no longer draws its own crosshair on top of the centre reticle"
  ],
- "published": "2026-11-06T15:52:40.217Z",
+ "published": "2026-11-06T16:18:48.900Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
