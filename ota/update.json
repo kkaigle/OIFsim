@@ -1,20 +1,18 @@
 {
- "game": 160,
- "semver": "0.8.0a",
- "file": "game-160.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-160.html",
- "sha256": "6bb63ada40a2e4584214f2972c9c520bb4996ecae444022b071a322470b13ee9",
- "size": 14217318,
+ "game": 161,
+ "semver": "0.8.1a",
+ "file": "game-161.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-161.html",
+ "sha256": "4911aed7400b12c373a543110e5ce6aae63751a2b2a461f43d6f83ce8d5a4e48",
+ "size": 14219976,
  "notes": [
-  "Command aids",
-  "Alert bar: small icons under the top tabs for everything that needs you: troops in contact, bases low on supplies, failing base services, unassigned brigades, AOs without a base, overdue tours, money running out, a battle plan ready, units to reorganize, no contracts in progress. Hover for details, tap to jump straight to the fix. It replaces the old in-contact button",
-  "Battle plans: in an AO, pick a target and a plan starts preparing while the AO holds, over 10 days for a limited and 14 for a major offensive, up to +25% in the fight and a quarter fewer casualties. An arrow on the map shows the plan filling in; execute it whenever you like and the offensive stages next to that target and hits it first",
-  "Contract queue: queue any programme you pay for yourself. Queued contracts are signed in order whenever one of three contracting slots is free and funds stay above a reserve of 30 days of spending, with a start estimate for each",
-  "Map modes, bottom left: Supply colours every base and AO by days of stock and shows supply runs on the road, Control colours cities held, enemy, contested or uncontested, and Command colours each AO with its brigades and rings units that have no AO",
-  "Battle view: tap the troops-in-contact alert to see both sides' strength, how long the fight should last, the enemy's fire, and every modifier on your side (experience, weather, ROE, supplies, fatigue, cohesion, morale, technology, planning bonus, fire support), with reinforce and fall-back buttons",
-  "Ledger on the Intel rail: charts of public, congressional and troop support, instability and ground held, casualties, civilian deaths and enemy killed, funds and daily spend, over 30 days, 90 days, a year or the whole war"
+  "Camp Doha",
+  "Camp Doha is where it really was: the Doha peninsula on Kuwait Bay, about 17 km west of Kuwait City (29.37 N, 47.80 E). Saved campaigns move it, and the units parked there, automatically",
+  "Camp Doha is now a major installation from the start, with every facility at its top level, and it finally appears in the 3D view: a 60×60 grid (about 1.1 km across) with rows of warehouses for the prepositioned brigade set, the ARCENT headquarters, trailer parks, two full-service DFACs, gym, PX, clinic, motor pools, a hangar, fuel farms, helipads and a Patriot battery inside a double wall",
+  "Two new structures for big installations: Warehouse and Headquarters",
+  "Brigade support areas are now small (24×24) instead of camp-sized"
  ],
- "published": "2026-11-06T17:34:56.400Z",
+ "published": "2026-11-06T18:24:23.274Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
