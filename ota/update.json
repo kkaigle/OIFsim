@@ -1,21 +1,25 @@
 {
-  "game": 155,
-  "semver": "0.6.7a",
-  "file": "game-155.html",
-  "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-155.html",
-  "sha256": "2fe43f59ddc40d3cd712019252f243e04c0229452a1d1a6d8368f77dcc4bdd07",
-  "size": 14048103,
-  "notes": [
-    "v0.6.7a: Map rendering hotfix — fixed a function name collision between the 16x16 base grid snapper (bldGridSnap) and OpenStreetMap street snapping (bldSnap) that caused the 2D map canvas to clear on render.",
-    "Interactive 3D & 2D 16x16 Grid Base Builder: place, move, and rotate 15 compound structures with discrete grid snapping, collision detection, and 3D ghost preview.",
-    "PBR Graphics Overhaul & Pluggable .GLB Asset Loader."
-  ],
-  "published": "2026-11-05T16:42:00.000Z",
-  "shell": "1.61.0",
-  "minShell": "1.61.0",
-  "shellUrl": {
-    "mac": "https://github.com/kkaigle/OIFsim/releases/latest/download/Iraq-Theater-Command-mac-arm64.zip",
-    "win": "https://github.com/kkaigle/OIFsim/releases/latest/download/Iraq-Theater-Command-windows-x64.zip"
-  },
-  "page": "https://github.com/kkaigle/OIFsim/releases/latest"
+ "game": 156,
+ "semver": "0.6.8a",
+ "file": "game-156.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-156.html",
+ "sha256": "6164a26a49fff95b835819cc5288b649314ff0b9228782772694c7f6a7a09211",
+ "size": 14153347,
+ "notes": [
+  "Smoother zoom, popout menus, blue force tracker",
+  "Zooming into cities no longer stalls: building alignment is now baked into the map data, a city's streets are prepared between gestures (or ahead of time as you close in) instead of in the middle of a zoom, and big cities draw from cached tiles from mid zoom, roughly halving frame time there",
+  "On wider screens the side menus open as a popout beside the button you pressed instead of the panel at the bottom. Units, cities and other things you tap on the map still open at the bottom",
+  "In the drone and FLIR views a camera button under Lase switches between FLIR white hot, FLIR black hot, night vision, daylight TV and colour, without going into Settings",
+  "Friendly units show in blue boxes labelled by the blue force tracker in the 3D drone view and the zoomed FLIR map, next to the red boxes on known enemy",
+  "Impacts and explosions now throw a dust burst, leave a scorch mark and a smoke plume that rises and drifts for up to half a minute in 3D, and explosions on the map leave smoke that hangs for several seconds",
+  "The troops-in-contact alert and other alerts now sit to the left of the right-hand map buttons instead of on top of them"
+ ],
+ "published": "2026-11-06T15:52:40.217Z",
+ "shell": "1.61.0",
+ "minShell": "1.61.0",
+ "shellUrl": {
+  "mac": "https://github.com/kkaigle/OIFsim/releases/latest/download/Iraq-Theater-Command-mac-arm64.zip",
+  "win": "https://github.com/kkaigle/OIFsim/releases/latest/download/Iraq-Theater-Command-windows-x64.zip"
+ },
+ "page": "https://github.com/kkaigle/OIFsim/releases/latest"
 }
