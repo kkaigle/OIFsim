@@ -1,17 +1,15 @@
 {
- "game": 163,
- "semver": "0.9.1a",
- "file": "game-163.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-163.html",
- "sha256": "73508e250b04106f8ac7a84f3ad9371d6b4300f91c4966fab04c742f918d425b",
- "size": 15711262,
+ "game": 164,
+ "semver": "0.9.2a",
+ "file": "game-164.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-164.html",
+ "sha256": "3fa8fd1971f4dd9674c76984b6165e57b2356713aa2f19a1e592f9889efdd42a",
+ "size": 15735335,
  "notes": [
-  "Ali Al Salem",
-  "New base: Ali Al Salem Air Base, west of Al Jahra, at its real location. Its airfield comes from OpenStreetMap: both 2,990 m runways (12L/30R and 12R/30L) with overruns, the taxiways, aprons, hardened aircraft shelters, hangars and helipads, in the map and in 3D. Squadrons you base there park on its ramps",
-  "Ali Al Salem is the theater air base: strike fighters, A-10s, gunships, tankers, airlift, UAVs and helicopters fly from it, and it also takes engineers, MPs, medical, logistics, intelligence and air defense. Combat formations still come in through Camp Doha",
-  "Camp Doha is now the administrative receiving base for troops arriving in theater; it no longer takes fixed-wing aircraft. Aircraft already at Doha in a saved campaign move to Ali Al Salem"
+  "Tents",
+  "New medium tent model, used for every small and medium tent on a base: billeting tents, the small chow tent, the small MWR tent, the aid station and the tactical operations center at small outposts. FOBs are mostly tents; large bases keep a few"
  ],
- "published": "2026-11-06T19:36:16.890Z",
+ "published": "2026-11-07T01:53:13.807Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
