@@ -1,16 +1,15 @@
 {
- "game": 173,
- "semver": "0.10.6a",
- "file": "game-173.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-173.html",
- "sha256": "847de9cf54a1f824a37285d2139376581ced46ce87ff594fd94e309e51ed202e",
- "size": 15937351,
+ "game": 174,
+ "semver": "0.10.7a",
+ "file": "game-174.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-174.html",
+ "sha256": "a283bbb5d891eb683e5a0defa66bcad04aaefd70b624de7e2fb2b7c9c4ea0c00",
+ "size": 15940578,
  "notes": [
-  "Aviation forward",
-  "Aviation brigades sent to an AO now actually move into it: once they land in Kuwait their helicopters base at the AO's FOBs and camps with a helicopter pad, which pushes the MEDEVAC and attack aviation rings forward. With Auto, an aviation brigade goes to the AO with a pad that has the fewest helicopters. Helicopters sent to an AO from the unit cart do the same, and jets sent to an AO land at Ali Al Salem and fly from there",
-  "New AO button: Bring helicopters forward from Kuwait, for aviation already sitting at Camp Doha or Ali Al Salem"
+  "Gunship on station",
+  "An AC-130 on a close air support orbit now stays on station and circles, flying six fire missions a day on targets ground forces mark for it: troops in contact first, then the enemy positions they are fighting, assaults and offensives under way nearby, and insurgent cells your patrols have found. Each night ends with a summary of what it hit. Set it up from the gunship's unit page: Close air support orbit"
  ],
- "published": "2026-11-07T03:25:49.334Z",
+ "published": "2026-11-07T03:29:08.850Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
