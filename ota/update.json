@@ -1,19 +1,15 @@
 {
- "game": 168,
- "semver": "0.10.1a",
- "file": "game-168.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-168.html",
- "sha256": "446b03a16e86197c720fd356e780b5b09d66d6ca1ac4784f01833c77b0f5763a",
- "size": 15926481,
+ "game": 169,
+ "semver": "0.10.2a",
+ "file": "game-169.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-169.html",
+ "sha256": "a7b600720fc86ea88dcb827685485f8c5681ad4760e4cf8499fb67bdb3c876ca",
+ "size": 15928731,
  "notes": [
-  "Contact",
-  "No more units stuck \"waiting for room\". A company assigned to an AO that no base can take yet is flagged to move up, and the AO's support area grows to take it. Aircraft that work an AO from Ali Al Salem, the Gulf or Al Udeid now show as Flying from outside, and units simply based elsewhere show as Based outside",
-  "Columns no longer drive past known enemy positions. A unit moving within reach of a regime division or an enemy-held base meets it and fights, which slows the move and wears the enemy down, so progress happens without always setting up an offensive. It carries on to its goal once the contact is broken",
-  "Combat load: every fight burns ammunition. A unit that runs out falls back to rearm, and fills up again at base",
-  "Helicopters have limited fuel. Gunships helping troops in contact go home to refuel after a day on station, and during an offensive the troops in range rotate: one flies, the others refuel and rearm, so there are always gunships overhead when you have enough of them",
-  "New alert: Offensive faltering, when companies are worn down or out of ammunition, too few are left in the fight, or the bases run short of supplies. From the AO you can rotate the worn units for the best-fit fresh companies for the terrain, pick replacements yourself, pull units out, or plus up the offensive with more companies"
+  "Control map",
+  "The Control map mode is now a territory map you can read at a glance: Kuwait and coalition-held areas in blue, enemy cities and divisions in red (bigger for stronger divisions), contested towns in orange, and the rest of Iraq shaded as regime territory until Baghdad falls. City markers are solid dots with the major cities labelled at any zoom"
  ],
- "published": "2026-11-07T02:35:54.606Z",
+ "published": "2026-11-07T02:41:26.540Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
