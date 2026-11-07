@@ -1,15 +1,19 @@
 {
- "game": 167,
- "semver": "0.10.0a",
- "file": "game-167.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-167.html",
- "sha256": "63c0be995f08247c763f514aeca07d1ea16dd1331a00674edc7314ef50a010a0",
- "size": 15916580,
+ "game": 168,
+ "semver": "0.10.1a",
+ "file": "game-168.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-168.html",
+ "sha256": "446b03a16e86197c720fd356e780b5b09d66d6ca1ac4784f01833c77b0f5763a",
+ "size": 15926481,
  "notes": [
-  "Tutorial",
-  "New: a guided tutorial on the main menu, about four minutes long. It plays itself on a practice campaign and walks through the build-up in Kuwait, deploying brigades, units and aircraft, setting up an AO and assigning a brigade, the alert bar (unassigned brigades, low funds), and running the campaign: Campaign rail, advisors, contracts, the ledger, map modes and time. Pause, step back or jump to any chapter, and come back to it whenever you like. It never touches your saves"
+  "Contact",
+  "No more units stuck \"waiting for room\". A company assigned to an AO that no base can take yet is flagged to move up, and the AO's support area grows to take it. Aircraft that work an AO from Ali Al Salem, the Gulf or Al Udeid now show as Flying from outside, and units simply based elsewhere show as Based outside",
+  "Columns no longer drive past known enemy positions. A unit moving within reach of a regime division or an enemy-held base meets it and fights, which slows the move and wears the enemy down, so progress happens without always setting up an offensive. It carries on to its goal once the contact is broken",
+  "Combat load: every fight burns ammunition. A unit that runs out falls back to rearm, and fills up again at base",
+  "Helicopters have limited fuel. Gunships helping troops in contact go home to refuel after a day on station, and during an offensive the troops in range rotate: one flies, the others refuel and rearm, so there are always gunships overhead when you have enough of them",
+  "New alert: Offensive faltering, when companies are worn down or out of ammunition, too few are left in the fight, or the bases run short of supplies. From the AO you can rotate the worn units for the best-fit fresh companies for the terrain, pick replacements yourself, pull units out, or plus up the offensive with more companies"
  ],
- "published": "2026-11-07T02:27:00.356Z",
+ "published": "2026-11-07T02:35:54.606Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
