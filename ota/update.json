@@ -1,16 +1,15 @@
 {
- "game": 171,
- "semver": "0.10.4a",
- "file": "game-171.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-171.html",
- "sha256": "112e7eb903d875e1a450ee53035d52c5e937934ed9185627b00c71983c39f81c",
- "size": 15933372,
+ "game": 172,
+ "semver": "0.10.5a",
+ "file": "game-172.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-172.html",
+ "sha256": "c9cfde2e18c7687c301360558012b2adabc28bf123e75e122b325f121500de16",
+ "size": 15934896,
  "notes": [
-  "Force protection",
-  "Force protection is back as a base facility instead of a combat unit: build it under Facilities in three levels, from a guard force on the gates and towers up to full entry control points and a reaction force. It never leaves the wire. Each level adds base defense and 120 people toward running the base, and a base with force protection stays held when its combat companies are out. Garrison security companies in saved campaigns become force protection at their base",
-  "AC-130 gunship missions now orbit the target: after the first pass the gunship circles for about an hour and keeps firing, wearing the target down and taking pressure off any troops in contact nearby, before heading home"
+  "Platoon details",
+  "Support work away from base is done by a platoon, not the whole company. When engineers go to build a new base, or engineers, MPs or medics go out for city work, about a third of the company leaves as 1st Platoon and the rest stays home, so the base keeps its strength. The platoon rejoins its company when it gets back"
  ],
- "published": "2026-11-07T03:03:31.515Z",
+ "published": "2026-11-07T03:06:50.312Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
