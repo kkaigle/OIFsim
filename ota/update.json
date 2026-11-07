@@ -1,15 +1,16 @@
 {
- "game": 172,
- "semver": "0.10.5a",
- "file": "game-172.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-172.html",
- "sha256": "c9cfde2e18c7687c301360558012b2adabc28bf123e75e122b325f121500de16",
- "size": 15934896,
+ "game": 173,
+ "semver": "0.10.6a",
+ "file": "game-173.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-173.html",
+ "sha256": "847de9cf54a1f824a37285d2139376581ced46ce87ff594fd94e309e51ed202e",
+ "size": 15937351,
  "notes": [
-  "Platoon details",
-  "Support work away from base is done by a platoon, not the whole company. When engineers go to build a new base, or engineers, MPs or medics go out for city work, about a third of the company leaves as 1st Platoon and the rest stays home, so the base keeps its strength. The platoon rejoins its company when it gets back"
+  "Aviation forward",
+  "Aviation brigades sent to an AO now actually move into it: once they land in Kuwait their helicopters base at the AO's FOBs and camps with a helicopter pad, which pushes the MEDEVAC and attack aviation rings forward. With Auto, an aviation brigade goes to the AO with a pad that has the fewest helicopters. Helicopters sent to an AO from the unit cart do the same, and jets sent to an AO land at Ali Al Salem and fly from there",
+  "New AO button: Bring helicopters forward from Kuwait, for aviation already sitting at Camp Doha or Ali Al Salem"
  ],
- "published": "2026-11-07T03:06:50.312Z",
+ "published": "2026-11-07T03:25:49.334Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
