@@ -1,15 +1,15 @@
 {
- "game": 164,
- "semver": "0.9.2a",
- "file": "game-164.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-164.html",
- "sha256": "3fa8fd1971f4dd9674c76984b6165e57b2356713aa2f19a1e592f9889efdd42a",
- "size": 15735335,
+ "game": 165,
+ "semver": "0.9.3a",
+ "file": "game-165.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-165.html",
+ "sha256": "fd5caab57930f845598b746cb6a521a9d3560cb7b1497b1057506d80ff5faf6c",
+ "size": 15897306,
  "notes": [
-  "Tents",
-  "New medium tent model, used for every small and medium tent on a base: billeting tents, the small chow tent, the small MWR tent, the aid station and the tactical operations center at small outposts. FOBs are mostly tents; large bases keep a few"
+  "Sand",
+  "The 3D and drone views now have a real sand texture on the ground. It adds grain and mottling on top of the existing terrain colours, so farmland, riverbanks and city ground keep their tint"
  ],
- "published": "2026-11-07T01:53:13.807Z",
+ "published": "2026-11-07T02:01:12.611Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
