@@ -1,15 +1,15 @@
 {
- "game": 165,
- "semver": "0.9.3a",
- "file": "game-165.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-165.html",
- "sha256": "fd5caab57930f845598b746cb6a521a9d3560cb7b1497b1057506d80ff5faf6c",
- "size": 15897306,
+ "game": 167,
+ "semver": "0.10.0a",
+ "file": "game-167.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-167.html",
+ "sha256": "63c0be995f08247c763f514aeca07d1ea16dd1331a00674edc7314ef50a010a0",
+ "size": 15916580,
  "notes": [
-  "Sand",
-  "The 3D and drone views now have a real sand texture on the ground. It adds grain and mottling on top of the existing terrain colours, so farmland, riverbanks and city ground keep their tint"
+  "Tutorial",
+  "New: a guided tutorial on the main menu, about four minutes long. It plays itself on a practice campaign and walks through the build-up in Kuwait, deploying brigades, units and aircraft, setting up an AO and assigning a brigade, the alert bar (unassigned brigades, low funds), and running the campaign: Campaign rail, advisors, contracts, the ledger, map modes and time. Pause, step back or jump to any chapter, and come back to it whenever you like. It never touches your saves"
  ],
- "published": "2026-11-07T02:01:12.611Z",
+ "published": "2026-11-07T02:27:00.356Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
