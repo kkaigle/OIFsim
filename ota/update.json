@@ -1,18 +1,19 @@
 {
- "game": 176,
- "semver": "0.12.0a",
- "file": "game-176.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-176.html",
- "sha256": "5c090d7629b2352eb27e15d831d40ed02467e5ed450fe35c9f216eb705b30cde",
- "size": 15962361,
+ "game": 177,
+ "semver": "0.12.1a",
+ "file": "game-177.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-177.html",
+ "sha256": "913bd32e9b34c39ccb6bdd2176ffa6e225cc4c036ae42837ba7c120f3dd5cea6",
+ "size": 15965426,
  "notes": [
-  "Drive north",
-  "New invasion timeline in the Campaign panel: eight objectives from crossing the berm to Tikrit, each with the real date it fell (Baghdad on D+21). Point objectives (Tallil, Rams, Peach, Lions) show on the map as diamonds.",
-  "Keeping pace pays: every objective taken on time knocks strength off the Republican Guard and lifts support at home, and taking the airport rattles Baghdad's defenders. Fall behind and the regime digs in faster, pushes fighters into undefended towns, and an alert tells you what is overdue.",
-  "Build as you advance: during the invasion FOBs go up in about half the time for 30% less, and any FOB can become a forward logistics support area (LSA) for $40.",
-  "Long-term presence: logistics hubs now draw daily contract convoys from Kuwait and feed the bases around them, and bigger bases reach further (camp 100 km, major base 150 km). After the invasion, FOB LSAs only store supplies until you expand them."
+  "Build-up fixes",
+  "The 48-hour ultimatum now plays out on its own in well under a minute instead of needing the speed cranked up, with a live countdown in the top bar. The clock also ticks during the build-up.",
+  "Before the war, every deployment lands in Kuwait straight away: transit times only apply once the war starts.",
+  "The Kuwait camps grow with the build-up, so every brigade you order can stage there instead of being refused for lack of room.",
+  "On G-Day every combat brigade staged without an area of operations is given one and crosses with the rest of the force; aviation brigades follow into the AOs.",
+  "A brigade's own medical and intelligence companies now move with it into its support area and FOBs instead of waiting in Kuwait for a camp."
  ],
- "published": "2026-11-08T04:24:06.856Z",
+ "published": "2026-11-08T04:35:04.898Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
