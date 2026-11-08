@@ -1,15 +1,21 @@
 {
- "game": 174,
- "semver": "0.10.7a",
- "file": "game-174.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-174.html",
- "sha256": "a283bbb5d891eb683e5a0defa66bcad04aaefd70b624de7e2fb2b7c9c4ea0c00",
- "size": 15940578,
+ "game": 175,
+ "semver": "0.11.0a",
+ "file": "game-175.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-175.html",
+ "sha256": "04b6526e55fe76f2104943c6f92b94f87d19c02ef9fdb6237f1394d57ca1b988",
+ "size": 15951507,
  "notes": [
-  "Gunship on station",
-  "An AC-130 on a close air support orbit now stays on station and circles, flying six fire missions a day on targets ground forces mark for it: troops in contact first, then the enemy positions they are fighting, assaults and offensives under way nearby, and insurgent cells your patrols have found. Each night ends with a summary of what it hit. Set it up from the gunship's unit page: Close air support orbit"
+  "Brigades & money",
+  "Base building is funded: each month's O&M money now also repays 85% of the previous month's construction as military construction, so building and expanding FOBs no longer eats the budget",
+  "Support areas stand down on their own once the AO's FOBs have room: their companies move into the FOBs and the support area closes",
+  "Every company has a home base. The AO overview shows housing: how many companies live at its FOBs, how many are in the support area or outside, and free slots. When it is short you get a Companies without a FOB alert, with buttons to expand FOBs into camps or major bases (the brigade's own engineers can do it). Units whose base is gone are sent to a new one",
+  "Brigade combat teams now deploy as real brigades: a heavy or infantry BCT brings its brigade support battalion (two sustainment companies and a medical company) and special troops (engineers and intelligence); a Marine RCT brings a combat logistics battalion, shock trauma platoon and engineers. These companies are not combat units: they follow the brigade into its AO, keep its FOBs stocked from the nearest hub every day, treat its wounded and build its bases. Embedded support costs 40% less to run than stand-alone companies",
+  "Personnel counts the whole brigade: a heavy BCT is about 3,800 soldiers, an infantry BCT about 3,400, a Marine RCT about 3,600, so Forces now shows personnel in Iraq and Kuwait on the scale of the real war (130,000–170,000 from 2004 to 2008)",
+  "Funding follows history: Congress paid for that force every year. Monthly O&M now covers about all of the running cost at normal congressional support, supplemental requests pass more often, and every six months of the occupation a war supplemental covers operations",
+  "Indirect fire: mortar and rocket teams near your bases now shell them regularly where the insurgency is strong, causing killed and wounded inside the wire. C-RAM, counter-battery artillery, force protection, bunkers and hardened billets all reduce it"
  ],
- "published": "2026-11-07T03:29:08.850Z",
+ "published": "2026-11-08T04:09:29.096Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
