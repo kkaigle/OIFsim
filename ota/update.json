@@ -1,21 +1,18 @@
 {
- "game": 175,
- "semver": "0.11.0a",
- "file": "game-175.html",
- "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-175.html",
- "sha256": "04b6526e55fe76f2104943c6f92b94f87d19c02ef9fdb6237f1394d57ca1b988",
- "size": 15951507,
+ "game": 176,
+ "semver": "0.12.0a",
+ "file": "game-176.html",
+ "url": "https://raw.githubusercontent.com/kkaigle/OIFsim/main/ota/game-176.html",
+ "sha256": "5c090d7629b2352eb27e15d831d40ed02467e5ed450fe35c9f216eb705b30cde",
+ "size": 15962361,
  "notes": [
-  "Brigades & money",
-  "Base building is funded: each month's O&M money now also repays 85% of the previous month's construction as military construction, so building and expanding FOBs no longer eats the budget",
-  "Support areas stand down on their own once the AO's FOBs have room: their companies move into the FOBs and the support area closes",
-  "Every company has a home base. The AO overview shows housing: how many companies live at its FOBs, how many are in the support area or outside, and free slots. When it is short you get a Companies without a FOB alert, with buttons to expand FOBs into camps or major bases (the brigade's own engineers can do it). Units whose base is gone are sent to a new one",
-  "Brigade combat teams now deploy as real brigades: a heavy or infantry BCT brings its brigade support battalion (two sustainment companies and a medical company) and special troops (engineers and intelligence); a Marine RCT brings a combat logistics battalion, shock trauma platoon and engineers. These companies are not combat units: they follow the brigade into its AO, keep its FOBs stocked from the nearest hub every day, treat its wounded and build its bases. Embedded support costs 40% less to run than stand-alone companies",
-  "Personnel counts the whole brigade: a heavy BCT is about 3,800 soldiers, an infantry BCT about 3,400, a Marine RCT about 3,600, so Forces now shows personnel in Iraq and Kuwait on the scale of the real war (130,000–170,000 from 2004 to 2008)",
-  "Funding follows history: Congress paid for that force every year. Monthly O&M now covers about all of the running cost at normal congressional support, supplemental requests pass more often, and every six months of the occupation a war supplemental covers operations",
-  "Indirect fire: mortar and rocket teams near your bases now shell them regularly where the insurgency is strong, causing killed and wounded inside the wire. C-RAM, counter-battery artillery, force protection, bunkers and hardened billets all reduce it"
+  "Drive north",
+  "New invasion timeline in the Campaign panel: eight objectives from crossing the berm to Tikrit, each with the real date it fell (Baghdad on D+21). Point objectives (Tallil, Rams, Peach, Lions) show on the map as diamonds.",
+  "Keeping pace pays: every objective taken on time knocks strength off the Republican Guard and lifts support at home, and taking the airport rattles Baghdad's defenders. Fall behind and the regime digs in faster, pushes fighters into undefended towns, and an alert tells you what is overdue.",
+  "Build as you advance: during the invasion FOBs go up in about half the time for 30% less, and any FOB can become a forward logistics support area (LSA) for $40.",
+  "Long-term presence: logistics hubs now draw daily contract convoys from Kuwait and feed the bases around them, and bigger bases reach further (camp 100 km, major base 150 km). After the invasion, FOB LSAs only store supplies until you expand them."
  ],
- "published": "2026-11-08T04:09:29.096Z",
+ "published": "2026-11-08T04:24:06.856Z",
  "shell": "1.61.0",
  "minShell": "1.61.0",
  "shellUrl": {
